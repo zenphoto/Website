@@ -811,9 +811,9 @@ function zp_printThemeDownloadButton() {
 	if(!$_zp_current_album->hasTag('theme-officially-supported') && zp_getParentAlbumName() == "theme") {
   	if(zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('hosted_theme')) {
 			echo "<hr />";
-			$linktext = 'Download (hosted)';
+			$linktext = 'Download on GitHub.com';
 			$theme = explode('/',$_zp_current_album->name);
-			$themeurl = getDownloadLink('uploaded/themes/'.$theme[1].'.zip');	
+			$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/'.$theme[1];	
 		} else {
 			echo "<hr />";
 			$linktext = 'Info/download (external)';
@@ -844,10 +844,17 @@ function zp_printExtensionDownloadButton() {
 			$linktext = 'Usage information'; 
 			$linkicon_url = $_zp_themeroot.'/images/info_green.png'; 
 		} else {
-			if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
-				$linktext = 'Download (hosted)';
+			if(zp_inNewsCategory("unsupported-plugin-github")) {
+			//if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
+				$linktext = 'Download on GitHub.com';
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
-				$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
+				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
+				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/plugins/'.$_zp_current_zenpage_news->getTitlelink();
+			} else if (zp_inNewsCategory("unsupported-misc-github")) {
+				$linktext = 'Download on GitHub.com';
+				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
+				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
+				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/'.$_zp_current_zenpage_news->getTitlelink();
 			} else {
 				$linktext = 'Info/download (external)';
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
