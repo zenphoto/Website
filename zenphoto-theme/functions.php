@@ -810,10 +810,11 @@ function zp_printThemeDownloadButton() {
 	global $_zp_themeroot, $_zp_gallery, $_zp_current_album;
 	if(!$_zp_current_album->hasTag('theme-officially-supported') && zp_getParentAlbumName() == "theme") {
   	if(zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('hosted_theme')) {
-			echo "<hr />";
+			echo '<hr />';
 			$linktext = 'Download on GitHub.com';
 			$theme = explode('/',$_zp_current_album->name);
 			$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/'.$theme[1];	
+			echo '<p>Please note that the storage on GitHub is new and a work in progress currently. If something does not work, please try again later.</p>';
 		} else {
 			echo "<hr />";
 			$linktext = 'Info/download (external)';
@@ -850,11 +851,13 @@ function zp_printExtensionDownloadButton() {
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/plugins/'.$_zp_current_zenpage_news->getTitlelink();
+				echo '<p>Please note that the storage on GitHub is new and a work in progress currently. If something does not work, please try again later.</p>';
 			} else if (zp_inNewsCategory("unsupported-misc-github")) {
 				$linktext = 'Download on GitHub.com';
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/'.$_zp_current_zenpage_news->getTitlelink();
+				echo '<p>Please note that the storage on GitHub is new and a work in progress currently. If something does not work, please try again later.</p>';
 			} else {
 				$linktext = 'Info/download (external)';
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
