@@ -146,12 +146,10 @@ href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installati
 
 	<div class="infobox-links-r">
 		<ul class="downloadlinks">
-			<li><a href="/news/category/changelog" title="Zenphoto changelog">changelog</a></li>
-			<li><a href="http://www.zenphoto.org/pages/nightly-builds" title="Zenphoto nightly builds">nightly builds</a></li>
-    	<!--<li><a href="/files/nightly/" title="Zenphoto nightly builds">nightly builds</a></li>-->
-    	<li><a href="/trac/browser/branches/development" title="Zenphoto svn development">svn</a> (development for next release)</li>
+			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
+			<li><a href="http://www.zenphoto.org/pages/nightly-builds" title="Zenphoto nightly builds">Nightly builds (1.4.3.x bugfixes)</a></li>
+    	<li><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto development on Github">Development on GitHub</li>
     	<li><a href="http://www.zenphoto.org/pages/older-versions-archive" title="Zenphoto older versions archive">Older versions archive</a></li>
-    	<!-- <li><a href="/files" title="Zenphoto older versions archive">Older versions archive</a></li> -->
 		</ul>
 	</div>
 

@@ -814,7 +814,7 @@ function zp_printThemeDownloadButton() {
 			$linktext = 'Download on GitHub.com';
 			$theme = explode('/',$_zp_current_album->name);
 			$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/'.$theme[1];	
-			echo '<p>Please note that the storage on GitHub is new and a work in progress currently. If something does not work, please try again later.</p>';
+			echo '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual themes from the GitHub repository. You have to download the full repository and sort out what you need yourself.</p>';
 		} else {
 			echo "<hr />";
 			$linktext = 'Info/download (external)';
@@ -845,19 +845,20 @@ function zp_printExtensionDownloadButton() {
 			$linktext = 'Usage information'; 
 			$linkicon_url = $_zp_themeroot.'/images/info_green.png'; 
 		} else {
+			$githubtext = '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual themes from the GitHub repository. You have to download the full repository and sort out what you need yourself.</p>';
 			if(zp_inNewsCategory("unsupported-plugin-github")) {
 			//if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
 				$linktext = 'Download on GitHub.com';
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/plugins/'.$_zp_current_zenpage_news->getTitlelink();
-				echo '<p>Please note that the storage on GitHub is new and a work in progress currently. If something does not work, please try again later.</p>';
+				echo $githubtext;
 			} else if (zp_inNewsCategory("unsupported-misc-github")) {
 				$linktext = 'Download on GitHub.com';
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/'.$_zp_current_zenpage_news->getTitlelink();
-				echo '<p>Please note that the storage on GitHub is new and a work in progress currently. If something does not work, please try again later.</p>';
+				echo $githubtext;
 			} else {
 				$linktext = 'Info/download (external)';
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
