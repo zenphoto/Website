@@ -10,7 +10,7 @@
 <div id="container">
 	<div id="banner">
 	 	<ul>
-	 		<li><a href="http://www.zenphoto.org/trac/report" title="Zenphoto bugtracker">Bugtracker</a></li>
+	 		<li><a href="http://www.zenphoto.org/pages/bugtracker" title="Zenphoto bugtracker">Bugtracker</a></li>
 	 		<li><a href="http://www.zenphoto.org/pages/get-involved" title="Get involved!">Get involved!</a></li>
 	 		<li><a href="#stay-tuned" title="Get involved!">Stay tuned!</a></li>
 	 		<li><a href="http://www.zenphoto.org/pages/paid-support" title="Paid support">Paid support</a></li>
