@@ -857,7 +857,7 @@ function zp_printExtensionDownloadButton() {
 				$linktext = 'Download on GitHub.com';
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
-				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/'.$_zp_current_zenpage_news->getTitlelink();
+				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/misc/'.$_zp_current_zenpage_news->getTitlelink();
 				echo $githubtext;
 			} else {
 				$linktext = 'Info/download (external)';
