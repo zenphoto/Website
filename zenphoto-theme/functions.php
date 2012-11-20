@@ -951,7 +951,7 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 					break;	
 				case 'hosting/gold': 
 					$adwidth = 560;
-					$maxnum = 2;
+					$maxnum = 99;
 					$imgclass = 'sponsor-gold';
 					break;
 				case 'hosting/silver': 
@@ -987,21 +987,21 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 					case 'hosting/gold': 
 							$linkclass = 'gold-ad';
 							break;
-						case 'hosting/silver': 
-							$imgclass = 'sponsor-silver';
-							$linkclass = 'silver-ad';
-							if($count < 2) {
-								$imgclass .= ' sponsor-right';
-							}
-							break;
-						case 'hosting/bronze': 
-							$imgclass = 'sponsor-bronze';
-							$linkclass = 'bronze-ad';
-							if($count != 4) {
-								$imgclass .= ' sponsor-right';
-							}
-							//echo $count."/".$imgclass;
-							break;
+					case 'hosting/silver': 
+						$imgclass = 'sponsor-silver';
+						$linkclass = 'silver-ad';
+						if($count < 2) {
+							$imgclass .= ' sponsor-right';
+						}
+						break;
+					case 'hosting/bronze': 
+						$imgclass = 'sponsor-bronze';
+						$linkclass = 'bronze-ad';
+						if($count != 4) {
+							$imgclass .= ' sponsor-right';
+						}
+						//echo $count."/".$imgclass;
+						break;
 				}
 				if(isImagePhoto($imgobj)) {
 					$link = $imgobj->getCustomData();
@@ -1094,18 +1094,24 @@ function zp_printSponsorAvailability() {
 		switch($album) {
 				case 'hosting/platinum':
 				case 'hosting/palladium':
-				case 'hosting/gold': 
 				case 'hosting/silver': 
 					$maxnum = 2;
 					break;
+				case 'hosting/gold': 
+				  $maxnum = 'Unlimited';
+				  break;
 				case 'hosting/bronze': 
 					$maxnum = 4;
 					break;
 		}
-		if($imagescount != $maxnum) {
-			$max = $maxnum-$imagescount;
-		} else {				
-			$max = 'not available currently';
+		if($album == 'hosting/gold') {
+			$max = $maxnum;
+		} else {
+			if($imagescount != $maxnum) {
+				$max = $maxnum-$imagescount;
+			} else {				
+				$max = 'not available currently';
+			} 
 		}
 		?>
 		<li><?php echo $albobj->getTitle(); ?>: <?php echo $max; ?></li>
