@@ -810,13 +810,11 @@ function zp_printThemeDownloadButton() {
 	global $_zp_themeroot, $_zp_gallery, $_zp_current_album;
 	if(!$_zp_current_album->hasTag('theme-officially-supported') && zp_getParentAlbumName() == "theme") {
   	if(zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('hosted_theme')) {
-			echo '<hr />';
 			$linktext = 'Download on GitHub.com';
 			$theme = explode('/',$_zp_current_album->name);
 			$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/'.$theme[1];	
 			echo '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual themes from the GitHub repository. You have to download the full repository and sort out what you need yourself.</p>';
 		} else {
-			echo "<hr />";
 			$linktext = 'Info/download (external)';
 			$themeurl = $_zp_current_album->getLocation();
 		}
@@ -827,7 +825,7 @@ function zp_printThemeDownloadButton() {
 		}
   }
   if($_zp_current_album->hasTag('theme-officially-supported')) {?>
-		<hr /><p class="articlebox">Included in the Zenphoto release.</p>
+		<p class="articlebox">Included in the Zenphoto release.</p>
 	<?php 
   }
 }

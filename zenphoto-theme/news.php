@@ -121,13 +121,14 @@ if(is_NewsArticle()) {
   	printCodeblock(2);
   	 ?>
   	</span>
-  	<hr />
+  	
    	<?php zp_printExtensionDownloadButton(); ?>
    
   	 <?php if(zp_inNewsCategory("user-guide")) { ?>
 		 <p class="articlebox license"><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>This work by <a xmlns:cc="http://creativecommons.org/ns#" href="www.zenphoto.org" property="cc:attributionName" rel="cc:attributionURL">www.zenphoto.org</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
 		 <?php } ?>
 		 <p class="articlebox"><em>For questions and comments please use the <a href="http://www.zenphoto.org/support" title="Zenphoto forums" >forum</a> or discuss on the <a href="#stay-tuned">social networks</a>.</em></p>
+		<hr /> 
 		<?php zp_printAddthis(); ?>
 		<?php 
 		if(zp_inNewsCategory('extensions')) {

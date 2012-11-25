@@ -92,20 +92,22 @@ zp_printSidebarBoxes(); ?>
  	 		echo '<hr />';
  	 	} else if ($_zp_current_album->name == "showcase") {
  	 		echo '<div class="buttons visitsite">'; printImageDesc(); echo "</div>";
-   		echo "<hr style='clear: both' />";
+   		echo "<br style='clear: left' />";
    		echo '<p><strong>Date added: </strong>'.getImageDate().'</p>';
  	 	} else if($zp_getParentAlbumName == "theme"){
  	 		printImageDesc(); 
  	 		zp_printPluginsupportTags();
  	 		if(!$_zp_current_album->hasTag('theme-officially-supported')) {
- 	 			echo '<hr /><p><strong>Date added: </strong>'.getAlbumDate().'</p>';
+ 	 			echo '<p><strong>Date added: </strong>'.getAlbumDate().'</p>';
  	 		}
  	 	}
  	 	?>
  	 	</div>
  	 	<?php
+  	zp_printThemeDownloadButton();
+  	echo '<br clear="left" />';
  	 	if (function_exists('printRating') && ($zp_getParentAlbumName == "theme" || $_zp_current_album->name == "showcase")) {
- 	 		echo "<hr />";
+ 	 		echo "<hr v/>";
  	 		echo '<div class="rating" style="float: left; width:400px; height:50px;">';
  	 		if($zp_getParentAlbumName == "theme") {
  	 			$itemtobj_to_rate = $_zp_current_album;
@@ -121,10 +123,9 @@ zp_printSidebarBoxes(); ?>
  	 		echo '</div>';
  	 	}
   }
-  echo '<br clear="left" />';
-  zp_printThemeDownloadButton();
+ 
   ?>
-  <br style="clear:both" />
+  <hr style="clear:left" />
 <?php zp_printAddthis(); ?>
 <?php
 if ($_zp_current_album->name != "showcase") {
