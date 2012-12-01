@@ -1969,6 +1969,13 @@ ul.archive #month {
 	border: 1px solid darkgray;
 }
 
+#search input#search_input {
+	width: 100%;
+	height: 20px;
+	background: url(images/searchicon.png) no-repeat center left;
+	text-indent: 30px;
+}
+
 #googlegroups input[type=submit],
 #search input.pushbutton,
 #mailform input[type=submit],
@@ -1981,18 +1988,25 @@ ul.archive #month {
 	background-color: #e7ecba;
 }
 
+#search input.pushbutton {
+display: none;
+}
+
 #googlegroups input[type=submit] {
 clear: both;
 margin-top: 5px;
 }
+
+#search ul,
 #search a {
-text-decoration: none;
+display: none;
 }
-#search ul {
+/* #search ul {
 border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
 height: 8em; width: 20em; overflow: auto;
 background-color: white;
-}
+
+} */
 
 #searchfields_icon, #reset_search img {
 position: relative;

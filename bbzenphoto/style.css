@@ -1000,8 +1000,10 @@ margin: 0;
 
 
 #sidebar #searchdiv input[type=text] {
-	width: 180px;
-
+	width: 90%;
+	height: 20px;
+	background: url(images/searchicon.png) no-repeat center left;
+	text-indent: 30px;
 }
 
 #sidebar #searchdiv input[type=submit],
@@ -1010,6 +1012,7 @@ padding: 3px 5px 3px 5px;
 	font-size: 13px;
 	border: 1px lightgray;
 	background-color: #e7ecba;
+	display: none;
 }
 
 #sidebar hr {
