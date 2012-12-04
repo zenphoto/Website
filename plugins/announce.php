@@ -18,8 +18,33 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('general_zenpage_utilities', 'zp_announce::checkbox');
 zp_register_filter('save_article_custom_data', 'zp_announce::execute');
+zp_register_filter('admin_head', 'zp_announce::head');
 
 class zp_announce {
+
+	static function head() {
+		if (getOption('zp_plugin_tweet_news')) {
+			?>
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				function tweet_tandem() {
+					if ($('#tweet_me').attr('checked')) {
+						$('#announce_me').attr('checked','checked');
+					} else {
+						$('#announce_me').removeAttr('checked');
+					}
+				}
+				$(window).load(function() {
+					tweet_tandem();
+					$("#tweet_me").click(function() {
+						tweet_tandem();
+					});
+				});
+			// ]]> -->
+			</script>
+			<?php
+		}
+	}
 
 	static function checkbox($before, $object, $prefix=NULL) {
 		if (get_class($object)=='ZenpageNews' && $object->inNewsCategory('announcements')) {
@@ -34,19 +59,17 @@ class zp_announce {
 			$content = $object->getContent();
 			$content = str_replace("\n", '', $content);
 			$content = str_replace("\r", '', $content);
-			$content = preg_replace('|<p[^>]*>?|i', "\r\n", $content);
-			$content = preg_replace('|</p>?|i', "\r\n", $content);
-			$content = preg_replace('|<ul[^>]*>?|i', "\r\n", $content);
-			$content = preg_replace('|</ul>?|i', "\r\n", $content);
+			$content = preg_replace('|<[/]*p[^>]*>?|i', "\r\n", $content);
+			$content = preg_replace('|<[/]*ul[^>]*>?|i', "\r\n", $content);
 			$content = preg_replace('|<li[^>]*>?|i', " - ", $content);
 			$content = preg_replace('|</li>?|i', "\r\n", $content);
 			$content = preg_replace('|<br[^>]*/>?|i', "\r\n", $content);
 			$content = trim(strip_tags($content), "\r\n");
+			$content = str_replace('  ', ' ', $content);
 			$result = zp_apply_filter('sendmail', '', array('zenphoto-announce'=>'zenphoto-announce@googlegroups.com'), strip_tags($object->getTitle()), $content, $_zp_current_admin_obj->getEmail(), $_zp_current_admin_obj->getName(), array(), NULL);
 		}
 		return $custom;
 	}
 
 }
-
 ?>
