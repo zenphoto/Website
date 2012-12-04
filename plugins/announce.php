@@ -57,6 +57,15 @@ class zp_announce {
 		global $_zp_current_admin_obj;
 		if (isset($_POST['announce_me'])) {
 			$content = $object->getContent();
+			preg_match_all('|<a href="(.*?)".*>(.*)</a>|', $content, $matches);
+			if (!empty($matches[0])) {
+				foreach ($matches[0] as $key=>$match) {
+					if (!empty($match)) {
+						$content = str_replace($match, $matches[2][$key].':'.$matches[1][$key], $content);
+					}
+				}
+			}
+
 			$content = str_replace("\n", '', $content);
 			$content = str_replace("\r", '', $content);
 			$content = preg_replace('|<[/]*p[^>]*>?|i', "\r\n", $content);
