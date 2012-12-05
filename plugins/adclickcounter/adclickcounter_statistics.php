@@ -31,7 +31,7 @@ printAdminHeader('overview','Ad click statistics');
  */
 function printBarGraph() {
 	//$limit = $from_number.",".$to_number;
-	$bargraphmaxsize = 400;
+	$bargraphmaxsize = 60;
 	$maxvalue = 0;
 	$items = query_full_array("SELECT `aux`,`data` FROM ".prefix('plugin_storage')." WHERE `type` = 'adclickcount' AND `data` != 0 ORDER BY `data` DESC");
 	$items = sortMultiArray($items, 'data', true, true, false, true);
@@ -45,7 +45,7 @@ function printBarGraph() {
 	$items = sortMultiArray($items, 'aux', true, true, false, true);
 	$countlines = 0;
 	echo "<table class='bordered'>";
-	echo "<tr><th colspan='4'><strong>".gettext("Most clicked ad links - Ordered by month")."</strong>";
+	echo "<tr><th colspan='3'><strong>".gettext("Most clicked ad links - Ordered by month")."</strong>";
 	echo "</th></tr>";
 	$count = '';
 	echo $no_statistic_message;
@@ -75,7 +75,7 @@ function printBarGraph() {
 			</strong>
 			</td>
 			<td class="statistic_graphwrap" <?php echo $style; ?>>
-			<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>px"></div>
+			<div class="statistic_bargraph" style="width: <?php echo $barsize; ?>%"></div>
 			<div class="statistic_value"><?php echo $value; ?></div>
 			</td>
 			</tr>
