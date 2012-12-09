@@ -110,8 +110,9 @@
 	</div> <!-- slideshow end -->
 
 <?php
+//$downloadroot = 'https://github.com/zenphoto/zenphoto/archive/';
 $downloadroot = "http://zenphoto.googlecode.com/files/";
-$zp_dl_version = "zenphoto-1.4.3";
+$zp_dl_version = '';
 $zp_version = '';
 $zp_dl_pubdate = '';
 if(function_exists('getLatestNews')) {
