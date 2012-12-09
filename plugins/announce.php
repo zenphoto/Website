@@ -75,7 +75,7 @@ class zp_announce {
 			$content = preg_replace('|<br[^>]*/>?|i', "\r\n", $content);
 			$content = trim(strip_tags($content), "\r\n");
 			$content = str_replace('  ', ' ', $content);
-			$result = zp_apply_filter('sendmail', '', array('zenphoto-announce'=>'zenphoto-announce@googlegroups.com'), strip_tags($object->getTitle()), $content, $_zp_current_admin_obj->getEmail(), $_zp_current_admin_obj->getName(), array(), NULL);
+			$result = zp_apply_filter('sendmail', '', array('zenphoto-announce'=>'zenphoto-announce@googlegroups.com'), strip_tags($object->getTitle()), $content, 'no-reply@zenphoto.org', 'The Zenphoto team', array(), NULL);
 		}
 		return $custom;
 	}
