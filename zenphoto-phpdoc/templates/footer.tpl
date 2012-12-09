@@ -98,6 +98,7 @@
 		<ul class="sociallinks">
 			<li><a href="http://twitter.com/#!/zenphotocms" title="Follow us on Twitter"><img src="media/twitter_mini-a.png" alt="Follow us on Twitter" />Twitter</a></li>
 			<li><a href="http://www.youtube.com/user/acrylian" title="Follow us on Youtube"><img src="media/youtube.png" alt="Follow us on Youtube" />Youtube</a></li>
+			<li class="link_github"><a href="https://github.com/zenphoto" title="Zenphoto on GitHub">GitHub</a></li>
 		 </ul>
   </div>
 </div>

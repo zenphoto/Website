@@ -25,6 +25,7 @@
 			<li class="link_googleplus"><a href="http://google.com/+zenphoto" title="Zenphoto on Google+">Google+</a></li>
 			<li class="link_twitter"><a href="http://twitter.com/#!/zenphotocms" title="Zenphoto on Twitter">Twitter</a></li>
 			<li class="link_youtube"><a href="http://www.youtube.com/user/acrylian" title="Zenphoto on Youtube">Youtube</a></li>
+			<li class="link_github"><a href="https://github.com/zenphoto" title="Zenphoto on GitHub">GitHub</a></li>
 		 </ul>
   </div>
 </div>
