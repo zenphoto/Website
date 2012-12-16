@@ -2433,6 +2433,13 @@ padding: 0;
 
 
 /* tinyZenpage embedded images */
+.zenpage_customimage_right {
+margin-left: 10px;
+}
+
+.zenpage_customimage_left {
+margin-right: 10px;
+}
 .zenpage_wrapper_left,
 .zenpage_wrapper_right {
 width: 300px;
@@ -2451,6 +2458,7 @@ margin-right: 15px !important;
 margin-bottom: 10px;
 
 }
+
 
 .zenpage_wrapper_right {
 margin-left: 25px !important;
