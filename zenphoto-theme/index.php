@@ -148,7 +148,7 @@ href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installati
 	<div class="infobox-links-r">
 		<ul class="downloadlinks">
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
-			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto nightly build on GitHub">Nightly build (Direct download from GitHub)</a></li>
+			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto nightly build on GitHub">Nightly build (from GitHub)</a></li>
     	<li><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto development on Github">Development on GitHub</li>
     	<li><a href="http://www.zenphoto.org/pages/older-versions-archive" title="Zenphoto older versions archive">Older versions archive</a></li>
 		</ul>
