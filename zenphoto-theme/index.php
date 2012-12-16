@@ -148,7 +148,7 @@ href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installati
 	<div class="infobox-links-r">
 		<ul class="downloadlinks">
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
-			<li><a href="http://www.zenphoto.org/pages/nightly-builds" title="Zenphoto nightly builds">Nightly builds (1.4.3.x bugfixes)</a></li>
+			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto nightly build on GitHub">Nightly build (Direct download from GitHub)</a></li>
     	<li><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto development on Github">Development on GitHub</li>
     	<li><a href="http://www.zenphoto.org/pages/older-versions-archive" title="Zenphoto older versions archive">Older versions archive</a></li>
 		</ul>
@@ -214,8 +214,8 @@ href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installati
 
 	<div class="infobox">
 		<h3>Found a bug?!</h3>
-		<p><img src="<?php echo $_zp_themeroot; ?>/images/icon-bugtracker.png" class="imgfloat-left" alt="" /> Please report any bugs you find with a detailed description via tickets at the <a href="http://www.zenphoto.org/trac/report"
-		title="Zenphoto bugtracker">zenphoto bugtracker</a> (registration required for creating tickets).
+		<p><img src="<?php echo $_zp_themeroot; ?>/images/icon-bugtracker.png" class="imgfloat-left" alt="" /> Please report any bugs you find with a detailed description via tickets at the <a href="http://www.zenphoto.org/pages/bugtracker"
+		title="Zenphoto bugtracker">Zenphoto bugtracker</a>.
 		</p>
 	</div>
 
@@ -307,7 +307,7 @@ zenphoto. Thank you!</p>
 	<div class="infobox">
 		<h3>Need help? Visit the forum!</h3>
 		<p><img src="<?php echo $_zp_themeroot; ?>/images/icon-forum.png"	class="imgfloat-left" alt="" /> You can post help requests and discuss everything Zenphoto related in the
-			<a href="http://www.zenphoto.org/support" title="Zenphoto forums">zenphoto support forums</a> (Registration required for posting, tickets are moderated). Please do not e-mail us asking for help. Thanks!
+			<a href="http://www.zenphoto.org/support" title="Zenphoto forums">zenphoto support forums</a> (Registration required for posting). Please do not e-mail us asking for help. Thanks!
 		</p>
 		<br />
 			<h3>Need project help?</h3>
