@@ -2,6 +2,7 @@
 /* Generates "news" articles for plugins
  *
  * @package plugins
+ * @subpackage development
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext('Generates news articles for supported plugins.');
@@ -17,7 +18,7 @@ function pluginNews_button($buttons) {
 		processPlugins();
 	}
 	$buttons[] = array(
-								'category'=>gettext('development'),
+								'category'=>gettext('Development'),
 								'enable'=>true,
 								'button_text'=>gettext('Plugin Articles'),
 								'formname'=>'pluginNews_button',
@@ -51,6 +52,7 @@ function processPlugins() {
 	chdir($basepath);
 	$filelist = safe_glob('*.php');
 	foreach ($filelist as $file) {
+		$desc = '';
 		global $_plugin_excludes;
 		$titlelink = stripSuffix(filesystemToInternal($file));
 		if (in_array($titlelink, $_plugin_excludes)) {
@@ -75,7 +77,16 @@ function processPlugins() {
 				$plugin_version = ' '.gettext('<strong>Error parsing <em>plugin_version</em> string!</strong>.');
 			}
 		}
-		$desc = '';
+
+		$desc .= '<div class="plugin_description">'.$plugin_description.'</div>';
+
+		$i = strpos($pluginStream, '/*');
+		$j = strpos($pluginStream, '*/');
+		if ($i !== false && $j !== false) {
+			$commentBlock = substr($pluginStream, $i+2, $j-$i-2);
+			$desc = processCommentBlock($commentBlock);
+		}
+
 		$author = parseAuthor($plugin_author);
 		if ($author) {
 			$contributors = array();
@@ -91,16 +102,6 @@ function processPlugins() {
 		} else {
 			$authors = stripSuffix(basename(__FILE__));
 		}
-		$desc .= '<div class="plugin_description">'.$plugin_description.'</div>';
-
-		$i = strpos($pluginStream, '/*');
-		$j = strpos($pluginStream, '*/');
-		if ($i !== false && $j !== false) {
-			$commentBlock = substr($pluginStream, $i+2, $j-$i-2);
-			$desc .= processCommentBlock($commentBlock);
-		}
-
-
 		if ($plugin_news->loaded) {
 			$tags = array_unique(array_merge($plugin_news->getTags(), $tags));
 			$categories = array();

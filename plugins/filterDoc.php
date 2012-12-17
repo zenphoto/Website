@@ -2,6 +2,7 @@
 /* Generates doc file for filters
  *
  * @package plugins
+ * @subpackage development
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext('Generates Doc file for filters.');
@@ -16,7 +17,7 @@ function filterDoc_button($buttons) {
 		processFilters();
 	}
 	$buttons[] = array(
-								'category'=>gettext('development'),
+								'category'=>gettext('Development'),
 								'enable'=>true,
 								'button_text'=>gettext('Filter Doc Gen'),
 								'formname'=>'filterDoc_button',
@@ -156,13 +157,12 @@ function processFilters() {
 									case 'classes.php':
 										$subclass = 'Root_class';
 										break;
-									case 'class-load.php':
+									case 'load_objectClasses.php':
 									case 'class-gallery.php':
 										$subclass = 'Miscellaneous';
 										break;
 									case 'class-album.php':
 									case 'class-image.php':
-									case 'class-transientimage.php':
 									case 'class-textobject.php':
 									case 'class-textobject_core.php':
 									case 'class-Anyfile.php';
@@ -356,7 +356,7 @@ function processFilters() {
 	fwrite($f,'<li>'."\t\n");
 	fwrite($f,"\t".'<a href="#filters">List of Zenphoto filters</a>'."\n");
 	fwrite($f, "\t<ul>\n");
-	$ulopen = false;
+	$liopen= $ulopen = false;
 	foreach ($filterCategories as $element) {
 		$class = $element['class'];
 		$subclass = $element['subclass'];
@@ -366,7 +366,12 @@ function processFilters() {
 				fwrite($f, "\t\t</ul>\n");
 				$ulopen = false;
 			}
-			fwrite($f, "\t\t".'<li><a title="'.$class.' filters" href="#'.$class.'">'.$class." filters</a></li>\n");
+			if ($liopen) {
+				fwrite($f, "\t\t</li>\n");
+				$liopen = false;
+			}
+			fwrite($f, "\t\t".'<li><a title="'.$class.' filters" href="#'.$class.'">'.$class." filters</a>\n");
+			$liopen = true;
 		} else {
 			if ($class != $subclass) {
 				if ($count>1) {
@@ -383,6 +388,9 @@ function processFilters() {
 	}
 	if ($ulopen) {
 		fwrite($f, "\t\t</ul>\n");
+	}
+	if ($liopen) {
+		fwrite($f, "\t\t</li>\n");
 	}
 	fwrite($f, "\t</ul>\n");
 	fwrite($f, "</li>\n");
