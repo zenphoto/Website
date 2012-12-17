@@ -8,14 +8,17 @@
 				<p class="frontpageheatmap">
 				<?php bb_tag_heat_map(); ?></p>
 			</div>
-			<div class="infobox paidsupport">
-				<img src="<?php echo bb_active_theme_uri(); ?>images/visit-sponsors.png" alt="" />	
-				<h3><a href="http://www.zenphoto.org/sponsors" title="Visit our sponsors!">Visit our sponsors!</a></h3>
-				<p><a href="http://www.zenphoto.org/pages/become-a-sponsor" title="Become a sponsor!">Become a Zenphoto sponsor?</a></p>
-				<br clear="left" />
-			</div>
+			
 			<iframe src="http://www.zenphoto.org/page/platinum-sponsors" width="280" height="300"></iframe>
 			
+			<div class="infobox paidsupport">
+				<img src="<?php echo bb_active_theme_uri(); ?>images/icon-troubleshooting.png" alt="Troubleshooting" />
+  			<h3>Problems? Lost?</h3>
+  			<p>Visit the <a href="http://www.zenphoto.org/news/troubleshooting-guide">troubleshooting guide</a>.
+  			</p>
+  			<br clear="left" />
+  		</div>
+  		
 			<div class="infobox paidsupport">
 				<img src="<?php echo bb_active_theme_uri(); ?>images/icon-forum.png" alt="Paid support" />
   			<h3>Need project help?</h3>

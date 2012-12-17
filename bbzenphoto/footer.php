@@ -29,9 +29,10 @@
 		<h3>Social networks</h3>
 		<ul class="sociallinks">
 		 	<li class="link_facebook"><a href="https://www.facebook.com/zenphotocms" title="Zenphoto on Facebook">Facebook</a></li>
-			<li class="link_googleplus"><a href="https://plus.google.com/103649195484756812404/posts" title="Zenphoto on Google+">Google+</a></li>
+			<li class="link_googleplus"><a href="http://google.com/+zenphoto" title="Zenphoto on Google+">Google+</a></li>
 			<li class="link_twitter"><a href="http://twitter.com/#!/zenphotocms" title="Zenphoto on Twitter">Twitter</a></li>
 			<li class="link_youtube"><a href="http://www.youtube.com/user/acrylian" title="Zenphoto on Youtube">Youtube</a></li>
+			<li class="link_github"><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto on GitHub">GitHub</a></li>
 		 </ul>
 		 
   </div>
@@ -69,7 +70,7 @@
 			<li><a href="http://www.zenphoto.org/pages/get-involved" title="Get involved!">Get involved!</a></li>
 	 		<li><a href="http://www.zenphoto.org/pages/paid-support" title="Paid support">Paid support</a></li>
 	 		<li><a href="http://www.zenphoto.org/pages/advertise" title="Paid support">Advertise</a></li>
-	 		<li><a href="/trac/report/10" title="Zenphoto bugtracker">Bugtracker</a></li>
+	 		<li><a href="http://www.zenphoto.org/pages/bugtracker" title="Zenphoto bugtracker">Bugtracker</a></li>
 	 		<li><a href="http://www.zenphoto.org/page/archive" title="Archive">Archive</a></li>
 	 	</ul>
 	 	<br />

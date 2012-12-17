@@ -96,9 +96,11 @@
 		<br />
 		<h3>Social networks</h3>
 		<ul class="sociallinks">
-			<li><a href="http://twitter.com/#!/zenphotocms" title="Follow us on Twitter"><img src="media/twitter_mini-a.png" alt="Follow us on Twitter" />Twitter</a></li>
-			<li><a href="http://www.youtube.com/user/acrylian" title="Follow us on Youtube"><img src="media/youtube.png" alt="Follow us on Youtube" />Youtube</a></li>
-			<li class="link_github"><a href="https://github.com/zenphoto" title="Zenphoto on GitHub">GitHub</a></li>
+			<li class="link_facebook"><a href="https://www.facebook.com/zenphotocms" title="Zenphoto on Facebook">Facebook</a></li>
+			<li class="link_googleplus"><a href="http://google.com/+zenphoto" title="Zenphoto on Google+">Google+</a></li>
+			<li class="link_twitter"><a href="http://twitter.com/#!/zenphotocms" title="Zenphoto on Twitter">Twitter</a></li>
+			<li class="link_youtube"><a href="http://www.youtube.com/user/acrylian" title="Zenphoto on Youtube">Youtube</a></li>
+			<li class="link_github"><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto on GitHub">GitHub</a></li>
 		 </ul>
   </div>
 </div>
