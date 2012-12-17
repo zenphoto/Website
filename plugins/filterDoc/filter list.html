@@ -1072,10 +1072,11 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>login_link</strong></span>(<em>bool</em>)</p>
-					<!-- description(User_management.Miscellaneous)-login_link --><p></p><!--e-->
+					<p class="filterdef"><span class="inlinecode"><strong>login_link</strong></span>(<em>string</em>)</p>
+					<!-- description(User_management.Miscellaneous)-login_link --><p>Overrides the login link so that an external handler handles the login</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
+						<li class="call_list">template-functions.php</li>
 						<li class="call_list"><em>plugin</em>/user_login-out.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -1135,7 +1136,7 @@
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>zp_logout</strong></span>(<em>string, _zp_current_admin_obj</em>)</p>
-					<!-- description(User_management.Miscellaneous)-zp_logout --><p></p><!--e-->
+					<!-- description(User_management.Miscellaneous)-zp_logout --><p>Provides a link to an external logout handler</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">lib-auth.php</li>
