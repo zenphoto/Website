@@ -550,8 +550,8 @@ function zp_printShowcaseTypeIconList() {
 ?>
 <hr />
 	<ul class="statuslist">
-		<li class="showcasetype1"><a href="<?php echo getSearchURL('showcase_zenphoto-with-zenpage-cms-plugin','','','',NULL); ?>/">Full site done completly with Zenphoto and the Zenpage CMS plugin</a>*</li>
-		<li class="showcasetype2"><a href="<?php echo getSearchURL('search/showcase_zenphoto-only','','','',NULL); ?>">Site that uses Zenphoto only (e.g. pure gallery site)</a>*</li>
+		<li class="showcasetype1"><a href="<?php echo getSearchURL('showcase_zenphoto-with-zenpage-cms-plugin','','','',NULL); ?>">Full site done completly with Zenphoto and the Zenpage CMS plugin</a>*</li>
+		<li class="showcasetype2"><a href="<?php echo getSearchURL('showcase_zenphoto-only','','','',NULL); ?>">Site that uses Zenphoto only (e.g. pure gallery site)</a>*</li>
 		<li class="showcasetype3"><a href="<?php echo getSearchURL('showcase_partly-zenphoto','','','',NULL); ?>">Site partly using Zenphoto (e.g. for the gallery part)</a>*</li>
 	</ul>
 	<strong>*</strong><em>as on date added.</em></p>
