@@ -12,10 +12,7 @@ if($zp_getParentAlbumName == "theme") {
 if($_zp_current_album->name == 'showcase') {
 	zp_printShowcaseTypeIconList();
 }
-if($_zp_current_album->getNumImages() > 0) {
-	echo '<hr />';
-	printSlideShowLink(gettext('View Slideshow'));
-} 
+
 zp_printSidebarBoxes(); ?>
 </div>
 
@@ -72,7 +69,7 @@ zp_printSidebarBoxes(); ?>
   	</div>
   	
   
-<?php
+	<?php
 		if (function_exists('printjCarouselThumbNav')) {
 			printjCarouselThumbNav(6,50,50,50,50,FALSE);
  		}

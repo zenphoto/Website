@@ -16,14 +16,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 	<link rel="stylesheet" media="screen" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	<!--
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />	
-	<link rel="stylesheet" media="media screen and (max-width:768px)" href="<?php echo $_zp_themeroot; ?>/style-w760.css" type="text/css" />
-	<link rel="stylesheet" media="media screen and (device-width: 768px) and (orientation: portrait)" href="<?php echo $_zp_themeroot; ?>/style-w760.css" type="text/css" />
-	<link rel="stylesheet" media="media screen and (max-device-width: 1024px) and (orientation: landscape)" href="<?php echo $_zp_themeroot; ?>/style-w1000.css" type="text/css" />
-
-	<link rel="stylesheet" media="media screen and (min-device-width : 320px) and (max-device-width : 800px)" href="<?php echo $_zp_themeroot; ?>/style-w320.css" type="text/css" />
-	<link rel="stylesheet" media="media screen and (min-device-width : 321px) and (max-device-width : 800px)" href="<?php echo $_zp_themeroot; ?>/style-w320.css" type="text/css" />
-	<link rel="stylesheet" media="media screen and (max-device-width : 320px)" href="<?php echo $_zp_themeroot; ?>/style-w320.css" type="text/css" />
-   -->
+  -->
 		
 	<?php printZenpageRSSHeaderLink('NewsWithImages','','',''); ?>
 	<?php if($_zp_gallery_page == 'news.php' || $_zp_gallery_page == 'pages.php') { ?>
@@ -50,7 +43,6 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 			<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/slideshow/jquery.cycle.all.js"></script>
 			<script type="text/javascript">
 			$(function() {
-			
 					$('#slideshow').cycle({
 							fx:      'fade',
 							speed: 1500,
@@ -110,11 +102,11 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 <div id="container">
 	<div id="banner">
 	 	<ul>
-	 		<li><a href="http://www.zenphoto.org/pages/bugtracker" title="Zenphoto bugtracker">Bugtracker</a></li>
-	 		<li><a href="http://www.zenphoto.org/pages/get-involved" title="Get involved!">Get involved!</a></li>
+	 		<li><?php printPageLinkURL('Bugtracker', 'bugtracker','','',NULL); ?></li>
+	 		<li><?php printPageLinkURL('Get involved', 'get-involved','','',NULL); ?></li>
 	 		<li><a href="#stay-tuned" title="Get involved!">Stay tuned!</a></li>
-	 		<li><a href="http://www.zenphoto.org/pages/paid-support" title="Paid support">Paid support</a></li>
-	 		<li><a class="sponsors" href="http://www.zenphoto.org/hosting" title="Hosting">Hosting</a></li>
+	 		<li><?php printPageLinkURL('Paid support', 'paid-support','','',NULL); ?></li>
+	 		<li><a class="sponsors" href="<?php echo WEBPATH; ?>/hosting" title="Hosting">Hosting</a></li>
 	 	</ul>
 		<div id="header_logo">
 			<h1 id="logo" title="ZenPhoto">Zenphoto</h1>

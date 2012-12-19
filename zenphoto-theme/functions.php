@@ -499,11 +499,11 @@ function zp_printThemeStatusIconList() {
 ?>
 	<hr />
 	<ul class="statuslist">
-		<li class="themestatus1"><a href="http://www.zenphoto.org/zp/page/search/theme-officially-supported">Officially supported theme*</a></li>
-		<li class="themestatus2"><a href="http://www.zenphoto.org/zp/page/search/theme-compatible">Generally compatible</a> (3rd party)</li>
-		<li class="themestatus3"><a href="http://www.zenphoto.org/zp/page/search/theme-partly-compatible">Partly compatible</a> (3rd party)</li>
-		<li class="themestatus4"><a href="http://www.zenphoto.org/zp/page/search/theme-not-compatible">Currently not compatible</a> (3rd party)</li>
-		<li class="themestatus5"><a href="http://www.zenphoto.org/zp/page/search/theme-abandoned">No longer provided</a> (3rd party)</li>
+		<li class="themestatus1"><a href="<?php echo getSearchURL('theme-officially-supported','','','',NULL); ?>">Officially supported theme*</a></li>
+		<li class="themestatus2"><a href="<?php echo getSearchURL('theme-compatible','','','',NULL); ?>">Generally compatible</a> (3rd party)</li>
+		<li class="themestatus3"><a href="<?php echo getSearchURL('theme-partly-compatible','','','',NULL); ?>">Partly compatible</a> (3rd party)</li>
+		<li class="themestatus4"><a href="<?php echo getSearchURL('theme-not-compatible','','','',NULL); ?>">Currently not compatible</a> (3rd party)</li>
+		<li class="themestatus5"><a href="<?php echo getSearchURL('theme-abandoned','','','',NULL); ?>">No longer provided</a> (3rd party)</li>
 	</ul>
 	<p><strong>*</strong><em>included within the release package.</em></p>
 	<?php
@@ -550,9 +550,9 @@ function zp_printShowcaseTypeIconList() {
 ?>
 <hr />
 	<ul class="statuslist">
-		<li class="showcasetype1"><a href="http://www.zenphoto.org/zp/page/search/showcase_zenphoto-with-zenpage-cms-plugin">Full site done completly with Zenphoto and the Zenpage CMS plugin</a>*</li>
-		<li class="showcasetype2"><a href="http://www.zenphoto.org/zp/page/search/showcase_zenphoto-only">Site that uses Zenphoto only (e.g. pure gallery site)</a>*</li>
-		<li class="showcasetype3"><a href="http://www.zenphoto.org/zp/page/search/showcase_partly-zenphoto">Site partly using Zenphoto (e.g. for the gallery part)</a>*</li>
+		<li class="showcasetype1"><a href="<?php echo getSearchURL('showcase_zenphoto-with-zenpage-cms-plugin','','','',NULL); ?>/">Full site done completly with Zenphoto and the Zenpage CMS plugin</a>*</li>
+		<li class="showcasetype2"><a href="<?php echo getSearchURL('search/showcase_zenphoto-only','','','',NULL); ?>">Site that uses Zenphoto only (e.g. pure gallery site)</a>*</li>
+		<li class="showcasetype3"><a href="<?php echo getSearchURL('showcase_partly-zenphoto','','','',NULL); ?>">Site partly using Zenphoto (e.g. for the gallery part)</a>*</li>
 	</ul>
 	<strong>*</strong><em>as on date added.</em></p>
 <?php
@@ -757,7 +757,7 @@ function zp_printSidebarBoxes() {
 	<div class="infobox paidsupport">
 		<img src="<?php echo $_zp_themeroot; ?>/images/icon-forum.png" alt="" />
   	<h3>Need project help?</h3>
-  	<p>Visit the <a href="http://www.zenphoto.org/pages/paid-support">paid support page</a>.
+  	<p>Visit the <?php printPageLinkURL('Paid support page', 'paid-support','','',NULL); ?>.
   	</p>
   	<br clear="left" />
 	</div>

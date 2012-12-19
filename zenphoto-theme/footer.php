@@ -58,20 +58,20 @@
 	<div class="infobox">
 		<h3>Information</h3>
 		<ul class="downloadlinks">
-			<li><a href="http://www.zenphoto.org/pages/about-us" title="About us">About us</a></li>
-			<li><a href="http://www.zenphoto.org/pages/contact" title="Contact">Contact</a></li>
-		  <li><a href="http://www.zenphoto.org/page/archive" title="Archive">Archive</a></li>
-			<li><a href="http://www.zenphoto.org/pages/get-involved" title="Get involved!">Get involved!</a></li>
-	 		<li><a href="http://www.zenphoto.org/pages/paid-support" title="Paid support">Paid support</a></li>
-	 		<li><a href="http://www.zenphoto.org/pages/advertise" title="Paid support">Advertise</a></li>
-	 		<li><a href="http://www.zenphoto.org/pages/bugtracker" title="Zenphoto bugtracker">Bugtracker</a></li>
+			<li><?php printPageLinkURL('About us', 'about-us','','',NULL); ?></li>
+			<li><?php printPageLinkURL('Contact', 'contact','','',NULL); ?></li>
+		  <li><?php printCustomPageURL('Archive','archive','','','',NULL); ?></li>
+			<li><?php printPageLinkURL('Get involved', 'get-involved','','',NULL); ?></li>
+	 		<li><?php printPageLinkURL('Paid support', 'paid-support','','',NULL); ?></li>
+	 		<li><?php printPageLinkURL('Advertise', 'advertise','','',NULL); ?></li>
+	 		<li><?php printPageLinkURL('Bugtracker', 'bugtracker','','',NULL); ?></li>
 	 	</ul>
 	 	<br />
 	 	<h3>Legal stuff</h3>
 		<ul class="downloadlinks">
-			<li><a href="http://www.zenphoto.org/pages/licenses" title="licenses">Licenses</a></li>
-			<li><a href="http://www.zenphoto.org/support/?terms-of-service=display">Forum rules & Terms of service</a></li>
-			<li><a href="http://www.zenphoto.org/pages/privacy" title="privacy">Privacy</a></li>
+			<li><?php printPageLinkURL('Licenses', 'licenses','','',NULL); ?></li>
+			<li><a href="<?php echo WEBPATH; ?>/support/?terms-of-service=display">Forum rules & Terms of service</a></li>
+			<li><?php printPageLinkURL('Privacy', 'privacy','','',NULL); ?></li>
 		</ul>
 		
 

@@ -21,10 +21,10 @@
 	  		?>
 	  		<hr />
 	  		<ul class="statuslist">
-					<li class="extension-supported"><a name="officially-supported"></a>
+					<li class="extension-supported" id="officially-supported">
   				Officially supported and maintained and also included in the Zenphoto release package.
   				</li>
-  				<li class="extension-unsupported"><a name="third-party-unsupported"></a>
+  				<li class="extension-unsupported" id="third-party-unsupported">
   				Not officially supported third party extensions. 
   				</li>
   			</ul>
