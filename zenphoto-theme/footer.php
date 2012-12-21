@@ -64,7 +64,7 @@
 			<li><?php printPageLinkURL('Get involved', 'get-involved','','',NULL); ?></li>
 	 		<li><?php printPageLinkURL('Paid support', 'paid-support','','',NULL); ?></li>
 	 		<li><?php printPageLinkURL('Advertise', 'advertise','','',NULL); ?></li>
-	 		<li><?php printPageLinkURL('Bugtracker', 'bugtracker','','',NULL); ?></li>
+	 		<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></li>
 	 	</ul>
 	 	<br />
 	 	<h3>Legal stuff</h3>

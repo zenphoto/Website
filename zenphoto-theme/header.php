@@ -102,7 +102,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 <div id="container">
 	<div id="banner">
 	 	<ul>
-	 		<li><?php printPageLinkURL('Bugtracker', 'bugtracker','','',NULL); ?></li>
+	 		<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></a></li>
 	 		<li><?php printPageLinkURL('Get involved', 'get-involved','','',NULL); ?></li>
 	 		<li><a href="#stay-tuned" title="Get involved!">Stay tuned!</a></li>
 	 		<li><?php printPageLinkURL('Paid support', 'paid-support','','',NULL); ?></li>

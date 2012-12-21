@@ -148,8 +148,8 @@ href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installati
 	<div class="infobox-links-r">
 		<ul class="downloadlinks">
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
-			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto nightly build on GitHub">Nightly build (from GitHub)</a></li>
-    	<li><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto development on Github">Development on GitHub</li>
+			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto nightly build on GitHub">Nightly build (GitHub)</a></li>
+    	<li><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto development on Github">Development (GitHub)</li>
     	<li><a href="http://www.zenphoto.org/pages/older-versions-archive" title="Zenphoto older versions archive">Older versions archive</a></li>
 		</ul>
 	</div>
@@ -214,8 +214,7 @@ href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installati
 
 	<div class="infobox">
 		<h3>Found a bug?!</h3>
-		<p><img src="<?php echo $_zp_themeroot; ?>/images/icon-bugtracker.png" class="imgfloat-left" alt="" /> Please report any bugs you find with a detailed description via tickets at the <a href="http://www.zenphoto.org/pages/bugtracker"
-		title="Zenphoto bugtracker">Zenphoto bugtracker</a>.
+		<p><img src="<?php echo $_zp_themeroot; ?>/images/icon-bugtracker.png" class="imgfloat-left" alt="" /> Please report any bugs you find with a detailed description via tickets at the <a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Zenhoto bugtracker on GitHub.com</a>.
 		</p>
 	</div>
 
