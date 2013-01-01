@@ -110,8 +110,7 @@
 	</div> <!-- slideshow end -->
 
 <?php
-//$downloadroot = 'https://github.com/zenphoto/zenphoto/archive/';
-$downloadroot = "http://zenphoto.googlecode.com/files/";
+$downloadroot = 'https://github.com/zenphoto/zenphoto/archive/';
 $zp_dl_version = '';
 $zp_version = '';
 $zp_dl_pubdate = '';
@@ -218,13 +217,13 @@ href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installati
 		</p>
 	</div>
 
- <div class="infobox"> 
+ <div class="infobox">
   <h3>Share!</h3>
   <?php zp_printAddthis(); ?>
 </div>
 
 
-		
+
 </div><!-- infobox-l end -->
 
 <div class="column-m">
@@ -272,21 +271,21 @@ zenphoto. Thank you!</p>
 </div>
 
 
-	
+
 
 </div><!-- infobox-m end -->
 
 <div class="column-r">
 
 	<div class="infobox">
-		<?php 
+		<?php
 		$image = '';
 		$imgtitle = '';
 		$imglink = '';
 		$thumb = '';
-		$latestimage = getImageStatistic(1, 'latest', 'showcase',false); 
+		$latestimage = getImageStatistic(1, 'latest', 'showcase',false);
 		if(!empty($latestimage)) {
-			$image = $latestimage[0];	
+			$image = $latestimage[0];
 			$showcase = new Album($_zp_gallery,'showcase');
 			$number = $showcase->getNumImages();
 			$imgtitle = $image->getTitle();
@@ -319,7 +318,7 @@ zenphoto. Thank you!</p>
 		<p>You would like to contribute? You don't need to be a programmer! <a href="http://www.zenphoto.org/pages/get-involved" title="Get involved!">Read here what you can do for Zenphoto!</a>
 		</p>
 	</div>
-	
+
 
 
 </div><!-- infobox-r end -->

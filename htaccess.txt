@@ -1,9 +1,10 @@
-# htaccess file version 1.4.1;
+# htaccess file version 1.4.4;
 # When Zenphoto requires changes to the rewrite rules:
 #		First make a copy of this file as 'oldhtaccess' in the zp-core folder so setup can test for unmodified files
 #		Update the above and the define in setup.php
-
+<IfModule mod_autoindex.c>
 IndexIgnore *
+</IfModule>
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 
@@ -16,6 +17,11 @@ IndexIgnore *
 # RewriteRule ^$      plugins/site_upgrade/closed.html [NC,R=302,L]
 #	End redirection for site updates
 	RewriteRule	^admin/?$                       zp-core/admin.php [R,L]
+	#Rewrite rules for replaced ?RSS-xxx query parameters
+	RewriteCond %{QUERY_STRING} ^rss-(.*)&
+	RewriteRule	^index\.php?$               		index.php?rss=%1 [NC,L,QSA,R=301]
+	RewriteCond %{QUERY_STRING} ^rss-(.*)$
+	RewriteRule	^index\.php?$               		index.php?rss=%1 [NC,L,QSA,R=301]
 
 	RewriteCond %{REQUEST_FILENAME} -d
 	RewriteRule ^albums/?(.+/?)?$ $1 [R=301,L]
@@ -144,7 +150,7 @@ IndexIgnore *
 </IfModule>
 
 php_flag log_errors on
-# The following will disclose full site paths. Probably better to set it off. 
+# The following will disclose full site paths. Probably better to set it off.
 # Probably have to look at the log to find the errors anyway
 #php_flag display_errors on
 php_value error_log /var/tmp/php_errors2.log

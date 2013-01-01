@@ -1,1 +1,31 @@
-# Forces * text=auto# Custom for Visual Studio*.cs     diff=csharp*.sln    merge=union*.csproj merge=union*.vbproj merge=union*.fsproj merge=union*.dbproj merge=union# Standard to msysgit*.doc	 diff=astextplain*.DOC	 diff=astextplain*.docx diff=astextplain*.DOCX diff=astextplain*.dot  diff=astextplain*.DOT  diff=astextplain*.pdf  diff=astextplain*.PDF	 diff=astextplain*.rtf	 diff=astextplain*.RTF	 diff=astextplain# Denote all files that are truly binary and should not be modified.*.png binary*.jpg binary*.swf binary*.ico binary*.gif binary*.mo binary*.gdf binary
+# Forces 
+* text=auto
+
+# Custom for Visual Studio
+*.cs     diff=csharp
+*.sln    merge=union
+*.csproj merge=union
+*.vbproj merge=union
+*.fsproj merge=union
+*.dbproj merge=union
+
+# Standard to msysgit
+*.doc	 diff=astextplain
+*.DOC	 diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF	 diff=astextplain
+*.rtf	 diff=astextplain
+*.RTF	 diff=astextplain
+
+# Denote all files that are truly binary and should not be modified.
+*.png	binary
+*.jpg	binary
+*.swf	binary
+*.ico	binary
+*.gif	binary
+*.mo	binary
+*.gdf	binary
