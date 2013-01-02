@@ -18,7 +18,8 @@ zp_printSidebarBoxes(); ?>
 
 <div id="content">
 
-		<h2><?php printParentBreadcrumb('',' | ','');
+		<h2>
+			<?php printParentBreadcrumb('',' | ','');
 			if($_zp_current_album->name === "showcase") {
 				printAlbumBreadcrumb('', '');
 			} 
@@ -60,7 +61,7 @@ zp_printSidebarBoxes(); ?>
 	echo " (".imageNumber()."/".getNumImages().")"; 
 	?>
 	</h3>
- 	<div id="image">
+ 		<div id="image">
 		<?php if(isImagePhoto()) { ?>
 		<a href="<?php echo getUnprotectedImageURL(); ?>" class="colorbox"><?php printCustomSizedImageMaxSpace(getBareImageTitle(),560,420,NULL,NULL,false); ?></a>
 		<?php } else { ?>
@@ -99,7 +100,6 @@ zp_printSidebarBoxes(); ?>
  	 		}
  	 	}
  	 	?>
- 	 	</div>
  	 	<?php
   	zp_printThemeDownloadButton();
   	echo '<br clear="left" />';
@@ -120,8 +120,7 @@ zp_printSidebarBoxes(); ?>
  	 		echo '</div>';
  	 	}
   }
- 
-  ?>
+  ?></div>
   <hr style="clear:left" />
 <?php zp_printAddthis(); ?>
 <?php
