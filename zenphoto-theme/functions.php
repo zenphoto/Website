@@ -1136,7 +1136,6 @@ function zp_printRelatedItems($number=5,$type='news',$specific=NULL) {
 	if(function_exists('getRelatedItems')) {
 		$result = getRelatedItems($type,$specific);
 	}
-	echo "<pre>"; print_r($result); echo "</pre>";
 	if(count($result) > 1) { // because one always gets found, the item itself!
 		?>
 		<h3 class="relateditems"><?php echo gettext('Related items'); ?></h3>
