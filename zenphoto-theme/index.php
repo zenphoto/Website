@@ -122,7 +122,7 @@ if(function_exists('getLatestNews')) {
 	$zp_dl_version = $newsobj->getTitlelink();
 	$zp_version = $newsobj->getTitle();
 	$zp_dl_pubdate = zpFormattedDate(DATE_FORMAT, strtotime($newsobj->getDatetime()));
-	$zp_dev = array_slice(explode('.',substr($zp_version, strpos($zp_dl_version, '-')+1).'.0.0.0'),0,3);
+	$zp_dev = array_slice(explode('.',($current_version = substr($zp_version, strpos($zp_dl_version, '-')+1)).'.0.0.0'),0,3);
 
 	//WARNING: the following code presumes that we march consistently through release numbers without any breaks!!!!
 	$carry = 1;
@@ -135,7 +135,8 @@ if(function_exists('getLatestNews')) {
 		}
 		$zp_dev_version = $v.'.'.$zp_dev_version;
 	}
-	$zp_dev_version = '/archive/'.substr($zp_dev_version,0,-1).'.zip';
+	$zp_dev_version = substr($zp_dev_version,0,-1);
+	$zp_dev_archive = '/archive/'.$zp_dev_version.'.zip';
 }
 ?>
 	<div class="downloadwrapper">
@@ -162,8 +163,8 @@ href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installati
 	<div class="infobox-links-r">
 		<ul class="downloadlinks">
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
-			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto nightly build on GitHub">Support builds (GitHub)</a></li>
-    	<li><a href="https://github.com/zenphoto/zenphoto<?php echo $zp_dev_version; ?>" title="Zenphoto development on Github">Development (GitHub)</li>
+			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto <?php echo $current_version; ?> build on GitHub"><?php echo $current_version; ?> Support builds (GitHub)</a></li>
+    	<li><a href="https://github.com/zenphoto/zenphoto<?php echo $zp_dev_archive; ?>" title="Zenphoto development on Github"><?php echo $zp_dev_version; ?> Development builds (GitHub)</li>
     	<li><a href="http://www.zenphoto.org/pages/older-versions-archive" title="Zenphoto older versions archive">Older versions archive</a></li>
 		</ul>
 	</div>
