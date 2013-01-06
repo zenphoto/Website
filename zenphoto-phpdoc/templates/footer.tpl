@@ -134,7 +134,8 @@
 		  <li><a href="http://www.zenphoto.org/page/archive" title="Archive">Archive</a></li>
 			<li><a href="http://www.zenphoto.org/pages/get-involved" title="Get involved!">Get involved!</a></li>
 	 		<li><a href="http://www.zenphoto.org/pages/paid-support" title="Paid support">Paid support</a></li>
-	 		<li><a href="/trac/report/10" title="Zenphoto bugtracker">Bugtracker</a></li>
+	 		<li><a href="http://www.zenphoto.org/pages/advertise" title="Advertise">Advertise</a></li>
+	 		<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></li>
 	 	</ul>
 	 	<br />
 	 	<h3>Legal stuff</h3>

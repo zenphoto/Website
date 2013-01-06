@@ -19,15 +19,18 @@ h4 {
    font-weight: normal;
    margin-bottom: 2px;
 }
-h5 {
+h5,
+h6 {
  	font-family: Arial, Helvetica, Sans-Serif;
    font-size: 13px; 
    font-weight: bold;
    color: black;
    margin-top: 20px;
-   margin-bottom: 0;
+   margin-bottom: 0 !important;
 }
-h6 {font-size: 13px}
+h6 {
+font-style: italic;
+}
 
 code {
 	display: block;
