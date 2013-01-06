@@ -455,19 +455,19 @@ input {
 }
 
 #footer ul.sociallinks li.link_facebook a {
-background: url(images/socialicons.png) no-repeat 0px 0;
+background: url(socialicons.png) no-repeat 0px 0;
 }
 #footer ul.sociallinks li.link_googleplus a {
-background: url(images/socialicons.png) no-repeat -24px 0;
+background: url(socialicons.png) no-repeat -24px 0;
 }
 #footer ul.sociallinks li.link_twitter a {
-background: url(images/socialicons.png) no-repeat -48px 0;
+background: url(socialicons.png) no-repeat -48px 0;
 }
 #footer ul.sociallinks li.link_youtube a {
-background: url(images/socialicons.png) no-repeat -72px 0;
+background: url(socialicons.png) no-repeat -72px 0;
 }
 #footer ul.sociallinks li.link_github a {
-background: url(images/socialicons.png) no-repeat -96px 0;
+background: url(socialicons.png) no-repeat -96px 0;
 }
 
 #footer .column-m {
