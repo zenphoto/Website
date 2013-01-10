@@ -1,20 +1,30 @@
 <?php
-/* Checks info/download links of 3rd party theme and extensions entry. For Zenphoto.org only.
+/**
+ * 3rd party link checker
  *
- * @package plugins
+ * Checks links of 3rd party plugins and themes regarding accessibility. 
+ * If they are not the theme or plugin is considereed to be abandoned. 
+ * The entries then are marked unpublished and marked with the tag 
+ * <em>theme-abandoned</em> respectively <em>extension-abandoned</em>
+ *
+ * @package admin
+ * @subpackage admin
  */
-$plugin_description = gettext('Checks info/download links of 3rd party theme and extensions entry. For Zenphoto.org only.');
+$plugin_is_filter = 20|ADMIN_PLUGIN; 
+$plugin_description = gettext('Checks info/download links of 3rd party theme and extensions entries. For Zenphoto.org only.');
 $plugin_author = "Malte Müller (acrylian)";
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.4';
 $option_interface = 'linkchecker';
 
+zp_register_filter('admin_utilities_buttons', 'linkcheckButton');
+/* 
 $linkcheckinterval = getOption('zenphoto_linkcheck_interval');
 $lastlinkcheck = getOption('zenphoto_linkcheck_last');
 if(time()-$lastlinkcheck < $linkcheckinterval) {
 	setOption('zenphoto_linkcheck_last',time());
 	zp_register_filter('theme_head','checkThemesAndExtensionURLs');
-}
-
+} */
+/* 
 class linkchecker {
 	function linkchecker() {
 		setOptionDefault('zenphoto_linkcheck_interval', 604800);
@@ -26,62 +36,20 @@ class linkchecker {
 								);
 	}
 }
-
-function checkThemesAndExtensionURLs() {
-	global $_zp_gallery, $_zp_zenpage;
-	//check themes
-	$obj = new Album($_zp_gallery,'theme');
-	$albums = $obj->getAlbums(0);
-	$tags = array('theme-abandoned');
-	foreach($albums as $album) {
-		$theme = new Album($_zp_gallery,$album);
-		if(!$theme->hasTag('theme-officially-supported')) {
-			$url = $theme->getLocation();
-			if(!empty($url) && $url != 'hostedtheme' && !$theme->hasTag('theme-abandoned')) {
-				if(checkURL($url)) {
-					$theme->setTags($tags);
-					$theme->save();
-				}
-			}
-		}
-	}
-	//check extensions
-	$obj = new ZenpageCategory('unsupported');
-	$articles = $obj->getArticles('',NULL,true);
-	$tags = array('extension-abandoned');
-	foreach($articles as $article) {
-		$extension = new ZenpageNews($article);
-		$url = $extension->getCustomData();
-		if(!empty($url) && $url != 'hostedextension' && !$extension->hasTag('extension-abandoned')) {
-			if(checkURL($url)) {
-				$extension->setTags($tags);
-				$extension->save();
-			}
-		}
-	}
-}
-
-/*
-*@author Aram Kocharyan
-*@link http://stackoverflow.com/questions/408405/easy-way-to-test-a-url-for-404-in-php
 */
-function checkURL($url) {
-	$handle = curl_init($url);
-	curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
-
-	/* Get the HTML or whatever is linked in $url. */
-	$response = curl_exec($handle);
-
-	/* Check for 404 (file not found). */
-	$httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-	curl_close($handle);
-
-	/* If the document has loaded successfully without any redirection or error */
-	if($httpCode >= 200 && $httpCode < 300) {
-		return false;
-	} else {
-		return true;
+function linkcheckButton($buttons) {
+		$buttons[] = array(
+									'category'=>gettext('Admin'),
+									'enable'=>true,
+									'button_text'=>gettext('3rd party link check'),
+									'formname'=>'3rd_party_linkcheck',
+									'action'=>WEBPATH.'/'.USER_PLUGIN_FOLDER.'/3rd_party_linkcheck/3rd_party_linkcheck_utility.php',
+									'icon'=> WEBPATH.'/'.ZENFOLDER.'/images/action.png',
+									'title'=>gettext('Checks links of 3rd party plugins and themes'),
+									'alt'=>'',
+									'hidden'=> '',
+									'rights'=> OVERVIEW_RIGHTS,
+									);
+		return $buttons;
 	}
-}
-
 ?>
