@@ -30,7 +30,7 @@
 			<?php if(function_exists('RSS_Display')) { ?>
 				<div class="infobox">
 					<h3>Latest news</h3>
-				<?php echo RSS_Display("http://www.zenphoto.org/index.php?rss-news&withimages", 5); ?>
+				<?php echo RSS_Display("http://www.zenphoto.org/cache_html/rss/news_rss-news_withimages.xml", 5); ?>
 				</div>
 			<?php } ?>
 			
