@@ -798,6 +798,7 @@ ul.morebyauthorlist li,
 #sidebar ul.statuslist li.showcasetype2,
 #sidebar ul.statuslist li.showcasetype3,
 #sidebar ul.statuslist li.extension-supported,
+#sidebar ul.statuslist li.extension-unsupported-hosted,
 #sidebar ul.statuslist li.extension-unsupported,
 #sidebar ul.statuslist li.themestatus1,
 #sidebar ul.statuslist li.themestatus2,
@@ -823,8 +824,11 @@ ul.morebyauthorlist li,
 #sidebar ul.statuslist li.extension-supported {
 	background: url(images/accept_green.png) no-repeat top left;
 }
+#sidebar ul.statuslist li.extension-unsupported-hosted {
+	background: url(images/question_blue.png) no-repeat top left;
+}
 #sidebar ul.statuslist li.extension-unsupported {
-	background: url(images/stop_round.png) no-repeat top left;
+	background: url(images/question_orange.png) no-repeat top left;
 }
 
 /* theme icon list entries */

@@ -22,10 +22,13 @@
 	  		<hr />
 	  		<ul class="statuslist">
 					<li class="extension-supported" id="officially-supported">
-  				Officially supported and maintained and also included in the Zenphoto release package.
+  				Officially supported.
+  				</li>
+  				<li class="extension-unsupported-hosted" id="third-party-hosted-unsupported">
+  				Unsupported third party or older extensions we host on GitHub.
   				</li>
   				<li class="extension-unsupported" id="third-party-unsupported">
-  				Not officially supported third party extensions. 
+  				Unsupported third party extensions.
   				</li>
   			</ul>
   	<?php
@@ -95,7 +98,7 @@ if(is_NewsArticle()) {
     	 	<a href="#officially-supported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" /></a>
     		<?php 
     	} else if ($_zp_current_zenpage_news->inNewsCategory("unsupported")) { ?>
-     		<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/stop_round.png" title="Third party - not officially supported" /></a>
+     		<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_orange.png" title="Third party - not officially supported" /></a>
       	<?php 
     	}
   	}?>

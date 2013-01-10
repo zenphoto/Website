@@ -565,10 +565,13 @@ function zp_printShowcaseTypeIconList() {
 function zp_printExtensionStatusIcon() {
 	global $_zp_current_zenpage_news, $_zp_themeroot;
 	if($_zp_current_zenpage_news->inNewsCategory("officially-supported")) {  ?>
-		 <a href="#officially-supported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" /></a> 
+		 <a href="#officially-supported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" /></a>
 		<?php 
-	} else if ($_zp_current_zenpage_news->inNewsCategory("unsupported")) { ?>
-		<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/stop_round.png" title="Third party - not officially supported" /></a>
+	} else if ($_zp_current_zenpage_news->inNewsCategory('unsupported-plugin-github') || $_zp_current_zenpage_news->inNewsCategory('unsupported-misc-github')) { ?>
+		<a href="#third-party-hosted-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_blue.png" title="Third party hosted on GitHub- not officially supported" /></a>
+		<?php  
+	} else if ($_zp_current_zenpage_news->inNewsCategory('unsupported-plugin-selfhosted')) { ?>
+		<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_orange.png" title="Third party - not officially supported" /></a>
 		<?php 
 	}
 }
@@ -812,8 +815,8 @@ function zp_printThemeDownloadButton() {
   	if(zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('hosted_theme')) {
 			$linktext = 'Download on GitHub.com';
 			$theme = explode('/',$_zp_current_album->name);
-			$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/'.$theme[1];	
-			echo '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual themes from the GitHub repository. You have to download the full repository and sort out what you need yourself.</p>';
+			$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/';	
+			echo '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual themes from the GitHub repository. You have to download the full repository (click on ZIP) and sort out what you need yourself.</p>';
 		} else {
 			$linktext = 'Info/download (external)';
 			$themeurl = $_zp_current_album->getLocation();
@@ -843,19 +846,19 @@ function zp_printExtensionDownloadButton() {
 			$linktext = 'Usage information'; 
 			$linkicon_url = $_zp_themeroot.'/images/info_green.png'; 
 		} else {
-			$githubtext = '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual themes from the GitHub repository. You have to download the full repository and sort out what you need yourself.</p>';
+			$githubtext = '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on ZIP) and sort out what you need yourself.</p>';
 			if(zp_inNewsCategory("unsupported-plugin-github")) {
 			//if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
 				$linktext = 'Download on GitHub.com';
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
-				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/plugins/'.$_zp_current_zenpage_news->getTitlelink();
+				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/plugins/';
 				echo $githubtext;
 			} else if (zp_inNewsCategory("unsupported-misc-github")) {
 				$linktext = 'Download on GitHub.com';
 				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
-				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/misc/'.$_zp_current_zenpage_news->getTitlelink();
+				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/misc/';
 				echo $githubtext;
 			} else {
 				$linktext = 'Info/download (external)';
