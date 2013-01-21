@@ -94,13 +94,7 @@ if(is_NewsArticle()) {
 	 	?> </small>
 	 	<?php
 	 	if(zp_inNewsCategory('extensions')) { 
-   		if($_zp_current_zenpage_news->inNewsCategory("officially-supported")) {  ?>
-    	 	<a href="#officially-supported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" /></a>
-    		<?php 
-    	} else if ($_zp_current_zenpage_news->inNewsCategory("unsupported")) { ?>
-     		<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_orange.png" title="Third party - not officially supported" /></a>
-      	<?php 
-    	}
+   		zp_printExtensionStatusIcon();
   	}?>
 	 	</h3>
 	 	<div class="entrymeta">
