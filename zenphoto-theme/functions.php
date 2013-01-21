@@ -570,9 +570,16 @@ function zp_printExtensionStatusIcon() {
 	} else if ($_zp_current_zenpage_news->inNewsCategory('unsupported-plugin-github') || $_zp_current_zenpage_news->inNewsCategory('unsupported-misc-github')) { ?>
 		<a href="#third-party-hosted-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_blue.png" title="Third party hosted on GitHub- not officially supported" /></a>
 		<?php  
-	} else if ($_zp_current_zenpage_news->inNewsCategory('unsupported-plugin-selfhosted')) { ?>
-		<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_orange.png" title="Third party - not officially supported" /></a>
-		<?php 
+	} else if ($_zp_current_zenpage_news->inNewsCategory('unsupported-plugin-selfhosted')) { 
+		if($_zp_current_zenpage_news->hasTag('extension-abandoned')) { 
+			?>
+			<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/cancel_round.png" title="Third party - abandoned by developer" /></a>
+			<?php
+		} else {
+			?>
+			<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_orange.png" title="Third party - not officially supported" /></a>
+		<?php
+		}
 	}
 }
 
@@ -822,7 +829,7 @@ function zp_printThemeDownloadButton() {
 			$themeurl = $_zp_current_album->getLocation();
 		}
 		if($_zp_current_album->hasTag('theme-abandoned')) {
-			echo '<p>Sorry, this theme is no longer provided by its developer.</p>';
+			echo '<p><strong>Sorry, this theme is no longer provided by its developer.</strong></p>';
 		} else {
 			echo '<div class="buttons"><a href="' . $themeurl . '"><img src="'.$_zp_themeroot.'/images/arrow_right_blue_round.png" alt="" /> '.$linktext.'</a></div>';
 		}
@@ -866,7 +873,7 @@ function zp_printExtensionDownloadButton() {
 			}
 		}  		
 		if($_zp_current_zenpage_news->hasTag('extension-abandoned')) {
-			echo '<p>Sorry, this extension is no longer provided by its developer.</p>';
+			echo '<p><strong>Sorry, this extension is no longer provided by its developer.</strong></p>';
 		} else {
 			echo '<p class="buttons"><a href="'.html_encode($exturl).'"><img src="'.$linkicon_url.'" alt="" /> '.$linktext.'</a></p>';
 		} 	

@@ -111,13 +111,7 @@
 						<h4 class="entrytitle"><?php printNewsTitleLink(); ?> <small class="articledate"><?php printNewsDate();?></small>
 							<?php
 							if($_zp_current_zenpage_news->inNewsCategory("extensions")) { 
-								if($_zp_current_zenpage_news->inNewsCategory("officially-supported")) {  ?>
-									<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" /> 
-									<?php 
-								} else if ($_zp_current_zenpage_news->inNewsCategory("unsupported")) { ?>
-									<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/stop_round.png" title="Third party - not officially supported" />
-									<?php 
-								}
+								zp_printExtensionStatusIcon();
 							}?>
 						</h4>
 							<div class="entrymeta">

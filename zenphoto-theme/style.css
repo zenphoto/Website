@@ -794,18 +794,8 @@ ul.morebyauthorlist li,
 	padding: 0;
 }
 
-#sidebar ul.statuslist li.showcasetype1,
-#sidebar ul.statuslist li.showcasetype2,
-#sidebar ul.statuslist li.showcasetype3,
-#sidebar ul.statuslist li.extension-supported,
-#sidebar ul.statuslist li.extension-unsupported-hosted,
-#sidebar ul.statuslist li.extension-unsupported,
-#sidebar ul.statuslist li.themestatus1,
-#sidebar ul.statuslist li.themestatus2,
-#sidebar ul.statuslist li.themestatus3,
-#sidebar ul.statuslist li.themestatus4,
-#sidebar ul.statuslist li.themestatus5 {
-	padding-left: 20px;
+#sidebar ul.statuslist li {
+	padding-left: 25px;
 	margin-bottom: 8px;
 }
 
@@ -829,6 +819,9 @@ ul.morebyauthorlist li,
 }
 #sidebar ul.statuslist li.extension-unsupported {
 	background: url(images/question_orange.png) no-repeat top left;
+}
+#sidebar ul.statuslist li.extension-abandoned {
+	background: url(images/cancel_round.png) no-repeat top left;
 }
 
 /* theme icon list entries */

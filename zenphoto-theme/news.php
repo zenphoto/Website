@@ -30,6 +30,9 @@
   				<li class="extension-unsupported" id="third-party-unsupported">
   				Unsupported third party extensions.
   				</li>
+  				<li class="extension-abandoned" id="third-party-abandoned">
+  				Unsupported third party extensions abandoned by its developer.
+  				</li>
   			</ul>
   	<?php
 			} else if(zp_inNewsCategory('user-guide')) {
