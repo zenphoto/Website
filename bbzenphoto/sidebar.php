@@ -36,20 +36,10 @@
 			
 			<div class="infobox">
   			<h3>Like using Zenphoto? Donate!</h3>
-  			<p>
-  			<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-					<input type="hidden" name="cmd" value="_xclick">
-					<input type="hidden" name="business" value="tharward@berkeley.edu">
-					<input type="hidden" name="item_name" value="Zenphoto">
-					<input type="hidden" name="no_note" value="1">
-					<input type="hidden" name="currency_code" value="USD">
-					<input type="hidden" name="tax" value="0">
-					<input type="hidden" name="bn" value="PP-DonationsBF">
-					<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
-					<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-      	</form>
-  			Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
-  			<br />
+  			<p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
+    		<p>Visit the <a href="http://www.zenphoto.org/pages/donations">donations page</a></p>
+  		</div>
+  		<div class="infobox">
       	<h3>Share!</h3>
       	<!-- AddThis Button BEGIN -->
 				<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4c0668c463045e32"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4c0668c463045e32"></script>
