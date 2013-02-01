@@ -499,13 +499,13 @@ function zp_printThemeStatusIconList() {
 ?>
 	<hr />
 	<ul class="statuslist">
-		<li class="themestatus1"><a href="<?php echo getSearchURL('theme-officially-supported','','','',NULL); ?>">Officially supported theme*</a></li>
-		<li class="themestatus2"><a href="<?php echo getSearchURL('theme-compatible','','','',NULL); ?>">Generally compatible</a> (3rd party)</li>
-		<li class="themestatus3"><a href="<?php echo getSearchURL('theme-partly-compatible','','','',NULL); ?>">Partly compatible</a> (3rd party)</li>
-		<li class="themestatus4"><a href="<?php echo getSearchURL('theme-not-compatible','','','',NULL); ?>">Currently not compatible</a> (3rd party)</li>
-		<li class="themestatus5"><a href="<?php echo getSearchURL('theme-abandoned','','','',NULL); ?>">No longer provided</a> (3rd party)</li>
+		<li class="themestatus1"><a href="<?php echo getSearchURL('theme-officially-supported','','','',NULL); ?>">Officially supported</a> <br />(included in the release)</li>
+		<li class="themestatus2"><a href="<?php echo getSearchURL('theme-compatible','','','',NULL); ?>">Generally compatible</a>
+		<br /> (Unsupported/3rd party)</li>
+		<li class="themestatus3"><a href="<?php echo getSearchURL('theme-partly-compatible','','','',NULL); ?>">Partly compatible</a> <br />(Unsupported/3rd party)</li>
+		<li class="themestatus4"><a href="<?php echo getSearchURL('theme-not-compatible','','','',NULL); ?>">Currently not compatible</a> <br />(Unsupported/3rd party)</li>
+		<li class="themestatus5"><a href="<?php echo getSearchURL('theme-abandoned','','','',NULL); ?>">No longer provided</a> <br />(Unsupported/3rd party)</li>
 	</ul>
-	<p><strong>*</strong><em>included within the release package.</em></p>
 	<?php
 }
 
@@ -840,6 +840,7 @@ function zp_printExtensionDownloadButton() {
 		if(zp_inNewsCategory("officially-supported")) {
 			$linktext = 'Usage information'; 
 			$linkicon_url = $_zp_themeroot.'/images/info_green.png'; 
+			$exturl = 'http://www.zenphoto.org/documentation/li_plugins.html';
 		} else {
 			$githubtext = '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on ZIP) and sort out what you need yourself.</p>';
 			if(zp_inNewsCategory("unsupported-plugin-github")) {

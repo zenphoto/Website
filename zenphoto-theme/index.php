@@ -116,9 +116,11 @@ $zp_version = '';
 $zp_dl_pubdate = '';
 $zp_dev_version = '';
 if(function_exists('getLatestNews')) {
-	$latestnews = getLatestNews(1,'none','release');
+	$cat = new ZenpageCategory('release');
+	$latestnews = $cat->getArticles(1,'published',true,'date', 'desc',false);
+	//$latestnews = getLatestNews(1,'none','release');
 	//print_r($latestnews);
-	$newsobj = new ZenpageNews($latestnews[1]['titlelink']);
+	$newsobj = new ZenpageNews($latestnews[0]['titlelink']);
 	$zp_dl_version = $newsobj->getTitlelink();
 	$zp_version = $newsobj->getTitle();
 	$zp_dl_pubdate = zpFormattedDate(DATE_FORMAT, strtotime($newsobj->getDatetime()));

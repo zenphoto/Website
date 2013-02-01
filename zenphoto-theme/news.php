@@ -25,7 +25,7 @@
   				Officially supported and included in the release.
   				</li>
   				<li class="extension-unsupported-hosted" id="third-party-hosted-unsupported">
-  				Unsupported third party or older extensions we host on GitHub.
+  				Unsupported and (older) third party extensions we host on GitHub as an archive.
   				</li>
   				<li class="extension-unsupported" id="third-party-unsupported">
   				Unsupported third party extensions.
