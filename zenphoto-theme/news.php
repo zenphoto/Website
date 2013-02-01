@@ -22,7 +22,7 @@
 	  		<hr />
 	  		<ul class="statuslist">
 					<li class="extension-supported" id="officially-supported">
-  				Officially supported.
+  				Officially supported and included in the release.
   				</li>
   				<li class="extension-unsupported-hosted" id="third-party-hosted-unsupported">
   				Unsupported third party or older extensions we host on GitHub.
