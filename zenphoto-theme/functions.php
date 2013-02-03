@@ -499,12 +499,12 @@ function zp_printThemeStatusIconList() {
 ?>
 	<hr />
 	<ul class="statuslist">
-		<li class="themestatus1"><a href="<?php echo getSearchURL('theme-officially-supported','','','',NULL); ?>">Officially supported</a> <br />(included in the release)</li>
+		<li class="themestatus1"><a href="<?php echo getSearchURL('theme-officially-supported','','','',NULL); ?>">Officially supported</a> <br />Included in the Zenphoto release package.</li>
 		<li class="themestatus2"><a href="<?php echo getSearchURL('theme-compatible','','','',NULL); ?>">Generally compatible</a>
-		<br /> (Unsupported/3rd party)</li>
-		<li class="themestatus3"><a href="<?php echo getSearchURL('theme-partly-compatible','','','',NULL); ?>">Partly compatible</a> <br />(Unsupported/3rd party)</li>
-		<li class="themestatus4"><a href="<?php echo getSearchURL('theme-not-compatible','','','',NULL); ?>">Currently not compatible</a> <br />(Unsupported/3rd party)</li>
-		<li class="themestatus5"><a href="<?php echo getSearchURL('theme-abandoned','','','',NULL); ?>">No longer provided</a> <br />(Unsupported/3rd party)</li>
+		<br />Unsupported and 3rd party</li>
+		<li class="themestatus3"><a href="<?php echo getSearchURL('theme-partly-compatible','','','',NULL); ?>">Partly compatible</a> <br />Unsupported and 3rd party</li>
+		<li class="themestatus4"><a href="<?php echo getSearchURL('theme-not-compatible','','','',NULL); ?>">Currently not compatible</a> <br />Unsupported and 3rd party</li>
+		<li class="themestatus5"><a href="<?php echo getSearchURL('theme-abandoned','','','',NULL); ?>">No longer provided</a> <br />Unsupported and 3rd party</li>
 	</ul>
 	<?php
 }

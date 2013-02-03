@@ -22,13 +22,13 @@
 	  		<hr />
 	  		<ul class="statuslist">
 					<li class="extension-supported" id="officially-supported">
-  				Officially supported and included in the release.
+  				Officially supported and included in the release package.
   				</li>
   				<li class="extension-unsupported-hosted" id="third-party-hosted-unsupported">
-  				Unsupported and (older) third party extensions we host on GitHub as an archive.
+  				Unsupported and/or older third party extensions we host on GitHub as an archive.
   				</li>
   				<li class="extension-unsupported" id="third-party-unsupported">
-  				Unsupported third party extensions.
+  				Unsupported third party extensions hosted by the developers themselves.
   				</li>
   				<li class="extension-abandoned" id="third-party-abandoned">
   				Unsupported third party extensions abandoned by its developer.
