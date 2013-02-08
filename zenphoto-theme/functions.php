@@ -398,7 +398,7 @@ function zp_printNextPrevAlbumLinkFirstImage() {
 			} else {
 				$firstimage = '';
 			}
-			echo "<a id='prevalbum' href='".WEBPATH."/".pathurlencode($prevalbum->name)."/".$firstimage.".php' title='".$prevalbum->getTitle()."'>&laquo; <strong>".$prevalbum->getTitle()."</strong> (previous)</a> ";
+			echo "<a id='prevalbum' href='".WEBPATH."/".pathurlencode($prevalbum->name)."/".$firstimage.getOption("mod_rewrite_image_suffix")."' title='".$prevalbum->getTitle()."'>&laquo; <strong>".$prevalbum->getTitle()."</strong> (previous)</a>";
 		}
 		if (getNextAlbum()) {
 			$nextalbum = getNextAlbum();
@@ -408,7 +408,7 @@ function zp_printNextPrevAlbumLinkFirstImage() {
 			} else {
 				$firstimage = '';
 			}
-			echo " <a id='nextalbum' href='".WEBPATH."/".pathurlencode($nextalbum->name)."/".$firstimage.".php' title='".$nextalbum->getTitle()."'><strong>".$nextalbum->getTitle()."</strong> (next) &raquo;</a>";
+			echo " <a id='nextalbum' href='".WEBPATH."/".pathurlencode($nextalbum->name)."/".$firstimage.getOption('mod_rewrite_image_suffix')."' title='".$nextalbum->getTitle()."'><strong>".$nextalbum->getTitle()."</strong> (next) &raquo;</a>";
 		}
 		echo '</div>';
 	}
