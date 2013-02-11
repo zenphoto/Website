@@ -70,7 +70,7 @@
 			?>
 			<p>
 			<?php
-			printf(ngettext('%1$u Hit for <em>%2$s</em>','%1$u Hits for <em>%2$s</em>',$total), $total, html_encode($searchwords));
+			printf(ngettext('%1$u Hit for <em>%1$s %2$s</em>','%1$u Hits for <em>%1$s %2$s</em>',$total), $total, html_encode($searchwords));
 			?>
 			</p>
 			

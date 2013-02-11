@@ -10,7 +10,7 @@
  *
  * @package plugins
  * @author Stephen Billard (sbillard)
- * @subpackage tools
+ * @subpackage Zenphoto
  */
 $plugin_is_filter = 9|ADMIN_PLUGIN;
 $plugin_description = gettext('Forward announcements to the zenphoto-announce Google group.');

@@ -699,6 +699,19 @@ list-style-type: none;
 .entrybody ol.downloadList {
 list-style: none;
 }
+#content ol.downloadLink {
+	margin:0px;
+	padding:0px;
+	list-style: none;
+	margin-bottom:5px;
+	
+}
+#content ol.downloadLink li {
+list-style: none;
+display:inline;
+padding-left:10px;
+padding-right:10px;
+}
 
 .entrybody ul {
 	margin: 15px 0 15px 30px;
