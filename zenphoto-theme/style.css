@@ -697,15 +697,18 @@ list-style-type: none;
 }
 #content ol.downloadList,
 .entrybody ol.downloadList {
-list-style: none;
+list-style: disc;
 }
+
+
 #content ol.downloadLink {
 	margin:0px;
 	padding:0px;
 	list-style: none;
 	margin-bottom:5px;
-	
+	display: inline;
 }
+
 #content ol.downloadLink li {
 list-style: none;
 display:inline;
