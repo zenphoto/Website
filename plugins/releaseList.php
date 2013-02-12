@@ -41,7 +41,10 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'releaseList';
 
-if (!OFFSET_PATH) {
+
+if (OFFSET_PATH) {
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
+} else {
 	$releaseList = new releaseList();
 }
 
@@ -109,9 +112,13 @@ class releaseList {
 				$article->setSticky(NEWS_POSITION_STICK_TO_TOP);
 				$article->setCategories(array('release','changelog','news','announcements'));
 				$article->save();
+
+				//	clear the caches
+				$rss = new RSS();
+				$rss->clearRSSCache();
+				Gallery::clearCache();
+
 			}
-		} else {
-			$option = $this->latest;
 		}
 		$options = array(	gettext('Add release') => array('key' => 'releaseList_current', 'type' => OPTION_TYPE_TEXTBOX,
 												'order'=>1,
