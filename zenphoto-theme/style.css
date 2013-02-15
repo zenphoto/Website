@@ -1277,10 +1277,11 @@ img {
 }
 
 blockquote {
-	border-left: 1px dotted #96967E;
+	border-left: 4px solid lightgray;
 	margin-left: 20px;
 	padding-left: 20px;
-	color: #363630;
+	color: gray;
+	font-style: italic;
 }
 
 #imagemetadata {
