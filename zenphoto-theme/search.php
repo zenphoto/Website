@@ -5,7 +5,7 @@
    	<?php printSearchForm(); ?>
 		<hr />
    	<h2 class="latestadditions">Popular tags</h2>
-   	<?php 
+   	<?php
 		if(function_exists('printAllTagsFromZenpage')) {
 			?>
 			<p><?php printAllTagsFromZenpage('news','','taglist',false,true,0.5,2,5,50); ?></p>
@@ -20,7 +20,7 @@
  	<hr />
  	 <div id="ads">
 			<script type="text/javascript">
-		
+
 			google_ad_client = "pub-7903690389990760";
 			google_ad_width = 250;
 			google_ad_height = 250;
@@ -32,16 +32,16 @@
 			google_color_link = "000000";
 			google_color_url = "666666";
 			google_color_text = "333333";
-		
+
 		</script>
 			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</script>
    </div>
-   
+
 </div>
 
 <div id="content">
-    	
+
 		<h2>Search results</h2>
 		<?php
 		$numimages = getNumImages();
@@ -73,7 +73,7 @@
 			printf(ngettext('%1$u Hit for <em>%1$s %2$s</em>','%1$u Hits for <em>%1$s %2$s</em>',$total), $total, html_encode($searchwords));
 			?>
 			</p>
-			
+
 			<?php
 			printPageListWithNav("« ".gettext("prev"),gettext("next")." »");
 		}
@@ -110,7 +110,7 @@
 						<li<?php printZDToggleClass('news',$c,$number_to_show); ?>>
 						<h4 class="entrytitle"><?php printNewsTitleLink(); ?> <small class="articledate"><?php printNewsDate();?></small>
 							<?php
-							if($_zp_current_zenpage_news->inNewsCategory("extensions")) { 
+							if($_zp_current_zenpage_news->inNewsCategory("extensions")) {
 								zp_printExtensionStatusIcon();
 							}?>
 						</h4>
@@ -127,7 +127,7 @@
 			}
 			?>
 			<br />
-	
+
 			<h2 class="searchresulttitle">
 			<?php
 				if (getOption('search_no_albums')) {
@@ -147,9 +147,9 @@
 			</h2>
 		<?php if (getNumAlbums() != 0) { ?>
 			<div id="albums">
-				<?php 
+				<?php
 				$count = '';
-				while (next_album()): 
+				while (next_album()):
 					$count++;
 					if($count == 2) {
 						$class = ' rightthumb';
@@ -160,24 +160,24 @@
 				?>
 					<div class="album<?php echo $class; ?>">
 							<div class="thumb">
-							<?php 
+							<?php
 								$firstimage = $_zp_current_album->getImages(); // get the first image of the current album in the loop
 								if(getNumImages() === 0) { // to prevent tying to jump to the first image of an album with only subalbums
 									$albumlinkurl = getAlbumLinkURL();
 								} else {
-									$albumlinkurl = getAlbumLinkURL().$firstimage[0].".php";
+									$albumlinkurl = getAlbumLinkURL().$firstimage[0].IM_SUFFIX;
 								}
 								?>
 							<a href="<?php echo html_encode($albumlinkurl);?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle();?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 128, 255, 128, NULL,NULL,"thumbnail",NULL,TRUE,false); ?></a>
  							 </div>
 								<div class="albumdesc">
 									<h4 class="entrytitle"><a href="<?php echo html_encode($albumlinkurl);?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle();?>"><?php echo shortenContent(getAlbumTitle(),20,'(...)'); ?></a>
-									<?php 
-										if(zp_getParentAlbumName() === 'theme') {					
-											echo '<small>(Theme)</small>';	
-										}	
+									<?php
+										if(zp_getParentAlbumName() === 'theme') {
+											echo '<small>(Theme)</small>';
+										}
 									?>
-									</h4>								
+									</h4>
 									<?php zp_printThemeStatusIcon(); ?>
 								</div>
 					</div>
@@ -186,9 +186,9 @@
 			<?php } ?>
 <?php if (getNumImages() > 0) { ?>
 			<div id="images">
-				<?php 
+				<?php
 				$count = '';
-				while (next_image(false)): 
+				while (next_image(false)):
 					$count++;
 					if($count == 2) {
 						$class = ' rightthumb';
@@ -203,15 +203,15 @@
 						</div>
 				<div class="albumdesc">
 					<h4 class="entrytitle"><a href="<?php echo htmlspecialchars(getImageLinkURL());?>" title="<?php echo getImageTitle();?>"><?php echo shortenContent(getImageTitle(),20,'(...)'); ?>
-					<?php 
+					<?php
 						$albumname = $_zp_current_image->album;
 						$parent = $albumname->getParent();
-						if(is_object($parent) && $parent->name == 'theme') {					
-							echo '<small>(Theme)</small>';	
-						}	
-						if($albumname->name == 'showcase') {					
-							echo '<small>(Showcase)</small>';	
-						}	
+						if(is_object($parent) && $parent->name == 'theme') {
+							echo '<small>(Theme)</small>';
+						}
+						if($albumname->name == 'showcase') {
+							echo '<small>(Showcase)</small>';
+						}
 						?>
 					</h4><?php zp_printShowcaseTypeIcon(); ?></a>
 				</div>
@@ -228,8 +228,8 @@
 
 			printPageListWithNav("« ".gettext("prev"),gettext("next")." »");
 			?>
-        
-	
 
-	
+
+
+
 <?php include('footer.php'); ?>
