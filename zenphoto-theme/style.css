@@ -629,12 +629,20 @@ margin-bottom: 10px;
 }
 
 #content .latestimagesbyalbum {
+width: 540px;
+height: auto;
+margin-bottom: 0px;
+}
+
+/* old for thumbs */
+/*
+#content .latestimagesbyalbum {
 float: left;
 width: 185px;
 height: 185px;
 margin-bottom: 0px;
 }
-
+*/
 .entrybody .readmorelink {
 	margin-top: 0px;
 }
