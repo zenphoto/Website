@@ -634,6 +634,9 @@ height: auto;
 margin-bottom: 0px;
 }
 
+#content .latestimagesbyalbum a img {
+max-width: 100%;
+}
 /* old for thumbs */
 /*
 #content .latestimagesbyalbum {
@@ -746,7 +749,7 @@ padding-right:10px;
 	padding-left:0px;
 }
 .entrybody ul > ul {
-	margin: 0px 0 15px 30px;
+	margin: 0px 0 0px 30px;
 }
 
 /************************************************
