@@ -113,6 +113,16 @@ class releaseList {
 				$article->setCategories(array('release','changelog','news','announcements'));
 				$article->save();
 
+				// announce the release
+				if (class_exists('zp_announce')) {
+					$_POST['announce_me'] = true;
+					zp_announce::execute(NULL, $article);
+				}
+				if (class_exists('tweet')) {
+					$_POST['tweet_me'] = true;
+					tweet::tweeterZenpageExecute(NULL, $article);
+				}
+
 				//	clear the caches
 				$rss = new RSS();
 				$rss->clearRSSCache();
