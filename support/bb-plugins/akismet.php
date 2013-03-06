@@ -209,9 +209,10 @@ function bb_ksd_check_post( $post_text ) {
 		return $post_text;
 
 	$response = bb_ksd_submit( $post_text );
-	if ( 'true' == $response[1] ) {
+	$long = strlen($post_text) > 4096;
+	if ( 'true' == $response[1] || $long) {
 		$bb_ksd_pre_post_status = '2';
-		$bb_current_user->set_role('blocked');
+		if (!$long) $bb_current_user->set_role('blocked');
 	}
 	bb_akismet_delete_old();
 	return $post_text;
