@@ -37,7 +37,7 @@
 			if(stristr($tag,$search_text)) {
 				$specialtags[] = $tag;
 			}
-		}
+		} 
 		unset($tags);
 	}
   return $specialtags;
@@ -83,11 +83,11 @@ function zp_printMoreByAuthorsLinks() {
 				<li>Nothing else available by <?php echo ucwords(substr($tag,7)); ?></li>
 				<?php
 			}
- 		}
+ 		} 
  		?>
  		</ul>
  		<?php
- 	}
+ 	} 
 }
 
 /* gets all items of the current item type (album/article) assiged to the author $tag
@@ -566,12 +566,12 @@ function zp_printExtensionStatusIcon() {
 	global $_zp_current_zenpage_news, $_zp_themeroot;
 	if($_zp_current_zenpage_news->inNewsCategory("officially-supported")) {  ?>
 		 <a href="#officially-supported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" /></a>
-		<?php
+		<?php 
 	} else if ($_zp_current_zenpage_news->inNewsCategory('unsupported-plugin-github') || $_zp_current_zenpage_news->inNewsCategory('unsupported-misc-github')) { ?>
 		<a href="#third-party-hosted-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_blue.png" title="Third party hosted on GitHub- not officially supported" /></a>
-		<?php
-	} else if ($_zp_current_zenpage_news->inNewsCategory('unsupported-plugin-selfhosted')) {
-		if($_zp_current_zenpage_news->hasTag('extension-abandoned')) {
+		<?php  
+	} else if ($_zp_current_zenpage_news->inNewsCategory('unsupported-plugin-selfhosted')) { 
+		if($_zp_current_zenpage_news->hasTag('extension-abandoned')) { 
 			?>
 			<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/cancel_round.png" title="Third party - abandoned by developer" /></a>
 			<?php
@@ -758,7 +758,7 @@ function zp_printZenphotoVersionOfExtensionOrTheme($before='') {
  * Prints the sidebar boxes for sponsores, paid support, donations and sharing
  */
 function zp_printSidebarBoxes() {
-	global $_zp_themeroot, $_zp_gallery_page, $_zp_current_album;
+	global $_zp_themeroot, $_zp_gallery_page, $_zp_current_album; 
 	?>
 	<hr />
 	<?php
@@ -771,16 +771,16 @@ function zp_printSidebarBoxes() {
   	</p>
   	<br clear="left" />
 	</div>
-	<div class="infobox">
+	<div class="infobox"> 
 		<h3>Like using Zenphoto? Donate!</h3>
     <p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
-    <p>Visit the <a href="<?php echo FULLWEBPATH; ?>/pages/donations">donations page</a></p>
+    <p>Visit the <a href="http://www.zenphoto.org/pages/donations">donations page</a></p>
   </div>
   <?php if(!is_NewsArticle() && $_zp_gallery_page != 'image.php') { ?>
-    <div class="infobox">
+    <div class="infobox"> 
     	<h3>Share!</h3>
      	<?php zp_printAddthis(); ?>
-		</div>
+		</div> 
 		<div id="ads">
 			<script type="text/javascript">
 				google_ad_client = "pub-7903690389990760";
@@ -796,9 +796,9 @@ function zp_printSidebarBoxes() {
 				google_color_text = "333333";
 			</script>
 			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-		</script>
+		</script> 
 	 </div>
-	<?php }
+	<?php } 
 }
 
 /**
@@ -810,7 +810,7 @@ function zp_printThemeDownloadButton() {
   	if(zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('hosted_theme')) {
 			$linktext = 'Download on GitHub.com';
 			$theme = explode('/',$_zp_current_album->name);
-			$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/';
+			$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/';	
 			echo '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual themes from the GitHub repository. You have to download the full repository (click on ZIP) and sort out what you need yourself.</p>';
 		} else {
 			$linktext = 'Info/download (external)';
@@ -824,7 +824,7 @@ function zp_printThemeDownloadButton() {
   }
   if($_zp_current_album->hasTag('theme-officially-supported')) {?>
 		<p class="articlebox">Included in the Zenphoto release.</p>
-	<?php
+	<?php 
   }
 }
 
@@ -838,39 +838,39 @@ function zp_printExtensionDownloadButton() {
 		$exturl = $customdata;
 		$linkicon_url = '';
 		if(zp_inNewsCategory("officially-supported")) {
-			$linktext = 'Usage information';
-			$linkicon_url = $_zp_themeroot.'/images/info_green.png';
+			$linktext = 'Usage information'; 
+			$linkicon_url = $_zp_themeroot.'/images/info_green.png'; 
 			$exturl = 'http://www.zenphoto.org/documentation/li_plugins.html';
 		} else {
 			$githubtext = '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on ZIP) and sort out what you need yourself.</p>';
 			if(zp_inNewsCategory("unsupported-plugin-github")) {
 			//if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
 				$linktext = 'Download on GitHub.com';
-				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png';
+				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/plugins/';
 				echo $githubtext;
 			} else if (zp_inNewsCategory("unsupported-misc-github")) {
 				$linktext = 'Download on GitHub.com';
-				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png';
+				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/misc/';
 				echo $githubtext;
 			} else {
 				$linktext = 'Info/download (external)';
-				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png';
+				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 			}
-		}
+		}  		
 		if($_zp_current_zenpage_news->hasTag('extension-abandoned')) {
 			echo '<p><strong>Sorry, this extension is no longer provided by its developer.</strong></p>';
 		} else {
 			echo '<p class="buttons"><a href="'.html_encode($exturl).'"><img src="'.$linkicon_url.'" alt="" /> '.$linktext.'</a></p>';
-		}
+		} 	
 		if($_zp_current_zenpage_news->inNewsCategory("officially-supported")) {  ?>
 			<p class="articlebox">Included in the Zenphoto release.</p>
-		<?php
-		}
-	}
+		<?php 
+		} 
+	} 
 }
 
 
@@ -895,7 +895,7 @@ function zp_printMainSectionCategoryTitle() {
 		if(!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() != 'user-guide') {
 			echo ' &raquo; '.$_zp_current_category->getTitle().$articlecount;
 		}
-	} else if(!zp_inNewsCategory('extensions') || zp_inNewsCategory('user-guide')) {
+	} else if(!zp_inNewsCategory('extensions') || zp_inNewsCategory('user-guide')) { 
 		echo "News";
 		if(!is_NewsArticle() && !is_null($_zp_current_category) && !is_NewsArticle() && $_zp_current_category->getTitlelink() != 'news') {
 			echo ' &raquo; '.$_zp_current_category->getTitle();
@@ -903,7 +903,7 @@ function zp_printMainSectionCategoryTitle() {
 	}
 	if(is_NewsArchive()) {
 		echo ': '.getCurrentNewsArchive('plain');
-	}
+	} 
 }
 
 /**
@@ -916,9 +916,9 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 			case 'index.php':
 				$albums = array('hosting/platinum');
 				break;
-			default:
+			default: 
 				$albums = array('hosting/palladium');
-				break;
+				break; 
 		}
 	} else {
 		$albums = array('hosting/gold','hosting/silver','hosting/bronze');
@@ -945,17 +945,17 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 							$imgclass = 'sponsor-palladium';
 							break;
 					}
-					break;
-				case 'hosting/gold':
+					break;	
+				case 'hosting/gold': 
 					$adwidth = 560;
 					$maxnum = 99;
 					$imgclass = 'sponsor-gold';
 					break;
-				case 'hosting/silver':
+				case 'hosting/silver': 
 					$adwidth = 270;
 					$maxnum = 2;
 					break;
-				case 'hosting/bronze':
+				case 'hosting/bronze': 
 					$adwidth = 125;
 					$maxnum = 4;
 					break;
@@ -972,26 +972,26 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 						$linkclass = 'platinum-ad';
 						if($count == 1) {
 							$imgclass .= ' sponsor-platinum-first';
-						}
+						} 
 						break;
 					case 'hosting/palladium':
 						$imgclass = 'sponsor-palladium';
 						$linkclass = 'palladium-ad';
 						if($count == 1) {
 							$imgclass .= ' sponsor-palladium-first';
-						}
+						} 
 						break;
-					case 'hosting/gold':
+					case 'hosting/gold': 
 							$linkclass = 'gold-ad';
 							break;
-					case 'hosting/silver':
+					case 'hosting/silver': 
 						$imgclass = 'sponsor-silver';
 						$linkclass = 'silver-ad';
 						if($count < 2) {
 							$imgclass .= ' sponsor-right';
 						}
 						break;
-					case 'hosting/bronze':
+					case 'hosting/bronze': 
 						$imgclass = 'sponsor-bronze';
 						$linkclass = 'bronze-ad';
 						if($count != 4) {
@@ -1018,7 +1018,7 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 		//if($imagescount != $maxnum) {
 			?>
 			<?php
-			$link = '<?php echo FULLWEBPATH; ?>/pages/advertise';
+			$link = 'http://www.zenphoto.org/pages/advertise';
 			if($imagescount == 0) {
 				$max = $maxnum;
 			} else {
@@ -1031,28 +1031,28 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 						$imgclass = 'sponsor-platinum';
 						if($i == 1) {
 							$imgclass .= ' sponsor-platinum-first';
-						}
+						} 
 						$placeholderimg = newImage($placeholderalb,'sponsorplatinum-placeholder-ad.gif');
 						break;
 					case 'hosting/palladium':
 						$imgclass = 'sponsor-platinum';
 						if($i == 1) {
 							$imgclass .= ' sponsor-platinum-first';
-						}
+						} 
 						$placeholderimg = newImage($placeholderalb,'sponsorpalladium-placeholder-ad.gif');
 						break;
 				/*s
-					case 'hosting/gold':
+					case 'hosting/gold': 
 						$placeholderimg = newImage($placeholderalb,'sponsorgold-placeholder.gif');
 						break;
-					case 'hosting/silver':
+					case 'hosting/silver': 
 						$imgclass = 'sponsor-silver';
 						if($i < $max) {
 							$imgclass .= ' sponsor-right';
 						}
 						$placeholderimg = newImage($placeholderalb,'sponsorsilver-placeholder.gif');
 						break;
-					case 'hosting/bronze':
+					case 'hosting/bronze': 
 						$imgclass = 'sponsor-bronze';
 						if($i < $max) {
 							$imgclass .= ' sponsor-right';
@@ -1062,10 +1062,10 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 						break; */
 				}
 				$placeholderimg = $placeholderimg->getFullImage();
-				?>
+				?>	
 			<a target="_top" href="<?php echo html_encode($link); ?>" title="Advertise"><img class="<?php echo $imgclass; ?>" src="<?php echo html_encode($placeholderimg); ?>" alt="Advertise" width="<?php echo $adwidth; ?>" height="<?php echo $adheight; ?>"></a>
-			<?php
-			} // for
+			<?php	
+			} // for  
 		 } // if
 		if($album == 'hosting/silver') { ?>
 			<br style="clear:left" />
@@ -1082,7 +1082,7 @@ function zp_printSponsorAvailability() {
 	$albums = $obj->getAlbums(0);
 	?>
 	<hr />
-	<h3>Sponsor space availability</h3>
+	<h3>Ad space availability</h3>
 	<ul>
 	<?php
 	foreach($albums as $album) {
@@ -1091,13 +1091,13 @@ function zp_printSponsorAvailability() {
 		switch($album) {
 				case 'hosting/platinum':
 				case 'hosting/palladium':
-				case 'hosting/silver':
+				case 'hosting/silver': 
 					$maxnum = 2;
 					break;
-				case 'hosting/gold':
+				case 'hosting/gold': 
 				  $maxnum = 'Unlimited';
 				  break;
-				case 'hosting/bronze':
+				case 'hosting/bronze': 
 					$maxnum = 4;
 					break;
 		}
@@ -1106,9 +1106,9 @@ function zp_printSponsorAvailability() {
 		} else {
 			if($imagescount != $maxnum) {
 				$max = $maxnum-$imagescount;
-			} else {
+			} else {				
 				$max = 'not available currently';
-			}
+			} 
 		}
 		?>
 		<li><?php echo $albobj->getTitle(); ?>: <?php echo $max; ?></li>
@@ -1123,7 +1123,7 @@ function zp_printSponsorAvailability() {
 /**
  * Requires the official related_items plugin to be enabled (does not print anything if not or nothing related available)
  * Custom category/section display version for zenphoto.org only. Besides that the same as the official plugin function-
- * Prints the x related articles based on a tag search.
+ * Prints the x related articles based on a tag search. 
  *
  * @param int $number Number of items to get
  * @param string $type 'albums', 'images','news','pages'
@@ -1265,7 +1265,7 @@ function zp_printTroubleshootingGuide() {
 		<?php
 		zp_listTroubleshootingArticles($catobj);
 	}
-}
+} 
 /**
  * Helpder function to zp_printTroubleshootingGuide(). This prints the individual troubleshooting section on the troubleshooting guide article
  *
@@ -1291,7 +1291,7 @@ function zp_listTroubleshootingArticles($cat) {
 					<p><a href="<?php echo $article->getNewsLink(); ?>">Direct link</a></p>
 				</div>
 
-				<?php
+				<?php 
 				?>
 			</li>
 			<?php
