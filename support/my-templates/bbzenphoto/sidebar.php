@@ -27,7 +27,7 @@
   			<br clear="left" />
   		</div>
   		
-			<?php if(function_exists('RSS_Display')) { ?>
+			<?php if(false && function_exists('RSS_Display')) { ?>
 				<div class="infobox">
 					<h3>Latest news</h3>
 				<?php echo RSS_Display("http://www.zenphoto.org/cache_html/rss/news_rss-news_withimages.xml", 5); ?>
