@@ -9,12 +9,8 @@ Author URI: http://blogwaffe.com/
 */
 
 // Add filters for the admin area
-add_action('bb_admin_menu_generator', 'bb_ksd_configuration_page_add');
 add_action('bb_admin-header.php', 'bb_ksd_configuration_page_process');
 
-function bb_ksd_configuration_page_add() {
-	bb_admin_add_submenu(__('Akismet Configuration'), 'use_keys', 'bb_ksd_configuration_page');
-}
 
 function bb_ksd_configuration_page() {
 ?>
@@ -112,7 +108,7 @@ function bb_ksd_http_post($request, $host, $path, $port = 80) {
 }
 
 function bb_ksd_submit( $submit, $type = false ) {
-	global $bb_ksd_api_host, $bb_ksd_api_port;
+	global $bb_ksd_api_host, $bb_ksd_api_port,$bb_cache,$bbdb;
 
 	switch ( $type ) :
 	case 'ham' :
@@ -129,6 +125,10 @@ function bb_ksd_submit( $submit, $type = false ) {
 		if ( $type == 'spam') {	// block the spammer
 			$user_obj = new BB_User( $user->ID );
 			$user_obj->set_role('blocked');
+			$posts = (array) $bb_cache->cache_posts( "SELECT * FROM $bbdb->posts WHERE poster_id=$user->ID AND post_status = 0" );
+			foreach ($posts as $post) {
+				bb_delete_post( $post->post_id, 2);
+			}
 		} else {
 			$user_obj = new BB_User( $user->ID );
 			$user_obj->set_role('member');
@@ -209,7 +209,7 @@ function bb_ksd_check_post( $post_text ) {
 		return $post_text;
 
 	$response = bb_ksd_submit( $post_text );
-	$long = strlen($post_text) > 4096;
+	$long = strlen($post_text) > 3000;
 	if ( 'true' == $response[1] || $long) {
 		$bb_ksd_pre_post_status = '2';
 		if (!$long) $bb_current_user->set_role('blocked');
@@ -266,13 +266,8 @@ function bb_ksd_pre_post_status( $post_status ) {
 	return $post_status;
 }
 
-function bb_ksd_admin_menu() {
-	global $bb_submenu;
-	$bb_submenu['content.php'][] = array(__('Akismet Spam'), 'moderate', 'bb_ksd_admin_page');
-}
 
-function bb_ksd_delete_post( $post_id, $new_status, $old_status )
-{
+function bb_ksd_delete_post( $post_id, $new_status, $old_status ) {
 	// Don't report post deletion
 	if ( 1 == $new_status ) {
 		return;
@@ -291,6 +286,11 @@ function bb_ksd_delete_post( $post_id, $new_status, $old_status )
 		bb_ksd_submit_ham( $post_id );
 		return;
 	}
+}
+
+function bb_ksd_admin_menu() {
+	bb_admin_add_submenu(__('Akismet Configuration'), 'use_keys', 'bb_ksd_configuration_page');
+	bb_admin_add_submenu(__('Akismet Spam'), 'moderate', 'bb_ksd_admin_page', 'content.php');
 }
 
 function bb_ksd_admin_page() {
