@@ -132,6 +132,10 @@ function bb_ksd_submit( $submit, $type = false ) {
 		} else {
 			$user_obj = new BB_User( $user->ID );
 			$user_obj->set_role('member');
+			$posts = (array) $bb_cache->cache_posts( "SELECT * FROM $bbdb->posts WHERE poster_id=$user->ID AND post_status = 2" );
+			foreach ($posts as $post) {
+				bb_delete_post( $post->post_id, 0);
+			}
 		}
 
 		$_submit = array(
