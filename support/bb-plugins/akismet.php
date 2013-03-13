@@ -208,7 +208,7 @@ function bb_ksd_submit_spam( $post_id ) {
 }
 
 function bb_ksd_check_post( $post_text ) {
-	global $bb_current_user, $bb_ksd_pre_post_status;
+	global $bb_current_user, $bb_ksd_pre_post_status, $bb_cache, $bbdb;
 	if ( in_array($bb_current_user->roles[0], bb_trusted_roles()) ) // Don't filter content from users with a trusted role
 		return $post_text;
 
@@ -216,7 +216,16 @@ function bb_ksd_check_post( $post_text ) {
 	$long = strlen($post_text) > 3000;
 	if ( 'true' == $response[1] || $long) {
 		$bb_ksd_pre_post_status = '2';
-		if (!$long) $bb_current_user->set_role('blocked');
+		if ($long) {
+			$posts = (array) $bb_cache->cache_posts( "SELECT * FROM $bbdb->posts WHERE poster_id=$bb_current_user->ID AND post_status = 2" );
+			if (count($posts) > 3) {
+				foreach ($posts as $post) {
+					bb_ksd_submit_spam( $post->post_id );
+				}
+			}
+		} else {
+			$bb_current_user->set_role('blocked');
+		}
 	}
 	bb_akismet_delete_old();
 	return $post_text;
