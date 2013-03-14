@@ -40,12 +40,12 @@ $replacements = array(
 		'â€”'	=>	'—',
 		'â€™'	=>	"'",
 		'â€œ'	=>	'“',
-		'â€'	=>	'”',			//	probably was a closing quote
+		'â€'	=>	'”',
 		'Ã«'	=>	'æ',
-		'Â'		=>	''				//	??? Probably empty would work.
+		'Â'	=>	''				//	??? Probably empty would work.
 );
 
-function recode($string) {
+function FixUTF8_recode($string) {
 	global $replacements;
 //	$string = Encoding::fixUTF8($string);
 	$string = strtr($string, $replacements);
@@ -64,7 +64,7 @@ function FixUTF8() {
 			$sql = '';
 			foreach ($fields as $field) {
 				if (array_key_exists($field, $row)) {
-					$data =recode($row[$field]);
+					$data = FixUTF8_recode($row[$field]);
 					if ($data != $row[$field]) {
 						if ($sql) {
 							$sql .= ',';
@@ -84,7 +84,6 @@ function FixUTF8() {
 		db_free_result($result);
 	}
 }
-
 
 if (isset($_REQUEST['FixUTF8'])) {
 	XSRFdefender('FixUTF8');
