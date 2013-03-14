@@ -31,64 +31,53 @@ function FixUTF8_button($buttons) {
 
 require_once(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/fixUTF8/Encoding.php');
 
-function recode($string) {
-	$replacements = array(
-												'Ã¼'	=>	'ü',
-												'ÂŸ'	=>	'ü',
-												'Ã˜'	=>	'Ø',
-												'Â¿'	=>	'ø',
-												'ÂŽ'	=>	'é',
-												'â€”'	=>	'—',
-												'â€™'	=>	"'",
-												'â€œ'	=>	'“',
-												'â€'	=>	'”',			//	probably was a closing quote
-												'Ã«'	=>	'æ',
-												'Â'		=>	''				//	??? Probably empty would work.
-												);
+$replacements = array(
+		'Ã¼'	=>	'ü',
+		'ÂŸ'	=>	'ü',
+		'Ã˜'	=>	'Ø',
+		'Â¿'	=>	'ø',
+		'ÂŽ'	=>	'é',
+		'â€”'	=>	'—',
+		'â€™'	=>	"'",
+		'â€œ'	=>	'“',
+		'â€'	=>	'”',			//	probably was a closing quote
+		'Ã«'	=>	'æ',
+		'Â'		=>	''				//	??? Probably empty would work.
+);
 
+function recode($string) {
+	global $replacements;
 //	$string = Encoding::fixUTF8($string);
 	$string = strtr($string, $replacements);
 	return $string;
 }
 
 function FixUTF8() {
-	$actionable = array(prefix('albums'),prefix('images'),prefix('news'),prefix('pages'));
-	foreach ($actionable as $table) {
+
+	$tables = array(prefix('albums'),prefix('images'),prefix('news'),prefix('pages'));
+	$fields = array('title','desc','content');
+
+	foreach ($tables as $table) {
 		$sql = "SELECT * FROM $table";
 		$result = query($sql);
 		while ($row = db_fetch_assoc($result)) {
 			$sql = '';
-			$title = recode($row['title']);
-			if ($title != $row['title']) {
-				$sql .= " SET `title`=".db_quote($title);
-			}
-			if (array_key_exists('desc', $row)) {
-				$desc =recode($row['desc']);
-				if ($desc != $row['desc']) {
-					if ($sql) {
-						$sql .= ',';
-					} else {
-						$sql = ' SET';
+			foreach ($fields as $field) {
+				if (array_key_exists($field, $row)) {
+					$data =recode($row[$field]);
+					if ($data != $row[$field]) {
+						if ($sql) {
+							$sql .= ',';
+						} else {
+							$sql = 'SET';
+						}
+						$sql .= " `$field`=".db_quote($data);
 					}
-					$sql .= " `desc`=".db_quote($desc);
-				}
-			}
-			if (array_key_exists('content', $row)) {
-				$content = recode($row['content']);
-				if ($content != $row['content']) {
-					if ($sql) {
-						$sql .= ',';
-					} else {
-						$sql = ' SET';
-					}
-					$sql .= " `content`=".db_quote($content);
 				}
 			}
 			if ($sql) {
-				$sql = "UPDATE $table".$sql.' WHERE `id`='.$row['id'];
-
-debugLog($sql);
-
+				$sql = "UPDATE $table ".$sql.' WHERE `id`='.$row['id'];
+				debugLog($sql);
 				query($sql);
 			}
 		}
@@ -96,9 +85,11 @@ debugLog($sql);
 	}
 }
 
+
 if (isset($_REQUEST['FixUTF8'])) {
 	XSRFdefender('FixUTF8');
 	FixUTF8();
+	$_GET['report'] = 'fixUTF8 has completed';
 }
 
 ?>
