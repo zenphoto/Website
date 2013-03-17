@@ -41,14 +41,14 @@ $replacements = array(
 		'â€™'	=>	"'",
 		'â€œ'	=>	'“',
 		'â€'	=>	'”',
-		'Ã«'	=>	'æ',
-		'Â'	=>	''				//	??? Probably empty would work.
+		'Ã«'	=>	'æ'
 );
 
 function FixUTF8_recode($string) {
 	global $replacements;
-//	$string = Encoding::fixUTF8($string);
 	$string = strtr($string, $replacements);
+	$string = \ForceUTF8\Encoding::fixUTF8($string);
+	$string = str_replace('Â', '', $string);	//	final cleanup
 	return $string;
 }
 
