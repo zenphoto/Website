@@ -10,11 +10,11 @@
 	  		echo $newcat->getDesc().'<hr />';
 			} else if(zp_inNewsCategory('user-guide')) {
 	  		$newcat = new ZenpageCategory('user-guide');
-	  		echo $newcat->getDesc().'<hr />';	
+	  		echo $newcat->getDesc().'<hr />';
 	  	}
 	  }
 	  	?>
-	  <h2>Categories</h2> 
+	  <h2>Categories</h2>
 	  <?php
 	  	if(zp_inNewsCategory('extensions')) {
 	  		zp_printSubCategories('extensions');
@@ -45,7 +45,7 @@
 	  	}
 		?>
  		<?php zp_printSidebarBoxes(); ?>
-	 <?php 
+	 <?php
 	  if(zp_inNewsCategory('extensions')) {
 			if(function_exists('printAllTagsFromZenpage')) {
 			?>
@@ -58,11 +58,11 @@
 			}
 			?>
 			<br />
-			<?php 
+			<?php
 		}
 		?>
 
-	<?php 
+	<?php
 	if(zp_inNewsCategory("user-guide")) {
 	?>
 		<hr />
@@ -75,9 +75,9 @@
 		<h2 class="latestadditions">Latest additions</h2>
 		<?php zp_printLatestNews(3,'none','extensions'); ?>
 	<?php
-	} 
+	}
  ?>
-  </div>	<!--  sidebar div end -->  
+  </div>	<!--  sidebar div end -->
 
 <div id="content">
 	<h2>
@@ -86,7 +86,7 @@
 	<?php
 // single news article
 if(is_NewsArticle()) {
-?>	
+?>
 		<div class="entry">
 	 	<h3 class="entrytitle">
 	 	<?php printNewsTitle(); ?> <small class="articledate"><?php printNewsDate();
@@ -96,41 +96,41 @@ if(is_NewsArticle()) {
 	 	}
 	 	?> </small>
 	 	<?php
-	 	if(zp_inNewsCategory('extensions')) { 
+	 	if(zp_inNewsCategory('extensions')) {
    		zp_printExtensionStatusIcon();
   	}?>
 	 	</h3>
 	 	<div class="entrymeta">
     <?php printNewsCategories(", ",gettext("Categories: "),"wp-category"); ?>
-   	 <?php 
+   	 <?php
     	if($_zp_current_zenpage_news->inNewsCategory("extensions") || $_zp_current_zenpage_news->inNewsCategory("user-guide")) {
-    		echo '<br />'; printTags('links','Tags: ','wp-category', ', ', false, '', false); 
-    	}	?> 
+    		echo '<br />'; printTags('links','Tags: ','wp-category', ', ', false, '', false);
+    	}	?>
    	</div>
    </div>
 	 <ol id="toc" class="table_of_content_list"></ol>
-	 
+
 	 <div class="entrybody">
 	  <?php
   	printCodeblock(1);
   	// we need this for the automatic jquery table of contents
   	?>
   	<span id="entrybody">
-  	<?php 
+  	<?php
   	printNewsContent();
   	printCodeblock(2);
   	 ?>
   	</span>
-  	
+
    	<?php zp_printExtensionDownloadButton(); ?>
-   
+
   	 <?php if(zp_inNewsCategory("user-guide")) { ?>
 		 <p class="articlebox license"><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>This work by <a xmlns:cc="http://creativecommons.org/ns#" href="www.zenphoto.org" property="cc:attributionName" rel="cc:attributionURL">www.zenphoto.org</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
 		 <?php } ?>
 		 <p class="articlebox"><em>For questions and comments please use the <a href="http://www.zenphoto.org/support" title="Zenphoto forums" >forum</a> or discuss on the <a href="#stay-tuned">social networks</a>.</em></p>
-		<hr /> 
+		<hr />
 		<?php zp_printAddthis(); ?>
-		<?php 
+		<?php
 		if(zp_inNewsCategory('extensions')) {
 			zp_printMoreByAuthorsLinks();
 		}
@@ -138,13 +138,13 @@ if(is_NewsArticle()) {
 		?>
    </div> <!--- class entrybody --->
 
-		
+
 <?php
 
 // NEWS LOOP
 } else {
 	printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
-	
+
 	if(is_null($_zp_current_category)) {
 		$sortorder = 'date';
 		$sortdirection = 'desc';
@@ -156,7 +156,7 @@ if(is_NewsArticle()) {
 		$sortdirection ='';
 	}
 	while (next_news($sortorder,$sortdirection)):
-	if(stickyNews()) { 
+	if(stickyNews()) {
 	?>
 	<div class="entry stickyarticle">
 	<strong><small>FEATURED</small></strong>
@@ -175,11 +175,11 @@ if(is_NewsArticle()) {
 		} else {
 			$parentalbum = '';
 			$parentalbumname = '';
-		}	
+		}
 		if($parentalbumname == 'theme' || $parentalbumname == 'screenhots') {
 			if($parentalbumname == 'theme') {
 				$title = 'New theme: '.$_zp_current_zenpage_news->getTitle();
-			} 
+			}
 			$images = $_zp_current_zenpage_news->getImages(0);
 			$firstimage = $images[0];
 			$firstimageobj = newImage($_zp_current_zenpage_news,$firstimage);
@@ -202,12 +202,12 @@ if(is_NewsArticle()) {
   if(is_GalleryNewsType()) {
   	if($parentalbumname == 'theme') {
   		zp_printThemeStatusIcon();
-		} 
+		}
   } else {
-		if($_zp_current_zenpage_news->inNewsCategory('extensions')) { 
+		if($_zp_current_zenpage_news->inNewsCategory('extensions')) {
 			zp_printExtensionStatusIcon();
 		}
-  } 
+  }
   ?>
 	</h3>
 	<div class="entrymeta">
@@ -223,8 +223,8 @@ if(is_NewsArticle()) {
  </div>
 
 	<div class="entrybody">
-		
-      <?php 
+
+      <?php
       if(is_GalleryNewsType()) {
 				if(is_NewsType("album") && $parentalbumname == 'theme') {
 					echo $_zp_current_zenpage_news->getDesc();
@@ -246,19 +246,19 @@ if(is_NewsArticle()) {
      	?>
       <?php if(!is_GalleryNewsType() && $_zp_current_zenpage_news->inNewsCategory("news")) { ?>
 		   <!-- <br /><br /> -->
-		  
+
      	<?php } elseif (is_GalleryNewsType()) { ?>
-     			
+
      	<?php } ?>
-	
+
 	</div>  <!--- class entrybody --->
 	</div> <!--- class entry --->
-	<?php	
+	<?php
 	endwhile;
   printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
 }
 ?>
-   
+
 
 
 
