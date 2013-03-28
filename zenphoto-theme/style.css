@@ -879,6 +879,23 @@ ul#relateditems {
 margin-top: 5px;
 }
 
+ol.contributionslist {
+margin: 0 0px 0 25px !important;
+}
+
+ol.contributionslist li {
+
+}
+
+ol.contributionslist li h4 {
+font-size: 13px !important;
+padding: 0 0px 0 0px !important;
+margin: 0 0px 0 0 !important;
+line-height: 15px;
+color: black !important;
+margin: 0;
+}
+
 #sidebar ul li.active > a,
 #sidebar ul li a.active { /* needed for sub page menu only */
 	color: black;

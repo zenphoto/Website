@@ -90,7 +90,7 @@ function zp_printMoreByAuthorsLinks() {
  	} 
 }
 
-/* gets all items of the current item type (album/article) assiged to the author $tag
+/* gets all items of the current item type (album/article) assiged to the author $tag (uses a function from related_items plugin)
  * @param string $tag author tag to use
  * @param string $mode 'albums' or 'news' or 'all' for both
  * @return array
@@ -104,16 +104,32 @@ function zp_printMoreByAuthorsLinks() {
  		$searchparams = $search->setSearchParams($paramstr);
  		switch($mode) {
 			case 'albums':
-				$result = $search->getSearchAlbums("date","desc");
+				$result = $search->getAlbums(0,"date","desc");
 				break;
 			case 'news':
-				$result = $search->getSearchNews("date","desc");
+				$result = $search->getArticles(0,NULL,true,"date","desc");
 				break;
 			case 'all':
-				$result1 = $search->getSearchAlbums("date","desc");
-				$result2 = $search->getSearchNews("date","desc");
-				$result = array_merge($result1,$result2);
+				$result1 = $search->getAlbums(0,"date","desc");
+				$result2 = $search->getArticles(0,NULL,true,"date","desc");
+				//$result = array_merge($result1,$result2);
 				break;
+		}
+		if(function_exists('createRelatedItemsResultArray')) { 
+			switch($mode) {
+				case 'albums':
+					$result = createRelatedItemsResultArray($result,$mode);
+					break;
+				case 'news':
+					$result = createRelatedItemsResultArray($result,$mode);
+					break;
+				case 'all':
+					$result1 = createRelatedItemsResultArray($result1,'albums');
+					$result2 = createRelatedItemsResultArray($result2,'news');
+					$result = array_merge($result1,$result2);
+					$result = sortMultiArray($result,'name',false, true,false,false); // sort by name abc
+					break;
+			}
 		}
  		if(empty($result)) {
 			return NULL;
@@ -121,6 +137,87 @@ function zp_printMoreByAuthorsLinks() {
 			return $result;
 		}
  	}
+ /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
+ * @param string $tag author tag to use
+ * @param string $mode 'albums' or 'news' or 'all' for both
+ * @return array
+ */
+function zp_printAuthorContributions($tag,$mode) {
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	$result = zp_getMoreByThisAuthor($tag,$mode);
+	$result = sortMultiArray($result,'name',false, true,false,false); // sort by name abc
+	$resultcount = count($result);
+	if($resultcount != 0) {
+		?>
+		<ol class="contributionslist">
+		<?php
+		foreach($result as $item) {
+			?>
+			<li class="<?php echo $item['type']; ?>">
+			<?php
+				$category = '';
+				switch($item['type']) {
+					case 'albums':
+						$obj = new Album(NULL,$item['name']);
+						$url = $obj->getAlbumLink();
+						$text = $obj->getDesc();
+						$category = gettext('Theme');
+						break;
+					case 'news':
+						$obj = new ZenpageNews($item['name']);
+						$url = getNewsURL($obj->getTitlelink());
+						$text = $obj->getContent();
+						if($obj->inNewsCategory('extensions')) {
+							$category = gettext('Extension');
+						} elseif($obj->inNewsCategory('user-guide')) {
+							$category = gettext('User guide');
+						}
+						break;
+				}
+			?>
+			<?php if($thumb) {
+				$thumburl = false;
+				switch($item['type']) {
+					case 'albums':
+						$thumburl = $obj->getAlbumThumb();
+						break;
+				}
+				if($thumburl) {
+					?>
+					<a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>" class="contributions_thumb">
+					<img src="<?php echo pathurlencode($thumburl); ?>" alt="<?php echo html_encode($obj->getTitle()); ?>" />
+					</a>
+					<?php
+				}
+			} ?>
+			<h4><a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
+			<?php 
+				switch($item['type']) {
+					case 'albums':
+					case 'images':
+						$d = $obj->getDateTime();
+						break;
+					case 'news':
+					case 'pages':
+						$d = $obj->getDateTime();
+						break;
+				}
+				?>
+				<span class="contributons_date">
+				<?php echo zpFormattedDate(DATE_FORMAT, strtotime($d)); ?>
+				</span>
+				<?php
+			 ?>	(<small><?php echo $category; ?></small>)
+			</h4>
+			</li>
+			<?php
+		
+	} // foreach
+		?>
+		</ol>
+		<?php
+	}
+}
 
 /* Prints the plugin support list based on "pluginsupport_<pluginname(titlelink of article)>" tags.
  *
