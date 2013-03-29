@@ -158,7 +158,7 @@ if($zp_getParentAlbumName === "theme") {
 			<h3 class="entrytitle">
 			<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getImageTitle();?>"><?php echo shortenContent(getImageTitle(),20,'(...)'); ?>
 			</a>
-			</h3><?php zp_printShowcaseTypeIcon(); ?>
+			<?php zp_printShowcaseTypeIcon(); ?></h3>
 			<br />
 			<?php
 			if($_zp_current_album->name === "showcase") {
