@@ -879,22 +879,7 @@ ul#relateditems {
 margin-top: 5px;
 }
 
-ol.contributionslist {
-margin: 0 0px 0 25px !important;
-}
 
-ol.contributionslist li {
-
-}
-
-ol.contributionslist li h4 {
-font-size: 13px !important;
-padding: 0 0px 0 0px !important;
-margin: 0 0px 0 0 !important;
-line-height: 15px;
-color: black !important;
-margin: 0;
-}
 
 #sidebar ul li.active > a,
 #sidebar ul li a.active { /* needed for sub page menu only */
@@ -951,7 +936,7 @@ margin-bottom: 6px;
 .pluginstatusicon {
 float: right;
 position: relative;
-bottom: 8px;
+bottom: 4px;
 }
 
 
@@ -1998,6 +1983,82 @@ ul.archive #month {
 .themeicon5 {
 	background: url(images/cancel_round.png) no-repeat 0px 21px;
 }
+
+
+/* contributor (Author) pages */
+
+div.contributorstatus {
+padding:8px !important;
+background-color: #f8f8f8;
+width: 240px;
+margin: 15px 0px 18px 16px !important;
+line-height: 15px;
+max-height: 350px;
+overflow: auto;
+border: 1px dashed lightgray;
+}
+
+ol.contributionslist {
+margin: 0px 0px 0 0px !important;
+border-bottom: 1px solid #E6E6DF;
+display: block;
+
+}
+ol.contributionslist li {
+border-top: 1px solid #E6E6DF;
+padding: 6px 0 0px 0;
+list-style: none;
+}
+ol.contributionslist li h4 a img {
+border: 0 !important;
+}
+
+
+ol.contributionslist li .themeicon,
+ol.contributionslist li .pluginstatusicon {
+border: 0 !important;
+position: absolute;
+right: 0;
+top: -14px !important;
+}
+
+ol.contributionslist li h4 {
+font-size: 13px !important;
+padding: 0 !important;
+margin: 0 !important;
+line-height: 15px;
+color: black !important;
+width: 100%;
+position: relative;
+}
+
+ul.authors {
+list-style: none;
+margin: 0 0 0px -5px;
+padding: 0;
+}
+
+ul.author ul li {
+margin: 0;
+padding: 0;
+}
+
+.entrymeta ul.authorstatusrank {
+display: inline;
+margin-left: 0px;
+}
+
+.entrymeta ul.authorstatusrank li {
+margin-left: -2px;
+}
+.authoricon {
+float: right;
+position: relative;
+top: -22px;
+border: 0 !important;
+}
+
+
 
 /* Search Box
 ------------------------------ */

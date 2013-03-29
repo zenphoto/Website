@@ -23,48 +23,39 @@
 </div><!-- sidebar end -->
 
 <div id="content">
-    	<h2><?php printZenpageItemsBreadcrumb('',' » '); ?><?php printPageTitle(); ?>
+    	<h2><?php printZenpageItemsBreadcrumb('',''); ?>
+    	<?php if($_zp_current_zenpage_page->getTitlelink() == 'contributors') { ?>
+    		<?php printPageTitle(); ?>
+    	<?php } ?>
+    	</h2> 
+    	<?php if($_zp_current_zenpage_page->getTitlelink() != 'contributors') { ?>
+    		<h3 class="entrytitle"><?php printPageTitle(); zp_printAuthorStatusIcon(); ?>
+    	<?php } ?>
     	<?php 
-    	if($_zp_current_zenpage_page->getTitle() != $_zp_current_zenpage_page->getTitlelink()) {
+    	if(strtolower($_zp_current_zenpage_page->getTitle()) != strtolower($_zp_current_zenpage_page->getTitlelink())) {
     		?>
     		<em>(<?php echo $_zp_current_zenpage_page->getTitlelink(); ?>)</em>
     		<?php
     	}
-    	?>
-    	</h2> 
-    	<div class="table_of_content_list" style="margin-top: -15px">
-    	<?php
-    	if($_zp_current_zenpage_page->hastag('zp_team-member')) {
-  				echo "<h3>Zenphoto team member</h3>";
-  			} else {
-  				echo "<h3>Zenphoto contributor</h3>";
-  			}
-  		?>
-    	<ul>
-  		<?php
-  			if($_zp_current_zenpage_page->hastag('zp_chief-developer')) {
-  				echo "<li>Chief developer</li>";
-  			}
-  			if($_zp_current_zenpage_page->hastag('zp_forum-moderator')) {
-  				echo "<li>Forum moderator</li>";
-  			}
-  			?>
-  		 	</ul>
-  		 </div>
+    	?></h3>
+    	<?php if($_zp_current_zenpage_page->getTitlelink() != 'contributors') { ?>
+				<div class="entrymeta">
+					<?php zp_printAuthorStatusRanks(); ?>
+				</div>
+  		<?php } ?>
+  		<ol id="toc" class="table_of_content_list"></ol> 
   		<div class="entrybody">
-  			<span id="entrybody">
-  		 	<?php printPageContent(); ?>
-  		 	<h3>Contributions</h3>
-  		 	<h4>Themes</h4>
-  		 	<?php 
-  		 		zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'albums');
-  		 	?>
-  		 	<h4>Extensions</h4>
-  		 	<?php 
-  		 		zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'news');
-  		 	?>
+				<?php printPageContent(); ?>
+				<?php 
+				if($_zp_current_zenpage_page->getTitlelink() == 'contributors') { 
+					zp_printAuthorList('all',false);
+				} else { ?>
+					<?php zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'albums'); ?>
+					<?php zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'news','extensions'); ?>
+					<?php zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'news','user-guide'); ?>
+  		 	<?php } ?>
+  		 	
   		 	<?php printCodeblock(1); ?>
-  		 	</span>
   		</div>
 		
 

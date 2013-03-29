@@ -1,11 +1,12 @@
 <?php
-/* gets the tags prefixed with "author_"
+/* gets the tags prefixed with "author_", "pluginsupport_" and "zp_" (author/contributor status tags)
  *
  * @param string $mode 'item' (single album or article only) or 'all'
+ * @param string $tagmode 'author', "status', 'pluginsupport'
  * @return array
  */
- function zp_getSpecificTags($mode='item',$tagmode='author') {
-	global $_zp_gallery_page, $_zp_current_album, $_zp_current_zenpage_news;
+ function zp_getSpecificTags($mode='item',$tagmode='author',$obj=null) {
+	global $_zp_gallery_page, $_zp_current_album, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
 	switch($mode) {
 		case 'item':
 			switch($_zp_gallery_page) {
@@ -15,6 +16,9 @@
 					break;
 				case 'news.php':
 					$tags = $_zp_current_zenpage_news->getTags();
+					break;
+				case 'pages.php':
+					$tags = $_zp_current_zenpage_page->getTags();
 					break;
 			}
 			break;
@@ -26,11 +30,13 @@
 		case 'author':
 			$search_text = 'author_';
 			break;
+		case 'status':
+			$search_text = 'zp_';
+			break;
 		case 'pluginsupport':
 			$search_text = 'pluginsupport_';
 			break;
 	}
-
 	$specialtags = array();
 	if(!empty($tags)) {
 		foreach($tags as $tag) {
@@ -137,86 +143,228 @@ function zp_printMoreByAuthorsLinks() {
 			return $result;
 		}
  	}
+ 	
  /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
  * @param string $tag author tag to use
  * @param string $mode 'albums' or 'news' or 'all' for both
+ * @param string $mode2 'extensions' (default), 'user-guide' or 'release'
  * @return array
  */
-function zp_printAuthorContributions($tag,$mode) {
+function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	$thumb = false;
 	$result = zp_getMoreByThisAuthor($tag,$mode);
 	$result = sortMultiArray($result,'name',false, true,false,false); // sort by name abc
+	if($mode == 'news') {
+		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
+			$resultnew = array();
+			foreach($result as $item) {
+				$i = new ZenpageNews($item['name']);
+				if($i->inNewsCategory($mode2)) {
+					$resultnew[] = $item;
+				}
+			}
+			$result = $resultnew;
+			//unset($resultnew);
+		}
+	}
 	$resultcount = count($result);
 	if($resultcount != 0) {
+	   switch($mode) {
+	   	case 'news': 
+				switch($mode2) {
+					case 'extensions':
+						?><h4>Extensions contributions</h4><?php
+						break;
+					case 'user-guide':
+						?><h4>User guide contributions</h4><?php
+						break;
+					case 'release':
+						?><h4>Release contributions</h4><?php
+						break;
+				}
+			 break;
+			 case 'albums': 
+			 	?><h4>Theme contributions</h4><?php
+			 	break;
+		}
 		?>
 		<ol class="contributionslist">
 		<?php
 		foreach($result as $item) {
+			$category = '';
+			switch($item['type']) {
+				case 'albums':
+					$obj = new Album(NULL,$item['name']);
+					$url = $obj->getAlbumLink();
+					$text = $obj->getDesc();
+					$category = gettext('Theme');
+					break;
+				case 'news':
+					$obj = new ZenpageNews($item['name']);
+					$url = getNewsURL($obj->getTitlelink());
+					$text = $obj->getContent(); 
+					if($mode2 == 'extensions') {
+						$category = 'Extensions';
+					} else {
+						$category = 'User guide';
+					}
+					break;
+			}
 			?>
 			<li class="<?php echo $item['type']; ?>">
-			<?php
-				$category = '';
-				switch($item['type']) {
-					case 'albums':
-						$obj = new Album(NULL,$item['name']);
-						$url = $obj->getAlbumLink();
-						$text = $obj->getDesc();
-						$category = gettext('Theme');
-						break;
-					case 'news':
-						$obj = new ZenpageNews($item['name']);
-						$url = getNewsURL($obj->getTitlelink());
-						$text = $obj->getContent();
-						if($obj->inNewsCategory('extensions')) {
-							$category = gettext('Extension');
-						} elseif($obj->inNewsCategory('user-guide')) {
-							$category = gettext('User guide');
-						}
-						break;
-				}
-			?>
-			<?php if($thumb) {
-				$thumburl = false;
-				switch($item['type']) {
-					case 'albums':
-						$thumburl = $obj->getAlbumThumb();
-						break;
-				}
-				if($thumburl) {
-					?>
-					<a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>" class="contributions_thumb">
-					<img src="<?php echo pathurlencode($thumburl); ?>" alt="<?php echo html_encode($obj->getTitle()); ?>" />
-					</a>
-					<?php
-				}
-			} ?>
-			<h4><a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
-			<?php 
-				switch($item['type']) {
-					case 'albums':
-					case 'images':
-						$d = $obj->getDateTime();
-						break;
-					case 'news':
-					case 'pages':
-						$d = $obj->getDateTime();
-						break;
-				}
-				?>
-				<span class="contributons_date">
-				<?php echo zpFormattedDate(DATE_FORMAT, strtotime($d)); ?>
-				</span>
 				<?php
-			 ?>	(<small><?php echo $category; ?></small>)
-			</h4>
+				if($thumb) {
+					$thumburl = false;
+					switch($item['type']) {
+						case 'albums':
+							$thumburl = $obj->getAlbumThumb();
+							break;
+					}
+					if($thumburl) {
+						?>
+						<a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>" class="contributions_thumb">
+						<img src="<?php echo pathurlencode($thumburl); ?>" alt="<?php echo html_encode($obj->getTitle()); ?>" />
+						</a>
+						<?php
+					}
+				} 
+				?>
+			<h4><a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
+				<?php 
+					switch($item['type']) {
+						case 'albums':
+						case 'images':
+							$d = $obj->getDateTime();
+							break;
+						case 'news':
+						case 'pages':
+							$d = $obj->getDateTime();
+							break;
+					}
+					?>
+					<span class="contributons_date">
+					<small> – <?php echo zpFormattedDate(DATE_FORMAT, strtotime($d)); ?>
+					</span>
+					<?php
+				 ?>	(<?php echo $category; ?>)</small>
+					<?php 
+				 switch($item['type']) {
+						case 'albums':
+							zp_printThemeStatusIcon($obj);
+							break;
+						case 'news':
+							 zp_printExtensionStatusIcon($obj); 
+							break;
+					}
+				 ?>
+				</h4>
 			</li>
 			<?php
-		
 	} // foreach
 		?>
 		</ol>
 		<?php
+	} 
+}
+
+/**
+ * Gets the theme status icon class for the single album and image page (not for the overview!)
+ *
+ */
+function zp_printAuthorStatusIcon($obj=NULL) {
+	global $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_themeroot;
+	if(is_null($obj)) {
+		$obj = $_zp_current_zenpage_page;
+	}	
+	$icon = '';
+	if(is_object($obj)) {
+		if($obj->hasTag('zp_team-member')) {
+			$icon = "<img class='authoricon' src='".$_zp_themeroot."/images/authoricon_developer.png' alt='' />";
+		}
+		if($obj->hasTag('zp_team-member-former')) {
+			$icon = "<img class='authoricon' src='".$_zp_themeroot."/images/authoricon_former.png' alt='' />";
+		} 
+		echo $icon;
 	}
+}
+
+/**
+ * Prints the subline for an author entry with team rank and roles
+ *
+ */
+function zp_printAuthorStatusRanks($obj=NULL) {
+	if(is_null($obj)) {
+		$statustags = zp_getSpecificTags('item','status');
+	} else {
+		$statustags = $obj->getTags();
+	}
+	?>
+	<ul class="authorstatusrank">
+	<?php
+	if(in_array('zp_team-member',$statustags)) {
+		echo "<li><strong>Zenphoto team member</strong></li>";
+	} else 	if(in_array('zp_team-member-former',$statustags)) {
+		echo "<li><strong>Former Zenphoto team member</strong></li>";
+	} else {
+		echo "<li>Zenphoto contributor</li>";
+	}
+	$count = '';
+	foreach($statustags as $status) {
+		if($status != 'zp_team-member' && $status != 'zp_team-member-former') {
+			$count++;
+			?>
+			<li>
+				<?php 
+				echo ", "; echo ucfirst(str_replace(array('zp_','-'), array('',' '),$status)); 
+				?></li><?php
+		}
+	}
+	?>
+	</ul>
+ <?php
+}
+
+/* Prints a list of all contribitor profile pages (subpages of "contributors")
+ * @param string $mode 'all', 'teammembers', "formermembers'
+ */
+function zp_printAuthorList($mode='all',$content=false) {
+	$page = new ZenpagePage('contributors');
+	$subpages = $page->getPages();
+	?>
+	<ul class="authors">
+		<?php
+		foreach($subpages as $subpage) {
+			$obj = new Zenpagepage($subpage);
+			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former'))) {  
+				?>
+				<li>
+					<h3 class="entrytitle"><a href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
+						<?php 
+						echo $obj->getTitle();  
+						if(strtolower($obj->getTitle()) != strtolower($obj->getTitlelink())) {
+							?>
+							<em>(<?php echo $obj->getTitlelink(); ?>)</em>
+							<?php
+						}
+						?>
+						</a><?php zp_printAuthorStatusIcon($obj);?>
+					</h3>
+					<div class="entrymeta">
+						<?php zp_printAuthorStatusRanks($obj); ?>
+					</div>
+					<?php if($content) { ?>
+						<div class="entrybody">
+							<?php echo $obj->getContent(); ?>
+						</div>
+					<?php } ?>
+				</li>
+				<?php
+			}
+		}
+		?>
+	</ul>
+	<?php
 }
 
 /* Prints the plugin support list based on "pluginsupport_<pluginname(titlelink of article)>" tags.
@@ -552,21 +700,26 @@ function zp_getThemeStatusIconClass() {
 
 /**
  * Prints the theme status icon for the theme overview section (album.php) and within the news loop in combinews mode (news.php)
- *
+ * @param obj $obj Object of an album optionally
  */
-function zp_printThemeStatusIcon() {
+function zp_printThemeStatusIcon($obj=NULL) {
 	global $_zp_current_album, $_zp_current_zenpage_news, $_zp_themeroot, $_zp_gallery_page;
-	$albumobj = '';
-	switch($_zp_gallery_page) {
-		case 'album.php':
-		case 'search.php':
-			$albumobj = $_zp_current_album;
-			$iconclass = 'themeicon';
-			break;
-		case 'news.php':
-			$albumobj = $_zp_current_zenpage_news;
-			$iconclass = 'themeicon-news';
-			break;
+	if(is_null($obj)) {
+		$albumobj = '';
+		switch($_zp_gallery_page) {
+			case 'album.php':
+			case 'search.php':
+				$albumobj = $_zp_current_album;
+				$iconclass = 'themeicon';
+				break;
+			case 'news.php':
+				$albumobj = $_zp_current_zenpage_news;
+				$iconclass = 'themeicon-news';
+				break;
+		}
+	} else {
+		$albumobj = $obj;
+		$iconclass = 'themeicon';
 	}
 	if(is_object($albumobj)) {
 		if($albumobj->hasTag('theme-officially-supported')) {
@@ -655,26 +808,30 @@ function zp_printShowcaseTypeIconList() {
 <?php
 }
 
+
 /**
  * Prints the extension status icon legend list for the news loop
- *
+ * @param obj $obj Object of the extension article to check optionally
  */
-function zp_printExtensionStatusIcon() {
+function zp_printExtensionStatusIcon($obj=NULL) {
 	global $_zp_current_zenpage_news, $_zp_themeroot;
-	if($_zp_current_zenpage_news->inNewsCategory("officially-supported")) {  ?>
-		 <a href="#officially-supported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" /></a>
+	if(is_null($obj)) {
+		$obj = $_zp_current_zenpage_news;
+	} 
+	if($obj->inNewsCategory("officially-supported")) {  ?>
+		 <img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" />
 		<?php 
-	} else if ($_zp_current_zenpage_news->inNewsCategory('unsupported-plugin-github') || $_zp_current_zenpage_news->inNewsCategory('unsupported-misc-github')) { ?>
-		<a href="#third-party-hosted-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_blue.png" title="Third party hosted on GitHub- not officially supported" /></a>
+	} else if ($obj->inNewsCategory('unsupported-plugin-github') || $obj->inNewsCategory('unsupported-misc-github')) { ?>
+		<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_blue.png" title="Third party hosted on GitHub- not officially supported" />
 		<?php  
-	} else if ($_zp_current_zenpage_news->inNewsCategory('unsupported-plugin-selfhosted')) { 
-		if($_zp_current_zenpage_news->hasTag('extension-abandoned')) { 
+	} else if ($obj->inNewsCategory('unsupported-plugin-selfhosted')) { 
+		if($obj->hasTag('extension-abandoned')) { 
 			?>
-			<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/cancel_round.png" title="Third party - abandoned by developer" /></a>
+			<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/cancel_round.png" title="Third party - abandoned by developer" />
 			<?php
 		} else {
 			?>
-			<a href="#third-party-unsupported"><img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_orange.png" title="Third party - not officially supported" /></a>
+			<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_orange.png" title="Third party - not officially supported" />
 		<?php
 		}
 	}
