@@ -73,7 +73,7 @@
 			<h2>International sites with multiple languages!</h2>
 			<ul class="downloadlinks">
 			<li>Admin backend translatable.</li>
-			<li>Many backend translations included (gettext server support required): Chinese, Dutch, French, Galician, German, Hebrew, Japanese, Polish, Spanish, Swedish (See also <a href="https://github.com/zenphoto/zenphoto/tree/master/zp-core/locale">Current language repository</a>)</li>
+			<li>Many backend translations included (gettext server support required): Chinese, Dutch, French, Galician, German, Hebrew, Japanese, Polish, Spanish, Swedish (See also <a href="http://www.zenphoto.org/trac/browser/trunk/zp-core/locale">Current language repository</a>)</li>
 			<li>Multilingual sites</li>
 			<li>
 			</ul>
@@ -158,7 +158,7 @@ if(function_exists('getLatestNews')) {
 
 	<p class="version_info">
 	<strong><?php echo $zp_version; ?></strong> (<?php echo $zp_dl_pubdate; ?>) | License: <a	href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v.2</a> | <a
-href="<?php echo FULLWEBPATH; ?>/news/installation-and-upgrading" title="Installation, upgrading and requirements">Installation,	upgrading and requirements</a>
+href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installation, upgrading and requirements">Installation,	upgrading and requirements</a>
 	</p>
 </div> <!--download box div wrapper end -->
 
@@ -167,7 +167,7 @@ href="<?php echo FULLWEBPATH; ?>/news/installation-and-upgrading" title="Install
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
 			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto <?php echo $current_version; ?> build on GitHub"><?php echo $current_version; ?> Support builds (GitHub)</a></li>
     	<li><a href="https://github.com/zenphoto/zenphoto<?php echo $zp_dev_archive; ?>" title="Zenphoto development on Github"><?php echo $zp_dev_version; ?> Development builds (GitHub)</li>
-    	<li><a href="<?php echo FULLWEBPATH; ?>/pages/older-versions-archive" title="Zenphoto older versions archive">Older versions archive</a></li>
+    	<li><a href="http://www.zenphoto.org/pages/older-versions-archive" title="Zenphoto older versions archive">Older versions archive</a></li>
 		</ul>
 	</div>
 
@@ -273,7 +273,7 @@ href="<?php echo FULLWEBPATH; ?>/news/installation-and-upgrading" title="Install
 <div class="infobox">
 	<h3>Like using Zenphoto? Donate!</h3>
 	<p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
-  <p>Visit the <a href="<?php echo FULLWEBPATH; ?>/pages/donations">donations page</a></p>
+  <p>Visit the <a href="http://www.zenphoto.org/pages/donations">donations page</a></p>
 </div>
 
 
@@ -315,13 +315,13 @@ href="<?php echo FULLWEBPATH; ?>/news/installation-and-upgrading" title="Install
 		</p>
 		<br />
 			<h3>Need project help?</h3>
-  	<p>Visit the <a href="<?php echo FULLWEBPATH; ?>/pages/paid-support">paid support page</a>.
+  	<p>Visit the <a href="http://www.zenphoto.org/pages/paid-support">paid support page</a>.
   	</p>
 	</div>
 
 <div class="infobox">
 		<h3>Get involved!</h3>
-		<p>You would like to contribute? You don't need to be a programmer! <a href="<?php echo FULLWEBPATH; ?>/pages/get-involved" title="Get involved!">Read here what you can do for Zenphoto!</a>
+		<p>You would like to contribute? You don't need to be a programmer! <a href="http://www.zenphoto.org/pages/get-involved" title="Get involved!">Read here what you can do for Zenphoto!</a>
 		</p>
 	</div>
 
@@ -337,7 +337,7 @@ design.&#8221;</em><br /><a	href="http://www.zenphoto.org/support/topic.php?id=1
 job! Thanks!&#8221;</em><br /><a href="http://www.zenphoto.org/support/topic.php?id=2051&amp;page=2&amp;replies=84">— pixelfreak</a></p>
 <p class="version_requirements"><em>&#8220;I been using zenphoto for a while, mainly because I love its versatility and how easy it is to adapt it to an existing design.&#8221;</em><br /><a	href="http://www.zenphoto.org/support/topic.php?id=2051&amp;replies=84">— zucye</a></p>
 <p class="version_requirements">
-<a href="<?php echo FULLWEBPATH; ?>/pages/testimonials">Read more testimonials</a></p>
+<a href="http://www.zenphoto.org/pages/testimonials">Read more testimonials</a></p>
 </div>
 <br style="clear: both" />
 

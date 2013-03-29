@@ -367,6 +367,61 @@ function zp_printAuthorList($mode='all',$content=false) {
 	<?php
 }
 
+/* Prints a list of all contribitor profile pages (subpages of "contributors")
+ * @param string $mode 'all', 'teammembers', "formermembers'
+ */
+function zp_printItemAuthorCredits() {
+	if(zp_loggedin()) { // not live yet!
+		$authors = zp_getSpecificTags('item','author');
+		$numauthors = count($authors);
+		if($numauthors != 0) {
+			if($numauthors > 1) {
+				$credit = 'Developers: ';
+			} else {
+				$credit = 'Developer: ';
+			}
+			$page = new ZenpagePage('contributors');
+			$subpages = $page->getPages();
+			?>
+			<strong><?php echo $credit; ?> </strong>
+			<ul id="authorcredits">
+		 	<?php
+		 	$count = '';
+			foreach($authors as $author) {
+				$count++;
+				$author = str_replace('author_', '',$author);
+				?>
+				<li><?php 
+				if($count > 1) echo ', '; 
+				if(in_array($author,$subpages)) {
+					$obj = new ZenpagePage($author);
+					?>
+					<a href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
+					<?php 
+					if(strtolower($obj->getTitlelink()) != strtolower($obj->getTitle())) {
+						echo $obj->getTitle();?> <em>(<?php echo $obj->getTitlelink(); ?>)</em>
+						<?php 
+					} else { 
+						echo $obj->getTitle(); 
+					} ?>
+					</a>
+					<?php
+				} else {
+					echo $author; 
+				}
+				?>
+				
+				</li>
+				<?php
+			}
+			?>
+			</ul>
+			<br /><br />
+			<?php
+		}
+	}
+}
+
 /* Prints the plugin support list based on "pluginsupport_<pluginname(titlelink of article)>" tags.
  *
  * @return array

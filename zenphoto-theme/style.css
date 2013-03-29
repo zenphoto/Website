@@ -2043,6 +2043,22 @@ margin: 0;
 padding: 0;
 }
 
+ul#authorcredits {
+display: inline;
+
+margin: 0 0 10px 2px !important;
+padding: 0;
+}
+
+ul#authorcredits li {
+display: inline;
+margin: 0 0 0px -3px;
+}
+
+ul#authorcredits li a {
+display: inline !important;
+}
+
 .entrymeta ul.authorstatusrank {
 display: inline;
 margin-left: 0px;
@@ -2051,6 +2067,7 @@ margin-left: 0px;
 .entrymeta ul.authorstatusrank li {
 margin-left: -2px;
 }
+
 .authoricon {
 float: right;
 position: relative;

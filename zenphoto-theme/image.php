@@ -129,4 +129,5 @@ if ($_zp_current_album->name != "showcase") {
 }
 ?>
 <br />
+
 <?php include('footer.php'); ?>

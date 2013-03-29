@@ -8,9 +8,8 @@
 <div id="content">
     	<h2>Dev test page</h2>
   <?php
-
-		?>
-
+	
+	?>
 
 
 <?php include('footer.php'); ?>
