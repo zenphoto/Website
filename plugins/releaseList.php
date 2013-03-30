@@ -32,7 +32,7 @@
  * create a news article. It is the releaser's responsibility to create and publish that article.
  *
  * @package plugins
- * @subpackage Zenphoto
+ * @subpackage zenphoto
  *
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
