@@ -165,7 +165,7 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 				}
 			}
 			$result = $resultnew;
-			//unset($resultnew);
+			unset($resultnew);
 		}
 	}
 	$resultcount = count($result);
@@ -174,18 +174,18 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 	   	case 'news': 
 				switch($mode2) {
 					case 'extensions':
-						?><h4>Extensions contributions</h4><?php
+						?><h4>Extensions contributions (<?php echo $resultcount; ?>)</h4><?php
 						break;
 					case 'user-guide':
-						?><h4>User guide contributions</h4><?php
+						?><h4>User guide contributions (<?php echo $resultcount; ?>)</h4><?php
 						break;
 					case 'release':
-						?><h4>Release contributions</h4><?php
+						?><h4>Release contributions</h4> (<?php echo $resultcount; ?>)<?php
 						break;
 				}
 			 break;
 			 case 'albums': 
-			 	?><h4>Theme contributions</h4><?php
+			 	?><h4>Theme contributions (<?php echo $resultcount; ?>)</h4><?php
 			 	break;
 		}
 		?>
@@ -339,6 +339,15 @@ function zp_printAuthorList($mode='all',$content=false) {
 			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former'))) {  
 				?>
 				<li>
+					<?php 
+					/* $mail = $obj->getCustomData();
+					if(!empty($mail)) { 
+						$imgurl = zp_getAuthorGravatarImage($mail,40);
+						if(!empty($imgurl)) { 
+							echo $imgurl; 
+						}
+					} */
+					?>
 					<h3 class="entrytitle"><a href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
 						<?php 
 						echo $obj->getTitle();  
@@ -410,7 +419,6 @@ function zp_printItemAuthorCredits() {
 					echo $author; 
 				}
 				?>
-				
 				</li>
 				<?php
 			}
@@ -419,6 +427,100 @@ function zp_printItemAuthorCredits() {
 			<br /><br />
 			<?php
 		}
+	}
+}
+
+/**
+ * Get either a Gravatar URL or complete image tag for a specified email address. 
+ *
+ * @param string $email The email address
+ * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+ * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+ * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+ * @param boole $img True to return a complete IMG tag False for just the URL
+ * @param array $atts Optional, additional key/value attributes to include in the IMG tag
+ * @return String containing either just a URL or a complete image tag
+ * @source http://gravatar.com/site/implement/images/php/
+ */
+function zp_getAuthorGravatarImage($email,$s=80,$d='mm',$r='r',$img=true,$atts=array()) {
+	$url = 'http://www.gravatar.com/avatar/';
+	$url .= md5(strtolower(trim($email)));
+	$url .= "?s=$s&d=$d&$r=$r";
+	if($img) {
+		$url = '<img class="authorprofile-imagelist" src="'.$url.'"';
+		foreach($atts as $key => $val) {
+			$url .= ' '.$key.'="'.$val.'"';
+		}
+		$url .= ' />';
+	}
+	return $url;
+}
+
+/**
+ * Get the full Gravatar profile data as an array.
+ *
+ * @param string $email The email address
+ * @return array containing the profile data
+ * @source http://en.gravatar.com/site/implement/profiles/php/
+ */
+function zp_getAuthorGravatarProfileData($email) {
+	if(!empty($email)) {
+		$hash = md5(strtolower(trim($email)));
+		$str = file_get_contents( 'http://www.gravatar.com/'.$hash.'.php' );
+		$profile = unserialize($str);
+		if(is_array($profile) && isset($profile['entry'])) {
+    	return $profile;
+  	}
+  }
+}
+
+/**
+ * Prints data from the Gravatar profile
+ *
+ * @param string $field What to print 'thumbnail', 'aboutme', 'urls', 'all' (all in this order)
+ * @param array $profile The Gravatar profile array as fetched by  zp_getAuthorGravatarProfileData()
+ * @return gets the profile data as html elements
+ * @source http://en.gravatar.com/site/implement/profiles/php/
+ */
+function zp_getAuthorGravatarProfile($field,$profile) {
+	if(is_array($profile)) {
+		if(($field == 'thumbnail' || $field == 'all') && !empty($profile['entry'][0]['thumbnailUrl'])) {
+			 return '<img class="authorprofile-image" src="'.$profile['entry'][0]['thumbnailUrl'].'?s=105" alt="" />';
+		}
+		if(($field == 'aboutme' || $field == 'all') && !empty($profile['entry'][0]['aboutMe'])) {
+			return '<p class="authorprofile-text">'.$profile['entry'][0]['aboutMe'].'</p>';
+		}
+		if(($field == 'urls' || $field == 'all') && count($profile['entry'][0]['urls'])!= 0) {
+			$websites = '
+			<hr />
+			<h4>Websites</h4>
+			<ul class="authorprofile-links">
+			';
+			foreach($profile['entry'][0]['urls'] as $url) {
+				$websites .= '<li><a href="'.$url['value'].'">'.$url['title'].'</a></li>';
+			}
+			$websites .= '</ul>';
+			return $websites;
+		}
+	}
+}
+
+
+/**
+ * Gets the Google/Google+ profile image 
+ * @param string $userid 	The Google+ user ide number as found in the url of the profile. 
+ *												This must be passed as a string enclosed in quotes!
+ * @param num $size Size in pixels, if false full size
+ * @return html img
+ */
+function zp_getAuthorGoogleImage($userid='',$size=false) {
+  if(!empty($userid)) {
+		$url = 'https://www.google.com/s2/photos/profile/'.$userid;
+		if($size) {
+			$url .= '?sz='.$size;
+		}
+		$headers = get_headers($url, 1);
+		return "<img src=$headers[Location]>";
 	}
 }
 

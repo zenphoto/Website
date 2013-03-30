@@ -2071,11 +2071,31 @@ margin-left: -2px;
 .authoricon {
 float: right;
 position: relative;
-top: -22px;
+top: -14px;
 border: 0 !important;
 }
 
+img.authorprofile-image {
+float: left;
+margin: 2px 20px 10px 0px !important;
+border: 1px solid lightgray !important;
+}
 
+img.authorprofile-imagelist {
+float: left;
+display: block;
+margin: 14px 15px 0px 0px !important;
+border: 1px solid lightgray !important;
+}
+
+.authorprofile-text {
+
+}
+
+.authorprofile-links {
+margin-left: 20px;
+
+}
 
 /* Search Box
 ------------------------------ */

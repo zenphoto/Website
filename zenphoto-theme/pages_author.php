@@ -30,7 +30,7 @@
     	</h2> 
     	<?php if($_zp_current_zenpage_page->getTitlelink() != 'contributors') { ?>
     		<h3 class="entrytitle"><?php printPageTitle(); zp_printAuthorStatusIcon(); ?>
-    	<?php } ?>
+    	
     	<?php 
     	if(strtolower($_zp_current_zenpage_page->getTitle()) != strtolower($_zp_current_zenpage_page->getTitlelink())) {
     		?>
@@ -38,18 +38,29 @@
     		<?php
     	}
     	?></h3>
+    	<?php } ?>
     	<?php if($_zp_current_zenpage_page->getTitlelink() != 'contributors') { ?>
 				<div class="entrymeta">
 					<?php zp_printAuthorStatusRanks(); ?>
 				</div>
+			
   		<?php } ?>
   		<ol id="toc" class="table_of_content_list"></ol> 
   		<div class="entrybody">
-				<?php printPageContent(); ?>
-				<?php 
+  			<?php
+  			$gravatarmail = $_zp_current_zenpage_page->getCustomData();
+  			$profile = '';
+  			if(!empty($gravatarmail)) {
+					$profile = zp_getAuthorGravatarProfileData($gravatarmail); 
+				}
+				echo zp_getAuthorGravatarProfile('thumbnail',$profile); 
+				printPageContent(); 
+				//echo zp_getAuthorGravatarProfile('aboutme',$profile); 
+				//echo zp_getAuthorGravatarProfile('urls',$profile); 
 				if($_zp_current_zenpage_page->getTitlelink() == 'contributors') { 
 					zp_printAuthorList('all',false);
 				} else { ?>
+					<hr />
 					<?php zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'albums'); ?>
 					<?php zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'news','extensions'); ?>
 					<?php zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'news','user-guide'); ?>
