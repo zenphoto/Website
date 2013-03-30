@@ -2,7 +2,7 @@
 /* Generates "news" articles for plugins
  *
  * @package plugins
- * @subpackage development
+ * @subpackage zenphoto
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext('Generates news articles for supported plugins.');
@@ -52,6 +52,7 @@ function processPlugins() {
 	chdir($basepath);
 	$filelist = safe_glob('*.php');
 	foreach ($filelist as $file) {
+		if ($file == 'zenpage.php') break;
 		$desc = '';
 		global $_plugin_excludes;
 		$titlelink = stripSuffix(filesystemToInternal($file));
@@ -98,7 +99,7 @@ function processPlugins() {
 				$contributors[] = $contributor;
 			}
 			$author = implode(', ',$contributors);
-			$desc .= '<p class="plugin_author">Developed by '.$author.'</p>';
+//			$desc .= '<p class="plugin_author">Developed by '.$author.'</p>';
 		} else {
 			$authors = stripSuffix(basename(__FILE__));
 		}

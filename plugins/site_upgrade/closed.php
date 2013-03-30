@@ -1,18 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<title>Zenphoto</title>
-
-</head>
-<body>
-<div style="margin: 0 auto; width: 500px">
-<img src="../../themes/zenphoto-orgNew/images/logo-new.png" alt="" />
-<h1>Site maintainance</h1>
-<p>We are currently updating our site and will be back soon. Meanwhile you could visit:</p>
-<ul>
-	<li><a href="http://www.zenphoto.org/support">Forum</a></li>
-	<li><a href="http://www.zenphoto.org/trac/report/10">Bugtracker</a></li>
-</ul>
-</div>
-</body>
-</html>
+<?php
+if (isset($_GET['rss'])) {
+	$path = dirname(__FILE__).'/rss-closed.xml';
+	if (file_exists($path)) {
+		$xml = file_get_contents($path);
+		$xml = preg_replace('~<pubDate>(.*)</pubDate>~', '<pubDate>'.date("r",time()).'</pubDate>', $xml);
+		echo $xml;
+	}
+} else {
+	header('Location: closed.htm', true, 301);
+}
+?>
