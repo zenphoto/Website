@@ -328,7 +328,7 @@ function zp_printAuthorStatusRanks($obj=NULL) {
 }
 
 /* Prints a list of all contribitor profile pages (subpages of "contributors")
- * @param string $mode 'all', 'teammembers', "formermembers'
+ * @param string $mode 'all', 'teammembers', "formermembers', "contributors" (= non official team members)
  */
 function zp_printAuthorList($mode='all',$content=false) {
 	$page = new ZenpagePage('contributors');
@@ -338,7 +338,10 @@ function zp_printAuthorList($mode='all',$content=false) {
 		<?php
 		foreach($subpages as $subpage) {
 			$obj = new Zenpagepage($subpage);
-			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former'))) {  
+			if($mode == 'all' || 
+				($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || 
+				($mode == 'formermembers' && $obj->hasTag('zp_team-member-former'))
+				($mode == 'contributors' && $obj->hasTag('zp_contributor') && !($obj->hasTag('zp_team-member') && $obj->hasTag('zp_team-member-former'))) {  //double check to be sure...
 				?>
 				<li>
 					<?php 
