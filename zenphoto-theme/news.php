@@ -259,8 +259,5 @@ if(is_NewsArticle()) {
   printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
 }
 ?>
-   
-
-
 
 <?php include('footer.php'); ?>

@@ -154,7 +154,7 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 	$thumb = false;
 	$result = zp_getMoreByThisAuthor($tag,$mode);
-	$result = sortMultiArray($result,'name',false, true,false,false); // sort by name abc
+	$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
 	if($mode == 'news') {
 		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
 			$resultnew = array();
@@ -180,7 +180,7 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 						?><h4>User guide contributions (<?php echo $resultcount; ?>)</h4><?php
 						break;
 					case 'release':
-						?><h4>Release contributions</h4> (<?php echo $resultcount; ?>)<?php
+						?><h4>Release contributions (<?php echo $resultcount; ?>)</h4><?php
 						break;
 				}
 			 break;
@@ -198,17 +198,19 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 					$obj = new Album(NULL,$item['name']);
 					$url = $obj->getAlbumLink();
 					$text = $obj->getDesc();
-					$category = gettext('Theme');
+					//$category = gettext('Theme');
 					break;
 				case 'news':
 					$obj = new ZenpageNews($item['name']);
 					$url = getNewsURL($obj->getTitlelink());
 					$text = $obj->getContent(); 
-					if($mode2 == 'extensions') {
+					/*if($mode2 == 'extensions') {
 						$category = 'Extensions';
-					} else {
+					} elseif ($mode2 == 'user-guide') {
 						$category = 'User guide';
-					}
+					}	elseif ($mode2 == 'release') {
+						$category = 'Release';
+					} */
 					break;
 			}
 			?>
@@ -247,7 +249,7 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 					<small> – <?php echo zpFormattedDate(DATE_FORMAT, strtotime($d)); ?>
 					</span>
 					<?php
-				 ?>	(<?php echo $category; ?>)</small>
+				 ?></small>
 					<?php 
 				 switch($item['type']) {
 						case 'albums':
@@ -380,7 +382,7 @@ function zp_printAuthorList($mode='all',$content=false) {
  * @param string $mode 'all', 'teammembers', "formermembers'
  */
 function zp_printItemAuthorCredits() {
-	if(zp_loggedin()) { // not live yet!
+	if((zp_inNewsCategory('user-guide') || zp_inNewsCategory('extensions')) && zp_loggedin()) { // not live yet!
 		$authors = zp_getSpecificTags('item','author');
 		$numauthors = count($authors);
 		if($numauthors != 0) {
@@ -424,7 +426,7 @@ function zp_printItemAuthorCredits() {
 			}
 			?>
 			</ul>
-			<br /><br />
+			<br />
 			<?php
 		}
 	}
