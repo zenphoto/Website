@@ -89,6 +89,12 @@ if($zp_getParentAlbumName == 'theme' || $zp_getParentAlbumName == "screenshots")
 	<?php printAlbumTitle(); ?>
 	</h3>
 	<?php
+	if($zp_getParentAlbumName == "theme") { 
+		zp_printItemAuthorCredits(); 
+		echo '<div class="entrybody">';
+		echo getAlbumDesc(); 
+		echo '</div>';
+	}
 }
 if(getTotalPages(false) != 1) {
 	printPageListWithNav(gettext('« prev'),gettext('next »'));
@@ -127,6 +133,7 @@ while (next_album(false,$sortorder)):
 	<?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 128, 255, 128, NULL,NULL,"thumbnail",NULL,TRUE,false); ?>
 	</a>
 </div>
+
 <div class="albumdesc">
 <h3 class="entrytitle">
 <a href="<?php echo $albumurl ;?>"	title="View album: <?php echo getAlbumTitle();?>"><?php echo shortenContent(getAlbumTitle(),20,'(...)'); ?></a>
@@ -190,21 +197,7 @@ if($zp_getParentAlbumName === "theme") {
 ?>
 <br />
 <?php
-if($zp_getParentAlbumName == "theme") { 
-	echo "<p>";
-	$theme = str_replace(' ', '_', $_zp_current_album->getTitle());
-	echo "</p>";
-	echo '<div class="entrybody">';
-	echo getAlbumDesc(); 
-	echo '</div>';
-}
 
-if($zp_getParentAlbumName == "theme") {
-	zp_printPluginsupportTags();
-	if(!$_zp_current_album->hasTag('theme-officially-supported')) {
- 	 	echo '<hr /><p><strong>Date added: </strong>'.getAlbumDate().'</p>';
- 	}
-}
  	 	if (function_exists('printRating') && ($zp_getParentAlbumName == "theme" || $_zp_current_album->name == "showcase")) {
  	 		echo "<hr />";
  	 		echo '<div class="rating" style="float: left; width:400px; height:50px;">';

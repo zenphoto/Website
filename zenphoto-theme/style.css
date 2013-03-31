@@ -2048,8 +2048,8 @@ padding: 0;
 }
 
 #authorcredits {
-margin: 0px;
-height: auto;
+margin: 15px 0 0 10px !important;
+padding: 0;
 }
 
 #authorcredits h4 {
@@ -2059,11 +2059,11 @@ color: black;
 margin: 0;
 }
 
-#authorcredits ul{
+#authorcredits ul {
 display: block;
 line-height: 16px;
-margin: 2px 0px 2px 0 !important;
-padding-left: 18px;
+margin: 2px 0px 0px 0 !important;
+padding: 0 0px 0 18px; 
 }
 
 #authorcredits ul li {

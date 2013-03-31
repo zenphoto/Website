@@ -63,7 +63,7 @@ zp_printSidebarBoxes(); ?>
 	</h3>
  		<div id="image">
 		<?php if(isImagePhoto()) { ?>
-		<a href="<?php echo getUnprotectedImageURL(); ?>" class="colorbox"><?php printCustomSizedImageMaxSpace(getBareImageTitle(),560,420,NULL,NULL,false); ?></a>
+		<a href="<?php echo getUnprotectedImageURL(); ?>" class="colorbox"><?php printCustomSizedImageMaxSpace(getBareImageTitle(),560,1000,NULL,NULL,false); ?></a>
 		<?php } else { ?>
 		<?php printCustomSizedImage(getBareImageTitle(),560,700); ?>
 		<?php } ?>
@@ -75,6 +75,7 @@ zp_printSidebarBoxes(); ?>
 			printjCarouselThumbNav(6,50,50,50,50,FALSE);
  		}
 	?>
+	<?php zp_printItemAuthorCredits(); ?>	
 	<div class="entrybody">
 <?php
 	$customdata = '';

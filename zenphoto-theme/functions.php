@@ -394,13 +394,16 @@ function zp_printAuthorList($mode='all',$content=false) {
  * @param string $mode 'all', 'teammembers', "formermembers'
  */
 function zp_printItemAuthorCredits() {
-	global $_zp_current_zenpage_news, $_zp_current_album;
+	global $_zp_current_zenpage_news, $_zp_current_album, $_zp_gallery_page;
 	$parent = '';
-	if(is_GalleryNewsType() && is_NewsType("album")) {
+	if((is_GalleryNewsType() && is_NewsType("album"))) {
 		$parent = $_zp_current_zenpage_news->getParent();
 		$parentname = $parent->name;
-	}
-	if((zp_inNewsCategory('user-guide') || zp_inNewsCategory('extensions') || $parentname == 'theme') && zp_loggedin()) { 
+	} elseif ($_zp_gallery_page == 'image.php' || $_zp_gallery_page == 'album.php') {
+		$parent = $_zp_current_album->getParent();
+		$parentname = $parent->name;
+  }	
+	if(((zp_inNewsCategory('user-guide') || zp_inNewsCategory('extensions')) || $parentname == 'theme') && zp_loggedin()) { 
 		$authors = zp_getSpecificTags('item','author');
 		$numauthors = count($authors);
 		if($numauthors != 0) {
