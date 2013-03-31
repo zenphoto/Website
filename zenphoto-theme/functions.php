@@ -174,18 +174,24 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 	   	case 'news': 
 				switch($mode2) {
 					case 'extensions':
-						?><h4>Extensions contributions (<?php echo $resultcount; ?>)</h4><?php
+						?>
+						<h4>Extensions contributions (<?php echo $resultcount; ?>)</h4>
+						<?php
 						break;
 					case 'user-guide':
 						?><h4>User guide contributions (<?php echo $resultcount; ?>)</h4><?php
 						break;
 					case 'release':
-						?><h4>Release contributions (<?php echo $resultcount; ?>)</h4><?php
+						?><h4>Release contributions (<?php echo $resultcount; ?>)</h4>
+						<p>Bugfix releases (1.x.x.x) are not listed.</p>
+						<?php
 						break;
 				}
 			 break;
 			 case 'albums': 
-			 	?><h4>Theme contributions (<?php echo $resultcount; ?>)</h4><?php
+			 	?>
+			 	<h4>Theme contributions (<?php echo $resultcount; ?>)</h4>
+			 	<?php
 			 	break;
 		}
 		?>
@@ -266,7 +272,7 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 	} // foreach
 		?>
 		</ol>
-		<?php
+		<?php 
 	} 
 }
 
@@ -282,10 +288,10 @@ function zp_printAuthorStatusIcon($obj=NULL) {
 	$icon = '';
 	if(is_object($obj)) {
 		if($obj->hasTag('zp_team-member')) {
-			$icon = "<img class='authoricon' src='".$_zp_themeroot."/images/authoricon_developer.png' alt='' />";
+			$icon = '<img class="authoricon" src="'.$_zp_themeroot.'/images/authoricon_developer.png" alt="" title="Official Zenphoto team member" />';
 		}
 		if($obj->hasTag('zp_team-member-former')) {
-			$icon = "<img class='authoricon' src='".$_zp_themeroot."/images/authoricon_former.png' alt='' />";
+			$icon = '<img class="authoricon" src="'.$_zp_themeroot.'/images/authoricon_former.png" alt="" title="Former Zenphoto team member" />';
 		} 
 		echo $icon;
 	}
@@ -327,8 +333,8 @@ function zp_printAuthorStatusRanks($obj=NULL) {
  <?php
 }
 
-/* Prints a list of all contribitor profile pages (subpages of "contributors")
- * @param string $mode 'all', 'teammembers', "formermembers', "contributors" (= non official team members)
+/* Prints a list of all contribitor profile pages (all subpages of the page "contributors")
+ * @param string $mode 'all', 'teammembers', "formermembers'
  */
 function zp_printAuthorList($mode='all',$content=false) {
 	$page = new ZenpagePage('contributors');
@@ -338,10 +344,7 @@ function zp_printAuthorList($mode='all',$content=false) {
 		<?php
 		foreach($subpages as $subpage) {
 			$obj = new Zenpagepage($subpage);
-			if($mode == 'all' || 
-				($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || 
-				($mode == 'formermembers' && $obj->hasTag('zp_team-member-former'))
-				($mode == 'contributors' && $obj->hasTag('zp_contributor') && !($obj->hasTag('zp_team-member') && $obj->hasTag('zp_team-member-former'))) {  //double check to be sure...
+			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former'))) {  
 				?>
 				<li>
 					<?php 
@@ -370,6 +373,12 @@ function zp_printAuthorList($mode='all',$content=false) {
 					<?php if($content) { ?>
 						<div class="entrybody">
 							<?php echo $obj->getContent(); ?>
+							<p class="buttons">
+								<a  href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
+								<strong>Full profile</strong>
+								</a>
+							</p>
+							<br style="clear: left" />
 						</div>
 					<?php } ?>
 				</li>
@@ -397,8 +406,9 @@ function zp_printItemAuthorCredits() {
 			$page = new ZenpagePage('contributors');
 			$subpages = $page->getPages();
 			?>
-			<strong><?php echo $credit; ?> </strong>
-			<ul id="authorcredits">
+			<div id="authorcredits" class="table_of_content_list">
+			<h4><?php echo $credit; ?> </h4>
+			<ul>
 		 	<?php
 		 	$count = '';
 			foreach($authors as $author) {
@@ -406,7 +416,7 @@ function zp_printItemAuthorCredits() {
 				$author = str_replace('author_', '',$author);
 				?>
 				<li><?php 
-				if($count > 1) echo ', '; 
+				//if($count > 1) echo ', '; 
 				if(in_array($author,$subpages)) {
 					$obj = new ZenpagePage($author);
 					?>
@@ -429,7 +439,7 @@ function zp_printItemAuthorCredits() {
 			}
 			?>
 			</ul>
-			<br />
+			</div>
 			<?php
 		}
 	}
@@ -575,7 +585,11 @@ function zp_printNewsCategoryFoldout() {
 	global $_zp_current_category;
 	if(zp_inNewsCategory('news') || is_null($_zp_current_category)) {
 		$cat_news = new ZenpageCategory('news');
-		echo '<ul class="newscategories">';
+		?>
+		<hr />
+		<h2>Categories</h2>
+		<ul class="newscategories">
+		<?php
 		$allnews = '';
 		if(is_null($_zp_current_category)) {
 			$allnews = ' class="active"';
@@ -626,7 +640,11 @@ function zp_printSubCategories($cattitlelink) {
 	$currentcat = new ZenpageCategory($cattitlelink);
  	$subcats = $currentcat->getSubCategories();
 	if($subcats) {
-	  echo '<ul class="newscategories">';
+	  ?>
+	  <hr />
+		<h2>Categories</h2>
+	  <ul class="newscategories">
+	  <?php
 	  foreach($subcats as $subcat) {
 	  	$subcatobj = new ZenpageCategory($subcat);
 	 		$active = '';
@@ -885,19 +903,19 @@ function zp_printThemeStatusIcon($obj=NULL) {
 	}
 	if(is_object($albumobj)) {
 		if($albumobj->hasTag('theme-officially-supported')) {
-			echo "<img class='".$iconclass."' src='".$_zp_themeroot."/images/accept_green.png' alt='official and included theme' />";
+			echo '<img class="'.$iconclass.'" src="'.$_zp_themeroot.'/images/accept_green.png" alt="Officially supported – Included in the Zenphoto release package" title="Officially supported – Included in the Zenphoto release package" />';
 		}
 		if($albumobj->hasTag('theme-compatible')) {
-			echo "<img class='".$iconclass."' src='".$_zp_themeroot."/images/accept_blue.png' alt='generally compatible 3rd party theme'/>";
+			echo '<img class="'.$iconclass.'" src="'.$_zp_themeroot.'/images/accept_blue.png" alt="Generally compatible – Unsupported and 3rd party" title="Generally compatible – Unsupported and 3rd party" />';
 		}
 		if($albumobj->hasTag('theme-partly-compatible')) {
-			echo "<img class='".$iconclass."' src='".$_zp_themeroot."/images/question_orange.png' alt='partly compatible 3rd party theme' />";
+			echo '<img class="'.$iconclass.'" src="'.$_zp_themeroot.'/images/question_orange.png" alt="Partly compatible – Unsupported and 3rd party" title="Partly compatible – Unsupported and 3rd party" />';
 		}
 		if($albumobj->hasTag('theme-not-compatible')) {
-			echo "<img class='".$iconclass."' src='".$_zp_themeroot."/images/stop_round.png' alt='incompatible 3rd party theme' />";
+			echo '<img class="'.$iconclass.'" src="'.$_zp_themeroot.'/images/stop_round.png" alt="Currently not compatible – Unsupported and 3rd party" title="Currently not compatible – Unsupported and 3rd party" />';
 		}
 		if($albumobj->hasTag('theme-abandoned')) {
-			echo "<img class='".$iconclass."' src='".$_zp_themeroot."/images/cancel_round.png' alt='no longer provided 3rd party theme' />";
+			echo '<img class="'.$iconclass.'" src="'.$_zp_themeroot.'/images/cancel_round.png" alt="No longer provided – Unsupported and 3rd party" title="No longer provided – Unsupported and 3rd party" />';
 		}
 	}
 }
@@ -910,6 +928,7 @@ function zp_printThemeStatusIconList() {
 		global $_zp_themeroot;
 ?>
 	<hr />
+	<h2>Theme icon legend</h2>
 	<ul class="statuslist">
 		<li class="themestatus1"><a href="<?php echo getSearchURL('theme-officially-supported','','','',NULL); ?>">Officially supported</a> <br />Included in the Zenphoto release package.</li>
 		<li class="themestatus2"><a href="<?php echo getSearchURL('theme-compatible','','','',NULL); ?>">Generally compatible</a>
@@ -943,13 +962,13 @@ function zp_printShowcaseTypeIcon() {
 	global $_zp_current_image, $_zp_themeroot, $_zp_gallery_page;
 	if(is_object($_zp_current_image)) {
 		if($_zp_current_image->hasTag('showcase_zenphoto-with-zenpage-cms-plugin')) {
-			echo "<img class='themeicon-news' src='".$_zp_themeroot."/images/showcasetype1.png' alt='Full site done completly with Zenphoto and the Zenpage CMS plugin' />";
+			echo '<img class="themeicon-news" src="'.$_zp_themeroot.'/images/showcasetype1.png" alt="Full site done completly with Zenphoto and the Zenpage CMS plugin" title="Full site done completly with Zenphoto and the Zenpage CMS plugin" />';
 		}
 		if($_zp_current_image->hasTag('showcase_zenphoto-only')) {
-			echo "<img class='themeicon-news' src='".$_zp_themeroot."/images/showcasetype2.png' alt='Site that uses Zenphoto only (e.g. pure gallery site)' />";
+			echo '<img class="themeicon-news" src="'.$_zp_themeroot.'/images/showcasetype2.png" alt="Site that uses Zenphoto only (e.g. pure gallery site)" title="Site that uses Zenphoto only (e.g. pure gallery site)" />';
 		}
 		if($_zp_current_image->hasTag('showcase_partly-zenphoto')) {
-			echo "<img class='themeicon-news' src='".$_zp_themeroot."/images/showcasetype3.png' alt='Site partly using Zenphoto (e.g. for the gallery part)' />";
+			echo '<img class="themeicon-news" src="'.$_zp_themeroot.'/images/showcasetype3.png" alt="Site partly using Zenphoto (e.g. for the gallery part)" title="Site partly using Zenphoto (e.g. for the gallery part)" />';
 		}
 	}
 }
@@ -961,6 +980,7 @@ function zp_printShowcaseTypeIcon() {
 function zp_printShowcaseTypeIconList() {
 ?>
 <hr />
+	<h2>Showcase icon legend</h2>
 	<ul class="statuslist">
 		<li class="showcasetype1"><a href="<?php echo getSearchURL('showcase_zenphoto-with-zenpage-cms-plugin','','','',NULL); ?>">Full site done completly with Zenphoto and the Zenpage CMS plugin</a>*</li>
 		<li class="showcasetype2"><a href="<?php echo getSearchURL('showcase_zenphoto-only','','','',NULL); ?>">Site that uses Zenphoto only (e.g. pure gallery site)</a>*</li>
@@ -997,6 +1017,27 @@ function zp_printExtensionStatusIcon($obj=NULL) {
 		<?php
 		}
 	}
+}
+
+function zp_printExtensionStatusIconList() {
+	?>
+	<hr />
+	<h2>Extension icon legend</h2>
+ 	<ul class="statuslist">
+		<li class="extension-supported" id="officially-supported">
+		Officially supported and included in the release package.
+		</li>
+		<li class="extension-unsupported-hosted" id="third-party-hosted-unsupported">
+		Unsupported and/or older third party extensions we host on GitHub as an archive.
+		</li>
+		<li class="extension-unsupported" id="third-party-unsupported">
+		Unsupported third party extensions hosted by the developers themselves.
+		</li>
+		<li class="extension-abandoned" id="third-party-abandoned">
+		Unsupported third party extensions abandoned by its developer.
+		</li>
+  </ul>
+<?php
 }
 
 /**

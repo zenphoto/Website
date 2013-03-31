@@ -617,6 +617,7 @@ margin-bottom: 10px;
 	margin-bottom: 15px;
 	padding: 0;
 	text-align: left;
+	clear: left;
 }
 
 #content .entrybody .pageexcerpt {
@@ -812,7 +813,7 @@ ul.morebyauthorlist li,
   background: url(images/newnavbullet2.png) no-repeat top left;
 }
 #sidebar ul.statuslist {
-	margin: 0 0 5px 0;
+	margin: 10px 0 5px 0;
 	
 }
 #sidebar ul.statuslist li {
@@ -2046,20 +2047,27 @@ margin: 0;
 padding: 0;
 }
 
-ul#authorcredits {
-display: inline;
-
-margin: 0 0 10px 2px !important;
-padding: 0;
+#authorcredits {
+margin: 0px;
+height: auto;
 }
 
-ul#authorcredits li {
-display: inline;
-margin: 0 0 0px -3px;
+#authorcredits h4 {
+font-size: 13px;
+font-weight: bold;
+color: black;
+margin: 0;
 }
 
-ul#authorcredits li a {
-display: inline !important;
+#authorcredits ul{
+display: block;
+line-height: 16px;
+margin: 2px 0px 2px 0 !important;
+padding-left: 18px;
+}
+
+#authorcredits ul li {
+margin: 0 0px 2px 0;
 }
 
 .entrymeta ul.authorstatusrank {

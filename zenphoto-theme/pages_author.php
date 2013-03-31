@@ -2,6 +2,8 @@
 
 <div id="sidebar">
 	<?php printSearchForm();	?>
+	<?php zp_printThemeStatusIconList(); ?>
+	<?php zp_printExtensionStatusIconList(); ?>
 	<?php
 	$parent = $_zp_current_zenpage_page->getParentid();
 	$subpages = $_zp_current_zenpage_page->getPages();

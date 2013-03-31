@@ -1,15 +1,21 @@
 <?php include('header.php'); ?>
 <div id="sidebar">
 <?php printSearchForm();	
+
 $zp_getParentAlbumName = zp_getParentAlbumName();
-if($zp_getParentAlbumName != "theme") { ?>
-<hr />
-<?php echo getAlbumDesc(); 
-}
+
 if($zp_getParentAlbumName == 'theme' || $_zp_current_album->name == 'theme') {
+	?>
+	<hr />
+	<p class="buttons"><strong><a href="http://www.zenphoto.org/news/general-contributor-guidelines#themes-and-plugins">Submitting your theme</a></strong></p>
+	<?php
 	zp_printThemeStatusIconList();
 }
 if($_zp_current_album->name == 'showcase') {
+	?>
+	<hr />
+	<p class="buttons"><strong><a href="http://www.zenphoto.org/pages/get-involved#submission-to-showcase">Submit your site</a><br /></strong></p>
+	<?php
 	zp_printShowcaseTypeIconList();
 }
 if($_zp_current_album->getNumImages() > 0) {
@@ -58,6 +64,11 @@ if($_zp_current_album->name === "showcase") {
 }
 ?>
 </h2>
+<?php
+if($zp_getParentAlbumName != "theme" && $_zp_page == 1) { 
+	echo getAlbumDesc(); 
+}
+?>
  <?php
   if($_zp_current_album->name != "showcase" && $_zp_current_album->name != "screenshots" && $_zp_current_album->name != "theme" && $zp_getParentAlbumName != "screenshots") {
    	zp_printNextPrevAlbumLinkFirstImage();

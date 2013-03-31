@@ -1,41 +1,15 @@
 <?php include('header.php'); ?>
 
 <div id="sidebar">
-	 	<?php printSearchForm();	?>
-	 	<hr />
-	 	<?php
-		if(!is_NewsArticle()) {
-	 		if(zp_inNewsCategory('extensions')) {
-	 			$newcat = new ZenpageCategory('extensions');
-	  		echo $newcat->getDesc().'<hr />';
-			} else if(zp_inNewsCategory('user-guide')) {
-	  		$newcat = new ZenpageCategory('user-guide');
-	  		echo $newcat->getDesc().'<hr />';	
-	  	}
-	  }
-	  	?>
-	  <h2>Categories</h2> 
-	  <?php
+	 	<?php printSearchForm();	
 	  	if(zp_inNewsCategory('extensions')) {
-	  		zp_printSubCategories('extensions');
 	  		?>
 	  		<hr />
-	  		<ul class="statuslist">
-					<li class="extension-supported" id="officially-supported">
-  				Officially supported and included in the release package.
-  				</li>
-  				<li class="extension-unsupported-hosted" id="third-party-hosted-unsupported">
-  				Unsupported and/or older third party extensions we host on GitHub as an archive.
-  				</li>
-  				<li class="extension-unsupported" id="third-party-unsupported">
-  				Unsupported third party extensions hosted by the developers themselves.
-  				</li>
-  				<li class="extension-abandoned" id="third-party-abandoned">
-  				Unsupported third party extensions abandoned by its developer.
-  				</li>
-  			</ul>
-  	<?php
-			} else if(zp_inNewsCategory('user-guide')) {
+	  		<p class="buttons"><a href="http://www.zenphoto.org/news/general-contributor-guidelines#themes-and-plugins"><strong>How to submit your extensions</strong></a></p>
+	  		<?php
+	  		zp_printExtensionStatusIconList(); 
+	  		zp_printSubCategories('extensions');
+			} else if(zp_inNewsCategory('user-guide')) {	
 	  		zp_printSubCategories('user-guide');
 	   	} else {
 	  		$catoption = 'list';
@@ -84,6 +58,17 @@
 	<?php zp_printMainSectionCategoryTitle(); ?>
 	</h2>
 	<?php
+		if(!is_NewsArticle() && $_zp_page == 1) {
+	 		if(zp_inNewsCategory('extensions')) {
+	 			$newcat = new ZenpageCategory('extensions');
+	  		echo $newcat->getDesc();
+			} else if(zp_inNewsCategory('user-guide')) {
+	  		$newcat = new ZenpageCategory('user-guide');
+	  		echo $newcat->getDesc();	
+	  	}
+	  }
+	?>
+	<?php
 // single news article
 if(is_NewsArticle()) {
 ?>	
@@ -107,12 +92,12 @@ if(is_NewsArticle()) {
     		echo '<br />';printTags('links','Tags: ','wp-category', ', ', false, '', false); 
     	}	?> 
    	</div>
-  
+    <?php
+	  zp_printItemAuthorCredits(); ?>	
 	 <ol id="toc" class="table_of_content_list"></ol>
 	 
 	 <div class="entrybody">
 	  <?php
-	  zp_printItemAuthorCredits();
   	printCodeblock(1);
   	// we need this for the automatic jquery table of contents
   	?>
