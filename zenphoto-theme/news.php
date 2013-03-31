@@ -92,8 +92,7 @@ if(is_NewsArticle()) {
     		echo '<br />';printTags('links','Tags: ','wp-category', ', ', false, '', false); 
     	}	?> 
    	</div>
-    <?php
-	  zp_printItemAuthorCredits(); ?>	
+    <?php zp_printItemAuthorCredits(); ?>	
 	 <ol id="toc" class="table_of_content_list"></ol>
 	 
 	 <div class="entrybody">
@@ -207,7 +206,7 @@ if(is_NewsArticle()) {
 		}
 		?>
  </div>
-
+	
 	<div class="entrybody">
 		
       <?php 
@@ -220,7 +219,7 @@ if(is_NewsArticle()) {
   	 		if(is_null($_zp_current_category)) {
   	 			// news section stuff is not shortened
   	 			if(!is_GalleryNewsType() && $_zp_current_zenpage_news->inNewsCategory("news")) {
-  	 				printNewsContent(); // disabling shortening is not possible so we set it high!
+  	 				printNewsContent(); // disabling shortening is not possible so we set it high!	
   	 				printCodeblock(2);
   	 				//} else if(!is_GalleryNewsType() && !$_zp_current_zenpage_news->inNewsCategory("news")) {
   	 				//echo getNewsContent(120); // this is basically for extension so you see what they are about but know
