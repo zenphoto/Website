@@ -394,16 +394,23 @@ function zp_printAuthorList($mode='all',$content=false) {
  * @param string $mode 'all', 'teammembers', "formermembers'
  */
 function zp_printItemAuthorCredits() {
-	global $_zp_current_zenpage_news, $_zp_current_album, $_zp_gallery_page;
+	global $_zp_current_zenpage_news, $_zp_current_album, $_zp_gallery_page,$_zp_themeroot;
 	$parent = '';
+	$rightcat = false;
 	if((is_GalleryNewsType() && is_NewsType("album"))) {
 		$parent = $_zp_current_zenpage_news->getParent();
 		$parentname = $parent->name;
 	} elseif ($_zp_gallery_page == 'image.php' || $_zp_gallery_page == 'album.php') {
 		$parent = $_zp_current_album->getParent();
 		$parentname = $parent->name;
-  }	
-	if(((zp_inNewsCategory('user-guide') || zp_inNewsCategory('extensions')) || $parentname == 'theme') && zp_loggedin()) { 
+  }	else {
+  	if(!is_NewsCategory() && ($_zp_current_zenpage_news->inNewsCategory('user-guide') 
+  	|| $_zp_current_zenpage_news->inNewsCategory('extensions'))
+  	) {
+  		$rightcat = true;
+  	} 
+  }
+	if(($rightcat || $parentname == 'theme') && zp_loggedin()) { 
 		$authors = zp_getSpecificTags('item','author');
 		$numauthors = count($authors);
 		if($numauthors != 0) {
@@ -438,6 +445,7 @@ function zp_printItemAuthorCredits() {
 						echo $obj->getTitle(); 
 					} ?>
 					</a>
+
 					<?php
 				} else {
 					echo $author; 

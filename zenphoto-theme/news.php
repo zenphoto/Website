@@ -92,7 +92,7 @@ if(is_NewsArticle()) {
     		echo '<br />';printTags('links','Tags: ','wp-category', ', ', false, '', false); 
     	}	?> 
    	</div>
-    <?php zp_printItemAuthorCredits(); ?>	
+   <?php zp_printItemAuthorCredits(); ?>	
 	 <ol id="toc" class="table_of_content_list"></ol>
 	 
 	 <div class="entrybody">
@@ -195,6 +195,7 @@ if(is_NewsArticle()) {
   } 
   ?>
 	</h3>
+	
 	<div class="entrymeta">
     <?php
 		if(is_GalleryNewsType()) {
@@ -206,7 +207,10 @@ if(is_NewsArticle()) {
 		}
 		?>
  </div>
-	
+	<?php 
+		if(is_GalleryNewsType() || (!$_zp_current_zenpage_news->inNewsCategory('extensions') && !$_zp_current_zenpage_news->inNewsCategory('release') && !$_zp_current_zenpage_news->inNewsCategory('user-guide'))) { 
+			zp_printItemAuthorCredits(); 
+		} ?>	
 	<div class="entrybody">
 		
       <?php 

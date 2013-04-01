@@ -14,7 +14,6 @@ padding: 0;
 border: 0;
 }
 
-
 body {
 	margin: 0;
 	padding: 0;
@@ -799,7 +798,7 @@ margin: 0;
 	margin: 0;
 	padding: 0;
 	}
-
+ul#relateditems li,
 ul.morebyauthorlist li,
 #sidebar ul li,
 #latestnews li,
@@ -868,17 +867,15 @@ ul.morebyauthorlist li,
 #sidebar ul.statuslist li.themestatus5 {
 	background: url(images/cancel_round.png) no-repeat top left;
 }
-ul.morebyauthorlist {
+ul.morebyauthorlist,
+ul#relateditems {
 margin: 5px 0 15px 0;
 }
 
-ul.morebyauthorlist li {
+ul.morebyauthorlist li,
+ul#relateditems li {
 margin-left: 12px !important;
 }	
-
-ul#relateditems {
-margin-top: 5px;
-}
 
 
 
@@ -2050,6 +2047,7 @@ padding: 0;
 #authorcredits {
 margin: 15px 0 0 10px !important;
 padding: 0;
+
 }
 
 #authorcredits h4 {
@@ -2064,6 +2062,7 @@ display: block;
 line-height: 16px;
 margin: 2px 0px 0px 0 !important;
 padding: 0 0px 0 18px; 
+position:relative;
 }
 
 #authorcredits ul li {
