@@ -62,7 +62,6 @@
 				if($_zp_current_zenpage_page->getTitlelink() == 'contributors') { 
 					zp_printAuthorList('all',false);
 				} else { ?>
-					<hr />
 					<?php zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'news','release'); ?>
 					<?php zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'albums'); ?>
 					<?php zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'news','extensions'); ?>

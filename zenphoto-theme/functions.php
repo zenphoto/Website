@@ -319,7 +319,7 @@ function zp_printAuthorStatusRanks($obj=NULL) {
 	}
 	$count = '';
 	foreach($statustags as $status) {
-		if($status != 'zp_team-member' && $status != 'zp_team-member-former') {
+		if($status != 'zp_team-member' && $status != 'zp_team-member-former' && $status != 'zp_contributor') {
 			$count++;
 			?>
 			<li>
@@ -334,17 +334,22 @@ function zp_printAuthorStatusRanks($obj=NULL) {
 }
 
 /* Prints a list of all contribitor profile pages (all subpages of the page "contributors")
- * @param string $mode 'all', 'teammembers', "formermembers'
+ * @param string $mode 'all', 'teammembers', "formermembers', 'contributors'
  */
 function zp_printAuthorList($mode='all',$content=false) {
-	$page = new ZenpagePage('contributors');
-	$subpages = $page->getPages();
+	global $_zp_current_zenpage_page;
+	if(!is_null($_zp_current_zenpage_page) && $_zp_current_zenpage_page->getTitlelink() == 'contributors') {
+		$subpages = $_zp_current_zenpage_page->getPages();
+	} else {
+		$page = new ZenpagePage('contributors');
+		$subpages = $page->getPages();
+	}
 	?>
 	<ul class="authors">
 		<?php
 		foreach($subpages as $subpage) {
 			$obj = new Zenpagepage($subpage);
-			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former'))) {  
+			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former')) || ($mode == 'contributors' && $obj->hasTag('zp_contributors'))) {  
 				?>
 				<li>
 					<?php 
@@ -539,20 +544,25 @@ function zp_getAuthorGravatarProfile($field,$profile) {
 
 
 /**
- * Gets the Google/Google+ profile image 
- * @param string $userid 	The Google+ user ide number as found in the url of the profile. 
- *												This must be passed as a string enclosed in quotes!
- * @param num $size Size in pixels, if false full size
+ * Gets the Google/Google+ or Facebook profile image 
+ * @param string $userid 	$type = 'google': The Google+ user id number as found in the url of the profile. 
+ *																					This MUST be passed as a string enclosed in quotes!
+ * 												$type = 'facebook': The facebook profile/page name found in the url of the profile. 
+ * @param num $type type 'google', 'facebook'
  * @return html img
  */
-function zp_getAuthorGoogleImage($userid='',$size=false) {
+function zp_getAuthorSocialImage($userid='',$type='google') {
   if(!empty($userid)) {
-		$url = 'https://www.google.com/s2/photos/profile/'.$userid;
-		if($size) {
-			$url .= '?sz='.$size;
+  	switch($type) {
+  		case 'google':
+				$url = 'https://www.google.com/s2/photos/profile/'.$userid;
+				return "<img src=$headers[Location]>";
+				break;
+			case 'facebook':
+				$url = 'https://graph.facebook.com/'.$userid.'/picture?type=normal';
+				return "<img src=$headers[Location]>";
+				break;
 		}
-		$headers = get_headers($url, 1);
-		return "<img src=$headers[Location]>";
 	}
 }
 
