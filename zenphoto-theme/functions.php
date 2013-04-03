@@ -333,15 +333,15 @@ function zp_printAuthorStatusRanks($obj=NULL) {
  <?php
 }
 
-/* Prints a list of all contribitor profile pages (all subpages of the page "contributors")
+/* Prints a list of all contribitor profile pages (all subpages of the page "all-contributors")
  * @param string $mode 'all', 'teammembers', "formermembers', 'contributors'
  */
 function zp_printAuthorList($mode='all',$content=false) {
 	global $_zp_current_zenpage_page;
-	if(!is_null($_zp_current_zenpage_page) && $_zp_current_zenpage_page->getTitlelink() == 'contributors') {
+	if(!is_null($_zp_current_zenpage_page) && $_zp_current_zenpage_page->getTitlelink() == 'all-contributors') {
 		$subpages = $_zp_current_zenpage_page->getPages();
 	} else {
-		$page = new ZenpagePage('contributors');
+		$page = new ZenpagePage('all-contributors');
 		$subpages = $page->getPages();
 	}
 	?>
@@ -349,7 +349,7 @@ function zp_printAuthorList($mode='all',$content=false) {
 		<?php
 		foreach($subpages as $subpage) {
 			$obj = new Zenpagepage($subpage);
-			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former')) || ($mode == 'contributors' && $obj->hasTag('zp_contributors'))) {  
+			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former')) || ($mode == 'contributors' && $obj->hasTag('zp_contributor'))) {  
 				?>
 				<li>
 					<?php 
@@ -361,7 +361,7 @@ function zp_printAuthorList($mode='all',$content=false) {
 						}
 					} */
 					?>
-					<h3 class="entrytitle"><a href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
+					<h4 class="entrytitle"><a href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
 						<?php 
 						echo $obj->getTitle();  
 						if(strtolower($obj->getTitle()) != strtolower($obj->getTitlelink())) {
@@ -371,7 +371,7 @@ function zp_printAuthorList($mode='all',$content=false) {
 						}
 						?>
 						</a><?php zp_printAuthorStatusIcon($obj);?>
-					</h3>
+					</h4>
 					<div class="entrymeta">
 						<?php zp_printAuthorStatusRanks($obj); ?>
 					</div>
@@ -395,7 +395,7 @@ function zp_printAuthorList($mode='all',$content=false) {
 	<?php
 }
 
-/* Prints a list of all contribitor profile pages (subpages of "contributors")
+/* Prints a list of all contribitor profile pages (subpages of "all-contributors")
  * @param string $mode 'all', 'teammembers', "formermembers'
  */
 function zp_printItemAuthorCredits() {

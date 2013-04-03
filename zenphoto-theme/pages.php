@@ -23,7 +23,12 @@
 </div><!-- sidebar end -->
 
 <div id="content">
-    	<h2><?php printZenpageItemsBreadcrumb('',' » '); ?><?php printPageTitle(); ?></h2> 
+			<?php if($parent) { ?>
+    		<h2><?php printZenpageItemsBreadcrumb('',''); ?></h2> 
+    		<h3 class="entrytitle"><?php printPageTitle(); ?></h3>
+    	<?php } else { ?>
+    		<h2 class="entrytitle"><?php printPageTitle(); ?></h2>
+    	<?php } ?>
     	<ol id="toc" class="table_of_content_list"></ol> 
   		<div class="entrybody">
   			<span id="entrybody">

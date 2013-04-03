@@ -620,7 +620,7 @@ margin-bottom: 10px;
 }
 
 #content .entrybody .pageexcerpt {
-	border-bottom: 1px dashed darkgray/* #E6E6DF*/;
+	border-top: 1px dashed darkgray/* #E6E6DF*/;
 	margin-bottom: 15px;
 }
 
