@@ -8,8 +8,8 @@
 	//echo '<pre>'; print_r($parents).'<br />'; print_r($subpages); echo '</pre>';
 	if(!is_null($parent) || $subpages) {
 	?>
-		<hr />
-		<?php printPageMenu('omit-top','','','','active','',1); ?>
+		<!-- <hr /> -->
+		<?php //printPageMenu('omit-top','','','','active','',1); ?>
 
 	<?php } ?>
 	<?php 
@@ -29,7 +29,7 @@
     	<?php } else { ?>
     		<h2 class="entrytitle"><?php printPageTitle(); ?></h2>
     	<?php } ?>
-    	<ol id="toc" class="table_of_content_list"></ol> 
+    	<!-- <ol id="toc" class="table_of_content_list"></ol> -->
   		<div class="entrybody">
   			<span id="entrybody">
   		 	<?php printPageContent(); ?>

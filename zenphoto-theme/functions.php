@@ -210,13 +210,6 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 					$obj = new ZenpageNews($item['name']);
 					$url = getNewsURL($obj->getTitlelink());
 					$text = $obj->getContent(); 
-					/*if($mode2 == 'extensions') {
-						$category = 'Extensions';
-					} elseif ($mode2 == 'user-guide') {
-						$category = 'User guide';
-					}	elseif ($mode2 == 'release') {
-						$category = 'Release';
-					} */
 					break;
 			}
 			?>
@@ -366,7 +359,7 @@ function zp_printAuthorList($mode='all',$content=false) {
 						echo $obj->getTitle();  
 						if(strtolower($obj->getTitle()) != strtolower($obj->getTitlelink())) {
 							?>
-							<em>(<?php echo $obj->getTitlelink(); ?>)</em>
+							<small><em>(<?php echo $obj->getTitlelink(); ?>)</em></small>
 							<?php
 						}
 						?>
@@ -564,6 +557,78 @@ function zp_getAuthorSocialImage($userid='',$type='google') {
 				break;
 		}
 	}
+}
+
+/* Imports the authors from a .csv file (Format: realname|url|author_<screenname>|ranktags(tag/tag/...)|descriptions)
+ * @param string $csv The absolute path to the csv file to use
+ * @param bool $testmode true or false if really pages should be created
+ */
+ function zp_importAuthorsFromCSV($csv,$testmode=true) {
+ 	$cons = file($csv);
+	if($cons) {
+		//echo "<pre>";print_r($cons); echo "</pre>";
+		//break;
+		foreach($cons as $con) {
+			$c = explode('|',$con);
+			//echo "<pre>";print_r($c); echo "</pre>";
+			
+			// Create titlelink from author tag
+			$titlelink = trim(str_replace('author_', '',$c[2]));
+			
+			// Just to be sure the page does not exists already
+			$sql = 'SELECT `id` FROM '.prefix('pages').' WHERE `titlelink`='.db_quote($titlelink);
+			$rslt = query_single_row($sql,false);
+			if ($rslt) {
+				echo "<p style='color: red'>Page ".$titlelink." already exists</p>";
+				
+			} else {
+			//initialize the page object
+			if(!$testmode) $page = new ZenpagePage($titlelink, true);
+			
+			// Get title or use titlelink 
+			if(empty($c[0])) { 
+				$title = $titlelink;
+			} else {
+				$title = trim($c[0]);
+			}
+			
+			if(!$testmode) $page->setTitle($title);
+			$website = '';
+			if(!empty($c[1])) {
+				$website = '<p><a href="'.trim($c[1]).'"><strong>Website: </strong>'.trim($c[1]).'</a></p>';
+			}
+			
+			// Get the tags
+			if(!empty($c[3])) {
+				$tags = trim(str_replace('/', ',',$c[3]));
+				if(!$testmode) $page->setTags($tags);
+			}
+			
+			if(empty($c[4])) {
+				$content = $website;
+			} else {
+				$c[4] = trim(str_replace('"','',$c[4]));
+				$content = $c[4].$website;
+			}
+			if(!$testmode) {
+				$page->setContent($content);
+				$page->setShow(0);
+				$page->setDatetime(date('Y-m-d H:i:s'));
+				$page->setParentID(170); // id of "all-contributors" page 
+				$page->save();
+			}
+			echo "<p>Page ".$titlelink." created!</p>";
+		}
+			echo "<br>------------------";
+			/* 
+			// just a check to see if the array of the list match with the site
+			if(in_array(trim($c[2]),$authors)) {
+				echo '<li><strong>'.$c[2].'</strong></li>';
+			} else {
+				echo '<li>'.$c[2].'</li>';
+			} */
+		}
+	} 
 }
 
 /* Prints the plugin support list based on "pluginsupport_<pluginname(titlelink of article)>" tags.

@@ -23,20 +23,6 @@
 <ol>
 <?php
 		
-
-	$cons = file('http://www.zenphoto.org/themes/zenphoto-theme/zenphoto-contributors.csv');
-	if($cons) {
-		foreach($cons as $con) {
-			$c = explode('|',$con);
-			//echo "<pre>";print_r($authors); echo "</pre>";
-			if(in_array(trim($c[2]),$authors)) {
-				echo '<li><strong>'.$c[2].'</strong></li>';
-			} else {
-				echo '<li>'.$c[2].'</li>';
-			}
-		}
-		//echo "<pre>"; print_r($authors); echo "</pre>";
-	} 
  ?>
 </ol>
 <?php include('footer.php'); ?>

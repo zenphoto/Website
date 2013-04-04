@@ -4,8 +4,9 @@
 	<?php printSearchForm();	
 	$parent = $_zp_current_zenpage_page->getParentid();
 	$subpages = $_zp_current_zenpage_page->getPages();
+	$subpagecount = ' <small>('.count($subpages).')</small>';
 	if(!is_null($parent) || $subpages) {
-		echo '<hr />';
+		//echo '<hr />';
 		//printPageMenu('omit-top','','','','active','',1); 
 	}
 	zp_printThemeStatusIconList(); 
@@ -21,33 +22,40 @@
 		switch($_zp_current_zenpage_page) {
 			case $_zp_current_zenpage_page->hasTag('zp_team-member'):
 				?>
-				<h2><a href="<?php echo html_encode(getPageLinkURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageLinkURL('zenphoto-team')); ?>">Zenphoto team</a></h2> 
-    		<h3 class="entrytitle"><?php printPageTitle(); ?></h3>
-    		<?php
+				<h2><a href="<?php echo html_encode(getPageLinkURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageLinkURL('zenphoto-team')); ?>">Zenphoto team</a></h2>
+				<?php
 				break;
 			case $_zp_current_zenpage_page->hasTag('zp_team-member-former'):
 				?>
-				<h2><a href="<?php echo html_encode(getPageLinkURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageLinkURL('Former team members')); ?>">Former team members</a></h2> 
-    		<h3 class="entrytitle"><?php printPageTitle(); ?></h3>
-    		<?php
+				<h2><a href="<?php echo html_encode(getPageLinkURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageLinkURL('former-team-members')); ?>">Former team members</a></h2>
+				<?php
 				break;
 			case $_zp_current_zenpage_page->hasTag('zp_contributor'):
 				?>
-				<h2><a href="<?php echo html_encode(getPageLinkURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageLinkURL('contributors')); ?>">Contributors</a></h2> 
-    		<h3 class="entrytitle"><?php printPageTitle(); ?></h3>
+				<h2><a href="<?php echo html_encode(getPageLinkURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageLinkURL('contributors')); ?>">Contributors</a></h2>
+				<?php
+				break;
+		}
+		switch($_zp_current_zenpage_page) {
+			case $_zp_current_zenpage_page->hasTag('zp_team-member'):
+			case $_zp_current_zenpage_page->hasTag('zp_team-member-former'):
+			case $_zp_current_zenpage_page->hasTag('zp_contributor'):
+				?>
+    		<h3 class="entrytitle"><?php printPageTitle(); ?>
+    			<?php if(strtolower($_zp_current_zenpage_page->getTitle()) != strtolower($_zp_current_zenpage_page->getTitlelink())) { 
+    				?>
+    				<em>(<?php echo $_zp_current_zenpage_page->getTitlelink(); ?>)</em>
+    				<?php
+    		 }
+    		 zp_printAuthorStatusIcon();
+    		 ?>
+    		</h3>
     		<?php
 				break;
 			default:
 			 	?>
 			 	<h2 class="entrytitle">
-    			<?php 
-    				printPageTitle(); zp_printAuthorStatusIcon(); 
-    				if($_zp_current_zenpage_page->getTitlelink() != 'all-contributors' && strtolower($_zp_current_zenpage_page->getTitle()) != strtolower($_zp_current_zenpage_page->getTitlelink())) {
-    					?>
-    					<em>(<?php echo $_zp_current_zenpage_page->getTitlelink(); ?>)</em>
-    					<?php
-    				}
-    				?>
+    			<?php printPageTitle(); echo $subpagecount; ?>
     		</h2>
     		<?php
 				break;
@@ -57,7 +65,7 @@
 					<?php zp_printAuthorStatusRanks(); ?>
 				</div>
   		<?php } ?>
-  		<ol id="toc" class="table_of_content_list"></ol> 
+  		<!-- <ol id="toc" class="table_of_content_list"></ol> -->
   		<div class="entrybody">
   			<?php
   			$gravatarmail = $_zp_current_zenpage_page->getCustomData();
