@@ -32,7 +32,7 @@
 			<li class="link_googleplus"><a href="http://google.com/+zenphoto" title="Zenphoto on Google+">Google+</a></li>
 			<li class="link_github"><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto on GitHub">GitHub</a></li>
 			<li class="link_facebook"><a href="https://www.facebook.com/zenphotocms" title="Zenphoto on Facebook">Facebook</a></li>
-			<li class="link_youtube"><a href="http://www.youtube.com/user/acrylian" title="Zenphoto on Youtube">Youtube</a></li>
+			<li class="link_youtube"><a href="http://www.youtube.com/zenphotocms" title="Zenphoto on Youtube">Youtube</a></li>
 		 </ul>
 		 
   </div>
