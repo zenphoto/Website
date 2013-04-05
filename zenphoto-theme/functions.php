@@ -337,11 +337,36 @@ function zp_printAuthorList($mode='all',$content=false) {
 		$page = new ZenpagePage('all-contributors');
 		$subpages = $page->getPages();
 	}
+	// Workaround to get an alphabetically list by name
+	if($mode == 'all' || $mode == 'contributors') {
+		$sorted = array();
+		foreach($subpages as $subpage) {
+			$obj = new Zenpagepage($subpage);
+			$explode = explode(' ',$obj->getTitle());
+			if($explode) {
+				// if we have normal names with probably only a 2nd surname (e.g. Nils K. Windisch) use the name 
+				if(count($explode) <= 3) { 
+					$explode = array_reverse($explode);
+					$name = $explode[0];
+				} 
+			} else {
+				// otherwise we just use the alias no matter how it begins, e.g. "The Whole Life to Learn"
+				$name = $obj->getTitle();
+			}
+			$sorted[] = array('titlelink' => $obj->getTitlelink(), 'name' => $name);
+		}
+		$sorted = sortMultiArray($sorted,'name',false,true,false,false); // sort by name abc
+		$subpages = $sorted;
+	}
 	?>
 	<ul class="authors">
 		<?php
 		foreach($subpages as $subpage) {
-			$obj = new Zenpagepage($subpage);
+			if($mode == 'all' || $mode == 'contributors') {
+				$obj = new Zenpagepage($subpage['titlelink']);
+			} else {
+				$obj = new Zenpagepage($subpage);
+			}
 			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former')) || ($mode == 'contributors' && $obj->hasTag('zp_contributor'))) {  
 				?>
 				<li>
