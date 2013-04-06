@@ -68,15 +68,20 @@
   		<!-- <ol id="toc" class="table_of_content_list"></ol> -->
   		<div class="entrybody">
   			<?php
-  			$gravatarmail = $_zp_current_zenpage_page->getCustomData();
-  			$profile = '';
-  			if(!empty($gravatarmail)) {
-					$profile = zp_getAuthorGravatarProfileData($gravatarmail); 
-				}
-				echo zp_getAuthorGravatarProfile('thumbnail',$profile); 
+  			$data = $_zp_current_zenpage_page->getCustomData();
+  			$explode = explode('|',$data);
+  			if(count($explode) != 0) {  			
+  				switch($explode[0]) {
+  					case 'gravatar':
+  						echo zp_getAuthorSocialImage(trim($explode[1]),'gravatar',trim($explode[2]));
+  						break;
+  					case 'google':
+  					case 'facebook':
+  						echo zp_getAuthorSocialImage(trim($explode[1]),trim($explode[0]));
+  						break;
+  				}
+  			}
 				printPageContent(); 
-				//echo zp_getAuthorGravatarProfile('aboutme',$profile); 
-				//echo zp_getAuthorGravatarProfile('urls',$profile); 
 				if($_zp_current_zenpage_page->getTitlelink() != 'all-contributors') { 
 					zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'news','release');
 					zp_printAuthorContributions('author_'.$_zp_current_zenpage_page->getTitlelink(),'albums');
@@ -85,7 +90,6 @@
 				} else { 
 					zp_printAuthorList('all',false,$subpages);
   		 	} 
-  		 	printCodeblock(1); 
   		 ?>
   		</div>
 		

@@ -144,16 +144,15 @@ function zp_printMoreByAuthorsLinks() {
 		}
  	}
  	
- /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
+  /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
  * @param string $tag author tag to use
  * @param string $mode 'albums' or 'news' or 'all' for both
  * @param string $mode2 'extensions' (default), 'user-guide' or 'release'
  * @return array
  */
-function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
-	$thumb = false;
-	$result = zp_getMoreByThisAuthor($tag,$mode);
+function zp_getAuthorContributions($tag,$mode,$mode2='extensions') {	
+ 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+ 	$result = zp_getMoreByThisAuthor($tag,$mode);
 	$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
 	if($mode == 'news') {
 		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
@@ -168,6 +167,34 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 			unset($resultnew);
 		}
 	}
+	return $result;
+}
+
+ /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
+ * @param string $tag author tag to use
+ * @param string $mode 'albums' or 'news' or 'all' for both
+ * @param string $mode2 'extensions' (default), 'user-guide' or 'release'
+ * @return array
+ */
+function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	$thumb = false;
+	/* $result = zp_getMoreByThisAuthor($tag,$mode);
+	$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
+	if($mode == 'news') {
+		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
+			$resultnew = array();
+			foreach($result as $item) {
+				$i = new ZenpageNews($item['name']);
+				if($i->inNewsCategory($mode2)) {
+					$resultnew[] = $item;
+				}
+			}
+			$result = $resultnew;
+			unset($resultnew);
+		}
+	} */
+	$result = zp_getAuthorContributions($tag,$mode,$mode2);
 	$resultcount = count($result);
 	if($resultcount != 0) {
 	   switch($mode) {
@@ -204,7 +231,6 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 					$obj = new Album(NULL,$item['name']);
 					$url = $obj->getAlbumLink();
 					$text = $obj->getDesc();
-					//$category = gettext('Theme');
 					break;
 				case 'news':
 					$obj = new ZenpageNews($item['name']);
@@ -486,32 +512,6 @@ function zp_printItemAuthorCredits() {
 }
 
 /**
- * Get either a Gravatar URL or complete image tag for a specified email address. 
- *
- * @param string $email The email address
- * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
- * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
- * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
- * @param boole $img True to return a complete IMG tag False for just the URL
- * @param array $atts Optional, additional key/value attributes to include in the IMG tag
- * @return String containing either just a URL or a complete image tag
- * @source http://gravatar.com/site/implement/images/php/
- */
-function zp_getAuthorGravatarImage($email,$s=80,$d='mm',$r='r',$img=true,$atts=array()) {
-	$url = 'http://www.gravatar.com/avatar/';
-	$url .= md5(strtolower(trim($email)));
-	$url .= "?s=$s&d=$d&$r=$r";
-	if($img) {
-		$url = '<img class="authorprofile-imagelist" src="'.$url.'"';
-		foreach($atts as $key => $val) {
-			$url .= ' '.$key.'="'.$val.'"';
-		}
-		$url .= ' />';
-	}
-	return $url;
-}
-
-/**
  * Get the full Gravatar profile data as an array.
  *
  * @param string $email The email address
@@ -531,15 +531,25 @@ function zp_getAuthorGravatarProfileData($email) {
 
 /**
  * Prints data from the Gravatar profile
- *
+ * @param string $userid The Gravatar regsitered e-mail address or a pre-generated md5 hash of it
  * @param string $field What to print 'thumbnail', 'aboutme', 'urls', 'all' (all in this order)
- * @param array $profile The Gravatar profile array as fetched by  zp_getAuthorGravatarProfileData()
  * @return gets the profile data as html elements
  * @source http://en.gravatar.com/site/implement/profiles/php/
  */
-function zp_getAuthorGravatarProfile($field,$profile) {
-	if(is_array($profile)) {
-		if(($field == 'thumbnail' || $field == 'all') && !empty($profile['entry'][0]['thumbnailUrl'])) {
+function zp_getAuthorGravatarProfile($userid, $field) {
+	$profile = false;
+	if(filter_var($userid, FILTER_VALIDATE_EMAIL)) {
+  	$hash = md5(strtolower(trim($userid)));
+  } else { // we assume this is a valid md5 hash already
+  	$hash = $userid;
+  }
+	$str = file_get_contents( 'http://www.gravatar.com/'.$hash.'.php' );
+	$data = unserialize($str);
+	if(is_array($data) && isset($data['entry'])) {
+    $profile = $data;
+  }
+	if($profile) {
+		if(($field == 'thumb' || $field == 'all') && !empty($profile['entry'][0]['thumbnailUrl'])) {
 			 return '<img class="authorprofile-image" src="'.$profile['entry'][0]['thumbnailUrl'].'?s=105" alt="" />';
 		}
 		if(($field == 'aboutme' || $field == 'all') && !empty($profile['entry'][0]['aboutMe'])) {
@@ -563,15 +573,20 @@ function zp_getAuthorGravatarProfile($field,$profile) {
 
 /**
  * Gets the Google/Google+ or Facebook profile image 
- * @param string $userid 	$type = 'google': The Google+ user id number as found in the url of the profile. 
+ * @param string $userid 	$type  	'gravatar': The md5 hash of the Gravarar registered e-mail address
+ *																'google': The Google+ user id number as found in the url of the profile. 
  *																					This MUST be passed as a string enclosed in quotes!
- * 												$type = 'facebook': The facebook profile/page name found in the url of the profile. 
+ * 																'facebook': The facebook profile/page name found in the url of the profile. 
  * @param num $type type 'google', 'facebook'
+ * @param string $field What to print 'thumb', 'aboutme', 'urls', 'all' ("all" in this order) $type="gravatar" ONLY!
  * @return html img
  */
-function zp_getAuthorSocialImage($userid='',$type='google') {
+function zp_getAuthorSocialImage($userid='',$type='google',$field='thumbnail') {
   if(!empty($userid)) {
   	switch($type) {
+  		case 'gravatar':
+  			return zp_getAuthorGravatarProfile($userid,$field);
+  			break;
   		case 'google':
 				$url = 'https://www.google.com/s2/photos/profile/'.$userid;
 				return "<img src=$headers[Location]>";
