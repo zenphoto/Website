@@ -74,7 +74,10 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
         <?php } ?>
 
 				<?php if($_zp_gallery_page != 'index.php') { ?>
-					$("a.colorbox,a.zenpage_fullimagelink").colorbox({maxWidth:"98%", maxHeight:"98%"});
+					$("a.colorbox,a.zenpage_fullimagelink").colorbox({
+						maxWidth:"98%", 
+						maxHeight:"98%"
+					});
 				<?php } ?>
 				 
 				$('#search #search_input').attr('value','Search site (except forum)');

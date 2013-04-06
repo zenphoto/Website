@@ -468,7 +468,7 @@ function zp_printItemAuthorCredits() {
 			} else {
 				$credit = 'Developer: ';
 			}
-			$page = new ZenpagePage('contributors');
+			$page = new ZenpagePage('all-contributors');
 			$subpages = $page->getPages();
 			?>
 			<div id="authorcredits" class="table_of_content_list">

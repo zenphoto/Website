@@ -68,7 +68,7 @@
   		<!-- <ol id="toc" class="table_of_content_list"></ol> -->
   		<div class="entrybody">
   			<?php
-  			$data = $_zp_current_zenpage_page->getCustomData();
+  			$data = sanitize($_zp_current_zenpage_page->getCustomData());
   			$explode = explode('|',$data);
   			if(count($explode) != 0) {  			
   				switch($explode[0]) {
