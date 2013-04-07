@@ -583,14 +583,7 @@ h4.entrytitle small {
 	padding: 0 4px 0 4px;
 }
 
-.entrybody .entrymeta {
-	display: block;
-	margin: 0 0 110px 0 !important;
-	padding: 0px !important;
-	clear: left;
-	border: 0 !important;
-	
-}
+
 
 .entrymeta ul,
 .entrymeta ul li {
