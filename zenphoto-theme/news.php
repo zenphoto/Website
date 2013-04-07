@@ -155,7 +155,7 @@ if(is_NewsArticle()) {
 	$title = getNewsTitle();
 	if(is_GalleryNewsType()) {
 		if($_zp_current_zenpage_news->getParent()) {
-			$parentalbum = html_encode($_zp_current_zenpage_news->getParent()->getTitle()).' &raquo; ';
+			$parentalbum = html_encode($_zp_current_zenpage_news->getParent()->getTitle()).'» ';
 			$parentalbumname = $_zp_current_zenpage_news->getParent()->name;
 		} else {
 			$parentalbum = '';

@@ -850,7 +850,7 @@ function zp_printNextPrevAlbumLinkFirstImage() {
 			} else {
 				$firstimage = '';
 			}
-			echo "<a id='prevalbum' href='".WEBPATH."/".pathurlencode($prevalbum->name)."/".$firstimage.getOption("mod_rewrite_image_suffix")."' title='".$prevalbum->getTitle()."'>&laquo; <strong>".$prevalbum->getTitle()."</strong> (previous)</a>";
+			echo "<a id='prevalbum' href='".WEBPATH."/".pathurlencode($prevalbum->name)."/".$firstimage.getOption("mod_rewrite_image_suffix")."' title='".$prevalbum->getTitle()."'>« <strong>".$prevalbum->getTitle()."</strong> (previous)</a>";
 		}
 		if (getNextAlbum()) {
 			$nextalbum = getNextAlbum();
@@ -860,7 +860,7 @@ function zp_printNextPrevAlbumLinkFirstImage() {
 			} else {
 				$firstimage = '';
 			}
-			echo " <a id='nextalbum' href='".WEBPATH."/".pathurlencode($nextalbum->name)."/".$firstimage.getOption('mod_rewrite_image_suffix')."' title='".$nextalbum->getTitle()."'><strong>".$nextalbum->getTitle()."</strong> (next) &raquo;</a>";
+			echo " <a id='nextalbum' href='".WEBPATH."/".pathurlencode($nextalbum->name)."/".$firstimage.getOption('mod_rewrite_image_suffix')."' title='".$nextalbum->getTitle()."'><strong>".$nextalbum->getTitle()."</strong> (next)»</a>";
 		}
 		echo '</div>';
 	}
@@ -1369,7 +1369,7 @@ function zp_printMainSectionCategoryTitle() {
 			echo $articlecount;
 		}
 		if(!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() != 'extensions') {
-			echo ' &raquo; '.$_zp_current_category->getTitle().$articlecount;
+			echo '» '.$_zp_current_category->getTitle().$articlecount;
 		}
 	} else if(zp_inNewsCategory('user-guide')) {
 		echo "User guide ";
@@ -1377,12 +1377,12 @@ function zp_printMainSectionCategoryTitle() {
 			echo $articlecount;
 		}
 		if(!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() != 'user-guide') {
-			echo ' &raquo; '.$_zp_current_category->getTitle().$articlecount;
+			echo '» '.$_zp_current_category->getTitle().$articlecount;
 		}
 	} else if(!zp_inNewsCategory('extensions') || zp_inNewsCategory('user-guide')) { 
 		echo "News";
 		if(!is_NewsArticle() && !is_null($_zp_current_category) && !is_NewsArticle() && $_zp_current_category->getTitlelink() != 'news') {
-			echo ' &raquo; '.$_zp_current_category->getTitle();
+			echo '» '.$_zp_current_category->getTitle();
 		}
 	}
 	if(is_NewsArchive()) {

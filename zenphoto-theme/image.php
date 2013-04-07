@@ -33,12 +33,12 @@ zp_printSidebarBoxes(); ?>
     ?>	
 	<div class="imgnav theme">
 		<?php if (hasPrevImage()) { ?>
-			<div id="imgprev"><a href="<?php echo htmlspecialchars(getPrevImageURL());?>" title="<?php echo gettext("Previous Image"); ?>">&laquo; <?php echo gettext("prev"); ?></a></div>
+			<div id="imgprev"><a href="<?php echo htmlspecialchars(getPrevImageURL());?>" title="<?php echo gettext("Previous Image"); ?>">« <?php echo gettext("prev"); ?></a></div>
 		<?php } else { ?>
 			<div id="imgprev-inactive"></div>
 		<?php }
 		if (hasNextImage()) { ?>
-			<div id="imgnext"><a href="<?php echo htmlspecialchars(getNextImageURL());?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?> &raquo;</a></div>
+			<div id="imgnext"><a href="<?php echo htmlspecialchars(getNextImageURL());?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?>»</a></div>
 		<?php } else { ?>
 			<div id="imgnext-inactive"></div>
 		<?php } ?>

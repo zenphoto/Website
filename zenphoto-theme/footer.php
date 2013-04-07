@@ -51,7 +51,7 @@
 		Forum powered by <a href="http://bbpress.org">bbpress</a>
 		</p>
 		</div>
-		
+
 </div>
 
 <div class="column-r">
@@ -73,14 +73,13 @@
 			<li><a href="<?php echo WEBPATH; ?>/support/?terms-of-service=display">Forum rules & Terms of service</a></li>
 			<li><?php printPageLinkURL('Privacy', 'privacy','','',NULL); ?></li>
 		</ul>
-		
+
 
 	 </div>
 </div>
 <br style="clear:both" />
 </div>
 <?php
-printAdminToolbox();
 zp_apply_filter('theme_body_close');
 ?>
 </body>
