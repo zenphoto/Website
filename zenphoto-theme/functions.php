@@ -459,7 +459,7 @@ function zp_printItemAuthorCredits() {
   		$rightcat = true;
   	} 
   }
-	if(($rightcat || $parentname == 'theme') && zp_loggedin()) { 
+	if($rightcat || $parentname == 'theme') { 
 		$authors = zp_getSpecificTags('item','author');
 		$numauthors = count($authors);
 		if($numauthors != 0) {
