@@ -4,7 +4,7 @@
  *	
  * @author Malte Müller (acrylian)
  * @package plugins
- * @subpackage Zenphoto
+ * @subpackage zenphoto
  */
 $plugin_is_filter = 20|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext('Ad counter for our site ads by month.');

@@ -2,7 +2,7 @@
 /** sets the titl of the gallery to include the version
  *
  * @package plugins
- * @subpackage Zenphoto
+ * @subpackage zenphoto
  */
 $plugin_is_filter = 5|THEME_PLUGIN;
 $plugin_description = gettext('Provides a dynamic gallery title.');

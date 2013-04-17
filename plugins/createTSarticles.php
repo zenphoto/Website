@@ -2,7 +2,7 @@
 /* Generates "news" articles for plugins
  *
  * @package plugins
- * @subpackage Zenphoto
+ * @subpackage zenphoto
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext('Generates Troubleshooting news articles.');

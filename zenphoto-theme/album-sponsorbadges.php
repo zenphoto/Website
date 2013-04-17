@@ -2,7 +2,7 @@
 <div id="sidebar">
 <?php printSearchForm();	?>
 	<hr />
-	<?php printAlbumDesc(true); ?>
+	<?php printAlbumDesc(); ?>
 	<hr />
 <?php zp_printSidebarBoxes(); ?>
 
