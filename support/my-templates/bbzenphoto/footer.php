@@ -71,7 +71,6 @@
 	 		<li><a href="http://www.zenphoto.org/pages/paid-support" title="Paid support">Paid support</a></li>
 	 		<li><a href="http://www.zenphoto.org/pages/advertise" title="Paid support">Advertise</a></li>
 	 		<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></a></li>
-	 		<li><a href="http://www.zenphoto.org/page/archive" title="Archive">Archive</a></li>
 	 	</ul>
 	 	<br />
 	 	<h3>Legal stuff</h3>
@@ -79,6 +78,7 @@
 			<li><a href="http://www.zenphoto.org/pages/licenses" title="licenses">Licenses</a></li>
 			<li><a href="http://www.zenphoto.org/support/?terms-of-service=display">Forum rules & Terms of service</a></li>
 			<li><a href="http://www.zenphoto.org/pages/privacy" title="privacy">Privacy</a></li>
+			<li><a href="http://www.zenphoto.org/pages/contributor-profile-page-information" title="privacy">Contributor profile pages</a></li>
 		</ul>
 		
 	 </div>

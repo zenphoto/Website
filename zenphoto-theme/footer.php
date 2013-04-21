@@ -60,7 +60,6 @@
 		<ul class="downloadlinks">
 			<li><?php printPageLinkURL('About us', 'about-us','','',NULL); ?></li>
 			<li><?php printPageLinkURL('Contact', 'contact','','',NULL); ?></li>
-		  <li><?php printCustomPageURL('Archive','archive','','','',NULL); ?></li>
 			<li><?php printPageLinkURL('Get involved', 'get-involved','','',NULL); ?></li>
 	 		<li><?php printPageLinkURL('Paid support', 'paid-support','','',NULL); ?></li>
 	 		<li><?php printPageLinkURL('Advertise', 'advertise','','',NULL); ?></li>
@@ -72,8 +71,8 @@
 			<li><?php printPageLinkURL('Licenses', 'licenses','','',NULL); ?></li>
 			<li><a href="<?php echo WEBPATH; ?>/support/?terms-of-service=display">Forum rules & Terms of service</a></li>
 			<li><?php printPageLinkURL('Privacy', 'privacy','','',NULL); ?></li>
+			<li><?php printPageLinkURL('Contributor profile pages info', 'contributor-profile-page-information','','',NULL); ?></li>
 		</ul>
-		
 
 	 </div>
 </div>
