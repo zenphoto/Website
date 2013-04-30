@@ -1,47 +1,5 @@
 <?php include('header.php'); ?>
-<div id="sidebar">
-<?php printSearchForm();	
-
-$zp_getParentAlbumName = zp_getParentAlbumName();
-
-if($zp_getParentAlbumName == 'theme' || $_zp_current_album->name == 'theme') {
-	?>
-	<hr />
-	<p class="buttons"><strong><a href="http://www.zenphoto.org/news/general-contributor-guidelines#themes-and-plugins">Submitting your theme</a></strong></p>
-	<?php
-	zp_printThemeStatusIconList();
-}
-if($_zp_current_album->name == 'showcase') {
-	?>
-	<hr />
-	<p class="buttons"><strong><a href="http://www.zenphoto.org/pages/get-involved#submission-to-showcase">Submit your site</a><br /></strong></p>
-	<?php
-	zp_printShowcaseTypeIconList();
-}
-if($_zp_current_album->getNumImages() > 0) {
-	echo '<hr />';
-	printSlideShowLink(gettext('View Slideshow'));
-} 
-zp_printSidebarBoxes(); ?>
-<hr />
-<?php
-if($_zp_current_album->name == "theme") {
-	echo "<h2>Latest themes</h2>";
-	$latest = getAlbumStatistic(4,'latest', 'theme',true);
-	zp_printGalleryStatistics($latest,'date',true);
-	echo "<hr />";
-	echo "<h2>Top rated themes</h2>";
-	$toprated = getAlbumStatistic(4,'toprated', 'theme',true);
-	zp_printGalleryStatistics($toprated,'rating',true);
-}
-if ($_zp_current_album->name ==="showcase") {
-	echo "<h2>Top rated sites</h2>";
-	$toprated = getImageStatistic(4,'toprated', 'showcase',false);
-	zp_printGalleryStatistics($toprated,'rating');
-}
-if($_zp_current_album->name === "screenshots") {
-} ?>
-</div>
+<?php include('sidebar.php'); ?>
 <div id="content">
 
 <h2>

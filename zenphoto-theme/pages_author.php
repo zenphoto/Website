@@ -1,21 +1,5 @@
 <?php include('header.php'); ?>
-
-<div id="sidebar">
-	<?php printSearchForm();	
-	$parent = $_zp_current_zenpage_page->getParentid();
-	$subpages = $_zp_current_zenpage_page->getPages();
-	$subpagecount = ' <small>('.count($subpages).')</small>';
-	if(!is_null($parent) || $subpages) {
-		//echo '<hr />';
-		//printPageMenu('omit-top','','','','active','',1); 
-	}
-	zp_printThemeStatusIconList(); 
-	zp_printExtensionStatusIconList();
-	//echo '<pre>'; print_r($parents).'<br />'; print_r($subpages); echo '</pre>';
-	zp_printSidebarBoxes(); 
-	?>
-	<hr />
-</div><!-- sidebar end -->
+<?php include('sidebar.php'); ?>
 <div id="content">
 	<?php 
 		// cheating a bit on the parent as we do want the separate pages for team, former team and contributors but not the "database" page "all-contributors"!

@@ -2,20 +2,7 @@
 setOption('thumb_crop_width', 40, false);
 setOption('thumb_crop_height', 40, false);
 ?>
-<div id="sidebar">
-	<?php printSearchForm();	?>
-	<?php
-	$zp_getParentAlbumName = zp_getParentAlbumName();
-if($zp_getParentAlbumName == "theme") {
-	zp_printThemeStatusIconList();
-}
-if($_zp_current_album->name == 'showcase') {
-	zp_printShowcaseTypeIconList();
-}
-
-zp_printSidebarBoxes(); ?>
-</div>
-
+<?php include('sidebar.php'); ?>
 <div id="content">
 
 		<h2>

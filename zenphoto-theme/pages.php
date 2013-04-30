@@ -1,27 +1,5 @@
 <?php include('header.php'); ?>
-
-<div id="sidebar">
-	<?php printSearchForm();	?>
-	<?php
-	$parent = $_zp_current_zenpage_page->getParentid();
-	$subpages = $_zp_current_zenpage_page->getPages();
-	//echo '<pre>'; print_r($parents).'<br />'; print_r($subpages); echo '</pre>';
-	if(!is_null($parent) || $subpages) {
-	?>
-		<!-- <hr /> -->
-		<?php //printPageMenu('omit-top','','','','active','',1); ?>
-
-	<?php } ?>
-	<?php 
-		if($_zp_current_zenpage_page->getTitlelink() == 'advertise') {
-			zp_printSponsorAvailability(); 
-		}
-	?>
-	<?php zp_printSidebarBoxes(); ?>
-	<hr />
-    
-</div><!-- sidebar end -->
-
+<?php include('sidebar.php'); ?>
 <div id="content">
 			<?php if($parent) { ?>
     		<h2><?php printZenpageItemsBreadcrumb('',''); ?></h2> 

@@ -1,58 +1,5 @@
 <?php include('header.php'); ?>
-
-<div id="sidebar">
-	 	<?php printSearchForm();	
-	  	if(zp_inNewsCategory('extensions')) {
-	  		?>
-	  		<hr />
-	  		<p class="buttons"><a href="http://www.zenphoto.org/news/general-contributor-guidelines#themes-and-plugins"><strong>How to submit your extensions</strong></a></p>
-	  		<?php
-	  		zp_printExtensionStatusIconList(); 
-	  		zp_printSubCategories('extensions');
-			} else if(zp_inNewsCategory('user-guide')) {	
-	  		zp_printSubCategories('user-guide');
-	   	} else {
-	  		$catoption = 'list';
-	  		$newsindex = gettext("All news");
-	  		zp_printNewsCategoryFoldout();
-	  		//printAllNewsCategories($newsindex,TRUE,"newscategories","menu-active",true,"submenu","menu-active",$catoption);
-	  	}
-		?>
- 		<?php zp_printSidebarBoxes(); ?>
-	 <?php 
-	  if(zp_inNewsCategory('extensions')) {
-			if(function_exists('printAllTagsFromZenpage')) {
-			?>
-			<hr />
-			<h2 class="latestadditions">Popular tags</h2>
-			<?php printAllTagsFromZenpage('news','','taglist',false,true,0.5,3,5,50); ?>
-		  <?php
-			} else {
-				printAllTagsAs('cloud','taglist','abc',TRUE,TRUE,2,50,5,NULL,0.6);
-			}
-			?>
-			<br />
-			<?php 
-		}
-		?>
-
-	<?php 
-	if(zp_inNewsCategory("user-guide")) {
-	?>
-		<hr />
-		<h2 class="latestadditions">Latest additions and updates</h2>
-		<?php zp_printLatestNews(3,'none', 'user-guide'); ?>
-	<?php
-	} else if(zp_inNewsCategory("extensions")) {
-	?>
-		<hr />
-		<h2 class="latestadditions">Latest additions</h2>
-		<?php zp_printLatestNews(3,'none','extensions'); ?>
-	<?php
-	} 
- ?>
-  </div>	<!--  sidebar div end -->  
-
+<?php include('sidebar.php'); ?>
 <div id="content">
 	<h2>
 	<?php zp_printMainSectionCategoryTitle(); ?>

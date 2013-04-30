@@ -445,13 +445,16 @@ function zp_printAuthorList($mode='all',$content=false) {
 function zp_printItemAuthorCredits() {
 	global $_zp_current_zenpage_news, $_zp_current_album, $_zp_gallery_page,$_zp_themeroot;
 	$parent = '';
+	$parentname = '';
 	$rightcat = false;
 	if((is_GalleryNewsType() && is_NewsType("album"))) {
 		$parent = $_zp_current_zenpage_news->getParent();
 		$parentname = $parent->name;
 	} elseif ($_zp_gallery_page == 'image.php' || $_zp_gallery_page == 'album.php') {
 		$parent = $_zp_current_album->getParent();
-		$parentname = $parent->name;
+		if($parent) {
+			$parentname = $parent->name;
+		}
   }	else {
   	if(!is_NewsCategory() && ($_zp_current_zenpage_news->inNewsCategory('user-guide') 
   	|| $_zp_current_zenpage_news->inNewsCategory('extensions'))
