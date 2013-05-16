@@ -457,7 +457,8 @@ function zp_printItemAuthorCredits() {
 		}
   }	else {
   	if(!is_NewsCategory() && ($_zp_current_zenpage_news->inNewsCategory('user-guide') 
-  	|| $_zp_current_zenpage_news->inNewsCategory('extensions'))
+  	|| $_zp_current_zenpage_news->inNewsCategory('extensions')
+  	|| $_zp_current_zenpage_news->inNewsCategory('release'))
   	) {
   		$rightcat = true;
   	} 
@@ -465,11 +466,22 @@ function zp_printItemAuthorCredits() {
 	if($rightcat || $parentname == 'theme') { 
 		$authors = zp_getSpecificTags('item','author');
 		$numauthors = count($authors);
+		$creditplural = 'Developers:';
+		$creditsingular = 'Developer:';
+		if($_zp_gallery_page == 'news.php') {
+			if($_zp_current_zenpage_news->inNewsCategory('user-guide')) {
+				$creditplural = 'Authors:';
+				$creditsingular = 'Author:';
+			} else if($_zp_gallery_page == 'news.php' && $_zp_current_zenpage_news->inNewsCategory('release')) {
+				$creditplural = 'Contributors:';
+				$creditsingular = 'Contributor:';
+			}
+		}
 		if($numauthors != 0) {
 			if($numauthors > 1) {
-				$credit = 'Developers: ';
+				$credit = $creditplural;
 			} else {
-				$credit = 'Developer: ';
+				$credit = $creditsingular;
 			}
 			$page = new ZenpagePage('all-contributors');
 			$subpages = $page->getPages();
@@ -478,38 +490,48 @@ function zp_printItemAuthorCredits() {
 			<h4><?php echo $credit; ?> </h4>
 			<ul>
 		 	<?php
-		 	$count = '';
+		 	// Workaround to get an alphabetically list by name
+			$sorted = array();
 			foreach($authors as $author) {
 				$count++;
 				$author = str_replace('author_', '',$author);
-				?>
-				<li><?php 
-				//if($count > 1) echo ', '; 
 				if(in_array($author,$subpages)) {
 					$obj = new ZenpagePage($author);
-					?>
-					<a href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
-					<?php 
-					if(strtolower($obj->getTitlelink()) != strtolower($obj->getTitle())) {
-						echo $obj->getTitle();?> <em>(<?php echo $obj->getTitlelink(); ?>)</em>
-						<?php 
-					} else { 
-						echo $obj->getTitle(); 
-					} ?>
-					</a>
-
-					<?php
-				} else {
-					echo $author; 
+					$explode = explode(' ',$obj->getTitle());
+					if($explode) {
+						// if we have normal names with probably only a 2nd surname (e.g. Nils K. Windisch) use the name 
+						if(count($explode) <= 3) { 
+							$explode = array_reverse($explode);
+							$name = $explode[0];
+						} 
+					} else {
+						// otherwise we just use the alias no matter how it begins, e.g. "The Whole Life to Learn"
+						$name = $obj->getTitle();
+					}
+					$sorted[] = array('title' => $obj->getTitle(), 'titlelink' => $obj->getTitlelink(), 'name' => $name);
 				}
-				?>
-				</li>
-				<?php
 			}
-			?>
+			$sorted = sortMultiArray($sorted,'name',false,true,false,false); // sort by name abc
+		 	foreach($sorted as $p){ 
+		 		?>
+		 		<li><a href="<?php echo getPagelinkURL($p['titlelink']); ?>">
+		 		<?php
+					if(strtolower($p['titlelink']) != strtolower($p['title'])) {
+						echo $p['title'];?> <em>(<?php echo $p['titlelink']; ?>)</em>
+					<?php 
+					} else { 
+						echo $p['title']; 
+					} 
+				?>
+		 		</a>
+		 		</li>
+		 		<?php
+		 	}
+		 	?>
 			</ul>
 			</div>
 			<?php
+		 
 		}
 	}
 }

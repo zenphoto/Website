@@ -36,9 +36,9 @@ if(is_NewsArticle()) {
     <?php printNewsCategories(", ",gettext("Categories: "),"wp-category"); ?>
    
    	</div>
-   <?php zp_printItemAuthorCredits(); ?>	
+   	
 	 <ol id="toc" class="table_of_content_list"></ol>
-	 
+	 <?php zp_printItemAuthorCredits(); ?>
 	 <div class="entrybody">
 	  <?php
   	printCodeblock(1);
