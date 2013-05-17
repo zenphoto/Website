@@ -468,7 +468,7 @@ function zp_printItemAuthorCredits() {
 		$numauthors = count($authors);
 		$creditplural = 'Developers:';
 		$creditsingular = 'Developer:';
-		if($_zp_gallery_page == 'news.php') {
+		if($_zp_gallery_page == 'news.php' && is_NewsType('news')) {
 			if($_zp_current_zenpage_news->inNewsCategory('user-guide')) {
 				$creditplural = 'Authors:';
 				$creditsingular = 'Author:';
