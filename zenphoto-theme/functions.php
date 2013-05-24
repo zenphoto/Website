@@ -492,6 +492,8 @@ function zp_printItemAuthorCredits() {
 		 	<?php
 		 	// Workaround to get an alphabetically list by name
 			$sorted = array();
+			$count = '';
+			$name = '';
 			foreach($authors as $author) {
 				$count++;
 				$author = str_replace('author_', '',$author);
