@@ -23,14 +23,14 @@ if($_zp_current_album->name === "showcase") {
 ?>
 </h2>
 <?php
-if($zp_getParentAlbumName != "theme" && $_zp_page == 1) { 
-	echo getAlbumDesc(); 
+if($zp_getParentAlbumName != "theme" && $_zp_page == 1) {
+	echo getAlbumDesc();
 }
 ?>
  <?php
-  if($_zp_current_album->name != "showcase" && $_zp_current_album->name != "screenshots" && $_zp_current_album->name != "theme" && $zp_getParentAlbumName != "screenshots") {
-   	zp_printNextPrevAlbumLinkFirstImage();
-   }
+	if($_zp_current_album->name != "showcase" && $_zp_current_album->name != "screenshots" && $_zp_current_album->name != "theme" && $zp_getParentAlbumName != "screenshots") {
+		zp_printNextPrevAlbumLinkFirstImage();
+	 }
  ?>
 <?php
 
@@ -47,10 +47,10 @@ if($zp_getParentAlbumName == 'theme' || $zp_getParentAlbumName == "screenshots")
 	<?php printAlbumTitle(); ?>
 	</h3>
 	<?php
-	if($zp_getParentAlbumName == "theme") { 
-		zp_printItemAuthorCredits(); 
+	if($zp_getParentAlbumName == "theme") {
+		zp_printItemAuthorCredits();
 		echo '<div class="entrybody">';
-		echo getAlbumDesc(); 
+		echo getAlbumDesc();
 		echo '</div>';
 	}
 }
@@ -146,7 +146,7 @@ if($zp_getParentAlbumName === "theme") {
 </div>
 <?php endwhile; ?>
 </div>
-<br clear="left" />
+<br class="clearleft" />
 <?php
 
 	if(getTotalPages(false) != 1) {
@@ -156,23 +156,23 @@ if($zp_getParentAlbumName === "theme") {
 <br />
 <?php
 
- 	 	if (function_exists('printRating') && ($zp_getParentAlbumName == "theme" || $_zp_current_album->name == "showcase")) {
- 	 		echo "<hr />";
- 	 		echo '<div class="rating" style="float: left; width:400px; height:50px;">';
- 	 		if($zp_getParentAlbumName == "theme") {
- 	 			$itemtobj_to_rate = $_zp_current_album;
- 	 		} else if ($_zp_current_album->name == "showcase") {
- 	 			$itemtobj_to_rate = $_zp_current_image;
- 	 		}	
- 	 		printRating(3,$itemtobj_to_rate,true) ;
- 	 		echo '</div>';
- 	 	}
- 	 	if (function_exists('printSlideShowLink')) {
- 	 		echo '<div class="buttons">'; 
- 	 		printSlideShowLink(gettext('View Slideshow')); 
- 	 		echo '</div>';
- 	 	}
- 	 	  echo '<br clear="left" />';
+		if (function_exists('printRating') && ($zp_getParentAlbumName == "theme" || $_zp_current_album->name == "showcase")) {
+			echo "<hr />";
+			echo '<div class="rating" style="float: left; width:400px; height:50px;">';
+			if($zp_getParentAlbumName == "theme") {
+				$itemtobj_to_rate = $_zp_current_album;
+			} else if ($_zp_current_album->name == "showcase") {
+				$itemtobj_to_rate = $_zp_current_image;
+			}
+			printRating(3,$itemtobj_to_rate,true) ;
+			echo '</div>';
+		}
+		if (function_exists('printSlideShowLink')) {
+			echo '<div class="buttons">';
+			printSlideShowLink(gettext('View Slideshow'));
+			echo '</div>';
+		}
+			echo '<br class="clearleft" />';
 zp_printThemeDownloadButton();
 
 if ($_zp_current_album->name != "showcase") {

@@ -30,12 +30,12 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 			<div id="header">
 			The best galler CMS out there taken to a new level!
 			</div>
-		
+
 			<div id="content">
 				<h1 id="content-left">
 					Zenphoto Hosting - Your site. Your content. Your Control.
 				</h1>
-				
+
 				<div id="content-right">
 				 <h2>Your benefits:</h2>
 				 <p>You just manage your site, we take care of all the technical stuff for you. Besides standard hosting feature this includes:</p>
@@ -50,26 +50,25 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 					<p><strong>Sign on to be notified when this new service launched. (Expected in June 2012!)</strong></p>
 					<a class="inline button" href="hosting/signup-hosting.png.php">Sign Up</a>
 					<p class="readmore"><a class="inline" href="hosting/learn-more.png.php">Click here to learn more</a></p>
-				</div>	
-		
+				</div>
+
 			</div>
-			
+
 			<div id="footer">
-			
+
 				<ul id="footer1">
 					<li class="icon1">Manage images and albums!</li>
 					<li class="icon2">Manage videos files!</li>
 					<li class="icon3">Manage audio files!</li>
 					<li class="icon4">Manage blog and pages!</li>
 				</ul>
-			
+
 			</div>
 		</div>
 
 
 
 <?php
-printAdminToolbox();
 zp_apply_filter('theme_body_close');
 ?>
 </body>

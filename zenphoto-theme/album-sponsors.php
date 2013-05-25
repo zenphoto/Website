@@ -4,6 +4,6 @@
 
 <h2><?php printAlbumTitle(); ?></h2>
 <?php zp_printSponsorAds(); ?>
-		<br clear="all" />
-		
+		<br class="clearall" />
+
 <?php include('footer.php'); ?>

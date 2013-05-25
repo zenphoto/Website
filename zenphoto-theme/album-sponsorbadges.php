@@ -3,10 +3,10 @@
 <div id="content">
 
 <h2><?php printAlbumTitle(); ?></h2>
-<?php 
+<?php
 	zp_specialdownloads('sponsorbadges')
 ?>
-		<br clear="all" />
+		<br class="clearall" />
 
 
 <?php include('footer.php'); ?>

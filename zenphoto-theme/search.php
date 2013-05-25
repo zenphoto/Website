@@ -130,7 +130,7 @@
 								}
 								?>
 							<a href="<?php echo html_encode($albumlinkurl);?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle();?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 128, 255, 128, NULL,NULL,"thumbnail",NULL,TRUE,false); ?></a>
- 							 </div>
+							 </div>
 								<div class="albumdesc">
 									<h4 class="entrytitle"><a href="<?php echo html_encode($albumlinkurl);?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle();?>"><?php echo shortenContent(getAlbumTitle(),20,'(...)'); ?></a>
 									<?php
@@ -159,7 +159,7 @@
 					}
 				?>
 				<div class="album<?php echo $class; ?>">
-        		<div class="thumb">
+						<div class="thumb">
 					<a href="<?php echo htmlspecialchars(getImageLinkURL());?>" title="<?php echo getImageTitle();?>"><?php printCustomSizedImage(getBareImageTitle(), NULL, 255, 128, 255, 128,NULL,NULL,"thumbnail",NULL,true,false); ?></a>
 						</div>
 				<div class="albumdesc">
@@ -179,7 +179,7 @@
 			</div>
 				<?php endwhile; ?>
 			</div>
-		<br clear="all" />
+		<br class="clearall" />
 <?php } ?>
 		<?php
 		//if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow'));
