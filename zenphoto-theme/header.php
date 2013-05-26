@@ -15,17 +15,17 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $_zp_themeroot; ?>/images/apple-touch-icon-144x144.png" />
 	<link rel="stylesheet" media="screen" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	<!--
-	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />	
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
   -->
-		
-	<?php printZenpageRSSHeaderLink('NewsWithImages','','',''); ?>
+
+	<?php printRSSHeaderLink('NewsWithImages',''); ?>
 	<?php if($_zp_gallery_page == 'news.php' || $_zp_gallery_page == 'pages.php') { ?>
 		<script src="<?php echo $_zp_themeroot; ?>/js/jquery-syntax/jquery.syntax.min.js" type="text/javascript"></script>
 	<?php } ?>
 	<?php if($_zp_gallery_page == 'news.php' || $_zp_gallery_page == 'pages.php') { ?>
 		<script src="<?php echo $_zp_themeroot; ?>/js/jquery.tableofcontents-mod.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function(){ 
+			$(document).ready(function(){
 				if($("#entrybody h4").length == 0) {
 					$("#toc").remove();
 				}
@@ -34,11 +34,11 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 						depth: 5,
 						topLinks: true,
 						topBodyId: top
-				}); 
+				});
 			});
 		</script>
 		<?php } ?>
-		
+
 		<?php if($_zp_gallery_page == 'index.php') { ?>
 			<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/slideshow/jquery.cycle.all.js"></script>
 			<script type="text/javascript">
@@ -52,18 +52,18 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 							pager:   '#slidenav',
 							pagerAnchorBuilder: pagerFactory
 					});
-			
+
 					function pagerFactory(idx, slide) {
 							var s = idx > 2 ? '' : '';
 							return '<li'+s+'><a href="#">'+(idx+1)+'</a></li>';
 					};
 					$('#slidepause').click(function() { $('#slideshow').cycle('pause'); return false; });
 					$('#slideplay').click(function() { $('#slideshow').cycle('resume'); return false; });
-			
+
 			});
 			</script>
 	<?php } ?>
-	
+
 	<script type="text/javascript">
    	$(document).ready(function(){
    	 		<?php if($_zp_gallery_page == 'news.php' || $_zp_gallery_page == 'pages.php') { ?>
@@ -75,11 +75,11 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 
 				<?php if($_zp_gallery_page != 'index.php') { ?>
 					$("a.colorbox,a.zenpage_fullimagelink").colorbox({
-						maxWidth:"98%", 
+						maxWidth:"98%",
 						maxHeight:"98%"
 					});
 				<?php } ?>
-				 
+
 				$('#search #search_input').attr('value','Search site (except forum)');
   			$('#search #search_input').click(function() {
   				$(this).val('');
@@ -95,9 +95,9 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-  
-  	
-  
+
+
+
 	</script>
 	</head>
 <body id="top">
