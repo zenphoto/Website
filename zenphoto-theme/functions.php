@@ -23,7 +23,7 @@
 			}
 			break;
 		case 'all':
-			$tags = getAllTagsUnique();
+	 		$tags = getAllTagsUnique();
 			break;
 	}
 	switch($tagmode) {
@@ -43,10 +43,10 @@
 			if(stristr($tag,$search_text)) {
 				$specialtags[] = $tag;
 			}
-		}
+		} 
 		unset($tags);
 	}
-	return $specialtags;
+  return $specialtags;
  }
 
 /* gets the tags prefixed with "author_"
@@ -62,7 +62,7 @@
  *
  */
 function zp_printReadmoreOfAuthorLink($tag='',$count='') {
-	echo '<a href="'.html_encode(getSearchURL($tag, '', 'tags','')).'" title="'.html_encode($tag).'">'.ucwords(substr($tag,7)).'</a>';
+  echo '<a href="'.html_encode(getSearchURL($tag, '', 'tags','')).'" title="'.html_encode($tag).'">'.ucwords(substr($tag,7)).'</a>';
  }
 
 
@@ -89,11 +89,11 @@ function zp_printMoreByAuthorsLinks() {
 				<li>Nothing else available by <?php echo ucwords(substr($tag,7)); ?></li>
 				<?php
 			}
-		}
-		?>
-		</ul>
-		<?php
-	}
+ 		} 
+ 		?>
+ 		</ul>
+ 		<?php
+ 	} 
 }
 
 /* gets all items of the current item type (album/article) assiged to the author $tag (uses a function from related_items plugin)
@@ -102,13 +102,13 @@ function zp_printMoreByAuthorsLinks() {
  * @return array
  */
 	function zp_getMoreByThisAuthor($tag='',$mode='all') {
-		global $_zp_gallery_page;
-		$result = array();
-		$search = new SearchEngine();
-		$searchstring = $tag;
-		$paramstr = urlencode('words').'='.$searchstring.'&searchfields=tags';
-		$searchparams = $search->setSearchParams($paramstr);
-		switch($mode) {
+ 		global $_zp_gallery_page;
+ 		$result = array();
+ 		$search = new SearchEngine();
+ 		$searchstring = $tag;
+ 		$paramstr = urlencode('words').'='.$searchstring.'&searchfields=tags';
+ 		$searchparams = $search->setSearchParams($paramstr);
+ 		switch($mode) {
 			case 'albums':
 				$result = $search->getAlbums(0,"date","desc");
 				break;
@@ -121,7 +121,7 @@ function zp_printMoreByAuthorsLinks() {
 				//$result = array_merge($result1,$result2);
 				break;
 		}
-		if(function_exists('createRelatedItemsResultArray')) {
+		if(function_exists('createRelatedItemsResultArray')) { 
 			switch($mode) {
 				case 'albums':
 					$result = createRelatedItemsResultArray($result,$mode);
@@ -137,37 +137,39 @@ function zp_printMoreByAuthorsLinks() {
 					break;
 			}
 		}
-		if(empty($result)) {
+ 		if(empty($result)) {
 			return NULL;
 		} else {
 			return $result;
 		}
-	}
-
-	/* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
+ 	}
+ 	
+  /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
  * @param string $tag author tag to use
  * @param string $mode 'albums' or 'news' or 'all' for both
  * @param string $mode2 'extensions' (default), 'user-guide' or 'release'
  * @return array
  */
-function zp_getAuthorContributions($tag,$mode,$mode2='extensions') {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
-	$result = zp_getMoreByThisAuthor($tag,$mode);
-	$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
-	if($mode == 'news') {
-		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
-			$resultnew = array();
-			foreach($result as $item) {
-				$i = new ZenpageNews($item['name']);
-				if($i->inNewsCategory($mode2)) {
-					$resultnew[] = $item;
+function zp_getAuthorContributions($tag,$mode,$mode2='extensions') {	
+ 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+ 	$result = zp_getMoreByThisAuthor($tag,$mode);
+ 	if($result) {
+		$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
+		if($mode == 'news') {
+			if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
+				$resultnew = array();
+				foreach($result as $item) {
+					$i = new ZenpageNews($item['name']);
+					if($i->inNewsCategory($mode2)) {
+						$resultnew[] = $item;
+					}
 				}
+				$result = $resultnew;
+				unset($resultnew);
 			}
-			$result = $resultnew;
-			unset($resultnew);
 		}
+		return $result;
 	}
-	return $result;
 }
 
  /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
@@ -197,8 +199,8 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 	$result = zp_getAuthorContributions($tag,$mode,$mode2);
 	$resultcount = count($result);
 	if($resultcount != 0) {
-		 switch($mode) {
-			case 'news':
+	   switch($mode) {
+	   	case 'news': 
 				switch($mode2) {
 					case 'extensions':
 						?>
@@ -215,11 +217,11 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 						break;
 				}
 			 break;
-			 case 'albums':
-				?>
-				<h4>Theme contributions (<?php echo $resultcount; ?>)</h4>
-				<?php
-				break;
+			 case 'albums': 
+			 	?>
+			 	<h4>Theme contributions (<?php echo $resultcount; ?>)</h4>
+			 	<?php
+			 	break;
 		}
 		?>
 		<ol class="contributionslist">
@@ -235,7 +237,7 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 				case 'news':
 					$obj = new ZenpageNews($item['name']);
 					$url = getNewsURL($obj->getTitlelink());
-					$text = $obj->getContent();
+					$text = $obj->getContent(); 
 					break;
 			}
 			?>
@@ -255,10 +257,10 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 						</a>
 						<?php
 					}
-				}
+				} 
 				?>
 			<h4><a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
-				<?php
+				<?php 
 					switch($item['type']) {
 						case 'albums':
 						case 'images':
@@ -275,13 +277,13 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 					</span>
 					<?php
 				 ?></small>
-					<?php
+					<?php 
 				 switch($item['type']) {
 						case 'albums':
 							zp_printThemeStatusIcon($obj);
 							break;
 						case 'news':
-							 zp_printExtensionStatusIcon($obj);
+							 zp_printExtensionStatusIcon($obj); 
 							break;
 					}
 				 ?>
@@ -291,8 +293,8 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 	} // foreach
 		?>
 		</ol>
-		<?php
-	}
+		<?php 
+	} 
 }
 
 /**
@@ -303,7 +305,7 @@ function zp_printAuthorStatusIcon($obj=NULL) {
 	global $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_themeroot;
 	if(is_null($obj)) {
 		$obj = $_zp_current_zenpage_page;
-	}
+	}	
 	$icon = '';
 	if(is_object($obj)) {
 		if($obj->hasTag('zp_team-member')) {
@@ -311,7 +313,7 @@ function zp_printAuthorStatusIcon($obj=NULL) {
 		}
 		if($obj->hasTag('zp_team-member-former')) {
 			$icon = '<img class="authoricon" src="'.$_zp_themeroot.'/images/authoricon_former.png" alt="" title="Former Zenphoto team member" />';
-		}
+		} 
 		echo $icon;
 	}
 }
@@ -342,8 +344,8 @@ function zp_printAuthorStatusRanks($obj=NULL) {
 			$count++;
 			?>
 			<li>
-				<?php
-				echo ", "; echo ucfirst(str_replace(array('zp_','-'), array('',' '),$status));
+				<?php 
+				echo ", "; echo ucfirst(str_replace(array('zp_','-'), array('',' '),$status)); 
 				?></li><?php
 		}
 	}
@@ -370,11 +372,11 @@ function zp_printAuthorList($mode='all',$content=false) {
 			$obj = new Zenpagepage($subpage);
 			$explode = explode(' ',$obj->getTitle());
 			if($explode) {
-				// if we have normal names with probably only a 2nd surname (e.g. Nils K. Windisch) use the name
-				if(count($explode) <= 3) {
+				// if we have normal names with probably only a 2nd surname (e.g. Nils K. Windisch) use the name 
+				if(count($explode) <= 3) { 
 					$explode = array_reverse($explode);
 					$name = $explode[0];
-				}
+				} 
 			} else {
 				// otherwise we just use the alias no matter how it begins, e.g. "The Whole Life to Learn"
 				$name = $obj->getTitle();
@@ -393,21 +395,21 @@ function zp_printAuthorList($mode='all',$content=false) {
 			} else {
 				$obj = new Zenpagepage($subpage);
 			}
-			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former')) || ($mode == 'contributors' && $obj->hasTag('zp_contributor'))) {
+			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former')) || ($mode == 'contributors' && $obj->hasTag('zp_contributor'))) {  
 				?>
 				<li>
-					<?php
+					<?php 
 					/* $mail = $obj->getCustomData();
-					if(!empty($mail)) {
+					if(!empty($mail)) { 
 						$imgurl = zp_getAuthorGravatarImage($mail,40);
-						if(!empty($imgurl)) {
-							echo $imgurl;
+						if(!empty($imgurl)) { 
+							echo $imgurl; 
 						}
 					} */
 					?>
 					<h4 class="entrytitle"><a href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
-						<?php
-						echo $obj->getTitle();
+						<?php 
+						echo $obj->getTitle();  
 						if(strtolower($obj->getTitle()) != strtolower($obj->getTitlelink())) {
 							?>
 							<small><em>(<?php echo $obj->getTitlelink(); ?>)</em></small>
@@ -466,7 +468,7 @@ function zp_printItemAuthorCredits() {
 			}
 			break;
 	}
-	if($rightcat || $parentname == 'theme') {
+	if($rightcat || $parentname == 'theme') { 
 		$authors = zp_getSpecificTags('item','author');
 		$numauthors = count($authors);
 		$creditplural = 'Developers:';
@@ -492,8 +494,8 @@ function zp_printItemAuthorCredits() {
 			<div id="authorcredits" class="table_of_content_list">
 			<h4><?php echo $credit; ?> </h4>
 			<ul>
-			<?php
-			// Workaround to get an alphabetically list by name
+		 	<?php
+		 	// Workaround to get an alphabetically list by name
 			$sorted = array();
 			$count = '';
 			$name = '';
@@ -504,11 +506,11 @@ function zp_printItemAuthorCredits() {
 					$obj = new ZenpagePage($author);
 					$explode = explode(' ',$obj->getTitle());
 					if($explode) {
-						// if we have normal names with probably only a 2nd surname (e.g. Nils K. Windisch) use the name
-						if(count($explode) <= 3) {
+						// if we have normal names with probably only a 2nd surname (e.g. Nils K. Windisch) use the name 
+						if(count($explode) <= 3) { 
 							$explode = array_reverse($explode);
 							$name = $explode[0];
-						}
+						} 
 					} else {
 						// otherwise we just use the alias no matter how it begins, e.g. "The Whole Life to Learn"
 						$name = $obj->getTitle();
@@ -517,26 +519,26 @@ function zp_printItemAuthorCredits() {
 				}
 			}
 			$sorted = sortMultiArray($sorted,'name',false,true,false,false); // sort by name abc
-			foreach($sorted as $p){
-				?>
-				<li><a href="<?php echo getPagelinkURL($p['titlelink']); ?>">
-				<?php
+		 	foreach($sorted as $p){ 
+		 		?>
+		 		<li><a href="<?php echo getPagelinkURL($p['titlelink']); ?>">
+		 		<?php
 					if(strtolower($p['titlelink']) != strtolower($p['title'])) {
 						echo $p['title'];?> <em>(<?php echo $p['titlelink']; ?>)</em>
-					<?php
-					} else {
-						echo $p['title'];
-					}
+					<?php 
+					} else { 
+						echo $p['title']; 
+					} 
 				?>
-				</a>
-				</li>
-				<?php
-			}
-			?>
+		 		</a>
+		 		</li>
+		 		<?php
+		 	}
+		 	?>
 			</ul>
 			</div>
 			<?php
-
+		 
 		}
 	}
 }
@@ -554,9 +556,9 @@ function zp_getAuthorGravatarProfileData($email) {
 		$str = file_get_contents( 'http://www.gravatar.com/'.$hash.'.php' );
 		$profile = unserialize($str);
 		if(is_array($profile) && isset($profile['entry'])) {
-			return $profile;
-		}
-	}
+    	return $profile;
+  	}
+  }
 }
 
 /**
@@ -569,15 +571,15 @@ function zp_getAuthorGravatarProfileData($email) {
 function zp_getAuthorGravatarProfile($userid, $field) {
 	$profile = false;
 	if(filter_var($userid, FILTER_VALIDATE_EMAIL)) {
-		$hash = md5(strtolower(trim($userid)));
-	} else { // we assume this is a valid md5 hash already
-		$hash = $userid;
-	}
+  	$hash = md5(strtolower(trim($userid)));
+  } else { // we assume this is a valid md5 hash already
+  	$hash = $userid;
+  }
 	$str = file_get_contents( 'http://www.gravatar.com/'.$hash.'.php' );
 	$data = unserialize($str);
 	if(is_array($data) && isset($data['entry'])) {
-		$profile = $data;
-	}
+    $profile = $data;
+  }
 	if($profile) {
 		if(($field == 'thumb' || $field == 'all') && !empty($profile['entry'][0]['thumbnailUrl'])) {
 			 return '<img class="authorprofile-image" src="'.$profile['entry'][0]['thumbnailUrl'].'?s=105" alt="" />';
@@ -602,22 +604,22 @@ function zp_getAuthorGravatarProfile($userid, $field) {
 
 
 /**
- * Gets the Google/Google+ or Facebook profile image
+ * Gets the Google/Google+ or Facebook profile image 
  * @param string $userid 	$type  	'gravatar': The md5 hash of the Gravarar registered e-mail address
- *																'google': The Google+ user id number as found in the url of the profile.
+ *																'google': The Google+ user id number as found in the url of the profile. 
  *																					This MUST be passed as a string enclosed in quotes!
- * 																'facebook': The facebook profile/page name found in the url of the profile.
+ * 																'facebook': The facebook profile/page name found in the url of the profile. 
  * @param num $type type 'google', 'facebook'
  * @param string $field What to print 'thumb', 'aboutme', 'urls', 'all' ("all" in this order) $type="gravatar" ONLY!
  * @return html img
  */
 function zp_getAuthorSocialImage($userid='',$type='google',$field='thumbnail') {
-	if(!empty($userid)) {
-		switch($type) {
-			case 'gravatar':
-				return zp_getAuthorGravatarProfile($userid,$field);
-				break;
-			case 'google':
+  if(!empty($userid)) {
+  	switch($type) {
+  		case 'gravatar':
+  			return zp_getAuthorGravatarProfile($userid,$field);
+  			break;
+  		case 'google':
 				$url = 'https://www.google.com/s2/photos/profile/'.$userid;
 				return "<img src=$headers[Location]>";
 				break;
@@ -634,46 +636,46 @@ function zp_getAuthorSocialImage($userid='',$type='google',$field='thumbnail') {
  * @param bool $testmode true or false if really pages should be created
  */
  function zp_importAuthorsFromCSV($csv,$testmode=true) {
-	$cons = file($csv);
+ 	$cons = file($csv);
 	if($cons) {
 		//echo "<pre>";print_r($cons); echo "</pre>";
 		//break;
 		foreach($cons as $con) {
 			$c = explode('|',$con);
 			//echo "<pre>";print_r($c); echo "</pre>";
-
+			
 			// Create titlelink from author tag
 			$titlelink = trim(str_replace('author_', '',$c[2]));
-
+			
 			// Just to be sure the page does not exists already
 			$sql = 'SELECT `id` FROM '.prefix('pages').' WHERE `titlelink`='.db_quote($titlelink);
 			$rslt = query_single_row($sql,false);
 			if ($rslt) {
 				echo "<p style='color: red'>Page ".$titlelink." already exists</p>";
-
+				
 			} else {
 			//initialize the page object
 			if(!$testmode) $page = new ZenpagePage($titlelink, true);
-
-			// Get title or use titlelink
-			if(empty($c[0])) {
+			
+			// Get title or use titlelink 
+			if(empty($c[0])) { 
 				$title = $titlelink;
 			} else {
 				$title = trim($c[0]);
 			}
-
+			
 			if(!$testmode) $page->setTitle($title);
 			$website = '';
 			if(!empty($c[1])) {
 				$website = '<p><a href="'.trim($c[1]).'"><strong>Website: </strong>'.trim($c[1]).'</a></p>';
 			}
-
+			
 			// Get the tags
 			if(!empty($c[3])) {
 				$tags = trim(str_replace('/', ',',$c[3]));
 				if(!$testmode) $page->setTags($tags);
 			}
-
+			
 			if(empty($c[4])) {
 				$content = $website;
 			} else {
@@ -684,13 +686,13 @@ function zp_getAuthorSocialImage($userid='',$type='google',$field='thumbnail') {
 				$page->setContent($content);
 				$page->setShow(0);
 				$page->setDatetime(date('Y-m-d H:i:s'));
-				$page->setParentID(170); // id of "all-contributors" page
+				$page->setParentID(170); // id of "all-contributors" page 
 				$page->save();
 			}
 			echo "<p>Page ".$titlelink." created!</p>";
 		}
 			echo "<br>------------------";
-			/*
+			/* 
 			// just a check to see if the array of the list match with the site
 			if(in_array(trim($c[2]),$authors)) {
 				echo '<li><strong>'.$c[2].'</strong></li>';
@@ -698,7 +700,7 @@ function zp_getAuthorSocialImage($userid='',$type='google',$field='thumbnail') {
 				echo '<li>'.$c[2].'</li>';
 			} */
 		}
-	}
+	} 
 }
 
 /* Prints the plugin support list based on "pluginsupport_<pluginname(titlelink of article)>" tags.
@@ -706,7 +708,7 @@ function zp_getAuthorSocialImage($userid='',$type='google',$field='thumbnail') {
  * @return array
  */
  function zp_printPluginsupportTags() {
-	if(zp_getParentAlbumName() == "theme") {
+ 	if(zp_getParentAlbumName() == "theme") {
 		$tags = zp_getSpecificTags('item','pluginsupport');
 		?>
 		<h4>Layout specific plugins supported:</h4>
@@ -800,26 +802,26 @@ function zp_printSubCategories($cattitlelink) {
 	global $_zp_current_category;
 	$cattitlelink = sanitize($cattitlelink);
 	$currentcat = new ZenpageCategory($cattitlelink);
-	$subcats = $currentcat->getSubCategories();
+ 	$subcats = $currentcat->getSubCategories();
 	if($subcats) {
-		?>
-		<hr />
+	  ?>
+	  <hr />
 		<h2>Categories</h2>
-		<ul class="newscategories">
-		<?php
-		foreach($subcats as $subcat) {
-			$subcatobj = new ZenpageCategory($subcat);
-			$active = '';
-			$articleCount = count($subcatobj->getArticles(0));
-			if($articleCount != 0) {
+	  <ul class="newscategories">
+	  <?php
+	  foreach($subcats as $subcat) {
+	  	$subcatobj = new ZenpageCategory($subcat);
+	 		$active = '';
+	 		$articleCount = count($subcatobj->getArticles(0));
+	 		if($articleCount != 0) {
 				if(!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() == $subcatobj->getTitlelink()) {
 					$active = ' class="active"';
 				}
 				$count = ' <small>('.$articleCount.')</small>';
 				echo '<li'.$active.'><a href="'.html_encode(getNewsCategoryURL($subcat)).'" title="'.html_encode($subcatobj->getTitle()).'">'.html_encode($subcatobj->getTitle()).$count.'</a></li>';
-			}
-		}
-		echo '</ul>';
+	  	}
+	  }
+	  echo '</ul>';
 	}
 }
 
@@ -850,7 +852,7 @@ function zp_printLatestNews($number=2,$option='none', $category='') {
  * Prints a html list from an array of image/album items
  */
  function zp_printGalleryStatistics($array,$option='date',$album=false) {
-	echo '<ul>';
+ 	echo '<ul>';
 	foreach($array as $top) {
 		if($album) {
 			$top = new Album(NULL,$top['folder']);
@@ -1007,12 +1009,12 @@ function zp_printNextPrevAlbumLinkFirstImage() {
 function zp_getParentAlbumName() {
 	global $_zp_current_album,$_zp;
 	if($_zp_current_album->getParent()) {
-		$parentalbumobj = $_zp_current_album->getParent();
-		$parentalbum = $parentalbumobj->name;
-	} else {
-		$parentalbum = "";
-	}
-	return $parentalbum;
+  	$parentalbumobj = $_zp_current_album->getParent();
+  	$parentalbum = $parentalbumobj->name;
+  } else {
+  	$parentalbum = "";
+  }
+  return $parentalbum;
 }
 
 /**
@@ -1161,15 +1163,15 @@ function zp_printExtensionStatusIcon($obj=NULL) {
 	global $_zp_current_zenpage_news, $_zp_themeroot;
 	if(is_null($obj)) {
 		$obj = $_zp_current_zenpage_news;
-	}
+	} 
 	if($obj->inNewsCategory("officially-supported")) {  ?>
 		 <img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" />
-		<?php
+		<?php 
 	} else if ($obj->inNewsCategory('unsupported-plugin-github') || $obj->inNewsCategory('unsupported-misc-github')) { ?>
 		<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_blue.png" title="Third party hosted on GitHub- not officially supported" />
-		<?php
-	} else if ($obj->inNewsCategory('unsupported-plugin-selfhosted')) {
-		if($obj->hasTag('extension-abandoned')) {
+		<?php  
+	} else if ($obj->inNewsCategory('unsupported-plugin-selfhosted')) { 
+		if($obj->hasTag('extension-abandoned')) { 
 			?>
 			<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/cancel_round.png" title="Third party - abandoned by developer" />
 			<?php
@@ -1185,7 +1187,7 @@ function zp_printExtensionStatusIconList() {
 	?>
 	<hr />
 	<h2>Extension icon legend</h2>
-	<ul class="statuslist">
+ 	<ul class="statuslist">
 		<li class="extension-supported" id="officially-supported">
 		Officially supported and included in the release package.
 		</li>
@@ -1198,7 +1200,7 @@ function zp_printExtensionStatusIconList() {
 		<li class="extension-abandoned" id="third-party-abandoned">
 		Unsupported third party extensions abandoned by its developer.
 		</li>
-	</ul>
+  </ul>
 <?php
 }
 
@@ -1231,50 +1233,50 @@ function zp_printPageHeaderTitle() {
  $gallerytitle = getBareGalleryTitle();
  $parent = '';
  switch($_zp_gallery_page) {
-	case 'index.php':
-		return html_encode($gallerytitle);
-		break;
-	case 'album.php':
-		if(!is_null($_zp_current_album->getParent())) {
-			$parent = ' | '.$_zp_current_album->getParent()->getTitle();
-		}
-		$gallerytitle = $_zp_current_album->getTitle().$parent.' | '.$gallerytitle;
-		break;
-	case 'image.php':
-		if(!is_null($_zp_current_album->getParent())) {
-			$parent = ' | '.$_zp_current_album->getParent()->getTitle();
-		}
-		$gallerytitle = $_zp_current_image->getTitle().' | '.$_zp_current_album->getTitle().$parent.' | '.$gallerytitle;
-		break;
-	case 'news.php':
-		if(zp_inNewsCategory('user-guide')) {
-			$parent = ' | User guide';
-		} else if(zp_inNewsCategory('extensions')) {
-			$parent = ' | Extensions';
-		}
-		if(!is_null($_zp_current_zenpage_news)) {
-			$gallerytitle = $_zp_current_zenpage_news->getTitle().$parent.' | '.$gallerytitle;
-		} else if(!is_null($_zp_current_category)) {
-			$gallerytitle = $_zp_current_category->getTitle().$parent.' | '.$gallerytitle;
-		} else {
-			$gallerytitle = 'News | '.$gallerytitle;
-		}
-		break;
-	case 'pages.php':
-		if($_zp_current_zenpage_page->getParents()) {
-			$parentpages = $_zp_current_zenpage_page->getParents();
-			$parentpage = $parentpages[0];
-			$obj = new ZenpagePage($parentpage);
-			$parent = ' | '.$obj->getTitle();
-		}
-		$gallerytitle = $_zp_current_zenpage_page->getTitle().$parent.' | '.$gallerytitle;
-		break;
-	case 'search.php':
-		$gallerytitle = 'Search | '.$gallerytitle;
-		break;
-	case 'archive.php':
-		$gallerytitle = 'Archive | '.$gallerytitle;
-		break;
+ 	case 'index.php':
+ 		return html_encode($gallerytitle);
+ 		break;
+ 	case 'album.php':
+ 		if(!is_null($_zp_current_album->getParent())) {
+ 			$parent = ' | '.$_zp_current_album->getParent()->getTitle();
+ 		}
+ 		$gallerytitle = $_zp_current_album->getTitle().$parent.' | '.$gallerytitle;
+ 		break;
+ 	case 'image.php':
+ 		if(!is_null($_zp_current_album->getParent())) {
+ 			$parent = ' | '.$_zp_current_album->getParent()->getTitle();
+ 		}
+ 		$gallerytitle = $_zp_current_image->getTitle().' | '.$_zp_current_album->getTitle().$parent.' | '.$gallerytitle;
+ 		break;
+ 	case 'news.php':
+ 		if(zp_inNewsCategory('user-guide')) {
+ 			$parent = ' | User guide';
+ 		} else if(zp_inNewsCategory('extensions')) {
+ 			$parent = ' | Extensions';
+ 		}
+ 		if(!is_null($_zp_current_zenpage_news)) {
+ 			$gallerytitle = $_zp_current_zenpage_news->getTitle().$parent.' | '.$gallerytitle;
+ 		} else if(!is_null($_zp_current_category)) {
+ 			$gallerytitle = $_zp_current_category->getTitle().$parent.' | '.$gallerytitle;
+ 		} else {
+ 			$gallerytitle = 'News | '.$gallerytitle;
+ 		}
+ 		break;
+ 	case 'pages.php':
+ 		if($_zp_current_zenpage_page->getParents()) {
+ 			$parentpages = $_zp_current_zenpage_page->getParents();
+ 			$parentpage = $parentpages[0];
+ 			$obj = new ZenpagePage($parentpage);
+ 			$parent = ' | '.$obj->getTitle();
+ 		}
+ 		$gallerytitle = $_zp_current_zenpage_page->getTitle().$parent.' | '.$gallerytitle;
+ 		break;
+ 	case 'search.php':
+ 		$gallerytitle = 'Search | '.$gallerytitle;
+ 		break;
+ 	case 'archive.php':
+ 		$gallerytitle = 'Archive | '.$gallerytitle;
+ 		break;
  }
  echo html_encode($gallerytitle);
 }
@@ -1302,7 +1304,7 @@ function zp_specialdownloads($albumfolder=NULL) {
 				echo '<div class="logodownloadwrapper">';
 				$albumthumb = $subobj->getAlbumThumbImage();
 				echo '<span><img src="'.$albumthumb->getCustomImage(200, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL).'" alt="" /></span><h4>'.$subobj->getTitle().'</h4>';
-				printDownloadlist('albums/'.$subalb,'ol',array(),'jpg');
+			  printDownloadlist('albums/'.$subalb,'ol',array(),'jpg');
 				//printDownloadLinkAlbumZip('All above as .zip',$subobj);
 				echo '</div>';
 				echo '<br style="clear: left" />';
@@ -1377,7 +1379,7 @@ function zp_printZenphotoVersionOfExtensionOrTheme($before='') {
  * Prints the sidebar boxes for sponsores, paid support, donations and sharing
  */
 function zp_printSidebarBoxes() {
-	global $_zp_themeroot, $_zp_gallery_page, $_zp_current_album;
+	global $_zp_themeroot, $_zp_gallery_page, $_zp_current_album; 
 	?>
 	<hr />
 	<?php
@@ -1385,21 +1387,21 @@ function zp_printSidebarBoxes() {
 	?>
 	<div class="infobox paidsupport">
 		<img src="<?php echo $_zp_themeroot; ?>/images/icon-forum.png" alt="" />
-		<h3>Need project help?</h3>
-		<p>Visit the <?php printPageLinkURL('Paid support page', 'paid-support','','',NULL); ?>.
-		</p>
-		<br class="clearleft" />
+  	<h3>Need project help?</h3>
+  	<p>Visit the <?php printPageLinkURL('Paid support page', 'paid-support','','',NULL); ?>.
+  	</p>
+  	<br clear="left" />
 	</div>
-	<div class="infobox">
+	<div class="infobox"> 
 		<h3>Like using Zenphoto? Donate!</h3>
-		<p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
-		<p>Visit the <a href="http://www.zenphoto.org/pages/donations">donations page</a></p>
-	</div>
-	<?php if(!is_NewsArticle() && $_zp_gallery_page != 'image.php') { ?>
-		<div class="infobox">
-			<h3>Share!</h3>
-			<?php zp_printAddthis(); ?>
-		</div>
+    <p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
+    <p>Visit the <a href="http://www.zenphoto.org/pages/donations">donations page</a></p>
+  </div>
+  <?php if(!is_NewsArticle() && $_zp_gallery_page != 'image.php') { ?>
+    <div class="infobox"> 
+    	<h3>Share!</h3>
+     	<?php zp_printAddthis(); ?>
+		</div> 
 		<div id="ads">
 			<script type="text/javascript">
 				google_ad_client = "pub-7903690389990760";
@@ -1415,9 +1417,9 @@ function zp_printSidebarBoxes() {
 				google_color_text = "333333";
 			</script>
 			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-		</script>
+		</script> 
 	 </div>
-	<?php }
+	<?php } 
 }
 
 /**
@@ -1426,10 +1428,10 @@ function zp_printSidebarBoxes() {
 function zp_printThemeDownloadButton() {
 	global $_zp_themeroot, $_zp_gallery, $_zp_current_album;
 	if(!$_zp_current_album->hasTag('theme-officially-supported') && zp_getParentAlbumName() == "theme") {
-		if(zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('hosted_theme')) {
+  	if(zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('hosted_theme')) {
 			$linktext = 'Download on GitHub.com';
 			$theme = explode('/',$_zp_current_album->name);
-			$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/';
+			$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/';	
 			echo '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual themes from the GitHub repository. You have to download the full repository (click on ZIP) and sort out what you need yourself.</p>';
 		} else {
 			$linktext = 'Info/download (external)';
@@ -1440,11 +1442,11 @@ function zp_printThemeDownloadButton() {
 		} else {
 			echo '<div class="buttons"><a href="' . $themeurl . '"><img src="'.$_zp_themeroot.'/images/arrow_right_blue_round.png" alt="" /> '.$linktext.'</a></div>';
 		}
-	}
-	if($_zp_current_album->hasTag('theme-officially-supported')) {?>
+  }
+  if($_zp_current_album->hasTag('theme-officially-supported')) {?>
 		<p class="articlebox">Included in the Zenphoto release.</p>
-	<?php
-	}
+	<?php 
+  }
 }
 
 /**
@@ -1457,39 +1459,39 @@ function zp_printExtensionDownloadButton() {
 		$exturl = $customdata;
 		$linkicon_url = '';
 		if(zp_inNewsCategory("officially-supported")) {
-			$linktext = 'Usage information';
-			$linkicon_url = $_zp_themeroot.'/images/info_green.png';
+			$linktext = 'Usage information'; 
+			$linkicon_url = $_zp_themeroot.'/images/info_green.png'; 
 			$exturl = 'http://www.zenphoto.org/documentation/li_plugins.html';
 		} else {
 			$githubtext = '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on ZIP) and sort out what you need yourself.</p>';
 			if(zp_inNewsCategory("unsupported-plugin-github")) {
 			//if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
 				$linktext = 'Download on GitHub.com';
-				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png';
+				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/plugins/';
 				echo $githubtext;
 			} else if (zp_inNewsCategory("unsupported-misc-github")) {
 				$linktext = 'Download on GitHub.com';
-				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png';
+				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 				//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 				$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/misc/';
 				echo $githubtext;
 			} else {
 				$linktext = 'Info/download (external)';
-				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png';
+				$linkicon_url = $_zp_themeroot.'/images/arrow_right_blue_round.png'; 
 			}
-		}
+		}  		
 		if($_zp_current_zenpage_news->hasTag('extension-abandoned')) {
 			echo '<p><strong>Sorry, this extension is no longer provided by its developer.</strong></p>';
 		} else {
 			echo '<p class="buttons"><a href="'.html_encode($exturl).'"><img src="'.$linkicon_url.'" alt="" /> '.$linktext.'</a></p>';
-		}
+		} 	
 		if($_zp_current_zenpage_news->inNewsCategory("officially-supported")) {  ?>
 			<p class="articlebox">Included in the Zenphoto release.</p>
-		<?php
-		}
-	}
+		<?php 
+		} 
+	} 
 }
 
 
@@ -1514,7 +1516,7 @@ function zp_printMainSectionCategoryTitle() {
 		if(!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() != 'user-guide') {
 			echo ' &raquo; '.$_zp_current_category->getTitle().$articlecount;
 		}
-	} else if(!zp_inNewsCategory('extensions') || zp_inNewsCategory('user-guide')) {
+	} else if(!zp_inNewsCategory('extensions') || zp_inNewsCategory('user-guide')) { 
 		echo "News";
 		if(!is_NewsArticle() && !is_null($_zp_current_category) && !is_NewsArticle() && $_zp_current_category->getTitlelink() != 'news') {
 			echo ' &raquo; '.$_zp_current_category->getTitle();
@@ -1522,7 +1524,7 @@ function zp_printMainSectionCategoryTitle() {
 	}
 	if(is_NewsArchive()) {
 		echo ': '.getCurrentNewsArchive('plain');
-	}
+	} 
 }
 
 /**
@@ -1535,9 +1537,9 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 			case 'index.php':
 				$albums = array('hosting/platinum');
 				break;
-			default:
+			default: 
 				$albums = array('hosting/palladium');
-				break;
+				break; 
 		}
 	} else {
 		$albums = array('hosting/gold','hosting/silver','hosting/bronze');
@@ -1558,23 +1560,23 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 					$maxnum = 2;
 					switch($album) {
 						case 'hosting/platinum':
-							$imgclass = 'sponsor-platinum';
-							break;
+					 		$imgclass = 'sponsor-platinum';
+					  	break;
 						case 'hosting/palladium':
 							$imgclass = 'sponsor-palladium';
 							break;
 					}
-					break;
-				case 'hosting/gold':
+					break;	
+				case 'hosting/gold': 
 					$adwidth = 560;
 					$maxnum = 99;
 					$imgclass = 'sponsor-gold';
 					break;
-				case 'hosting/silver':
+				case 'hosting/silver': 
 					$adwidth = 270;
 					$maxnum = 2;
 					break;
-				case 'hosting/bronze':
+				case 'hosting/bronze': 
 					$adwidth = 125;
 					$maxnum = 4;
 					break;
@@ -1591,26 +1593,26 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 						$linkclass = 'platinum-ad';
 						if($count == 1) {
 							$imgclass .= ' sponsor-platinum-first';
-						}
+						} 
 						break;
 					case 'hosting/palladium':
 						$imgclass = 'sponsor-palladium';
 						$linkclass = 'palladium-ad';
 						if($count == 1) {
 							$imgclass .= ' sponsor-palladium-first';
-						}
+						} 
 						break;
-					case 'hosting/gold':
+					case 'hosting/gold': 
 							$linkclass = 'gold-ad';
 							break;
-					case 'hosting/silver':
+					case 'hosting/silver': 
 						$imgclass = 'sponsor-silver';
 						$linkclass = 'silver-ad';
 						if($count < 2) {
 							$imgclass .= ' sponsor-right';
 						}
 						break;
-					case 'hosting/bronze':
+					case 'hosting/bronze': 
 						$imgclass = 'sponsor-bronze';
 						$linkclass = 'bronze-ad';
 						if($count != 4) {
@@ -1650,28 +1652,28 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 						$imgclass = 'sponsor-platinum';
 						if($i == 1) {
 							$imgclass .= ' sponsor-platinum-first';
-						}
+						} 
 						$placeholderimg = newImage($placeholderalb,'sponsorplatinum-placeholder-ad.gif');
 						break;
 					case 'hosting/palladium':
 						$imgclass = 'sponsor-platinum';
 						if($i == 1) {
 							$imgclass .= ' sponsor-platinum-first';
-						}
+						} 
 						$placeholderimg = newImage($placeholderalb,'sponsorpalladium-placeholder-ad.gif');
 						break;
 				/*s
-					case 'hosting/gold':
+					case 'hosting/gold': 
 						$placeholderimg = newImage($placeholderalb,'sponsorgold-placeholder.gif');
 						break;
-					case 'hosting/silver':
+					case 'hosting/silver': 
 						$imgclass = 'sponsor-silver';
 						if($i < $max) {
 							$imgclass .= ' sponsor-right';
 						}
 						$placeholderimg = newImage($placeholderalb,'sponsorsilver-placeholder.gif');
 						break;
-					case 'hosting/bronze':
+					case 'hosting/bronze': 
 						$imgclass = 'sponsor-bronze';
 						if($i < $max) {
 							$imgclass .= ' sponsor-right';
@@ -1681,10 +1683,10 @@ function zp_printSponsorAds($sponsorplatinum=false) {
 						break; */
 				}
 				$placeholderimg = $placeholderimg->getFullImage();
-				?>
+				?>	
 			<a target="_top" href="<?php echo html_encode($link); ?>" title="Advertise"><img class="<?php echo $imgclass; ?>" src="<?php echo html_encode($placeholderimg); ?>" alt="Advertise" width="<?php echo $adwidth; ?>" height="<?php echo $adheight; ?>"></a>
-			<?php
-			} // for
+			<?php	
+			} // for  
 		 } // if
 		if($album == 'hosting/silver') { ?>
 			<br style="clear:left" />
@@ -1710,13 +1712,13 @@ function zp_printSponsorAvailability() {
 		switch($album) {
 				case 'hosting/platinum':
 				case 'hosting/palladium':
-				case 'hosting/silver':
+				case 'hosting/silver': 
 					$maxnum = 2;
 					break;
-				case 'hosting/gold':
-					$maxnum = 'Unlimited';
-					break;
-				case 'hosting/bronze':
+				case 'hosting/gold': 
+				  $maxnum = 'Unlimited';
+				  break;
+				case 'hosting/bronze': 
 					$maxnum = 4;
 					break;
 		}
@@ -1725,9 +1727,9 @@ function zp_printSponsorAvailability() {
 		} else {
 			if($imagescount != $maxnum) {
 				$max = $maxnum-$imagescount;
-			} else {
+			} else {				
 				$max = 'not available currently';
-			}
+			} 
 		}
 		?>
 		<li><?php echo $albobj->getTitle(); ?>: <?php echo $max; ?></li>
@@ -1742,7 +1744,7 @@ function zp_printSponsorAvailability() {
 /**
  * Requires the official related_items plugin to be enabled (does not print anything if not or nothing related available)
  * Custom category/section display version for zenphoto.org only. Besides that the same as the official plugin function-
- * Prints the x related articles based on a tag search.
+ * Prints the x related articles based on a tag search. 
  *
  * @param int $number Number of items to get
  * @param string $type 'albums', 'images','news','pages'
@@ -1852,7 +1854,7 @@ function zp_printTroubleshootingGuide() {
 		}
 	</script>
 	<p class="buttons"><a href="javascript:accordian()"><span id="show_hide">Expand all</span></a></p>
-	<br class="clearleft" />
+	<br clear="left" />
 	<?php
 	$currentcat = $_zp_current_category;
 	$catobj = new ZenpageCategory('troubleshooting');
@@ -1884,7 +1886,7 @@ function zp_printTroubleshootingGuide() {
 		<?php
 		zp_listTroubleshootingArticles($catobj);
 	}
-}
+} 
 /**
  * Helpder function to zp_printTroubleshootingGuide(). This prints the individual troubleshooting section on the troubleshooting guide article
  *
@@ -1910,7 +1912,7 @@ function zp_listTroubleshootingArticles($cat) {
 					<p><a href="<?php echo $article->getNewsLink(); ?>">Direct link</a></p>
 				</div>
 
-				<?php
+				<?php 
 				?>
 			</li>
 			<?php
