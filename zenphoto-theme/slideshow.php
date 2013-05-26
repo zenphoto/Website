@@ -4,6 +4,8 @@
 	<title><?php echo getBareGalleryTitle(); ?></title>
 	<?php zp_apply_filter('theme_head'); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/slideshow.css" type="text/css" />
+
+	<?php printSlideShowJS(); ?>
 </head>
 
 <body>

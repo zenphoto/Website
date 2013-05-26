@@ -153,16 +153,14 @@ function zp_printMoreByAuthorsLinks() {
 function zp_getAuthorContributions($tag,$mode,$mode2='extensions') {	
  	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
  	$result = zp_getMoreByThisAuthor($tag,$mode);
- 	if($result) {
-		$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
-		if($mode == 'news') {
-			if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
-				$resultnew = array();
-				foreach($result as $item) {
-					$i = new ZenpageNews($item['name']);
-					if($i->inNewsCategory($mode2)) {
-						$resultnew[] = $item;
-					}
+	$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
+	if($mode == 'news') {
+		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
+			$resultnew = array();
+			foreach($result as $item) {
+				$i = new ZenpageNews($item['name']);
+				if($i->inNewsCategory($mode2)) {
+					$resultnew[] = $item;
 				}
 				$result = $resultnew;
 				unset($resultnew);

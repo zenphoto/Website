@@ -50,7 +50,7 @@
 		Forum powered by <a href="http://bbpress.org">bbpress</a>
 		</p>
 		</div>
-
+		
 </div>
 
 <div class="column-r">
@@ -78,6 +78,7 @@
 <br style="clear:both" />
 </div>
 <?php
+printAdminToolbox();
 zp_apply_filter('theme_body_close');
 ?>
 </body>
