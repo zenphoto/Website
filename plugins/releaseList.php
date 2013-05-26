@@ -43,7 +43,7 @@ $option_interface = 'releaseList';
 
 
 if (OFFSET_PATH) {
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/rss.php');
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
 } else {
 	$releaseList = new releaseList();
 }
