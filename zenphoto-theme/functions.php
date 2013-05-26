@@ -447,21 +447,24 @@ function zp_printItemAuthorCredits() {
 	$parent = '';
 	$parentname = '';
 	$rightcat = false;
-	if((is_GalleryNewsType() && is_NewsType("album"))) {
-		$parent = $_zp_current_zenpage_news->getParent();
-		$parentname = $parent->name;
-	} elseif ($_zp_gallery_page == 'image.php' || $_zp_gallery_page == 'album.php') {
-		$parent = $_zp_current_album->getParent();
-		if($parent) {
-			$parentname = $parent->name;
-		}
-	}	else {
-		if(!is_NewsCategory() && ($_zp_current_zenpage_news->inNewsCategory('user-guide')
-		|| $_zp_current_zenpage_news->inNewsCategory('extensions')
-		|| $_zp_current_zenpage_news->inNewsCategory('release'))
-		) {
-			$rightcat = true;
-		}
+	switch($_zp_gallery_page) {
+		case 'news.php':
+			if(is_GalleryNewsType() && is_NewsType("album")) {
+				$parent = $_zp_current_zenpage_news->getParent();
+				if($parent) {
+					$parentname = $parent->name;
+				}
+			} elseif(is_NewsArticle() && ($_zp_current_zenpage_news->inNewsCategory('user-guide') || $_zp_current_zenpage_news->inNewsCategory('extensions') || $_zp_current_zenpage_news->inNewsCategory('release'))) {
+  			$rightcat = true;
+  		} 
+			break;
+		case 'image.php':
+		case 'album.php':
+			$parent = $_zp_current_album->getParent();
+			if($parent) {
+				$parentname = $parent->name;
+			}
+			break;
 	}
 	if($rightcat || $parentname == 'theme') {
 		$authors = zp_getSpecificTags('item','author');
