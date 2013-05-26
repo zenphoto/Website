@@ -131,7 +131,6 @@
 		<ul class="downloadlinks">
 			<li><a href="http://www.zenphoto.org/pages/about-us" title="About us">About us</a></li>
 			<li><a href="http://www.zenphoto.org/pages/contact" title="Contact">Contact</a></li>
-		  <li><a href="http://www.zenphoto.org/page/archive" title="Archive">Archive</a></li>
 			<li><a href="http://www.zenphoto.org/pages/get-involved" title="Get involved!">Get involved!</a></li>
 	 		<li><a href="http://www.zenphoto.org/pages/paid-support" title="Paid support">Paid support</a></li>
 	 		<li><a href="http://www.zenphoto.org/pages/advertise" title="Advertise">Advertise</a></li>
@@ -143,6 +142,8 @@
 			<li><a href="http://www.zenphoto.org/pages/licenses" title="licenses">Licenses</a></li>
 			<li><a href="http://www.zenphoto.org/support/?terms-of-service=display">Forum rules & Terms of service</a></li>
 			<li><a href="http://www.zenphoto.org/pages/privacy" title="privacy">Privacy</a></li>
+			<li><a href="http://www.zenphoto.org/pages/contributor-profile-page-information" title="privacy">Contributor profile pages</a></li>
+
 		</ul>
 		<p>
 		Website powered by Zenphoto<br />

@@ -103,7 +103,9 @@ class releaseList {
 
 				$article = new ZenpageNews('zenphoto-'.$option, true);
 				$article->setTitle('Zenphoto '.$option);
-				$article->setContent($content);
+				if (!$article->getContent()) {
+					$article->setContent($content);
+				}
 				$article->setShow(1);
 				$article->setDateTime($date);
 				$article->setAuthor('releaseList');

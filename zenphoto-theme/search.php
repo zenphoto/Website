@@ -1,45 +1,6 @@
 <?php include('header.php'); ?>
 <?php printZDSearchToggleJS(); ?>
-
-<div id="sidebar">
-   	<?php printSearchForm(); ?>
-		<hr />
-   	<h2 class="latestadditions">Popular tags</h2>
-   	<?php
-		if(function_exists('printAllTagsFromZenpage')) {
-			?>
-			<p><?php printAllTagsFromZenpage('news','','taglist',false,true,0.5,2,5,50); ?></p>
-			<br style="clear:both" />
-			<?php
-		} else {
-			printAllTagsAs('cloud','taglist','abc',TRUE,TRUE,2,50,10,NULL,0.8);
-		}
-  ?>
-   <br clear="all" /><hr />
-	<?php zp_printSidebarBoxes(); ?>
- 	<hr />
- 	 <div id="ads">
-			<script type="text/javascript">
-
-			google_ad_client = "pub-7903690389990760";
-			google_ad_width = 250;
-			google_ad_height = 250;
-			google_ad_format = "250x250_as";
-			google_ad_type = "text";
-			google_ad_channel ="";
-			google_color_border = "CCCCCC";
-			google_color_bg = "FFFFFF";
-			google_color_link = "000000";
-			google_color_url = "666666";
-			google_color_text = "333333";
-
-		</script>
-			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-		</script>
-   </div>
-
-</div>
-
+<?php include('sidebar.php'); ?>
 <div id="content">
 
 		<h2>Search results</h2>
@@ -228,8 +189,5 @@
 
 			printPageListWithNav("« ".gettext("prev"),gettext("next")." »");
 			?>
-
-
-
 
 <?php include('footer.php'); ?>

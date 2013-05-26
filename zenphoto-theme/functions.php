@@ -144,6 +144,32 @@ function zp_printMoreByAuthorsLinks() {
 		}
  	}
  	
+  /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
+ * @param string $tag author tag to use
+ * @param string $mode 'albums' or 'news' or 'all' for both
+ * @param string $mode2 'extensions' (default), 'user-guide' or 'release'
+ * @return array
+ */
+function zp_getAuthorContributions($tag,$mode,$mode2='extensions') {	
+ 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+ 	$result = zp_getMoreByThisAuthor($tag,$mode);
+	$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
+	if($mode == 'news') {
+		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
+			$resultnew = array();
+			foreach($result as $item) {
+				$i = new ZenpageNews($item['name']);
+				if($i->inNewsCategory($mode2)) {
+					$resultnew[] = $item;
+				}
+				$result = $resultnew;
+				unset($resultnew);
+			}
+		}
+		return $result;
+	}
+}
+
  /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
  * @param string $tag author tag to use
  * @param string $mode 'albums' or 'news' or 'all' for both
@@ -153,7 +179,7 @@ function zp_printMoreByAuthorsLinks() {
 function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 	$thumb = false;
-	$result = zp_getMoreByThisAuthor($tag,$mode);
+	/* $result = zp_getMoreByThisAuthor($tag,$mode);
 	$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
 	if($mode == 'news') {
 		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
@@ -167,7 +193,8 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 			$result = $resultnew;
 			unset($resultnew);
 		}
-	}
+	} */
+	$result = zp_getAuthorContributions($tag,$mode,$mode2);
 	$resultcount = count($result);
 	if($resultcount != 0) {
 	   switch($mode) {
@@ -204,19 +231,11 @@ function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 					$obj = new Album(NULL,$item['name']);
 					$url = $obj->getAlbumLink();
 					$text = $obj->getDesc();
-					//$category = gettext('Theme');
 					break;
 				case 'news':
 					$obj = new ZenpageNews($item['name']);
 					$url = getNewsURL($obj->getTitlelink());
 					$text = $obj->getContent(); 
-					/*if($mode2 == 'extensions') {
-						$category = 'Extensions';
-					} elseif ($mode2 == 'user-guide') {
-						$category = 'User guide';
-					}	elseif ($mode2 == 'release') {
-						$category = 'Release';
-					} */
 					break;
 			}
 			?>
@@ -344,11 +363,36 @@ function zp_printAuthorList($mode='all',$content=false) {
 		$page = new ZenpagePage('all-contributors');
 		$subpages = $page->getPages();
 	}
+	// Workaround to get an alphabetically list by name
+	if($mode == 'all' || $mode == 'contributors') {
+		$sorted = array();
+		foreach($subpages as $subpage) {
+			$obj = new Zenpagepage($subpage);
+			$explode = explode(' ',$obj->getTitle());
+			if($explode) {
+				// if we have normal names with probably only a 2nd surname (e.g. Nils K. Windisch) use the name 
+				if(count($explode) <= 3) { 
+					$explode = array_reverse($explode);
+					$name = $explode[0];
+				} 
+			} else {
+				// otherwise we just use the alias no matter how it begins, e.g. "The Whole Life to Learn"
+				$name = $obj->getTitle();
+			}
+			$sorted[] = array('titlelink' => $obj->getTitlelink(), 'name' => $name);
+		}
+		$sorted = sortMultiArray($sorted,'name',false,true,false,false); // sort by name abc
+		$subpages = $sorted;
+	}
 	?>
 	<ul class="authors">
 		<?php
 		foreach($subpages as $subpage) {
-			$obj = new Zenpagepage($subpage);
+			if($mode == 'all' || $mode == 'contributors') {
+				$obj = new Zenpagepage($subpage['titlelink']);
+			} else {
+				$obj = new Zenpagepage($subpage);
+			}
 			if($mode == 'all' || ($mode == 'teammembers' && $obj->hasTag('zp_team-member')) || ($mode == 'formermembers' && $obj->hasTag('zp_team-member-former')) || ($mode == 'contributors' && $obj->hasTag('zp_contributor'))) {  
 				?>
 				<li>
@@ -366,7 +410,7 @@ function zp_printAuthorList($mode='all',$content=false) {
 						echo $obj->getTitle();  
 						if(strtolower($obj->getTitle()) != strtolower($obj->getTitlelink())) {
 							?>
-							<em>(<?php echo $obj->getTitlelink(); ?>)</em>
+							<small><em>(<?php echo $obj->getTitlelink(); ?>)</em></small>
 							<?php
 						}
 						?>
@@ -401,96 +445,100 @@ function zp_printAuthorList($mode='all',$content=false) {
 function zp_printItemAuthorCredits() {
 	global $_zp_current_zenpage_news, $_zp_current_album, $_zp_gallery_page,$_zp_themeroot;
 	$parent = '';
+	$parentname = '';
 	$rightcat = false;
-	if((is_GalleryNewsType() && is_NewsType("album"))) {
-		$parent = $_zp_current_zenpage_news->getParent();
-		$parentname = $parent->name;
-	} elseif ($_zp_gallery_page == 'image.php' || $_zp_gallery_page == 'album.php') {
-		$parent = $_zp_current_album->getParent();
-		$parentname = $parent->name;
-  }	else {
-  	if(!is_NewsCategory() && ($_zp_current_zenpage_news->inNewsCategory('user-guide') 
-  	|| $_zp_current_zenpage_news->inNewsCategory('extensions'))
-  	) {
-  		$rightcat = true;
-  	} 
-  }
-	if(($rightcat || $parentname == 'theme') && zp_loggedin()) { 
+	switch($_zp_gallery_page) {
+		case 'news.php':
+			if(is_GalleryNewsType() && is_NewsType("album")) {
+				$parent = $_zp_current_zenpage_news->getParent();
+				if($parent) {
+					$parentname = $parent->name;
+				}
+			} elseif(is_NewsArticle() && ($_zp_current_zenpage_news->inNewsCategory('user-guide') || $_zp_current_zenpage_news->inNewsCategory('extensions') || $_zp_current_zenpage_news->inNewsCategory('release'))) {
+  			$rightcat = true;
+  		} 
+			break;
+		case 'image.php':
+		case 'album.php':
+			$parent = $_zp_current_album->getParent();
+			if($parent) {
+				$parentname = $parent->name;
+			}
+			break;
+	}
+	if($rightcat || $parentname == 'theme') { 
 		$authors = zp_getSpecificTags('item','author');
 		$numauthors = count($authors);
+		$creditplural = 'Developers:';
+		$creditsingular = 'Developer:';
+		if($_zp_gallery_page == 'news.php' && is_NewsType('news')) {
+			if($_zp_current_zenpage_news->inNewsCategory('user-guide')) {
+				$creditplural = 'Authors:';
+				$creditsingular = 'Author:';
+			} else if($_zp_gallery_page == 'news.php' && $_zp_current_zenpage_news->inNewsCategory('release')) {
+				$creditplural = 'Contributors:';
+				$creditsingular = 'Contributor:';
+			}
+		}
 		if($numauthors != 0) {
 			if($numauthors > 1) {
-				$credit = 'Developers: ';
+				$credit = $creditplural;
 			} else {
-				$credit = 'Developer: ';
+				$credit = $creditsingular;
 			}
-			$page = new ZenpagePage('contributors');
+			$page = new ZenpagePage('all-contributors');
 			$subpages = $page->getPages();
 			?>
 			<div id="authorcredits" class="table_of_content_list">
 			<h4><?php echo $credit; ?> </h4>
 			<ul>
 		 	<?php
-		 	$count = '';
+		 	// Workaround to get an alphabetically list by name
+			$sorted = array();
+			$count = '';
+			$name = '';
 			foreach($authors as $author) {
 				$count++;
 				$author = str_replace('author_', '',$author);
-				?>
-				<li><?php 
-				//if($count > 1) echo ', '; 
 				if(in_array($author,$subpages)) {
 					$obj = new ZenpagePage($author);
-					?>
-					<a href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
-					<?php 
-					if(strtolower($obj->getTitlelink()) != strtolower($obj->getTitle())) {
-						echo $obj->getTitle();?> <em>(<?php echo $obj->getTitlelink(); ?>)</em>
-						<?php 
-					} else { 
-						echo $obj->getTitle(); 
-					} ?>
-					</a>
-
-					<?php
-				} else {
-					echo $author; 
+					$explode = explode(' ',$obj->getTitle());
+					if($explode) {
+						// if we have normal names with probably only a 2nd surname (e.g. Nils K. Windisch) use the name 
+						if(count($explode) <= 3) { 
+							$explode = array_reverse($explode);
+							$name = $explode[0];
+						} 
+					} else {
+						// otherwise we just use the alias no matter how it begins, e.g. "The Whole Life to Learn"
+						$name = $obj->getTitle();
+					}
+					$sorted[] = array('title' => $obj->getTitle(), 'titlelink' => $obj->getTitlelink(), 'name' => $name);
 				}
-				?>
-				</li>
-				<?php
 			}
-			?>
+			$sorted = sortMultiArray($sorted,'name',false,true,false,false); // sort by name abc
+		 	foreach($sorted as $p){ 
+		 		?>
+		 		<li><a href="<?php echo getPagelinkURL($p['titlelink']); ?>">
+		 		<?php
+					if(strtolower($p['titlelink']) != strtolower($p['title'])) {
+						echo $p['title'];?> <em>(<?php echo $p['titlelink']; ?>)</em>
+					<?php 
+					} else { 
+						echo $p['title']; 
+					} 
+				?>
+		 		</a>
+		 		</li>
+		 		<?php
+		 	}
+		 	?>
 			</ul>
 			</div>
 			<?php
+		 
 		}
 	}
-}
-
-/**
- * Get either a Gravatar URL or complete image tag for a specified email address. 
- *
- * @param string $email The email address
- * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
- * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
- * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
- * @param boole $img True to return a complete IMG tag False for just the URL
- * @param array $atts Optional, additional key/value attributes to include in the IMG tag
- * @return String containing either just a URL or a complete image tag
- * @source http://gravatar.com/site/implement/images/php/
- */
-function zp_getAuthorGravatarImage($email,$s=80,$d='mm',$r='r',$img=true,$atts=array()) {
-	$url = 'http://www.gravatar.com/avatar/';
-	$url .= md5(strtolower(trim($email)));
-	$url .= "?s=$s&d=$d&$r=$r";
-	if($img) {
-		$url = '<img class="authorprofile-imagelist" src="'.$url.'"';
-		foreach($atts as $key => $val) {
-			$url .= ' '.$key.'="'.$val.'"';
-		}
-		$url .= ' />';
-	}
-	return $url;
 }
 
 /**
@@ -513,15 +561,25 @@ function zp_getAuthorGravatarProfileData($email) {
 
 /**
  * Prints data from the Gravatar profile
- *
+ * @param string $userid The Gravatar regsitered e-mail address or a pre-generated md5 hash of it
  * @param string $field What to print 'thumbnail', 'aboutme', 'urls', 'all' (all in this order)
- * @param array $profile The Gravatar profile array as fetched by  zp_getAuthorGravatarProfileData()
  * @return gets the profile data as html elements
  * @source http://en.gravatar.com/site/implement/profiles/php/
  */
-function zp_getAuthorGravatarProfile($field,$profile) {
-	if(is_array($profile)) {
-		if(($field == 'thumbnail' || $field == 'all') && !empty($profile['entry'][0]['thumbnailUrl'])) {
+function zp_getAuthorGravatarProfile($userid, $field) {
+	$profile = false;
+	if(filter_var($userid, FILTER_VALIDATE_EMAIL)) {
+  	$hash = md5(strtolower(trim($userid)));
+  } else { // we assume this is a valid md5 hash already
+  	$hash = $userid;
+  }
+	$str = file_get_contents( 'http://www.gravatar.com/'.$hash.'.php' );
+	$data = unserialize($str);
+	if(is_array($data) && isset($data['entry'])) {
+    $profile = $data;
+  }
+	if($profile) {
+		if(($field == 'thumb' || $field == 'all') && !empty($profile['entry'][0]['thumbnailUrl'])) {
 			 return '<img class="authorprofile-image" src="'.$profile['entry'][0]['thumbnailUrl'].'?s=105" alt="" />';
 		}
 		if(($field == 'aboutme' || $field == 'all') && !empty($profile['entry'][0]['aboutMe'])) {
@@ -545,15 +603,20 @@ function zp_getAuthorGravatarProfile($field,$profile) {
 
 /**
  * Gets the Google/Google+ or Facebook profile image 
- * @param string $userid 	$type = 'google': The Google+ user id number as found in the url of the profile. 
+ * @param string $userid 	$type  	'gravatar': The md5 hash of the Gravarar registered e-mail address
+ *																'google': The Google+ user id number as found in the url of the profile. 
  *																					This MUST be passed as a string enclosed in quotes!
- * 												$type = 'facebook': The facebook profile/page name found in the url of the profile. 
+ * 																'facebook': The facebook profile/page name found in the url of the profile. 
  * @param num $type type 'google', 'facebook'
+ * @param string $field What to print 'thumb', 'aboutme', 'urls', 'all' ("all" in this order) $type="gravatar" ONLY!
  * @return html img
  */
-function zp_getAuthorSocialImage($userid='',$type='google') {
+function zp_getAuthorSocialImage($userid='',$type='google',$field='thumbnail') {
   if(!empty($userid)) {
   	switch($type) {
+  		case 'gravatar':
+  			return zp_getAuthorGravatarProfile($userid,$field);
+  			break;
   		case 'google':
 				$url = 'https://www.google.com/s2/photos/profile/'.$userid;
 				return "<img src=$headers[Location]>";
@@ -564,6 +627,78 @@ function zp_getAuthorSocialImage($userid='',$type='google') {
 				break;
 		}
 	}
+}
+
+/* Imports the authors from a .csv file (Format: realname|url|author_<screenname>|ranktags(tag/tag/...)|descriptions)
+ * @param string $csv The absolute path to the csv file to use
+ * @param bool $testmode true or false if really pages should be created
+ */
+ function zp_importAuthorsFromCSV($csv,$testmode=true) {
+ 	$cons = file($csv);
+	if($cons) {
+		//echo "<pre>";print_r($cons); echo "</pre>";
+		//break;
+		foreach($cons as $con) {
+			$c = explode('|',$con);
+			//echo "<pre>";print_r($c); echo "</pre>";
+			
+			// Create titlelink from author tag
+			$titlelink = trim(str_replace('author_', '',$c[2]));
+			
+			// Just to be sure the page does not exists already
+			$sql = 'SELECT `id` FROM '.prefix('pages').' WHERE `titlelink`='.db_quote($titlelink);
+			$rslt = query_single_row($sql,false);
+			if ($rslt) {
+				echo "<p style='color: red'>Page ".$titlelink." already exists</p>";
+				
+			} else {
+			//initialize the page object
+			if(!$testmode) $page = new ZenpagePage($titlelink, true);
+			
+			// Get title or use titlelink 
+			if(empty($c[0])) { 
+				$title = $titlelink;
+			} else {
+				$title = trim($c[0]);
+			}
+			
+			if(!$testmode) $page->setTitle($title);
+			$website = '';
+			if(!empty($c[1])) {
+				$website = '<p><a href="'.trim($c[1]).'"><strong>Website: </strong>'.trim($c[1]).'</a></p>';
+			}
+			
+			// Get the tags
+			if(!empty($c[3])) {
+				$tags = trim(str_replace('/', ',',$c[3]));
+				if(!$testmode) $page->setTags($tags);
+			}
+			
+			if(empty($c[4])) {
+				$content = $website;
+			} else {
+				$c[4] = trim(str_replace('"','',$c[4]));
+				$content = $c[4].$website;
+			}
+			if(!$testmode) {
+				$page->setContent($content);
+				$page->setShow(0);
+				$page->setDatetime(date('Y-m-d H:i:s'));
+				$page->setParentID(170); // id of "all-contributors" page 
+				$page->save();
+			}
+			echo "<p>Page ".$titlelink." created!</p>";
+		}
+			echo "<br>------------------";
+			/* 
+			// just a check to see if the array of the list match with the site
+			if(in_array(trim($c[2]),$authors)) {
+				echo '<li><strong>'.$c[2].'</strong></li>';
+			} else {
+				echo '<li>'.$c[2].'</li>';
+			} */
+		}
+	} 
 }
 
 /* Prints the plugin support list based on "pluginsupport_<pluginname(titlelink of article)>" tags.

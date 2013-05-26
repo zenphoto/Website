@@ -8,7 +8,7 @@
  * <em>theme-abandoned</em> respectively <em>extension-abandoned</em>
  *
  * @package admin
- * @subpackage Zenphoto
+ * @subpackage zenphoto
  */
 $plugin_is_filter = 20|ADMIN_PLUGIN;
 $plugin_description = gettext('Checks info/download links of 3rd party theme and extensions entries. For Zenphoto.org only.');

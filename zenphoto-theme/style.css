@@ -583,6 +583,8 @@ h4.entrytitle small {
 	padding: 0 4px 0 4px;
 }
 
+
+
 .entrymeta ul,
 .entrymeta ul li {
 	display: inline;
@@ -592,6 +594,7 @@ h4.entrytitle small {
 .entrymeta a img{
 	border:0;
 }
+
 .entrybody {
 	margin-top: 10px;
 	border: 0;
@@ -1106,7 +1109,7 @@ input {
 }
 
 .table_of_content_list { 
-padding:8px 15px 10px 15px !important;
+padding:8px 15px 8px 15px !important;
 background-color: #f8f8f8;
 width: 240px;
 margin: 15px 0px 18px 16px !important;
@@ -2054,7 +2057,7 @@ padding: 0;
 font-size: 13px;
 font-weight: bold;
 color: black;
-margin: 0;
+margin: 0 0 4px 0;
 }
 
 #authorcredits ul {
@@ -2066,7 +2069,7 @@ position:relative;
 }
 
 #authorcredits ul li {
-margin: 0 0px 2px 0;
+margin: 0 0px 4px 0;
 }
 
 .entrymeta ul.authorstatusrank {
@@ -2519,7 +2522,7 @@ float: left;
 float: none;
 height: 20px;
 	width: 300px;
-margin-bottom: 10px;
+margin: 15px 0 10px 0;
 }
 
 h3.relateditems {

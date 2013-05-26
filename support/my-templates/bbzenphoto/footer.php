@@ -32,7 +32,7 @@
 			<li class="link_googleplus"><a href="http://google.com/+zenphoto" title="Zenphoto on Google+">Google+</a></li>
 			<li class="link_github"><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto on GitHub">GitHub</a></li>
 			<li class="link_facebook"><a href="https://www.facebook.com/zenphotocms" title="Zenphoto on Facebook">Facebook</a></li>
-			<li class="link_youtube"><a href="http://www.youtube.com/user/acrylian" title="Zenphoto on Youtube">Youtube</a></li>
+			<li class="link_youtube"><a href="http://www.youtube.com/zenphotocms" title="Zenphoto on Youtube">Youtube</a></li>
 		 </ul>
 		 
   </div>
@@ -71,7 +71,6 @@
 	 		<li><a href="http://www.zenphoto.org/pages/paid-support" title="Paid support">Paid support</a></li>
 	 		<li><a href="http://www.zenphoto.org/pages/advertise" title="Paid support">Advertise</a></li>
 	 		<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></a></li>
-	 		<li><a href="http://www.zenphoto.org/page/archive" title="Archive">Archive</a></li>
 	 	</ul>
 	 	<br />
 	 	<h3>Legal stuff</h3>
@@ -79,6 +78,7 @@
 			<li><a href="http://www.zenphoto.org/pages/licenses" title="licenses">Licenses</a></li>
 			<li><a href="http://www.zenphoto.org/support/?terms-of-service=display">Forum rules & Terms of service</a></li>
 			<li><a href="http://www.zenphoto.org/pages/privacy" title="privacy">Privacy</a></li>
+			<li><a href="http://www.zenphoto.org/pages/contributor-profile-page-information" title="privacy">Contributor profile pages</a></li>
 		</ul>
 		
 	 </div>

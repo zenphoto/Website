@@ -1,13 +1,5 @@
 <?php include('header.php'); ?>
-<div id="sidebar">
-<?php printSearchForm();	?>
-	<hr />
-	<?php printAlbumDesc(true); ?>
-	<hr />
-<?php zp_printSidebarBoxes(); ?>
-
-
-</div>
+<?php include('sidebar.php'); ?>
 <div id="content">
 
 <h2><?php printAlbumTitle(); ?></h2>

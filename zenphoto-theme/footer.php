@@ -1,8 +1,7 @@
-<br clear: all />
 <!-- Close Page -->
 <!-- begin footer -->
-
 </div>
+
 <div id="footer"><a name="stay-tuned"></a>
 <div class="column-l">
 	<div class="infobox">
@@ -25,7 +24,7 @@
 			<li class="link_googleplus"><a href="https://plus.google.com/103649195484756812404" rel="publisher">Google+</a></li>
 			<li class="link_github"><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto on GitHub">GitHub</a></li>
 			<li class="link_facebook"><a href="https://www.facebook.com/zenphotocms" title="Zenphoto on Facebook">Facebook</a></li>
-			<li class="link_youtube"><a href="http://www.youtube.com/user/acrylian" title="Zenphoto on Youtube">Youtube</a></li>
+			<li class="link_youtube"><a href="http://www.youtube.com/zenphotocms" title="Zenphoto on Youtube">Youtube</a></li>
 		 </ul>
   </div>
 </div>
@@ -60,7 +59,6 @@
 		<ul class="downloadlinks">
 			<li><?php printPageLinkURL('About us', 'about-us','','',NULL); ?></li>
 			<li><?php printPageLinkURL('Contact', 'contact','','',NULL); ?></li>
-		  <li><?php printCustomPageURL('Archive','archive','','','',NULL); ?></li>
 			<li><?php printPageLinkURL('Get involved', 'get-involved','','',NULL); ?></li>
 	 		<li><?php printPageLinkURL('Paid support', 'paid-support','','',NULL); ?></li>
 	 		<li><?php printPageLinkURL('Advertise', 'advertise','','',NULL); ?></li>
@@ -72,9 +70,8 @@
 			<li><?php printPageLinkURL('Licenses', 'licenses','','',NULL); ?></li>
 			<li><a href="<?php echo WEBPATH; ?>/support/?terms-of-service=display">Forum rules & Terms of service</a></li>
 			<li><?php printPageLinkURL('Privacy', 'privacy','','',NULL); ?></li>
+			<li><?php printPageLinkURL('Contributor profile pages info', 'contributor-profile-page-information','','',NULL); ?></li>
 		</ul>
-
-
 	 </div>
 </div>
 <br style="clear:both" />
