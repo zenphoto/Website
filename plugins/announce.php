@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Use to send announcements to the Zenphoto announce group
  *
@@ -12,7 +13,7 @@
  * @author Stephen Billard (sbillard)
  * @subpackage zenphoto
  */
-$plugin_is_filter = 9|ADMIN_PLUGIN;
+$plugin_is_filter = 9 | ADMIN_PLUGIN;
 $plugin_description = gettext('Forward announcements to the zenphoto-announce Google group.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -28,11 +29,7 @@ class zp_announce {
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				function tweet_tandem() {
-					if ($('#tweet_me').attr('checked')) {
-						$('#announce_me').attr('checked','checked');
-					} else {
-						$('#announce_me').removeAttr('checked');
-					}
+					$('#announce_me').prop('checked', $('#tweet_me').prop('checked'));
 				}
 				$(window).load(function() {
 					tweet_tandem();
@@ -40,15 +37,16 @@ class zp_announce {
 						tweet_tandem();
 					});
 				});
-			// ]]> -->
+				// ]]> -->
 			</script>
 			<?php
+
 		}
 	}
 
-	static function checkbox($before, $object, $prefix=NULL) {
-		if (get_class($object)=='ZenpageNews' && $object->inNewsCategory('announcements')) {
-			$before .=  '<p class="checkbox">'."\n".'<label title="'.gettext("Send to the Google Zenphoto announce group.").'">'."\n".'<input type="checkbox" name="announce_me'.$prefix.'" id="announce_me'.$prefix.'" value="1" /> <img src="'.WEBPATH.'/'.ZENFOLDER.'/images/icon_mail.png" alt="" /> '.gettext('Announce')."\n</label>\n</p>\n";
+	static function checkbox($before, $object, $prefix = NULL) {
+		if (get_class($object) == 'ZenpageNews' && $object->inNewsCategory('announcements')) {
+			$before .= '<p class="checkbox">' . "\n" . '<label title="' . gettext("Send to the Google Zenphoto announce group.") . '">' . "\n" . '<input type="checkbox" name="announce_me' . $prefix . '" id="announce_me' . $prefix . '" value="1" /> <img src="' . WEBPATH . '/' . ZENFOLDER . '/images/icon_mail.png" alt="" /> ' . gettext('Announce') . "\n</label>\n</p>\n";
 		}
 		return $before;
 	}
@@ -59,9 +57,9 @@ class zp_announce {
 			$content = $object->getContent();
 			preg_match_all('|<a href="(.*?)".*>(.*)</a>|', $content, $matches);
 			if (!empty($matches[0])) {
-				foreach ($matches[0] as $key=>$match) {
+				foreach ($matches[0] as $key => $match) {
 					if (!empty($match)) {
-						$content = str_replace($match, $matches[2][$key].':'.$matches[1][$key], $content);
+						$content = str_replace($match, $matches[2][$key] . ':' . $matches[1][$key], $content);
 					}
 				}
 			}
@@ -75,7 +73,7 @@ class zp_announce {
 			$content = preg_replace('|<br[^>]*/>?|i', "\r\n", $content);
 			$content = trim(strip_tags($content), "\r\n");
 			$content = str_replace('  ', ' ', $content);
-			$result = zp_apply_filter('sendmail', '', array('zenphoto-announce'=>'zenphoto-announce@googlegroups.com'), strip_tags($object->getTitle()), $content, 'no-reply@zenphoto.org', 'The Zenphoto team', array(), NULL);
+			$result = zp_apply_filter('sendmail', '', array('zenphoto-announce' => 'zenphoto-announce@googlegroups.com'), strip_tags($object->getTitle()), $content, 'no-reply@zenphoto.org', 'The Zenphoto team', array(), NULL);
 		}
 		return $custom;
 	}
