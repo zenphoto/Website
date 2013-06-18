@@ -514,21 +514,26 @@ function zp_printItemAuthorCredits() {
 						$name = $obj->getTitle();
 					}
 					$sorted[] = array('title' => $obj->getTitle(), 'titlelink' => $obj->getTitlelink(), 'name' => $name);
+				} else {
+					$sorted[] = array('title' => $author, 'titlelink' => '', 'name' => $author);
 				}
 			}
 			$sorted = sortMultiArray($sorted,'name',false,true,false,false); // sort by name abc
 		 	foreach($sorted as $p){
 		 		?>
-		 		<li><a href="<?php echo getPagelinkURL($p['titlelink']); ?>">
+		 		<li>
 		 		<?php
-					if(strtolower($p['titlelink']) != strtolower($p['title'])) {
-						echo $p['title'];?> <em>(<?php echo $p['titlelink']; ?>)</em>
-					<?php
+					if(!empty($p['titlelink']) && strtolower($p['titlelink']) != strtolower($p['title'])) {
+						$link = $p['title'].' <em>('.$p['titlelink'].')</em>';
+					} else { 
+						$link = $p['title']; 
+					} 
+					if(empty($p['titlelink'])) {
+						echo $link;
 					} else {
-						echo $p['title'];
+						echo $link = '<a href="'.getPagelinkURL($p['titlelink']).'">'.$link.'</a>';
 					}
 				?>
-		 		</a>
 		 		</li>
 		 		<?php
 		 	}
