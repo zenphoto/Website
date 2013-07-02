@@ -90,7 +90,10 @@ p {
 #banner #header_logo {
         margin-left: 40px;
         margin-top: -10px;
+        text-align: left;
 }
+
+
 
 #banner #logo {
 	width: 394px; 
@@ -99,6 +102,7 @@ p {
 	margin:0;
 	padding: 0;
 	cursor:pointer;
+
 }
 
 
@@ -211,6 +215,7 @@ background-color: #e7ecbc;
 
 #sidebar {
 	float: right;
+	text-align: left;
   width: 275px;
 	margin-right: 20px;
 	margin-top: 38px;
@@ -253,6 +258,7 @@ background-color: #e7ecbc;
 	font-size: 13px;
 	border: 0;
 	line-height: 20px;
+	text-align: left;
 }
 
 #content .more-link {
@@ -2145,7 +2151,7 @@ margin-left: 20px;
 	background-color: #e7ecba;
 }
 
-#search input.pushbutton {
+#search input#search_submit {
 display: none;
 }
 
