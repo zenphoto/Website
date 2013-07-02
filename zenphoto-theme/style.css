@@ -2134,7 +2134,7 @@ margin-left: 20px;
 
 #search input#search_input {
 	width: 100%;
-	height: 20px;
+	height: 25px;
 	background: url(images/searchicon.png) no-repeat center left;
 	text-indent: 30px;
 }
@@ -2150,6 +2150,7 @@ margin-left: 20px;
 	border: 1px lightgray;
 	background-color: #e7ecba;
 }
+
 
 #search input#search_submit {
 display: none;
@@ -2189,6 +2190,31 @@ h3.searchresulttitle {
 ul.searchresults {
 list-style: none;
 margin-bottom: 15px;
+}
+
+#mailform {
+width: 100%;
+}
+
+#mailform p {
+display: block;
+height: auto;
+padding-bottom: 30px !important;
+}
+
+#mailform p.mailmessage {
+padding-bottom: 60px !important;
+}
+
+#mailform label {
+width: 30%;
+float: left;
+}
+
+#mailform input[type=text],
+#mailform textarea#message {
+width: 70%;
+float: left;
 }
 
 /* Pretty Buttons
