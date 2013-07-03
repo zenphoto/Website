@@ -488,6 +488,12 @@ function zp_printItemAuthorCredits() {
 			}
 			$page = new ZenpagePage('all-contributors');
 			$subpages = $page->getPages();
+			$subpages_new = array();
+			foreach($subpages as $subpage) {
+				$subpages_new[] = $subpage['titlelink'];
+			}
+			$subpages = $subpages_new;
+			unset($subpages_news);
 			?>
 			<div id="authorcredits" class="table_of_content_list">
 			<h4><?php echo $credit; ?> </h4>
