@@ -137,6 +137,7 @@ function zp_printMoreByAuthorsLinks() {
 					break;
 			}
 		}
+
  		if(empty($result)) {
 			return NULL;
 		} else {
@@ -153,6 +154,7 @@ function zp_printMoreByAuthorsLinks() {
 function zp_getAuthorContributions($tag,$mode,$mode2='extensions') {
  	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
  	$result = zp_getMoreByThisAuthor($tag,$mode);
+ 	//echo "<pre>"; print_r($result); echo "</pre>";
 	$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
 	if($mode == 'news') {
 		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
@@ -162,12 +164,11 @@ function zp_getAuthorContributions($tag,$mode,$mode2='extensions') {
 				if($i->inNewsCategory($mode2)) {
 					$resultnew[] = $item;
 				}
-				$result = $resultnew;
-				unset($resultnew);
 			}
 		}
-		return $result;
+		return $resultnew; 
 	}
+	return $result;
 }
 
  /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
@@ -179,21 +180,6 @@ function zp_getAuthorContributions($tag,$mode,$mode2='extensions') {
 function zp_printAuthorContributions($tag,$mode,$mode2='extensions') {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 	$thumb = false;
-	/* $result = zp_getMoreByThisAuthor($tag,$mode);
-	$result = sortMultiArray($result,'name',false,true,false,false); // sort by name abc
-	if($mode == 'news') {
-		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
-			$resultnew = array();
-			foreach($result as $item) {
-				$i = new ZenpageNews($item['name']);
-				if($i->inNewsCategory($mode2)) {
-					$resultnew[] = $item;
-				}
-			}
-			$result = $resultnew;
-			unset($resultnew);
-		}
-	} */
 	$result = zp_getAuthorContributions($tag,$mode,$mode2);
 	$resultcount = count($result);
 	if($resultcount != 0) {
