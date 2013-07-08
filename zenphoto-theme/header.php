@@ -70,7 +70,11 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
     			$("pre").addClass("syntax php");
     			$("code").addClass("syntax php");
         	// This function highlights (by default) pre and code tags which are annotated correctly.
-       	 	$.syntax();
+       	 	$.syntax({
+       	 		brush:'php',
+       	 		tabWidth: 2,
+       	 		layout: 'fixed'
+       	 	});
         <?php } ?>
 
 				<?php if($_zp_gallery_page != 'index.php') { ?>

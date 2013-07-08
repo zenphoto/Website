@@ -1,6 +1,6 @@
 .syntax-theme-base .syntax {
   font-family: Menlo, Monaco, Consolas, monospace;
-  line-height: 1.5em; }
+  line-height: 1.5em; font-size: 11px; background-color: darkgray; }
   .syntax-theme-base .syntax .function {
     color: #3333ff; }
   .syntax-theme-base .syntax .keyword, .syntax-theme-base .syntax .access {
@@ -8,7 +8,7 @@
   .syntax-theme-base .syntax .type {
     color: #3239d6; }
   .syntax-theme-base .syntax .comment {
-    color: #66aacc; }
+    color: #66aacc; padding: 1px; }
   .syntax-theme-base .syntax .constant {
     color: #1c00ce; }
   .syntax-theme-base .syntax .string, .syntax-theme-base .syntax .symbol {
@@ -42,3 +42,7 @@
     margin: 0 !important;
     background-color: #f0f0f0;
     border: 1px solid #aaaaaa; }
+    
+  .syntax-container.syntax-theme-base .source {
+  	background-color: #f2f2f2;
+  }
