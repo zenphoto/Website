@@ -135,7 +135,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 			<a href="<?php echo WEBPATH; ?>/news">News</a></li>
 	 		<li><a href="/demo">Demo</a></li>
 	 		<li<?php if($uralbumname == 'screenshots') echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/screenshots/">Screenshots</a></li>
-	 		<li<?php if(zp_inNewsCategory('user-guide')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/user-Guide">User Guide</a></li>
+	 		<li<?php if(zp_inNewsCategory('user-guide')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/user-guide">User Guide</a></li>
 	 		<li><a href="/support" title="Zenphoto forum">Forum</a></li>
 	 		<li<?php if($uralbumname == 'theme') echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/theme/">Themes</a></li>
 	 		<li<?php if(zp_inNewsCategory('extensions')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/extensions">Extensions</a></li>

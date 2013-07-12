@@ -59,7 +59,7 @@ setOption('thumb_crop_height', 40, false);
   
 	<?php
 		if (function_exists('printjCarouselThumbNav')) {
-			printjCarouselThumbNav(6,50,50,50,50,FALSE);
+			//printjCarouselThumbNav(6,50,50,50,50,FALSE);
  		}
 	?>
 	<?php zp_printItemAuthorCredits(); ?>	

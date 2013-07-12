@@ -84,7 +84,7 @@
 			<img src="<?php echo $_zp_themeroot; ?>/images/homeslides/slide5-themes.jpg" />
 			<h2>Create your own website design!</h2>
 			<ul class="downloadlinks">
-			<li>Highly customizable theme engine (XHTML, CSS, PHP)</li>
+			<li>Highly customizable theme engine (HTML5, CSS, PHP)</li>
 			<li>Four standard themes included, more themes available</li>
 			<li>Object model framework for advanced theming and flexibility</li>
 			<li>Multiple layouts/album themes</li>
@@ -157,17 +157,17 @@ if(function_exists('getLatestNews')) {
 	</div>
 
 	<p class="version_info">
-	<strong><?php echo $zp_version; ?></strong> (<?php echo $zp_dl_pubdate; ?>) | License: <a	href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v.2</a> | <a
+	<strong><?php echo $zp_version; ?></strong> (<?php echo $zp_dl_pubdate; ?>) | License: <a	href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v.2 or later</a> | <a
 href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installation, upgrading and requirements">Installation,	upgrading and requirements</a>
 	</p>
 </div> <!--download box div wrapper end -->
 
 	<div class="infobox-links-r">
+		<?php printSearchForm(); ?>
 		<ul class="downloadlinks">
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
 			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto <?php echo $current_version; ?> build on GitHub"><?php echo $current_version; ?> Support builds (GitHub)</a></li>
-    	<li><a href="https://github.com/zenphoto/zenphoto<?php echo $zp_dev_archive; ?>" title="Zenphoto development on Github"><?php echo $zp_dev_version; ?> Development builds (GitHub)</li>
-    	<li><a href="http://www.zenphoto.org/pages/older-versions-archive" title="Zenphoto older versions archive">Older versions archive</a></li>
+    	<li><a href="https://github.com/zenphoto/zenphoto<?php echo $zp_dev_archive; ?>" title="Zenphoto development on Github"><?php echo $zp_dev_version; ?> Development builds (GitHub)</a></li>
 		</ul>
 	</div>
 
