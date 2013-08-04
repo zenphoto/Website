@@ -128,7 +128,7 @@ p {
 
 #banner ul li {
 	display: inline;
-	padding-left: 20px;
+	padding-left: 15px;
 }
 
 #banner a:link, #banner a:active, #banner a:visited {
@@ -814,6 +814,7 @@ ul.morebyauthorlist li,
 	margin-top: 0; */
   background: url(images/newnavbullet2.png) no-repeat top left;
 }
+
 #sidebar ul.statuslist {
 	margin: 10px 0 5px 0;
 	
@@ -2118,6 +2119,12 @@ margin-left: 20px;
 	padding:0;
 	background: transparent;
 }
+
+
+.infobox-links-r #search {
+margin-bottom: 8px;
+}
+
 #googlegroups input[type=text],
 #search input#search_input {
 	width: 160px;
@@ -2129,7 +2136,7 @@ margin-left: 20px;
 #search input#search_input {
 	width: 100%;
 	height: 25px;
-	background: url(images/searchicon.png) no-repeat center left;
+	background: url(images/searchicon.png) no-repeat 0px -1px;
 	text-indent: 30px;
 }
 
