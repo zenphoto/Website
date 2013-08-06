@@ -352,7 +352,6 @@ margin: 0;
 
 #content pre {
   color: #00008B;
-	width: 540px;
 	margin-left: 0px;
 	background-color: #f2f2f2 !important;
 	padding: 0.5em;
@@ -632,13 +631,13 @@ margin-bottom: 10px;
 }
 
 #content .latestimagesbyalbum {
-width: 540px;
-height: auto;
 margin-bottom: 0px;
 }
 
 #content .latestimagesbyalbum a img {
+display: block;
 max-width: 100%;
+height: auto;
 }
 /* old for thumbs */
 /*
