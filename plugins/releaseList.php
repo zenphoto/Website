@@ -101,7 +101,7 @@ class releaseList {
 					$last->save();
 				}
 				$date = date('Y-m-d H:i:s');
-				$content = sprintf(getOption('releaseList_text'), $option);
+				$content = sprintf(get_language_string(Option('releaseList_text')), $option);
 
 				$article = new ZenpageNews('zenphoto-' . $option, true);
 				$article->setTitle('Zenphoto ' . $option);
