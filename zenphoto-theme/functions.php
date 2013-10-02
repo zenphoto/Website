@@ -137,12 +137,7 @@ function zp_printMoreByAuthorsLinks() {
 					break;
 			}
 		}
-
- 		if(empty($result)) {
-			return NULL;
-		} else {
-			return $result;
-		}
+		return $result;
  	}
 
   /* custom mod of printRelatedItems()	for printing items with the tag author_xxxx
