@@ -59,7 +59,7 @@ class releaseList {
 	var $latest = NULL;
 
 	function __construct() {
-		setOptionDefault('releaseList_text', '<p>Zenphoto %s is a bugfix release. Multiple minor errors are corrected.</p>' .
+		setOption('releaseList_text', '<p>Zenphoto %s is a bugfix release. Multiple minor errors are corrected.</p>' .
 						'<p>As usual we recommend all users upgrade for the latest updates and fixes. ' .
 						'For more detailed info about the fixes please review the <a href="https://github.com/zenphoto/zenphoto/issues">GitHub issues</a> list.</p>');
 		$resource = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="releaseList" ORDER BY `aux`');
