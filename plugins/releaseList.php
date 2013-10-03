@@ -59,7 +59,7 @@ class releaseList {
 	var $latest = NULL;
 
 	function __construct() {
-		setOption('releaseList_text', '<p>Zenphoto %s is a bugfix release. Multiple minor errors are corrected.</p>' .
+		setOptionDefault('releaseList_text', '<p>Zenphoto %s is a bugfix release. Multiple minor errors are corrected.</p>' .
 						'<p>As usual we recommend all users upgrade for the latest updates and fixes. ' .
 						'For more detailed info about the fixes please review the <a href="https://github.com/zenphoto/zenphoto/issues">GitHub issues</a> list.</p>');
 		$resource = query('SELECT * FROM ' . prefix('plugin_storage') . ' WHERE `type`="releaseList" ORDER BY `aux`');
@@ -85,6 +85,25 @@ class releaseList {
 	}
 
 	function getOptionsSupported() {
+		setOption('releaseList_text', '<p>Zenphoto %s is a bugfix release. Multiple minor errors are corrected.</p>' .
+						'<p>As usual we recommend all users upgrade for the latest updates and fixes. ' .
+						'For more detailed info about the fixes please review the <a href="https://github.com/zenphoto/zenphoto/issues">GitHub issues</a> list.</p>');
+
+		$options = array(gettext('Add release') => array('key'		 => 'releaseList_current', 'type'	 => OPTION_TYPE_TEXTBOX,
+										'order'	 => 1,
+										'desc'	 => gettext('Enter the release number of the download set to be added.')),
+						gettext('News text')	 => array('key'		 => 'releaseList_text', 'type'	 => OPTION_TYPE_TEXTAREA,
+										'order'	 => 1,
+										'desc'	 => gettext('Enter the text to be used for support release articles. Feature release articles are not created by the plugin.'))
+		);
+		return $options;
+	}
+
+	function handleOption($option, $currentValue) {
+
+	}
+
+	function handleOptionSave($theme, $album) {
 		$option = getOption('releaseList_current');
 		if ($option && $option != $this->latest) {
 			query('INSERT INTO ' . prefix('plugin_storage') . ' (`type`, `aux`,`data`) VALUES ("releaseList",' . db_quote($option) . ',' . db_quote('<a href="//github.com/zenphoto/zenphoto/archive/zenphoto-%1$s.%2$s">%3$s</a>') . ')');
@@ -133,18 +152,6 @@ class releaseList {
 				Gallery::clearCache();
 			}
 		}
-		$options = array(gettext('Add release') => array('key'		 => 'releaseList_current', 'type'	 => OPTION_TYPE_TEXTBOX,
-										'order'	 => 1,
-										'desc'	 => gettext('Enter the release number of the download set to be added.')),
-						gettext('News text')	 => array('key'		 => 'releaseList_text', 'type'	 => OPTION_TYPE_TEXTAREA,
-										'order'	 => 1,
-										'desc'	 => gettext('Enter the text to be used for support release articles. Feature release articles are not created by the plugin.'))
-		);
-		return $options;
-	}
-
-	function handleOption($option, $currentValue) {
-
 	}
 
 	function listDownloads() {
