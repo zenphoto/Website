@@ -1474,7 +1474,7 @@ function zp_printExtensionDownloadButton() {
 		}
 		if($_zp_current_zenpage_news->hasTag('extension-abandoned')) {
 			echo '<p><strong>Sorry, this extension is no longer provided by its developer.</strong></p>';
-		} else {
+		} else if(!zp_inNewsCategory("extension-in-development")) {
 			echo '<p class="buttons"><a href="'.html_encode($exturl).'"><img src="'.$linkicon_url.'" alt="" /> '.$linktext.'</a></p>';
 		}
 		if($_zp_current_zenpage_news->inNewsCategory("officially-supported")) {  ?>
