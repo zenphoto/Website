@@ -154,10 +154,12 @@ function zp_getAuthorContributions($tag,$mode,$mode2='extensions') {
 	if($mode == 'news') {
 		if($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
 			$resultnew = array();
-			foreach($result as $item) {
-				$i = new ZenpageNews($item['name']);
-				if($i->inNewsCategory($mode2)) {
-					$resultnew[] = $item;
+			if(!empty($result)) {
+				foreach($result as $item) {
+					$i = new ZenpageNews($item['name']);
+					if($i->inNewsCategory($mode2)) {
+						$resultnew[] = $item;
+					}
 				}
 			}
 		}

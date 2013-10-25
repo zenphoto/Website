@@ -39,7 +39,7 @@
 			default:
 			 	?>
 			 	<h2 class="entrytitle">
-    			<?php printPageTitle(); echo $subpagecount; ?>
+    			<?php printPageTitle(); ?>
     		</h2>
     		<?php
 				break;
