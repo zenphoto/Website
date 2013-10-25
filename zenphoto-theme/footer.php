@@ -20,7 +20,7 @@
 		<br />
 		<h3>Social networks</h3>
 		<ul class="sociallinks">
-		 	<li class="link_twitter"><a href="http://twitter.com/#!/zenphotocms" title="Zenphoto on Twitter">Twitter</a></li>
+		 	<li class="link_twitter"><a href="http://twitter.com/zenphotocms" title="Zenphoto on Twitter">Twitter</a></li>
 			<li class="link_googleplus"><a href="https://plus.google.com/103649195484756812404" rel="publisher">Google+</a></li>
 			<li class="link_github"><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto on GitHub">GitHub</a></li>
 			<li class="link_facebook"><a href="https://www.facebook.com/zenphotocms" title="Zenphoto on Facebook">Facebook</a></li>
