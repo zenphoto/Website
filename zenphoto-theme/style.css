@@ -1107,7 +1107,7 @@ input {
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
 }
-
+ 
 .table_of_content_list { 
 padding:8px 15px 8px 15px !important;
 background-color: #f8f8f8;
@@ -1122,6 +1122,7 @@ border: 1px dashed lightgray;
 
 .table_of_content_list li {
 	margin: 8px 0 0px 15px;
+
 }
 
 .table_of_content_list ol {
@@ -1143,6 +1144,7 @@ font-weight: normal;
 padding: 2px;
 background-color: #f8f8f8;
 }
+
 
 .infobox h3.entrytitle {
 	margin: 0;
