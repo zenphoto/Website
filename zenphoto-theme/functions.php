@@ -218,7 +218,7 @@ function zp_printAuthorContributions($tag, $mode, $mode2 = 'extensions') {
 				switch ($item['type']) {
 					case 'albums':
 						$obj = newAlbum($item['name']);
-						$url = $obj->getAlbumLink();
+						$url = $obj->getLink();
 						$text = $obj->getDesc();
 						break;
 					case 'news':
@@ -870,12 +870,12 @@ function zp_printNewsCategoryFoldout() {
 					$top = newAlbum($top['folder']);
 					$image = $top->getImage(0);
 					if (is_object($image)) {
-						$link = $image->getImageLink();
+						$link = $image->getLink();
 					} else {
-						$link = $top->getAlbumLink();
+						$link = $top->getLink();
 					}
 				} else {
-					$link = $top->getImageLink();
+					$link = $top->getLink();
 				}
 				$extra = '';
 				switch ($option) {
@@ -1810,10 +1810,10 @@ function zp_printNewsCategoryFoldout() {
 								$category = '';
 								switch ($type) {
 									case 'albums':
-										$url = $obj->getAlbumLink();
+										$url = $obj->getLink();
 										break;
 									case 'images':
-										$url = $obj->getImageLink();
+										$url = $obj->getLink();
 										break;
 									case 'news':
 										$url = getNewsURL($obj->getTitlelink());
@@ -1927,7 +1927,7 @@ function zp_printNewsCategoryFoldout() {
 							<h5><a name="<?php echo $titlelink; ?>"><a href="javascript:toggle('article_<?php echo $counter; ?>');"><?php echo $article->getTitle(); ?></a></h5>
 							<div id="article_<?php echo $counter; ?>" style="display:none;" class="body">
 								<?php echo $article->getContent(); ?>
-								<p><a href="<?php echo $article->getNewsLink(); ?>">Direct link</a></p>
+								<p><a href="<?php echo $article->getLink(); ?>">Direct link</a></p>
 							</div>
 
 							<?php ?>

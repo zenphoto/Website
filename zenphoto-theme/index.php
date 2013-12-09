@@ -185,7 +185,7 @@
 					$firstimage = $firstimage[0];
 					$image = newImage($tempalbum, $firstimage);
 					$thumb = $image->getCustomImage(NULL, 238, 128, 238, 128, NULL, NULL, TRUE);
-					$imagelink = $image->getImageLink();
+					$imagelink = $image->getLink();
 				}
 				$albtitle = $tempalbum->getTitle();
 				$themes = newAlbum('theme');
@@ -300,7 +300,7 @@
 				$showcase = newAlbum('showcase');
 				$number = $showcase->getNumImages();
 				$imgtitle = $image->getTitle();
-				$imglink = $image->getImageLink();
+				$imglink = $image->getLink();
 				$thumb = $image->getCustomImage(NULL, 238, 128, 238, 128, NULL, NULL, TRUE);
 			}
 			?>
