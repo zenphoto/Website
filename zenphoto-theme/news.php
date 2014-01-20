@@ -35,12 +35,12 @@
 				?>
 			</h3>
 			<div class="entrymeta">
-	<?php printNewsCategories(", ", gettext("Categories: "), "wp-category"); ?>
+				<?php printNewsCategories(", ", gettext("Categories: "), "wp-category"); ?>
 
-	   	</div>
+			</div>
 
 			<ol id="toc" class="table_of_content_list"></ol>
-				<?php zp_printItemAuthorCredits(); ?>
+			<?php zp_printItemAuthorCredits(); ?>
 			<div class="entrybody">
 				<?php
 				printCodeblock(1);
@@ -57,7 +57,7 @@
 
 				<?php if (zp_inNewsCategory("user-guide")) { ?>
 					<p class="articlebox license"><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>This text by <a xmlns:cc="http://creativecommons.org/ns#" href="www.zenphoto.org" property="cc:attributionName" rel="cc:attributionURL">www.zenphoto.org</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
-	<?php } ?>
+				<?php } ?>
 				<p class="articlebox"><em>For questions and comments please use the <a href="http://www.zenphoto.org/support" title="Zenphoto forums" >forum</a> or discuss on the <a href="#stay-tuned">social networks</a>.</em></p>
 
 
@@ -106,30 +106,9 @@
 					<div class="entry">
 						<?php
 					}
-					// if a theme/screenshots combi news entry link to first image of album
+					// if a theme/screenshots news entry link to first image of album
 					$title = getNewsTitle();
-					if (is_GalleryNewsType()) {
-						if ($_zp_current_zenpage_news->getParent()) {
-							$parentalbum = html_encode($_zp_current_zenpage_news->getParent()->getTitle()) . '» ';
-							$parentalbumname = $_zp_current_zenpage_news->getParent()->name;
-						} else {
-							$parentalbum = '';
-							$parentalbumname = '';
-						}
-						if ($parentalbumname == 'theme' || $parentalbumname == 'screenhots') {
-							if ($parentalbumname == 'theme') {
-								$title = 'New theme: ' . $_zp_current_zenpage_news->getTitle();
-							}
-							$images = $_zp_current_zenpage_news->getImages(0);
-							$firstimage = $images[0];
-							$firstimageobj = newImage($_zp_current_zenpage_news, $firstimage);
-							$newslink = $firstimageobj->getLink();
-						} else {
-							$newslink = getNewsAlbumURL();
-						}
-					} else {
-						$newslink = getNewsURL(getNewsTitleLink());
-					}
+					$newslink = $_zp_current_zenpage_news->getLink();
 					?>
 					<h3 class="entrytitle"><a href="<?php echo html_encode($newslink); ?>" title="<?php echo html_encode(getBareNewsTitle()); ?>"><?php echo $title; ?></a> <small class="articledate"><?php
 							printNewsDate();
@@ -140,63 +119,37 @@
 							?></small>
 						<?php
 						// adding support status icon to extensions entries
-						if (is_GalleryNewsType()) {
-							if ($parentalbumname == 'theme') {
-								zp_printThemeStatusIcon();
-							}
-						} else {
-							if ($_zp_current_zenpage_news->inNewsCategory('extensions')) {
-								zp_printExtensionStatusIcon();
-							}
+
+						if ($_zp_current_zenpage_news->inNewsCategory('extensions')) {
+							zp_printExtensionStatusIcon();
 						}
 						?>
 					</h3>
 
 					<div class="entrymeta">
 						<?php
-						if (is_GalleryNewsType()) {
-							if (is_NewsType("album")) {
-								echo gettext("Album:") . "<a href='" . html_encode($newslink) . "' title='" . html_encode(getBareNewsAlbumTitle()) . "'> " . $parentalbum . html_encode(getNewsAlbumTitle()) . "</a>";
-							}
-						} else {
-							printNewsCategories(", ", gettext("Categories: "), "wp-category");
-						}
+						printNewsCategories(", ", gettext("Categories: "), "wp-category");
 						?>
 					</div>
 					<?php
-					if (is_GalleryNewsType() || (!$_zp_current_zenpage_news->inNewsCategory('extensions') && !$_zp_current_zenpage_news->inNewsCategory('release') && !$_zp_current_zenpage_news->inNewsCategory('user-guide'))) {
+					if (!$_zp_current_zenpage_news->inNewsCategory('extensions') && !$_zp_current_zenpage_news->inNewsCategory('release') && !$_zp_current_zenpage_news->inNewsCategory('user-guide')) {
 						zp_printItemAuthorCredits();
 					}
 					?>
 					<div class="entrybody">
 
 						<?php
-						if (is_GalleryNewsType()) {
-							if (is_NewsType("album") && $parentalbumname == 'theme') {
-								echo $_zp_current_zenpage_news->getDesc();
-							}
-						}
 						// only print content on main news loop
 						if (is_null($_zp_current_category)) {
 							// news section stuff is not shortened
-							if (!is_GalleryNewsType() && $_zp_current_zenpage_news->inNewsCategory("news")) {
+							if ($_zp_current_zenpage_news->inNewsCategory("news")) {
 								printNewsContent(); // disabling shortening is not possible so we set it high!
 								printCodeblock(2);
-								//} else if(!is_GalleryNewsType() && !$_zp_current_zenpage_news->inNewsCategory("news")) {
-								//echo getNewsContent(120); // this is basically for extension so you see what they are about but know
-								//printCodeblock(2);
-							} else if (is_GalleryNewsType()) {
+							} else {
 								printNewsContent();
 							}
 						}
 						?>
-						<?php if (!is_GalleryNewsType() && $_zp_current_zenpage_news->inNewsCategory("news")) { ?>
-							<!-- <br /><br /> -->
-
-		<?php } elseif (is_GalleryNewsType()) { ?>
-
-				<?php } ?>
-
 					</div>  <!--- class entrybody --->
 				</div> <!--- class entry --->
 				<?php
@@ -205,4 +158,4 @@
 		}
 		?>
 
-<?php include('footer.php'); ?>
+		<?php include('footer.php'); ?>

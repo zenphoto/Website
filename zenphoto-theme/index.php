@@ -205,16 +205,13 @@
 			<h3>Latest news</h3>
 			<ul class="downloadlinks">
 				<?php
-				if (ZENPAGE_COMBINEWS) {
-					$latestnews = getLatestNews(5);
+				if (empty($category)) {
+					$latest = $_zp_zenpage->getArticles(5, NULL, true, NULL, 'DESC', true, NULL);
 				} else {
-					if (empty($category)) {
-						$latest = $_zp_zenpage->getArticles(5, NULL, true, NULL, 'DESC', true, NULL);
-					} else {
-						$catobj = new ZenpageCategory($category);
-						$latest = $catobj->getArticles(5, NULL, true, NULL, 'DESC', true);
-					}
+					$catobj = new ZenpageCategory($category);
+					$latest = $catobj->getArticles(5, NULL, true, NULL, 'DESC', true);
 				}
+
 				if (empty($latestnews)) {
 					echo 'No latest news';
 				} else {
@@ -227,7 +224,7 @@
 							$category = ' (news)';
 						if ($newsobj->inNewsCategory('user-guide'))
 							$category = ' (user guide)';
-						echo '<li><a href="' . getNewsURL($newsobj->getTitlelink()) . '" title="' . html_encode($newsobj->getTitle()) . '">' . $newsobj->getTitle() . '</a> ' . $category . '</li>';
+						echo '<li><a href="' . $newsobj->getLink() . '" title="' . html_encode($newsobj->getTitle()) . '">' . $newsobj->getTitle() . '</a> ' . $category . '</li>';
 					}
 				}
 				?>

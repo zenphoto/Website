@@ -223,7 +223,7 @@ function zp_printAuthorContributions($tag, $mode, $mode2 = 'extensions') {
 						break;
 					case 'news':
 						$obj = new ZenpageNews($item['name']);
-						$url = getNewsURL($obj->getTitlelink());
+						$url = $obj->getLink();
 						$text = $obj->getContent();
 						break;
 				}
@@ -239,14 +239,14 @@ function zp_printAuthorContributions($tag, $mode, $mode2 = 'extensions') {
 						}
 						if ($thumburl) {
 							?>
-							<a href="<?php echo html_encode(pathurlencode($url)); ?>" title="<?php echo html_encode($obj->getTitle()); ?>" class="contributions_thumb">
-								<img src="<?php echo html_encode(pathurlencode($thumburl)); ?>" alt="<?php echo html_encode($obj->getTitle()); ?>" />
+							<a href="<?php echo html_encode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>" class="contributions_thumb">
+								<img src="<?php echo html_encode($thumburl); ?>" alt="<?php echo html_encode($obj->getTitle()); ?>" />
 							</a>
 							<?php
 						}
 					}
 					?>
-					<h4><a href="<?php echo html_encode(pathurlencode($url)); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
+					<h4><a href="<?php echo html_encode($url) ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
 						<?php
 						switch ($item['type']) {
 							case 'albums':
@@ -396,7 +396,7 @@ function zp_printAuthorList($mode = 'all', $content = false) {
 					  }
 					  } */
 					?>
-					<h4 class="entrytitle"><a href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
+					<h4 class="entrytitle"><a href="<?php echo $obj->getLink(); ?>">
 							<?php
 							echo $obj->getTitle();
 							if (strtolower($obj->getTitle()) != strtolower($obj->getTitlelink())) {
@@ -414,7 +414,7 @@ function zp_printAuthorList($mode = 'all', $content = false) {
 						<div class="entrybody">
 							<?php echo $obj->getContent(); ?>
 							<p class="buttons">
-								<a  href="<?php echo getPagelinkURL($obj->getTitlelink()); ?>">
+								<a  href="<?php echo $obj->getLink(); ?>">
 									<strong>Full profile</strong>
 								</a>
 							</p>
@@ -441,12 +441,7 @@ function zp_printItemAuthorCredits() {
 	$rightcat = false;
 	switch ($_zp_gallery_page) {
 		case 'news.php':
-			if (is_GalleryNewsType() && is_NewsType("album")) {
-				$parent = $_zp_current_zenpage_news->getParent();
-				if ($parent) {
-					$parentname = $parent->name;
-				}
-			} elseif (is_NewsArticle() && ($_zp_current_zenpage_news->inNewsCategory('user-guide') || $_zp_current_zenpage_news->inNewsCategory('extensions') || $_zp_current_zenpage_news->inNewsCategory('release'))) {
+			if (is_NewsArticle() && ($_zp_current_zenpage_news->inNewsCategory('user-guide') || $_zp_current_zenpage_news->inNewsCategory('extensions') || $_zp_current_zenpage_news->inNewsCategory('release'))) {
 				$rightcat = true;
 			}
 			break;
@@ -766,7 +761,7 @@ function zp_printNewsCategoryFoldout() {
 				$active = ' class="active"';
 			}
 			$count = ' <small>(' . count($cat_news->getArticles(0)) . ')</small>';
-			echo '<li' . $active . '><a href="' . html_encode(getNewsCategoryURL($cat_news->getTitlelink())) . '" title="News">' . html_encode($cat_news->getTitle()) . $count . '</a>';
+			echo '<li' . $active . '><a href="' . html_encode($cat_news->getLink()) . '" title="News">' . html_encode($cat_news->getTitle()) . $count . '</a>';
 			$subcats = $cat_news->getSubCategories();
 			if ($subcats) {
 				echo '<ul>';
@@ -779,7 +774,7 @@ function zp_printNewsCategoryFoldout() {
 							$active2 = ' class="active"';
 						}
 						$count = ' <small>(' . $articleCount . ')</small>';
-						echo '<li' . $active2 . '><a href="' . getNewsCategoryURL($subobj->getTitlelink()) . '" title="' . html_encode($subobj->getTitle()) . '">' . html_encode($subobj->getTitle()) . $count . '</a></li>';
+						echo '<li' . $active2 . '><a href="' . $subobj->getLink() . '" title="' . html_encode($subobj->getTitle()) . '">' . html_encode($subobj->getTitle()) . $count . '</a></li>';
 					}
 				}
 				echo '</ul>';
@@ -821,7 +816,7 @@ function zp_printNewsCategoryFoldout() {
 							$active = ' class="active"';
 						}
 						$count = ' <small>(' . $articleCount . ')</small>';
-						echo '<li' . $active . '><a href="' . html_encode(getNewsCategoryURL($subcat)) . '" title="' . html_encode($subcatobj->getTitle()) . '">' . html_encode($subcatobj->getTitle()) . $count . '</a></li>';
+						echo '<li' . $active . '><a href="' . html_encode($subcat->getLink()) . '" title="' . html_encode($subcatobj->getTitle()) . '">' . html_encode($subcatobj->getTitle()) . $count . '</a></li>';
 					}
 				}
 				echo '</ul>';
@@ -833,23 +828,20 @@ function zp_printNewsCategoryFoldout() {
 		 *
 		 */
 		function zp_printLatestNews($number = 2, $option = 'none', $category = '') {
-			if (ZENPAGE_COMBINEWS) {
-				$latest = getLatestNews($number, $option, $category);
+			if (empty($category)) {
+				$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL);
 			} else {
-				if (empty($category)) {
-					$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL, $sortdirection, $sticky, NULL);
-				} else {
-					$catobj = new ZenpageCategory($category);
-					$latest = $catobj->getArticles($number, NULL, true, NULL, $sortdirection, $sticky);
-				}
+				$catobj = new ZenpageCategory($category);
+				$latest = $catobj->getArticles($number, NULL, true, NULL);
 			}
+
 			if (is_array($latest)) {
 				echo "<ul>";
 				foreach ($latest as $news) {
 					$article = new ZenpageNews($news['titlelink']);
 					?>
 					<li>
-						<a href="<?php echo html_encode(getNewsURL($news['titlelink'])); ?>">
+						<a href="<?php echo html_encode($article->getLink()); ?>">
 							<?php echo html_encode($article->getTitle()); ?>
 						</a>
 						<small> (<?php echo zpFormattedDate(getOption('date_format'), strtotime($article->getDatetime())); ?>)</small>
@@ -1056,7 +1048,7 @@ function zp_printNewsCategoryFoldout() {
 		}
 
 		/**
-		 * Prints the theme status icon for the theme overview section (album.php) and within the news loop in combinews mode (news.php)
+		 * Prints the theme status icon for the theme overview section (album.php)
 		 * @param obj $obj Object of an album optionally
 		 */
 		function zp_printThemeStatusIcon($obj = NULL) {
@@ -1418,17 +1410,17 @@ function zp_printNewsCategoryFoldout() {
 				</div>
 				<div id="ads">
 					<script type="text/javascript">
-				google_ad_client = "pub-7903690389990760";
-				google_ad_width = 250;
-				google_ad_height = 250;
-				google_ad_format = "250x250_as";
-				google_ad_type = "text";
-				google_ad_channel = "";
-				google_color_border = "CCCCCC";
-				google_color_bg = "FFFFFF";
-				google_color_link = "000000";
-				google_color_url = "666666";
-				google_color_text = "333333";
+					google_ad_client = "pub-7903690389990760";
+					google_ad_width = 250;
+					google_ad_height = 250;
+					google_ad_format = "250x250_as";
+					google_ad_type = "text";
+					google_ad_channel = "";
+					google_color_border = "CCCCCC";
+					google_color_bg = "FFFFFF";
+					google_color_link = "000000";
+					google_color_url = "666666";
+					google_color_text = "333333";
 					</script>
 					<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</script>
@@ -1826,7 +1818,7 @@ function zp_printNewsCategoryFoldout() {
 										}
 										break;
 									case 'pages':
-										$url = getPageLinkURL($obj->getTitlelink());
+										$url = $obj->getLink();
 										break;
 								}
 								?>
