@@ -58,12 +58,12 @@
 	}
 	?>
 	<div id="albums"><?php
-	if ($_zp_current_album->name == "screenshots") {
-		$albumcss = "album";
-	} else {
-		$albumcss = "album";
-	}
-	?>
+		if ($_zp_current_album->name == "screenshots") {
+			$albumcss = "album";
+		} else {
+			$albumcss = "album";
+		}
+		?>
 		<?php
 		$count = '';
 		while (next_album(false, $sortorder)):
@@ -76,53 +76,53 @@
 			}
 			?>
 			<div class="album<?php echo $class; ?>">
-			<?php
-			if ($_zp_current_album->getNumImages() != 0) {
-				$first = $_zp_current_album->getImage(0);
-				$albumurl = $first->getLink();
-			} else {
-				$albumurl = getAlbumLinkURL();
-			}
-			?>
+				<?php
+				if ($_zp_current_album->getNumImages() != 0) {
+					$first = $_zp_current_album->getImage(0);
+					$albumurl = $first->getLink();
+				} else {
+					$albumurl = getAlbumLinkURL();
+				}
+				?>
 				<div class="thumb">
 					<a href="<?php echo $albumurl; ?>" title="View album: <?php echo getAlbumTitle(); ?>">
-	<?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, TRUE, false); ?>
+						<?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, TRUE, false); ?>
 					</a>
 				</div>
 
 				<div class="albumdesc">
 					<h3 class="entrytitle">
 						<a href="<?php echo $albumurl; ?>"	title="View album: <?php echo getAlbumTitle(); ?>"><?php echo shortenContent(getAlbumTitle(), 20, '(...)'); ?></a>
-	<?php
-	if (getNumImages() != 0) {
-		echo "<small>(" . getNumImages() . ")</small>";
-	}
-	?>
+						<?php
+						if (getNumImages() != 0) {
+							echo "<small>(" . getNumImages() . ")</small>";
+						}
+						?>
 					</h3><?php zp_printThemeStatusIcon(); ?>
 
-	<?php
-	if ($zp_getParentAlbumName === "theme") {
-		echo "<br />Rating: " . getRating($_zp_current_album);
-	}
-	?>
+					<?php
+					if ($zp_getParentAlbumName === "theme") {
+						echo "<br />Rating: " . getRating($_zp_current_album);
+					}
+					?>
 				</div>
 
 			</div>
-<?php endwhile; ?>
+		<?php endwhile; ?>
 	</div>
 
 	<div id="images">
-<?php
-$count = '';
-while (next_image(false)):
-	$count++;
-	if ($count == 2) {
-		$class = ' rightthumb';
+		<?php
 		$count = '';
-	} else {
-		$class = ' leftthumb';
-	}
-	?>
+		while (next_image(false)):
+			$count++;
+			if ($count == 2) {
+				$class = ' rightthumb';
+				$count = '';
+			} else {
+				$class = ' leftthumb';
+			}
+			?>
 			<div class="album<?php echo $class; ?>">
 				<div class="thumb">
 					<a	href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php printCustomSizedImage(getBareImageTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, true, false); ?></a>
@@ -131,24 +131,24 @@ while (next_image(false)):
 					<h3 class="entrytitle">
 						<a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php echo shortenContent(getImageTitle(), 20, '(...)'); ?>
 						</a>
-	<?php zp_printShowcaseTypeIcon(); ?></h3>
+						<?php zp_printShowcaseTypeIcon(); ?></h3>
 					<br />
-						<?php
-						if ($_zp_current_album->name === "showcase") {
-							echo "Rating: " . getRating($_zp_current_image);
-							//printImageRating();
-						}
-						?>
+					<?php
+					if ($_zp_current_album->name === "showcase") {
+						echo "Rating: " . getRating($_zp_current_image);
+						//printImageRating();
+					}
+					?>
 				</div>
 			</div>
-				<?php endwhile; ?>
+		<?php endwhile; ?>
 	</div>
 	<br clear="left" />
-		<?php
-		if (getTotalPages(false) != 1) {
-			printPageListWithNav(gettext('« prev'), gettext('next »'));
-		}
-		?>
+	<?php
+	if (getTotalPages(false) != 1) {
+		printPageListWithNav(gettext('« prev'), gettext('next »'));
+	}
+	?>
 	<br />
 	<?php
 	if (function_exists('printRating') && ($zp_getParentAlbumName == "theme" || $_zp_current_album->name == "showcase")) {

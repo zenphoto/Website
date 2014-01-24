@@ -234,7 +234,7 @@ function zp_printAuthorContributions($tag, $mode, $mode2 = 'extensions') {
 						$thumburl = false;
 						switch ($item['type']) {
 							case 'albums':
-								$thumburl = $obj->getAlbumThumb();
+								$thumburl = $obj->getThumb();
 								break;
 						}
 						if ($thumburl) {
@@ -458,7 +458,7 @@ function zp_printItemAuthorCredits() {
 		$numauthors = count($authors);
 		$creditplural = 'Developers:';
 		$creditsingular = 'Developer:';
-		if ($_zp_gallery_page == 'news.php' && is_NewsType('news')) {
+		if ($_zp_gallery_page == 'news.php') {
 			if ($_zp_current_zenpage_news->inNewsCategory('user-guide')) {
 				$creditplural = 'Authors:';
 				$creditsingular = 'Author:';
@@ -824,7 +824,7 @@ function zp_printNewsCategoryFoldout() {
 		}
 
 		/**
-		 * Custom printout of the printLatestNews(). Parameters are the same.
+		 * Custom print latest news
 		 *
 		 */
 		function zp_printLatestNews($number = 2, $option = 'none', $category = '') {
