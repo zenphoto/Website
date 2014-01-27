@@ -720,9 +720,9 @@ function zp_printPluginsupportTags() {
 					<li>
 						<?php
 						if ($tag == 'zenpage') {
-							$url = getNewsURL('zenpage-a-cms-plugin-for-zenphoto');
+							$url = getNewsLink('zenpage-a-cms-plugin-for-zenphoto');
 						} else {
-							$url = getNewsURL($tag);
+							$url = getNewsLink($tag);
 						}
 						echo "<a href=\"" . html_encode($url) . "\" title=\"" . $tag . "\">" . $tag . "</a>";
 						?>
@@ -1410,17 +1410,17 @@ function zp_printNewsCategoryFoldout() {
 				</div>
 				<div id="ads">
 					<script type="text/javascript">
-					google_ad_client = "pub-7903690389990760";
-					google_ad_width = 250;
-					google_ad_height = 250;
-					google_ad_format = "250x250_as";
-					google_ad_type = "text";
-					google_ad_channel = "";
-					google_color_border = "CCCCCC";
-					google_color_bg = "FFFFFF";
-					google_color_link = "000000";
-					google_color_url = "666666";
-					google_color_text = "333333";
+				google_ad_client = "pub-7903690389990760";
+				google_ad_width = 250;
+				google_ad_height = 250;
+				google_ad_format = "250x250_as";
+				google_ad_type = "text";
+				google_ad_channel = "";
+				google_color_border = "CCCCCC";
+				google_color_bg = "FFFFFF";
+				google_color_link = "000000";
+				google_color_url = "666666";
+				google_color_text = "333333";
 					</script>
 					<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</script>
@@ -1800,15 +1800,13 @@ function zp_printNewsCategoryFoldout() {
 							<li>
 								<?php
 								$category = '';
+								$url = $obj->getLink();
 								switch ($type) {
 									case 'albums':
-										$url = $obj->getLink();
-										break;
 									case 'images':
-										$url = $obj->getLink();
+									case 'pages':
 										break;
 									case 'news':
-										$url = getNewsURL($obj->getTitlelink());
 										if ($obj->inNewsCategory('extensions')) {
 											$category = '<small> (Extensions)</small>';
 										} else if ($obj->inNewsCategory('user-guide')) {
@@ -1816,9 +1814,6 @@ function zp_printNewsCategoryFoldout() {
 										} else if ($obj->inNewsCategory('news')) {
 											$category = '<small> (News)</small>';
 										}
-										break;
-									case 'pages':
-										$url = $obj->getLink();
 										break;
 								}
 								?>

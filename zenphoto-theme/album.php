@@ -136,7 +136,6 @@
 					<?php
 					if ($_zp_current_album->name === "showcase") {
 						echo "Rating: " . getRating($_zp_current_image);
-						//printImageRating();
 					}
 					?>
 				</div>

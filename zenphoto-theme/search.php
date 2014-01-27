@@ -69,7 +69,7 @@
 						$c++;
 						?>
 						<li<?php printZDToggleClass('news',$c,$number_to_show); ?>>
-						<h4 class="entrytitle"><?php printNewsTitleLink(); ?> <small class="articledate"><?php printNewsDate();?></small>
+						<h4 class="entrytitle"><?php printNewsLink(); ?> <small class="articledate"><?php printNewsDate();?></small>
 							<?php
 							if($_zp_current_zenpage_news->inNewsCategory("extensions")) {
 								zp_printExtensionStatusIcon();
