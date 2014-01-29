@@ -6,17 +6,17 @@
 		switch($_zp_current_zenpage_page) {
 			case $_zp_current_zenpage_page->hasTag('zp_team-member'):
 				?>
-				<h2><a href="<?php echo html_encode(getPageLinkURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageLinkURL('zenphoto-team')); ?>">Zenphoto team</a></h2>
+				<h2><a href="<?php echo html_encode(getPageURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageURL('zenphoto-team')); ?>">Zenphoto team</a></h2>
 				<?php
 				break;
 			case $_zp_current_zenpage_page->hasTag('zp_team-member-former'):
 				?>
-				<h2><a href="<?php echo html_encode(getPageLinkURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageLinkURL('former-team-members')); ?>">Former team members</a></h2>
+				<h2><a href="<?php echo html_encode(getPageURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageURL('former-team-members')); ?>">Former team members</a></h2>
 				<?php
 				break;
 			case $_zp_current_zenpage_page->hasTag('zp_contributor'):
 				?>
-				<h2><a href="<?php echo html_encode(getPageLinkURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageLinkURL('contributors')); ?>">Contributors</a></h2>
+				<h2><a href="<?php echo html_encode(getPageURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageURL('contributors')); ?>">Contributors</a></h2>
 				<?php
 				break;
 		}

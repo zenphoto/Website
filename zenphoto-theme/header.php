@@ -121,9 +121,9 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			<div id="banner">
 				<ul>
 					<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></a></li>
-					<li><?php printPageLinkURL('Get involved', 'get-involved', '', '', NULL); ?></li>
+					<li><?php printPageURL('Get involved', 'get-involved', '', '', NULL); ?></li>
 					<li><a href="#stay-tuned" title="Get involved!">Stay tuned!</a></li>
-					<li><?php printPageLinkURL('Paid support', 'paid-support', '', '', NULL); ?></li>
+					<li><?php printPageURL('Paid support', 'paid-support', '', '', NULL); ?></li>
 					<li><a class="sponsors" href="<?php echo WEBPATH; ?>/hosting" title="Hosting">Hosting</a></li>
 				</ul>
 				<div id="header_logo">
@@ -143,7 +143,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					<li<?php if ($_zp_gallery_page == 'index.php') echo ' id="activelink"'; ?>><a href="<?php echo getGalleryIndexURL(); ?>">Download</a></li>
 					<li<?php if ((is_null($_zp_current_category) && $_zp_gallery_page == 'news.php' && !is_NewsArticle()) || zp_inNewsCategory('news')) echo ' id="activelink"'; ?>>
 						<a href="<?php echo WEBPATH; ?>/news">News</a></li>
-					<li><a href="/demo">Demo</a></li>
+					<li><a href="<?php echo WEBPATH; ?>/demo">Demo</a></li>
 					<li<?php if ($uralbumname == 'screenshots') echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/screenshots/">Screenshots</a></li>
 					<li<?php if (zp_inNewsCategory('user-guide')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/user-guide">User Guide</a></li>
 					<li><a href="/support" title="Zenphoto forum">Forum</a></li>

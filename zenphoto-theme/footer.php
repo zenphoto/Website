@@ -57,20 +57,20 @@
 	<div class="infobox">
 		<h3>Information</h3>
 		<ul class="downloadlinks">
-			<li><?php printPageLinkURL('About us', 'about-us','','',NULL); ?></li>
-			<li><?php printPageLinkURL('Contact', 'contact','','',NULL); ?></li>
-			<li><?php printPageLinkURL('Get involved', 'get-involved','','',NULL); ?></li>
-	 		<li><?php printPageLinkURL('Paid support', 'paid-support','','',NULL); ?></li>
-	 		<li><?php printPageLinkURL('Advertise', 'advertise','','',NULL); ?></li>
+			<li><?php printPageURL('About us', 'about-us','','',NULL); ?></li>
+			<li><?php printPageURL('Contact', 'contact','','',NULL); ?></li>
+			<li><?php printPageURL('Get involved', 'get-involved','','',NULL); ?></li>
+	 		<li><?php printPageURL('Paid support', 'paid-support','','',NULL); ?></li>
+	 		<li><?php printPageURL('Advertise', 'advertise','','',NULL); ?></li>
 	 		<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></a></li>
 	 	</ul>
 	 	<br />
 	 	<h3>Legal stuff</h3>
 		<ul class="downloadlinks">
-			<li><?php printPageLinkURL('Licenses', 'licenses','','',NULL); ?></li>
+			<li><?php printPageURL('Licenses', 'licenses','','',NULL); ?></li>
 			<li><a href="<?php echo WEBPATH; ?>/support/?terms-of-service=display">Forum rules & Terms of service</a></li>
-			<li><?php printPageLinkURL('Privacy', 'privacy','','',NULL); ?></li>
-			<li><?php printPageLinkURL('Contributor profile pages info', 'contributor-profile-page-information','','',NULL); ?></li>
+			<li><?php printPageURL('Privacy', 'privacy','','',NULL); ?></li>
+			<li><?php printPageURL('Contributor profile pages info', 'contributor-profile-page-information','','',NULL); ?></li>
 		</ul>
 	 </div>
 </div>

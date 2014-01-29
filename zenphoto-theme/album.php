@@ -81,7 +81,7 @@
 					$first = $_zp_current_album->getImage(0);
 					$albumurl = $first->getLink();
 				} else {
-					$albumurl = getAlbumLinkURL();
+					$albumurl = getAlbumURL();
 				}
 				?>
 				<div class="thumb">
@@ -125,11 +125,11 @@
 			?>
 			<div class="album<?php echo $class; ?>">
 				<div class="thumb">
-					<a	href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php printCustomSizedImage(getBareImageTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, true, false); ?></a>
+					<a	href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php printCustomSizedImage(getBareImageTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, true, false); ?></a>
 				</div>
 				<div class="albumdesc">
 					<h3 class="entrytitle">
-						<a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php echo shortenContent(getImageTitle(), 20, '(...)'); ?>
+						<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php echo shortenContent(getImageTitle(), 20, '(...)'); ?>
 						</a>
 						<?php zp_printShowcaseTypeIcon(); ?></h3>
 					<br />

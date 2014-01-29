@@ -524,7 +524,7 @@ function zp_printItemAuthorCredits() {
 							if (empty($p['titlelink'])) {
 								echo $link;
 							} else {
-								echo $link = '<a href="' . getPagelinkURL($p['titlelink']) . '">' . $link . '</a>';
+								echo $link = '<a href="' . getPageURL($p['titlelink']) . '">' . $link . '</a>';
 							}
 							?>
 						</li>
@@ -720,9 +720,9 @@ function zp_printPluginsupportTags() {
 					<li>
 						<?php
 						if ($tag == 'zenpage') {
-							$url = getNewsLink('zenpage-a-cms-plugin-for-zenphoto');
+							$url = getNewsURL('zenpage-a-cms-plugin-for-zenphoto');
 						} else {
-							$url = getNewsLink($tag);
+							$url = getNewsURL($tag);
 						}
 						echo "<a href=\"" . html_encode($url) . "\" title=\"" . $tag . "\">" . $tag . "</a>";
 						?>
@@ -1311,7 +1311,7 @@ function zp_printNewsCategoryFoldout() {
 						$albumthumb = $subobj->getAlbumThumbImage();
 						echo '<span><img src="' . $albumthumb->getCustomImage(200, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL) . '" alt="" /></span><h4>' . $subobj->getTitle() . '</h4>';
 						printDownloadlist('albums/' . $subalb, 'ol', array(), 'jpg');
-						//printDownloadLinkAlbumZip('All above as .zip',$subobj);
+						//printDownloadAlbumZipURL('All above as .zip',$subobj);
 						echo '</div>';
 						echo '<br style="clear: left" />';
 						echo '<hr />';
@@ -1394,7 +1394,7 @@ function zp_printNewsCategoryFoldout() {
 			<div class="infobox paidsupport">
 				<img src="<?php echo $_zp_themeroot; ?>/images/icon-forum.png" alt="" />
 				<h3>Need project help?</h3>
-				<p>Visit the <?php printPageLinkURL('Paid support page', 'paid-support', '', '', NULL); ?>.
+				<p>Visit the <?php printPageURL('Paid support page', 'paid-support', '', '', NULL); ?>.
 				</p>
 				<br clear="left" />
 			</div>
@@ -1476,13 +1476,13 @@ function zp_printNewsCategoryFoldout() {
 						//if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
 						$linktext = 'Download on GitHub.com';
 						$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
-						//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
+						//$exturl = getDownloadURL('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 						$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/plugins/';
 						echo $githubtext;
 					} else if (zp_inNewsCategory("unsupported-misc-github")) {
 						$linktext = 'Download on GitHub.com';
 						$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
-						//$exturl = getDownloadLink('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
+						//$exturl = getDownloadURL('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 						$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/misc/';
 						echo $githubtext;
 					} else {
