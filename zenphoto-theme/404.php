@@ -8,10 +8,10 @@
 			<?php
 			echo gettext("What you are requesting cannot be found. Maybe you want to try a search?");
 			if (isset($album)) {
-				echo '<br />' . gettext("Album") . ': ' . sanitize($album);
+				echo '<br />' . gettext("Album") . ': ' . $album;
 			}
 			if (isset($image)) {
-				echo '<br />' . gettext("Image") . ': ' . sanitize($image);
+				echo '<br />' . gettext("Image") . ': ' . $image;
 			}
 			if (isset($obj)) {
 				echo '<br />' . gettext("Page") . ': ' . substr(basename($obj), 0, -4);
