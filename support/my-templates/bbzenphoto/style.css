@@ -995,6 +995,10 @@ margin: 0;
 	margin-top: 8px;
 	margin-bottom: 15px;
 }
+
+#sidebar #searchdiv form {
+margin-bottom: 10px;
+}
 #sidebar #searchdiv input {
 -moz-border-radius: 5px;
 	-khtml-border-radius: 5px;

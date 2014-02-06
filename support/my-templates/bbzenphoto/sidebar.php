@@ -1,6 +1,7 @@
 	<div id="sidebar">
 			<div id="searchdiv">
 			<?php include('search-form.php'); ?>
+			<p>Forum search only. You might also want to search on the <a href="http://www.zenphoto.org/news/category/user-guide">main site's user guide</a>.</p>
 			</div>
 			<hr />
 			<div id="hottags">
