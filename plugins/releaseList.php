@@ -152,6 +152,7 @@ class releaseList {
 				Gallery::clearCache();
 			}
 		}
+		return false;
 	}
 
 	function listDownloads() {
