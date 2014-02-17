@@ -1,9 +1,9 @@
-*Object.Root_class:=
-*Object.Search:=
 *Admin.Media:=
 *Admin.Comment:=
 *Miscellaneous.Miscellaneous:=
+*Object.Root_class:=
 *Zenpage:=
+*Object.Search:=
 *Upload:=
 *Miscellaneous:=
 *Admin.Zenpage:=
@@ -84,6 +84,7 @@ admin_headers:=Allows plugins to place HTML into the header region of admin page
 album_filter:=Allows plugins to remove some folders from the list of album folders that Zenphoto discovers.
 installation_information:=Allows plugins to show items in the "Installation Information" section of the overview page.
 security_misc:=Allows plugins to supply miscellaneous information to the security logger
+feature_plugin_load:=Applied just before feature plugins are loaded for the front-end. Allows a CLASS plugin to take FEATURE actions.
 search_instantiate:=Called at the end of the class SearchEngine construct method.
 getLink:=Called each time Zenphoto generates a URL.
 can_set_user_password:=Called from the "apply" processing of an Zenphoto user. Return "false" to prevent the password from being saved.
@@ -94,6 +95,7 @@ check_credentials:=Called when an object is requested to verify that the logged 
 image_processor_uri:=Called whenever an image processor URI is created for an image reference. Can be used, for instance, to note and then cache these images.
 object_addComment:=Comment handlers attach to this filter to handle adding a comment to an object.
 tinymce_zenpage_config:=Filter used by "file manager" plugins to attach themselves to tinyMCE.
+login_redirect_link:=Filters the return link of the login form.
 themeSwitcher_head:=Invoded by themeSwitcher's theme_head filter. Allows themes to add to the HTML placed in the theme head when themeSwitcher is active. The parameter passed is a array of theme=>enabled values. If enabled is false the theme will not be included in the selector. Filters can change this value to control if specific themes may be chosen.
 theme_body_open:=Invoked by all themes just after the &lt;body&gt; HTML tag.
 theme_head:=Invoked by all themes just after the &lt;head&gt; HTML tag.
