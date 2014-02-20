@@ -816,7 +816,7 @@ function zp_printNewsCategoryFoldout() {
 							$active = ' class="active"';
 						}
 						$count = ' <small>(' . $articleCount . ')</small>';
-						echo '<li' . $active . '><a href="' . html_encode($subcat->getLink()) . '" title="' . html_encode($subcatobj->getTitle()) . '">' . html_encode($subcatobj->getTitle()) . $count . '</a></li>';
+						echo '<li' . $active . '><a href="' . html_encode($subcatobj->getLink()) . '" title="' . html_encode($subcatobj->getTitle()) . '">' . html_encode($subcatobj->getTitle()) . $count . '</a></li>';
 					}
 				}
 				echo '</ul>';
@@ -1410,17 +1410,17 @@ function zp_printNewsCategoryFoldout() {
 				</div>
 				<div id="ads">
 					<script type="text/javascript">
-				google_ad_client = "pub-7903690389990760";
-				google_ad_width = 250;
-				google_ad_height = 250;
-				google_ad_format = "250x250_as";
-				google_ad_type = "text";
-				google_ad_channel = "";
-				google_color_border = "CCCCCC";
-				google_color_bg = "FFFFFF";
-				google_color_link = "000000";
-				google_color_url = "666666";
-				google_color_text = "333333";
+					google_ad_client = "pub-7903690389990760";
+					google_ad_width = 250;
+					google_ad_height = 250;
+					google_ad_format = "250x250_as";
+					google_ad_type = "text";
+					google_ad_channel = "";
+					google_color_border = "CCCCCC";
+					google_color_bg = "FFFFFF";
+					google_color_link = "000000";
+					google_color_url = "666666";
+					google_color_text = "333333";
 					</script>
 					<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</script>
