@@ -14,8 +14,20 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 		language: "<?php echo $locale; ?>",
 		menubar: false,
 		relative_urls: false,
-		theme_advanced_blockformats: "h4,h5,h6,pre,code,p",
-		theme_advanced_styles: 'articlebox (center)=articlebox,articlebox-left=articlebox-left,inlinecode=inlinecode,table_of_content_list=table_of_content_list',
+		style_formats: [
+			{title: 'Block formats'},
+			{title: 'h4', block: 'h4'},
+			{title: 'h5', block: 'h5'},
+			{title: 'h6', block: 'h6'},
+			{title: 'pre', block: 'pre'},
+			{title: 'code', block: 'code'},
+			{title: 'p', block: 'p'},
+			{title: 'styles'},
+			{title: 'articlebox (center)', inline: 'span', classes: 'articlebox'},
+			{title: 'articlebox-left', inline: 'span', classes: 'articlebox-left'},
+			{title: 'inlinecode', inline: 'span', classes: 'inlinecode'},
+			{title: 'table_of_content_list', inline: 'span', classes: 'table_of_content_list'}
+		],
 		content_css: "<?php echo FULLWEBPATH . '/' . USER_PLUGIN_FOLDER; ?>/tinymce4/config/content.css",
 		plugins: [
 			"advlist autolink lists link image charmap print preview anchor",
