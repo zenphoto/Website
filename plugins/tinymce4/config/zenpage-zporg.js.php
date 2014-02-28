@@ -1,0 +1,45 @@
+<?php
+/**
+ * The configuration functions for TinyMCE 4.x.
+ *
+ * Zenphoto plugin default light configuration
+ */
+$filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
+?>
+<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER . "/" . PLUGIN_FOLDER; ?>/tinymce4/tinymce.min.js"></script>
+<script type="text/javascript">
+// <!-- <![CDATA[
+	tinymce.init({
+		selector: "textarea.content,textarea.desc,textarea.extracontent",
+		language: "<?php echo $locale; ?>",
+		menubar: false,
+		relative_urls: false,
+		style_formats: [
+			{title: 'Block formats'},
+			{title: 'h4', block: 'h4'},
+			{title: 'h5', block: 'h5'},
+			{title: 'h6', block: 'h6'},
+			{title: 'pre', block: 'pre'},
+			{title: 'code', block: 'code'},
+			{title: 'p', block: 'p'},
+			{title: 'styles'},
+			{title: 'articlebox (center)', inline: 'span', classes: 'articlebox'},
+			{title: 'articlebox-left', inline: 'span', classes: 'articlebox-left'},
+			{title: 'inlinecode', inline: 'span', classes: 'inlinecode'},
+			{title: 'table_of_content_list', inline: 'span', classes: 'table_of_content_list'}
+		],
+		content_css: "<?php echo FULLWEBPATH . '/' . USER_PLUGIN_FOLDER; ?>/tinymce4/config/content.css",
+		plugins: [
+			"advlist autolink lists link image charmap print preview anchor",
+			"searchreplace visualblocks code fullscreen",
+			"insertdatetime media table contextmenu paste tinyzenpage"
+		],
+		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code | fullscreen tinyzenpage",
+		setup: function(ed) {
+			ed.on('change', function(e) {
+				$('.dirty-check').addClass('dirty');
+			});
+		}
+	});
+// ]]> -->
+</script>
