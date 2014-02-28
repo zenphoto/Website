@@ -15,18 +15,25 @@ $filehandler = zp_apply_filter('tinymce_zenpage_config', NULL);
 		menubar: false,
 		relative_urls: false,
 		style_formats: [
-			{title: 'Block formats'},
-			{title: 'h4', block: 'h4'},
-			{title: 'h5', block: 'h5'},
-			{title: 'h6', block: 'h6'},
-			{title: 'pre', block: 'pre'},
-			{title: 'code', block: 'code'},
-			{title: 'p', block: 'p'},
-			{title: 'styles'},
-			{title: 'articlebox (center)', inline: 'span', classes: 'articlebox'},
-			{title: 'articlebox-left', inline: 'span', classes: 'articlebox-left'},
-			{title: 'inlinecode', inline: 'span', classes: 'inlinecode'},
-			{title: 'table_of_content_list', inline: 'span', classes: 'table_of_content_list'}
+			{title: 'Block formats',
+				items: [
+					{title: 'heading 4', block: 'h4'},
+					{title: 'heading 5', block: 'h5'},
+					{title: 'heading 6', block: 'h6'},
+					{title: 'preformatted', block: 'pre'},
+					{title: 'code', block: 'code'},
+					{title: 'paragraph', block: 'p'}
+				]
+			},
+			{title: 'styles',
+				items: [
+					{title: 'articlebox (center)', inline: 'span', classes: 'articlebox'},
+					{title: 'articlebox-left', inline: 'span', classes: 'articlebox-left'},
+					{title: 'inlinecode', inline: 'span', classes: 'inlinecode'},
+					{title: 'table_of_content_list', inline: 'span', classes: 'table_of_content_list'}
+				]
+
+			}
 		],
 		content_css: "<?php echo FULLWEBPATH . '/' . USER_PLUGIN_FOLDER; ?>/tinymce4/config/content.css",
 		plugins: [
