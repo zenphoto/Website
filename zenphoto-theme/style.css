@@ -60,7 +60,7 @@ p {
 	border-radius: 5px 5px 5px 5px;
 }
 
-#banner {
+#header {
 	background-color: white;
 	border-bottom: 0px solid #333;
 	background-image: url(images/header-background.jpg);
@@ -68,26 +68,8 @@ p {
 	height: 186px;
 }
 
-/* comment this out for the anniversary logo
-#banner #header_logo {
-        margin-left: 40px;
-        margin-top: 15px;
-}
-
-#banner #logo, #banner #logo span {
-	width: 321px; height: 69px;
-	background: url(images/logo.png) top left no-repeat;
-	margin:0;
-	padding: 0;
-	cursor:pointer;
-}
-
-
-#banner #logo span { margin-bottom: -69px; }
-*/
-
 /*Anniversary logo change  */
-#banner #header_logo {
+#header #header_logo {
         margin-left: 40px;
         margin-top: -10px;
         text-align: left;
@@ -95,30 +77,29 @@ p {
 
 
 
-#banner #logo {
+#header #logo {
 	width: 394px; 
 	height: 103px;
-	background: url(images/logo-new.png) top left no-repeat;
+	/* background: url(images/logo-new.png) top left no-repeat; */
 	margin:0;
 	padding: 0;
-	cursor:pointer;
-
 }
 
 
 
-#banner p{
+#header p{
 	font-weight: bold;
         margin-left: 2px;
         margin-top: 12px;
         letter-spacing: 1px;
 }
 
-#banner h1 {
+#header h1 span {
+	display: block;
 	text-indent:-999em;
 }
 
-#banner ul {
+#header ul {
 	margin: 0;
 	padding-right: 35px;
 	padding-top: 10px;
@@ -126,22 +107,22 @@ p {
 	font-weight: bold;
 }
 
-#banner ul li {
+#header ul li {
 	display: inline;
 	padding-left: 15px;
 }
 
-#banner a:link, #banner a:active, #banner a:visited {
+#header a:link, #header a:active, #header a:visited {
 	text-decoration: none;
 	color: #808080;
 }
 
-#banner a:hover, #banner a:focus {
+#header a:hover, #header a:focus {
 	text-decoration: none;
 	color: #bcc797;
 }
 
-#banner a.sponsors {
+#header a.sponsors {
 padding: 5px;
 background-color: #e7ecbc;
 -moz-border-radius: 5px 5px 5px 5px;
@@ -2090,6 +2071,13 @@ top: -14px;
 border: 0 !important;
 }
 
+.authoricon_credits {
+margin: 0 0 0 2px !important;
+padding: 0 !important;
+position: relative;
+top: 3px;
+}
+
 img.authorprofile-image {
 float: left;
 margin: 2px 20px 10px 0px !important;
@@ -2109,8 +2097,8 @@ border: 1px solid lightgray !important;
 
 .authorprofile-links {
 margin-left: 20px;
-
 }
+
 
 /* Search Box
 ------------------------------ */

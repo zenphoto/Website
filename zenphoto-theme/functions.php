@@ -493,8 +493,14 @@ function zp_printItemAuthorCredits() {
 					foreach ($authors as $author) {
 						$count++;
 						$author = str_replace('author_', '', $author);
+						$icon = '';
 						if (in_array($author, $subpages)) {
 							$obj = new ZenpagePage($author);
+							if ($obj->hasTag('zp_team-member')) {
+								$icon = '<img class="authoricon_credits" src="'.$_zp_themeroot.'/images/authoricon_developer-small.png" alt="Zenphoto team member" />';
+							} else if ($obj->hasTag('zp_team-member-former')) {
+								$icon = '<img class="authoricon_credits" src="'.$_zp_themeroot.'/images/authoricon_former-small.png" alt="Zenphoto former team member" />'; 
+							} 
 							$explode = explode(' ', $obj->getTitle());
 							if ($explode) {
 								// if we have normal names with probably only a 2nd surname (e.g. Nils K. Windisch) use the name
@@ -506,9 +512,9 @@ function zp_printItemAuthorCredits() {
 								// otherwise we just use the alias no matter how it begins, e.g. "The Whole Life to Learn"
 								$name = $obj->getTitle();
 							}
-							$sorted[] = array('title' => $obj->getTitle(), 'titlelink' => $obj->getTitlelink(), 'name' => $name);
+							$sorted[] = array('title' => $obj->getTitle(), 'titlelink' => $obj->getTitlelink(), 'name' => $name, 'status_icon' => $icon);
 						} else {
-							$sorted[] = array('title' => $author, 'titlelink' => '', 'name' => $author);
+							$sorted[] = array('title' => $author, 'titlelink' => '', 'name' => $author, 'status_icon' => $icon);
 						}
 					}
 					$sorted = sortMultiArray($sorted, 'name', false, true, false, false); // sort by name abc
@@ -517,9 +523,9 @@ function zp_printItemAuthorCredits() {
 						<li>
 							<?php
 							if (!empty($p['titlelink']) && strtolower($p['titlelink']) != strtolower($p['title'])) {
-								$link = $p['title'] . ' <em>(' . $p['titlelink'] . ')</em>';
+								$link = $p['title'] . ' <em>(' . $p['titlelink'] . ')</em>'.$p['status_icon'];
 							} else {
-								$link = $p['title'];
+								$link = $p['title'].$p['status_icon'];
 							}
 							if (empty($p['titlelink'])) {
 								echo $link;

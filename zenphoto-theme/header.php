@@ -118,7 +118,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 	<body id="top">
 		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="container">
-			<div id="banner">
+			<div id="header">
 				<ul>
 					<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></a></li>
 					<li><?php printPageURL('Get involved', 'get-involved', '', '', NULL); ?></li>
@@ -127,7 +127,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					<li><a class="sponsors" href="<?php echo WEBPATH; ?>/hosting" title="Hosting">Hosting</a></li>
 				</ul>
 				<div id="header_logo">
-					<h1 id="logo" title="ZenPhoto">Zenphoto</h1>
+					<h1 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/logo-new.png" alt="Zenphoto" /><span>Zenphoto</span></a></h1>
 					<p>The <em>simpler</em> media website CMS</p>
 				</div>
 			</div>
