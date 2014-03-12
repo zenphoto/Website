@@ -241,7 +241,12 @@
 			<h3>Share!</h3>
 			<?php zp_printAddthis(); ?>
 		</div>
-
+		
+		<div class="infobox">
+			<h3>Like using Zenphoto? Donate!</h3>
+			<p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
+			<p>Visit the <a href="http://www.zenphoto.org/pages/donations">donations page</a></p>
+		</div>
 
 
 	</div><!-- infobox-l end -->
@@ -271,12 +276,7 @@
 		</div>
 
 		<?php zp_printSponsorAds(true); ?>
-		<br />
-		<div class="infobox">
-			<h3>Like using Zenphoto? Donate!</h3>
-			<p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
-			<p>Visit the <a href="http://www.zenphoto.org/pages/donations">donations page</a></p>
-		</div>
+		
 
 
 
@@ -331,16 +331,7 @@
 
 	</div><!-- infobox-r end -->
 
-	<div class="infobox-3columns">
-		<h3>What our users say</h3>
-		<p class="version_requirements"><em>&#8220;I just wanna say thanks for bringing out such a great photo-gallery to the community! Zenphoto is perfect because of its simplicity, usability and of course its
-				design.&#8221;</em><br /><a	href="http://www.zenphoto.org/support/topic.php?id=1742&amp;replies=1">— crushmaster</a></p>
-		<p class="version_requirements"><em>&#8220;I found ZenPhoto by accident and it is a godsend! I was using Menalto Gallery before and I am so frustrated with its bloated code and Web 1.0 architecture! I was able to redo the site in less than a week using ZenPhoto! You guys did a great
-				job! Thanks!&#8221;</em><br /><a href="http://www.zenphoto.org/support/topic.php?id=2051&amp;page=2&amp;replies=84">— pixelfreak</a></p>
-		<p class="version_requirements"><em>&#8220;I been using zenphoto for a while, mainly because I love its versatility and how easy it is to adapt it to an existing design.&#8221;</em><br /><a	href="http://www.zenphoto.org/support/topic.php?id=2051&amp;replies=84">— zucye</a></p>
-		<p class="version_requirements">
-			<a href="http://www.zenphoto.org/pages/testimonials">Read more testimonials</a></p>
-	</div>
+	
 	<br style="clear: both" />
 
 </div> <!-- frontcontent end -->
