@@ -147,7 +147,7 @@ class releaseList {
 				}
 
 				//	clear the caches
-				$rss = new RSS();
+				$rss = new RSS(array('rss' => 'null'));
 				$rss->clearCache();
 				Gallery::clearCache();
 			}
