@@ -2390,14 +2390,14 @@ padding: 0px 0px 0px 0;
 
 ul#featureicons li {
 display: block;
-width: 21%;
+width: 20%;
 height: 40px;
 float: left;
 list-style: none;
 text-align: center !important;
 padding: 20px 0 20px 0;
 font-size: 26px !important;
-margin: 5px;
+margin: 2%;
 background-color: #f9fbf1;
 	border-top: 1px solid #eeeeee;
 	border-left: 1px solid #eeeeee;
