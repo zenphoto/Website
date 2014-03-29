@@ -1,29 +1,109 @@
 <?php include('header.php'); ?>
+<noscript>
+<style type="text/css">
+	#frontcontent #slidenav {
+		display: none;
+	}
+	#slideshow img {
+		float: right;
+		margin-top: -20px;
+	}
+</style>
 
+</noscript>
 
 <div id="frontcontent">
 
-
-	<div>
-
-	
-		<div id="introwrapper">
+	<div id="slideextranav">
+		<a href="#"><span id="slideplay">Play</span></a>
+		<a href="#"><span id="slidepause">Pause</span></a>
+	</div>
+  <ul id="slidenav"></ul>
+	<div id="slideshow">
+		<div class="slide slidemain">
+			<img src="<?php echo $_zp_themeroot; ?>/images/homeslides/slide0-intro.jpg" />
 			<h2>Media website management the easy way!</h2>
-			<ul id="featureicons">
-				<li><span class="icon-image"></span><h3>Images</h3></li>
-				<li><span class="icon-music"></span><h3>Audio</h3></li>
-				<li><span class="icon-film"></span><h3>Video</h3></li>
-				<li><span class="icon-file"></span><h3>Blog</h3></li>
-				<li><span class="icon-file2"></span><h3>Pages</h3></li>
-				<li><span class="icon-lock"></span><h3>User rights</h3></li>
-				<li><span class="icon-users"></span><h3>Multi user</h3></li>
-				<li><span class="icon-earth"></span><h3>Multilingual</h3></li>
+			<p>Zenphoto is a standalone CMS for multimedia focused websites. Our focus lies on being easy to use and having all the features there when you need them (but out of the way if you do not.)</p>
+			<p>Zenphoto  features support for images, video and audio formats, and the <a href="/news/zenpage-a-cms-plugin-for-zenphoto">Zenpage CMS plugin</a> provides a fully integrated news section (blog) and custom pages to run entire websites.</p>
+			<p>This makes Zenphoto the ideal CMS for personal websites of illustrators, artists, designers, photographers, film makers and musicians.</p>
+		</div>
+
+		<div class="slide">
+			<img src="<?php echo $_zp_themeroot; ?>/images/homeslides/slide1-images.jpg" />
+			<h2>Manage your image, video and audio files!</h2>
+			<ul class="downloadlinks">
+				<li>Upload files and folders via the administration or directly via FTP</li>
+				<li>Automatically generated sized images</li>
+				<li>EXIF/IPTC metadata support</li>
+				<li>Drag & Drop sorting, moving, copying, renaming of albums and images</li>
+				<li>Supported formats: jpg, gif, png, mp3, mp4, m4v, m4a, fla, flv, mov, 3gp</small></li>
+				<li>Slideshow, comments, RSS, tags and much more!</li>
 			</ul>
-			<div id="introtext">
-			<p>Zenphoto is a standalone CMS for multimedia focused websites. Easy to use but having all the features there when you need them (but out of the way if you do not.)</p>
-			<p>Zenphoto features support for various media formats and integrated <a href="/news/zenpage-a-cms-plugin-for-zenphoto">blog and custom pages</a>. Zenphoto is the ideal CMS for personal websites of illustrators, artists, designers, photographers, film makers and musicians.</p>
 			<p class="buttons"><a href="/news/features">Read about all features</a></p>
-			</div>
+		</div>
+
+		<div class="slide">
+			<img src="<?php echo $_zp_themeroot; ?>/images/homeslides/slide2-zenpage.jpg" />
+			<h2>Manage blog and pages!</h2>
+			<ul class="downloadlinks">
+				<li>Custom pages management incl. subpages</li>
+				<li>Drag & drop page sorting</li>
+				<li>News section (blog) with nested categories</li>
+				<li>Post of new gallery items in the news section (blog)</li>
+				<li>File manager for none gallery files</li>
+				<li>Comments, RSS, tags and much more!</li>
+			</ul>
+			<p class="buttons"><a href="/news/zenpage-a-cms-plugin-for-zenphoto">Read more about the Zenpage CMS plugin</a></p>
+		</div>
+
+		<div class="slide">
+			<img src="<?php echo $_zp_themeroot; ?>/images/homeslides/slide3-user.jpg" />
+			<h2>Multi-user management</h2>
+			<ul class="downloadlinks">
+				<li>User managment</li>
+				<li>User groups</li>
+				<li>Varying rights assignment</li>
+				<li>Password protection for albums and pages</li>
+			</ul>
+			<p class="buttons"><a href="/news/an-overview-of-zenphoto-users">Read more about user rights</a></p>
+		</div>
+
+		<div class="slide">
+			<img src="<?php echo $_zp_themeroot; ?>/images/homeslides/slide4-lang.jpg" />
+			<h2>International sites with multiple languages!</h2>
+			<ul class="downloadlinks">
+				<li>Admin backend translatable.</li>
+				<li>Many backend translations included (gettext server support required): Chinese, Dutch, French, Galician, German, Hebrew, Japanese, Polish, Spanish, Swedish (See also <a href="http://www.zenphoto.org/trac/browser/trunk/zp-core/locale">Current language repository</a>)</li>
+				<li>Multilingual sites</li>
+				<li>
+			</ul>
+			<p class="buttons"><a href="/news/multi-lingual-sites">Read more about language features</a></p>
+		</div>
+
+		<div class="slide">
+			<img src="<?php echo $_zp_themeroot; ?>/images/homeslides/slide5-themes.jpg" />
+			<h2>Create your own website design!</h2>
+			<ul class="downloadlinks">
+				<li>Highly customizable theme engine (HTML5, CSS, PHP)</li>
+				<li>Four standard themes included, more themes available</li>
+				<li>Object model framework for advanced theming and flexibility</li>
+				<li>Multiple layouts/album themes</li>
+				<li>Separate theme translations</li>
+			</ul>
+			<p class="buttons"><a href="/theme">Visit the themes section</a></p>
+		</div>
+
+		<div class="slide">
+			<img src="<?php echo $_zp_themeroot; ?>/images/homeslides/slide6-plugins.jpg" />
+			<h2>Extend Zenphoto with features you need!</h2>
+			<ul class="downloadlinks">
+				<li>Sophisticated plugin system</li>
+				<li>Frontend and backend filters</li>
+				<li>Object model framework for advanced coding</li>
+				<li>Many plugins included plus more 3rd party ones available</li>
+
+			</ul>
+			<p class="buttons"><a href="/news/category/extensions">Visit the extensions section</a></p>
 		</div>
 
 
@@ -84,8 +164,7 @@
 		<ul class="downloadlinks">
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
 			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto 1.4.6 Beta build on GitHub">1.4.6 Beta (GitHub)</a></li>
-			<!--
-			<li><a href="https://github.com/zenphoto/zenphoto<?php echo $zp_dev_archive; ?>" title="Zenphoto development on Github"><?php echo $zp_dev_version; ?> Development builds (GitHub)</a></li> -->
+			<li><a href="https://github.com/zenphoto/zenphoto<?php echo $zp_dev_archive; ?>" title="Zenphoto development on Github"><?php echo $zp_dev_version; ?> Development builds (GitHub)</a></li>
 		</ul>
 	</div>
 
