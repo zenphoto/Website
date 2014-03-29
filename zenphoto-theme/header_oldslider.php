@@ -40,6 +40,38 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			</script>
 		<?php } ?>
 
+		<?php if ($_zp_gallery_page == 'index.php') { ?>
+			<!-- <script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER; ?>/slideshow/jquery.cycle.all.js"></script>
+			<script type="text/javascript">
+				$(function() {
+					$('#slideshow').cycle({
+						fx: 'fade',
+						speed: 1500,
+						timeout: 6500,
+						prev: '#slideprev',
+						next: '#slidenext',
+						pager: '#slidenav',
+						pagerAnchorBuilder: pagerFactory
+					});
+
+					function pagerFactory(idx, slide) {
+						var s = idx > 2 ? '' : '';
+						return '<li' + s + '><a href="#">' + (idx + 1) + '</a></li>';
+					}
+					;
+					$('#slidepause').click(function() {
+						$('#slideshow').cycle('pause');
+						return false;
+					});
+					$('#slideplay').click(function() {
+						$('#slideshow').cycle('resume');
+						return false;
+					});
+
+				});
+			</script> -->
+		<?php } ?>
+
 		<script type="text/javascript">
 			$(document).ready(function() {
 <?php if ($_zp_gallery_page == 'news.php' || $_zp_gallery_page == 'pages.php') { ?>
