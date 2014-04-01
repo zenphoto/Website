@@ -24,7 +24,7 @@ zp_register_filter('admin_head', 'zp_announce::head');
 class zp_announce {
 
 	static function head() {
-		if (getOption('zp_plugin_tweet_news')) {
+		if (extensionEnabled('tweet_news')) {
 			?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
@@ -66,11 +66,13 @@ class zp_announce {
 
 			$content = str_replace("\n", '', $content);
 			$content = str_replace("\r", '', $content);
+			$content = str_replace("&nbsp;", ' ', $content);
 			$content = preg_replace('|<[/]*p[^>]*>?|i', "\r\n", $content);
 			$content = preg_replace('|<[/]*ul[^>]*>?|i', "\r\n", $content);
 			$content = preg_replace('|<li[^>]*>?|i', " - ", $content);
 			$content = preg_replace('|</li>?|i', "\r\n", $content);
 			$content = preg_replace('|<br[^>]*/>?|i', "\r\n", $content);
+			$content = html_entity_decode($content, ENT_QUOTES, 'ISO-8859-1');
 			$content = trim(strip_tags($content), "\r\n");
 			$content = str_replace('  ', ' ', $content);
 			$result = zp_apply_filter('sendmail', '', array('zenphoto-announce' => 'zenphoto-announce@googlegroups.com'), strip_tags($object->getTitle()), $content, 'no-reply@zenphoto.org', 'The Zenphoto team', array(), NULL);
