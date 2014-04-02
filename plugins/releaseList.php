@@ -92,7 +92,7 @@ class releaseList {
 		$options = array(gettext('Add release') => array('key'		 => 'releaseList_current', 'type'	 => OPTION_TYPE_TEXTBOX,
 										'order'	 => 1,
 										'desc'	 => gettext('Enter the release number of the download set to be added.')),
-						gettext('News text')	 => array('key'		 => 'releaseList_text', 'type'	 => OPTION_TYPE_TEXTAREA,
+						gettext('News text')	 => array('key'		 => 'releaseList_text', 'type'	 => OPTION_TYPE_RICHTEXT,
 										'order'	 => 1,
 										'desc'	 => gettext('Enter the text to be used for support release articles. Feature release articles are not created by the plugin.'))
 		);
@@ -147,11 +147,12 @@ class releaseList {
 				}
 
 				//	clear the caches
-				$rss = new RSS();
+				$rss = new RSS(array('rss' => 'null'));
 				$rss->clearCache();
 				Gallery::clearCache();
 			}
 		}
+		return false;
 	}
 
 	function listDownloads() {

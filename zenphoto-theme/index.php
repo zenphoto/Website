@@ -126,13 +126,8 @@
 			<h3>Latest news</h3>
 			<ul class="downloadlinks">
 				<?php
-				if (empty($category)) {
-					$latest = $_zp_zenpage->getArticles(5, NULL, true, NULL, 'DESC', true, NULL);
-				} else {
-					$catobj = new ZenpageCategory($category);
-					$latest = $catobj->getArticles(5, NULL, true, NULL, 'DESC', true);
-				}
-
+				$latestnews = $_zp_zenpage->getArticles(5, NULL, true, NULL, 'DESC', true, NULL);
+		
 				if (empty($latestnews)) {
 					echo 'No latest news';
 				} else {

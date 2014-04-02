@@ -9,8 +9,8 @@
 					<!-- description(Admin.Comment)-comment_approve --><p>Invoked when an administrator marks a comment.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">admin-comments.php</li>
 						<li class="call_list">admin-functions.php</li>
+						<li class="call_list"><em>plugin</em>/comment_form/admin-comments.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -18,26 +18,8 @@
 					<!-- description(Admin.Comment)-comment_disapprove --><p>Invoked when an administrator marks a comment as SPAM.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">admin-comments.php</li>
 						<li class="call_list">admin-functions.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>edit_comment_custom_data</strong></span>(<em>string, custom_data</em>)</p>
-					<!-- description(Admin.Comment)-edit_comment_custom_data --><p>Allows a plugin to manage custom data for comments. This invocation is for when the comment is presented for editing.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/comment_form.php</p>
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">admin-comments.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>save_comment_custom_data</strong></span>(<em>string</em>)</p>
-					<!-- description(Admin.Comment)-save_comment_custom_data --><p>Allows a plugin to manage custom data for comments. This invocation is for when the comment is saved.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/comment_form.php</p>
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">admin-comments.php</li>
+						<li class="call_list"><em>plugin</em>/comment_form/admin-comments.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
@@ -71,12 +53,14 @@
 					<p class="handlers">For example see <em>plugin</em>/xmpMetadata.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
+						<li class="call_list">admin-albumsort.php</li>
 						<li class="call_list">admin-edit.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_album_custom_data</strong></span>(<em>string, album, prefix</em>)</p>
 					<!-- description(Admin.Media)-edit_album_custom_data --><p>Allows a plugin to manage custom data for images. This invocation is for when the image is presented for editing.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-functions.php</li>
@@ -104,6 +88,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_image_custom_data</strong></span>(<em>string, image, currentimage</em>)</p>
 					<!-- description(Admin.Media)-edit_image_custom_data --><p>Allows a plugin to manage custom data for images. This invocation is for when the comment is presented for editing.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-edit.php</li>
@@ -130,7 +115,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_album_utilities_data</strong></span>(<em>album, prefix</em>)</p>
 					<!-- description(Admin.Media)-save_album_utilities_data --><p>Allows a plugin to process saves of items in the album <em>Utilities</em> area.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/rating.php</p>
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-functions.php</li>
@@ -147,7 +132,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_image_utilities_data</strong></span>(<em>image, i</em>)</p>
 					<!-- description(Admin.Media)-save_image_utilities_data --><p>Allows a plugin to place items in the <em>utilities</em> area for images. This invocation is for when the image is saved.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/rating.php</p>
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-edit.php</li>
@@ -184,13 +169,13 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>admin_head</strong></span>(<em>string</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>admin_head</strong></span>(<em></em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_head --><p>Allows plugins to place HTML into the &lt;head&gt; region of admin pages.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
+					<p class="handlers">For example see <em>plugin</em>/galleryArticles.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-functions.php</li>
-						<li class="call_list"><em>plugin</em>/tiny_mce/plugins/tinyzenpage/tinyzenpage.php</li>
+						<li class="call_list"><em>plugin</em>/tinymce4/plugins/tinyzenpage/tinyzenpage.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -216,9 +201,9 @@
 					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">admin-albumsort.php (2)</li>
-						<li class="call_list">admin-comments.php (2)</li>
+						<li class="call_list">admin-albumsort.php</li>
 						<li class="call_list">admin-dynamic-album.php</li>
+						<li class="call_list">admin-functions.php</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -251,7 +236,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_utilities_buttons</strong></span>(<em>buttonlist</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_utilities_buttons --><p>Allows plugins to add buttons to the admin utilities box on the <em>overview</em> page.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/hitcounter.php</p>
+					<p class="handlers">For example see <em>plugin</em>/rating.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin.php</li>
@@ -291,6 +276,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_article_custom_data</strong></span>(<em>string, result</em>)</p>
 					<!-- description(Admin.Zenpage)-edit_article_custom_data --><p>Allows a plugin to manage custom data for News articles. This invocation is for when the news article is presented for editing.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/admin-edit.php</li>
@@ -299,6 +285,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_category_custom_data</strong></span>(<em>string, result</em>)</p>
 					<!-- description(Admin.Zenpage)-edit_category_custom_data --><p>Allows a plugin to manage custom data for Zenpage categories. This invocation is for when the category is presented for editing.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/admin-edit.php</li>
@@ -307,6 +294,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>edit_page_custom_data</strong></span>(<em>string, result</em>)</p>
 					<!-- description(Admin.Zenpage)-edit_page_custom_data --><p>Allows a plugin to manage custom data for Zenpage pages. This invocation is for when the page object is presented for editing.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/admin-edit.php</li>
@@ -378,7 +366,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_article_custom_data</strong></span>(<em>custom, article</em>)</p>
 					<!-- description(Admin.Zenpage)-save_article_custom_data --><p>Allows a plugin to manage custom data for news articles. This invocation is for when the article is saved.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/zenpage-admin-functions.php</li>
@@ -387,6 +375,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_category_custom_data</strong></span>(<em>custom, cat</em>)</p>
 					<!-- description(Admin.Zenpage)-save_category_custom_data --><p>Allows a plugin to manage custom data for Zenpage categories. This invocation is for when the category is saved.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/zenpage-admin-functions.php</li>
@@ -395,7 +384,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_page_custom_data</strong></span>(<em>custom, page</em>)</p>
 					<!-- description(Admin.Zenpage)-save_page_custom_data --><p>Allows a plugin to manage image data for Zenpage page. This invocation is for when the page is saved.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/zenpage-admin-functions.php</li>
@@ -445,25 +434,40 @@
 					<!-- description(Miscellaneous.Miscellaneous)-comment_form_data --><p>Allows a plugin to provide data for the comment form.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list"><em>plugin</em>/comment_form/functions.php</li>
+						<li class="call_list"><em>plugin</em>/comment_form.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>comment_post</strong></span>(<em>commentobj, receiver</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-comment_post --><p>Invoked when a comment has been posted.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/comment_form.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/comment_form/functions.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>content_macro</strong></span>(<em>_zp_content_macros</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>content_macro</strong></span>(<em>string</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-content_macro --><p>Allows plugins and themes to provide macros for data substitutions.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/jplayer.php</p>
+					<p class="handlers">For example see <em>plugin</em>/exampleMacros.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">functions.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>favoritesHandler_action</strong></span>(<em>string, img, this-&gt;name</em>)</p>
+					<!-- description(Miscellaneous.Miscellaneous)-favoritesHandler_action --><p>Called when an object is added or removed from a user's favorites list</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list"><em>plugin</em>/favoritesHandler/favoritesClass.php (4)</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>feature_plugin_load</strong></span>(<em></em>)</p>
+					<!-- description(Miscellaneous.Miscellaneous)-feature_plugin_load --><p>Applied just before feature plugins are loaded for the front-end. Allows a CLASS plugin to take FEATURE actions.</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">index.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -496,7 +500,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>load_theme_script</strong></span>(<em>_zp_script, zp_request</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-load_theme_script --><p>Allows for overriding the script loaded for a particular theme page</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/hitcounter.php</p>
+					<p class="handlers">For example see <em>plugin</em>/galleryArticles.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">index.php</li>
@@ -550,21 +554,21 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>texteditor_config</strong></span>(<em>string, string</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>texteditor_config</strong></span>(<em>string</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-texteditor_config --><p>Provides configuration information to the Text Editor plugin (normally TinyMCE).</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tiny_mce.php</p>
+					<p class="handlers">For example see <em>plugin</em>/tinymce4.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">admin-comments.php</li>
 						<li class="call_list">admin-edit.php</li>
 						<li class="call_list">admin-options.php</li>
+						<li class="call_list">admin-plugins.php</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_Controllink</strong></span>(<em>theme</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-themeSwitcher_Controllink --><p>Invoked by themeSwitcher's theme_body_open filter. Allows themes to add to the selectors for theme related choices such as personality or color scheme.</p><!--e-->
-					<p class="handlers">For example see <em>theme</em>/effervescence_plus/functions.php</p>
+					<p class="handlers">For example see <em>plugin</em>/zenpage.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/themeSwitcher.php</li>
@@ -573,7 +577,6 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_css</strong></span>(<em>string</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-themeSwitcher_css --><p>Use to override the css used to style the themeSwitcher control links</p><!--e-->
-					<p class="handlers">For example see <em>theme</em>/stopdesign/functions.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/themeSwitcher.php</li>
@@ -582,7 +585,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>themeSwitcher_head</strong></span>(<em>_themeSwitcherThemelist</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-themeSwitcher_head --><p>Invoded by themeSwitcher's theme_head filter. Allows themes to add to the HTML placed in the theme head when themeSwitcher is active. The parameter passed is a array of theme=>enabled values. If enabled is false the theme will not be included in the selector. Filters can change this value to control if specific themes may be chosen.</p><!--e-->
-					<p class="handlers">For example see <em>theme</em>/effervescence_plus/functions.php</p>
+					<p class="handlers">For example see <em>plugin</em>/zenpage.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/themeSwitcher.php</li>
@@ -593,7 +596,17 @@
 					<!-- description(Miscellaneous.Miscellaneous)-theme_headers --><p>Allows adding headers to the theme output. Called after the standard headers are sent</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">index.php (2)</li>
+						<li class="call_list">404.php</li>
+						<li class="call_list">index.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>zenphoto_information</strong></span>(<em>_zp_script, _zp_loaded_plugins, _index_theme</em>)</p>
+					<!-- description(Miscellaneous.Miscellaneous)-zenphoto_information --><p>This filter is used to display the Zenphoto information HTML comment at the end of each page load</p><!--e-->
+					<p class="handlers">For example see template-filters.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">index.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
@@ -617,7 +630,7 @@
 					<p class="handlers">For example see <em>plugin</em>/xmpMetadata.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">class-album.php</li>
+						<li class="call_list">class-album.php (2)</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -630,11 +643,15 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>album_rename_move</strong></span>(<em>this-&gt;name, newfolder</em>)</p>
-					<!-- description(Object.Media)-album_rename_move --><p>Invoked when an album is renamed/moved.</p><!--e-->
+					<p class="filterdef"><span class="inlinecode"><strong>getLink</strong></span>(<em>string, plain</em>)</p>
+					<!-- description(Object.Media)-getLink --><p>Called each time Zenphoto generates a URL.</p><!--e-->
+					<p class="handlers">For example see <em>theme</em>/zenpage/functions.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">class-album.php (2)</li>
+						<li class="call_list">class-album.php</li>
+						<li class="call_list">class-image.php</li>
+						<li class="call_list">template-functions.php (3)</li>
+						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -675,16 +692,16 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>new_album</strong></span>(<em>object</em>)</p>
 					<!-- description(Object.Media)-new_album --><p>Invoked when a new album is discovered.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
+					<p class="handlers">For example see <em>plugin</em>/galleryArticles.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">class-album.php</li>
+						<li class="call_list">class-album.php (2)</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>new_image</strong></span>(<em>object</em>)</p>
 					<!-- description(Object.Media)-new_image --><p>Invoked when a new image is discovered.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
+					<p class="handlers">For example see <em>plugin</em>/galleryArticles.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">class-image.php</li>
@@ -722,7 +739,7 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>object_addComment</strong></span>(<em>name, email, website, comment, code, code_ok, object, ip, private, anon</em>)</p>
+					<p class="filterdef"><span class="inlinecode"><strong>object_addComment</strong></span>(<em>name, email, website, comment, code, code_ok, object, ip, private, anon, customdata</em>)</p>
 					<!-- description(Object.Root_class)-object_addComment --><p>Comment handlers attach to this filter to handle adding a comment to an object.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/comment_form.php</p>
 					<p class="calls">Invoked from:</p>
@@ -750,7 +767,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>show_change</strong></span>(<em>object</em>)</p>
 					<!-- description(Object.Root_class)-show_change --><p>This filter is invoded whenever the <em>state</em> of the <tt>show</tt> property changes.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/cacheManager.php</p>
+					<p class="handlers">For example see <em>plugin</em>/galleryArticles.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">classes.php</li>
@@ -769,6 +786,14 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>search_instantiate</strong></span>(<em>object</em>)</p>
+					<!-- description(Object.Search)-search_instantiate --><p>Called at the end of the class SearchEngine construct method.</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">class-search.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>search_statistics</strong></span>(<em>searchstring, string, string</em>)</p>
 					<!-- description(Object.Search)-search_statistics --><p>Allows a plugin to record statistics about searches.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/search_statistics.php</p>
@@ -777,13 +802,22 @@
 						<li class="call_list">class-search.php (4)</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>searchable_fields</strong></span>(<em>this-&gt;search_structure</em>)</p>
+					<!-- description(Object.Search)-searchable_fields --><p>Allows plugins to add to the searchEngine search_structure.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">class-search.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
 	<h5><span id="Template"></span>Template filters</h5>
 	<!-- classhead Template --><p>These filters modify behavior of the functions that support Zenphoto themes.</p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>admin_toolbox_$gal</strong></span>(<em>redirect, zf</em>)</p>
-					<!-- description(Template.Miscellaneous)-admin_toolbox_$gal --><p>Allows a plugin to provide entries in the admin_toolbox for custom pages. <em>$gal</em> will be the custom page with the <em>.php</em> removed.</p><!--e-->
+					<p class="filterdef"><span class="inlinecode"><strong>admin_toolbox_&#039; . $gal</strong></span>(<em>redirect, zf</em>)</p>
+					<!-- description(Template.Miscellaneous)-admin_toolbox_' . $gal --><p>This filter is applied for the catch-all page load. $gal is the running gallery page script.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">template-functions.php</li>
@@ -792,6 +826,14 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_toolbox_album</strong></span>(<em>albumname, zf</em>)</p>
 					<!-- description(Template.Miscellaneous)-admin_toolbox_album --><p>Allows plugins to insert links into the <em>album</em> part of the "admin toolbox".</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">template-functions.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>admin_toolbox_close</strong></span>(<em>redirect, zf</em>)</p>
+					<!-- description(Template.Miscellaneous)-admin_toolbox_close --><p>This filter is applied just before the Admin Toolbox "logout" link is emitted.</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">template-functions.php</li>
@@ -808,7 +850,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>admin_toolbox_global</strong></span>(<em>zf</em>)</p>
 					<!-- description(Template.Miscellaneous)-admin_toolbox_global --><p>Allows plugins to insert links into the <em>general</em> part of the "admin toolbox".</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/zenpage.php</p>
+					<p class="handlers">For example see <em>plugin</em>/favoritesHandler.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">template-functions.php</li>
@@ -841,11 +883,21 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>codeblock</strong></span>(<em>codeblock, number</em>)</p>
-					<!-- description(Template.Miscellaneous)-codeblock --><p>Allow plugins to create codeblock content on-the-fly.</p><!--e-->
+					<p class="filterdef"><span class="inlinecode"><strong>checkPageValidity</strong></span>(<em>string, gallery_page, page</em>)</p>
+					<!-- description(Template.Miscellaneous)-checkPageValidity --><p>Called to process the "default" case in the page number validity function.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/favoritesHandler.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">template-functions.php (2)</li>
+						<li class="call_list">template-functions.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><span class="inlinecode"><strong>codeblock</strong></span>(<em>string, object, number</em>)</p>
+					<!-- description(Template.Miscellaneous)-codeblock --><p>Allow plugins to create codeblock content on-the-fly.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/defaultCodeblocks.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">template-functions.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -892,6 +944,7 @@
 					<p class="handlers">For example see <em>plugin</em>/image_effects.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
+						<li class="call_list">class-image.php</li>
 						<li class="call_list">template-functions.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -911,7 +964,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>theme_body_close</strong></span>(<em></em>)</p>
 					<!-- description(Theme.Script)-theme_body_close --><p>Invoked by all themes just before the &lt;/body&gt; HTML tag.</p><!--e-->
-					<p class="handlers">For example see template-functions.php</p>
+					<p class="handlers">For example see template-filters.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>theme</em>/default/404.php</li>
@@ -923,7 +976,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>theme_body_open</strong></span>(<em></em>)</p>
 					<!-- description(Theme.Script)-theme_body_open --><p>Invoked by all themes just after the &lt;body&gt; HTML tag.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/themeSwitcher.php</p>
+					<p class="handlers">For example see <em>plugin</em>/downloadList.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>theme</em>/default/404.php</li>
@@ -939,8 +992,8 @@
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">password.php</li>
+						<li class="call_list"><em>plugin</em>/deprecated-functions/deprecated-functions.php (2)</li>
 						<li class="call_list"><em>theme</em>/default/404.php</li>
-						<li class="call_list"><em>theme</em>/default/album.php</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -1108,18 +1161,17 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><span class="inlinecode"><strong>register_user_form</strong></span>(<em>string</em>)</p>
-					<!-- description(User_management.Miscellaneous)-register_user_form --><p>Allows plugins to add to the <em>register user</em> form.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/comment_form/functions.php</p>
+					<p class="filterdef"><span class="inlinecode"><strong>login_redirect_link</strong></span>(<em>string</em>)</p>
+					<!-- description(User_management.Miscellaneous)-login_redirect_link --><p>Filters the return link of the login form.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/show_not_logged-in.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list"><em>plugin</em>/register_user/register_user_form.php</li>
+						<li class="call_list">lib-auth.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>register_user_registered</strong></span>(<em>userobj</em>)</p>
 					<!-- description(User_management.Miscellaneous)-register_user_registered --><p>Invoked when a new user registers.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/comment_form/functions.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/register_user.php</li>
@@ -1146,7 +1198,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><span class="inlinecode"><strong>save_admin_custom_data</strong></span>(<em>updated, userobj, i, alter</em>)</p>
 					<!-- description(User_management.Miscellaneous)-save_admin_custom_data --><p>Allows a plugin to manage custom data for Zenphoto users. This invocation is for when the user object is saved.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/federated_logon.php</p>
+					<p class="handlers">For example see <em>plugin</em>/common/fieldExtender.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-users.php</li>
@@ -1180,9 +1232,9 @@
 					<p class="handlers">For example see <em>plugin</em>/elFinder.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list"><em>plugin</em>/tiny_mce/config/zenpage-default-full.js.php</li>
-						<li class="call_list"><em>plugin</em>/tiny_mce/config/zenpage-default-light.js.php</li>
-						<li class="call_list"><em>plugin</em>/tiny_mce/config/zenphoto-default-light.js.php</li>
+						<li class="call_list"><em>plugin</em>/tinymce4/config/zenpage-basic.js.php</li>
+						<li class="call_list"><em>plugin</em>/tinymce4/config/zenpage-classic.js.php</li>
+						<li class="call_list"><em>plugin</em>/tinymce4/config/zenpage-full.js.php</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
