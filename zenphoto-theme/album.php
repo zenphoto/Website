@@ -11,14 +11,12 @@
 		}
 		?>
 		<?php
-		$sortorder = NULL;
 		if ($_zp_current_album->name === "theme") {
 			echo " (" . getNumAlbums() . ")";
-			$sortorder = 'title';
+			$_zp_current_album->setSortType('title', 'album');
 		}
 		if ($_zp_current_album->name === "showcase") {
 			echo " (" . getNumImages() . ")";
-			$sortorder = NULL;
 		}
 		?>
 	</h2>
@@ -66,7 +64,7 @@
 		?>
 		<?php
 		$count = '';
-		while (next_album(false, $sortorder)):
+		while (next_album(false)):
 			$count++;
 			if ($count == 2) {
 				$class = ' rightthumb';

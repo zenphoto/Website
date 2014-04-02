@@ -1,5 +1,8 @@
-<?php include('header.php'); ?>
-<?php include('sidebar.php'); ?>
+<?php
+include('header.php');
+include('sidebar.php');
+$obj = @$_zp_gallery_page;
+?>
 <div id="content">
 	<h2>Oops, sorry!</h2>
 	<div id="content-error">
