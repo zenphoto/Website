@@ -732,7 +732,7 @@ padding-right:10px;
 	margin-left: 5px;
 	padding-left:0px;
 }
-.entrybody ul > ul {
+.entrybody ul li > ul {
 	margin: 0px 0 0px 30px;
 }
 
