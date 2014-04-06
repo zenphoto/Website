@@ -80,7 +80,7 @@ function printUserActivity() {
 						<td class="statistic_title" <?php echo $style; ?> >
 							<strong>
 								<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;titlelink=".$page['titlelink']; ?>">
-								 <?php echo $page['title']; ?> (<?php echo $page['titlelink']; ?>)
+								 <?php echo get_language_string($page['title']); ?> (<?php echo $page['titlelink']; ?>)
 								</a>	
 							</strong>
 						</td>
