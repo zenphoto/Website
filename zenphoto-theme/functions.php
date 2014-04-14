@@ -1441,19 +1441,20 @@ function zp_printNewsCategoryFoldout() {
 		function zp_printThemeDownloadButton() {
 			global $_zp_themeroot, $_zp_gallery, $_zp_current_album;
 			if (!$_zp_current_album->hasTag('theme-officially-supported') && zp_getParentAlbumName() == "theme") {
+				
 				if (zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('hosted_theme')) {
-					$linktext = 'Download on GitHub.com';
+					$linktext = 'Download from the "unsupported" GitHub repository';
 					$theme = explode('/', $_zp_current_album->name);
-					$themeurl = 'https://github.com/zenphoto/Unsupported/tree/master/themes/';
-					echo '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual themes from the GitHub repository. You have to download the full repository (click on ZIP) and sort out what you need yourself.</p>';
+					$themeurl = 'https://github.com/zenphoto/Unsupported/';
+					echo '<div class="articlebox-left warningnote"><p><strong>Please note:</strong> This theme has been abandoned either by the Zenphoto team or its original 3rd party developer but we provide it for archival purposes on our "unsuppported" GitHub repository "as is". We may sometimes roughly update it for the current Zenphoto release but cannot promise full compatibility (See the circle icon about the status).</p><p>It is not possible to download individual themes from the GitHub repository. You have to download the full repository (click on "Download ZIP") and sort out what you need yourself.</p></div>';
 				} else {
 					$linktext = 'Info/download (external)';
 					$themeurl = $_zp_current_album->getLocation();
 				}
-				if ($_zp_current_album->hasTag('theme-abandoned')) {
-					echo '<p><strong>Sorry, this theme is no longer provided by its developer.</strong></p>';
-				} else {
+				if ($_zp_current_album->hasTag('hosted_theme')) {
 					echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
+				} else if($_zp_current_album->hasTag('hosted_theme')) {
+					echo '<p><strong>Sorry, this theme is no longer provided by its developer.</strong></p>';
 				}
 			}
 			if ($_zp_current_album->hasTag('theme-officially-supported')) {
@@ -1477,16 +1478,16 @@ function zp_printNewsCategoryFoldout() {
 					$linkicon_url = $_zp_themeroot . '/images/info_green.png';
 					$exturl = 'http://www.zenphoto.org/documentation/li_plugins.html';
 				} else {
-					$githubtext = '<p class="articlebox-left"><strong>Please note:</strong> It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on ZIP) and sort out what you need yourself.</p>';
+						$githubtext = '<div class="articlebox-left warningnote"><p><strong>Please note:</strong> This extension or tool has been abandoned either by the Zenphoto team or its original 3rd party developer but we provide it for archival purposes on our "unsuppported" GitHub repository "as is". We generally do not update these extensions (See the circle icon about the status).</p><p>It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on "Download ZIP") and sort out what you need yourself.</p></div>';
 					if (zp_inNewsCategory("unsupported-plugin-github")) {
 						//if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
-						$linktext = 'Download on GitHub.com';
+						$linktext = 'Download from the "unsupported" GitHub repository';
 						$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
 						//$exturl = getDownloadURL('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
-						$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/plugins/';
+						$exturl = 'https://github.com/zenphoto/Unsupported/';
 						echo $githubtext;
 					} else if (zp_inNewsCategory("unsupported-misc-github")) {
-						$linktext = 'Download on GitHub.com';
+						$linktext = 'Download from the "unsupported" GitHub repository';
 						$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
 						//$exturl = getDownloadURL('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 						$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/misc/';

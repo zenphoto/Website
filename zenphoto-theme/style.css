@@ -468,6 +468,12 @@ p.articlebox-left {
  margin-top: 0px;
 }
 
+.articlebox.warningnote,
+.articlebox-left.warningnote {
+background-color: #fdc93e;
+}
+
+
 .license img {
 float: left;
 margin: 0 10px 0 3px !important;
