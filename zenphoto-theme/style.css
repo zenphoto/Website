@@ -470,7 +470,8 @@ p.articlebox-left {
 
 .articlebox.warningnote,
 .articlebox-left.warningnote {
-background-color: #fdc93e;
+border: 1px solid orange;
+background-color: #f5e5af;
 }
 
 
