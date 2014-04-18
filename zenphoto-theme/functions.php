@@ -1453,8 +1453,10 @@ function zp_printNewsCategoryFoldout() {
 				}
 				if ($_zp_current_album->hasTag('hosted_theme')) {
 					echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
-				} else if($_zp_current_album->hasTag('hosted_theme')) {
-					echo '<p><strong>Sorry, this theme is no longer provided by its developer.</strong></p>';
+				} else if($_zp_current_album->hasTag('theme-abandoned')) {
+					echo '<p class="articlebox-left warningnote"><strong>Sorry, this theme is no longer provided by its developer.</strong></p>';
+				} else {
+					echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
 				}
 			}
 			if ($_zp_current_album->hasTag('theme-officially-supported')) {
