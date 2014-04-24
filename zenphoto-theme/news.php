@@ -22,11 +22,8 @@
 		<div class="entry">
 			<h3 class="entrytitle">
 				<?php printNewsTitle(); ?> <small class="articledate"><?php
-				printNewsDate();
-				if ((zp_inNewsCategory('user-guide') || zp_inNewsCategory('extensions')) && $_zp_current_zenpage_news->getLastchange()) {
-					$lastchange = $_zp_current_zenpage_news->getLastchange();
-					echo ' / Updated: ' . zpFormattedDate(DATE_FORMAT, strtotime($lastchange));
-				}
+				printNewsDate(); 
+				zp_printNewsLastChange();
 				?> </small>
 				<?php
 				if (zp_inNewsCategory('extensions')) {
@@ -112,10 +109,7 @@
 					?>
 					<h3 class="entrytitle"><a href="<?php echo html_encode($newslink); ?>" title="<?php echo html_encode(getBareNewsTitle()); ?>"><?php echo $title; ?></a> <small class="articledate"><?php
 							printNewsDate();
-							if ((zp_inNewsCategory('user-guide') || zp_inNewsCategory('extensions')) && $_zp_current_zenpage_news->getLastchange()) {
-								$lastchange = $_zp_current_zenpage_news->getLastchange();
-								echo ' / Updated: ' . zpFormattedDate(DATE_FORMAT, strtotime($lastchange));
-							}
+							zp_printNewsLastChange();
 							?></small>
 						<?php
 						// adding support status icon to extensions entries

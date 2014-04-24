@@ -1936,4 +1936,19 @@ function zp_printNewsCategoryFoldout() {
 			}
 			$_zp_current_category = $cat;
 		}
-		?>
+		
+		/**
+		 * Prints the last change date for user guide and extension articles if there is one and if it is not the same as the date
+		 *
+		 */
+		function zp_printNewsLastChange() {
+			global $_zp_current_zenpage_news;
+			if ((zp_inNewsCategory('user-guide') || zp_inNewsCategory('extensions')) && $_zp_current_zenpage_news->getLastchange()) {
+				$lastchange = $_zp_current_zenpage_news->getLastchange();
+				$date = $_zp_current_zenpage_news->getDateTime();
+				if(substr($lastchange, 0,9) != substr($date , 0,9)) {
+					echo ' / Updated: ' . zpFormattedDate(DATE_FORMAT, strtotime($lastchange));
+				}
+			}
+		}
+?>
