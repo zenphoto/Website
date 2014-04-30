@@ -83,7 +83,7 @@
 		<?php printSearchForm(); ?>
 		<ul class="downloadlinks">
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
-			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto 1.4.6 Beta build on GitHub">1.4.6 Beta (GitHub)</a></li>
+			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto 1.4.6 Beta build on GitHub">1.4.6 RC 1 (GitHub)</a></li>
 			<!--
 			<li><a href="https://github.com/zenphoto/zenphoto<?php echo $zp_dev_archive; ?>" title="Zenphoto development on Github"><?php echo $zp_dev_version; ?> Development builds (GitHub)</a></li> -->
 		</ul>
