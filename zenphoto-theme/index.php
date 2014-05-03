@@ -149,7 +149,7 @@
 
 		<div class="infobox">
 			<h3>Found a bug?!</h3>
-			<p><img src="<?php echo $_zp_themeroot; ?>/images/icon-bugtracker.png" class="imgfloat-left" alt="" /> Please report any bugs you find with a detailed description via tickets at the <a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Zenhoto bugtracker on GitHub.com</a>.
+			<p><img src="<?php echo $_zp_themeroot; ?>/images/icon-bugtracker.png" class="imgfloat-left" alt="" /> Please report any bugs you find with a detailed description via tickets at the <a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Zenphoto bugtracker on GitHub.com</a>.
 			</p>
 		</div>
 
