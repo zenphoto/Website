@@ -497,10 +497,10 @@ function zp_printItemAuthorCredits() {
 						if (in_array($author, $subpages)) {
 							$obj = new ZenpagePage($author);
 							if ($obj->hasTag('zp_team-member')) {
-								$icon = '<img class="authoricon_credits" src="'.$_zp_themeroot.'/images/authoricon_developer-small.png" alt="Zenphoto team member" />';
+								$icon = '<img class="authoricon_credits" src="' . $_zp_themeroot . '/images/authoricon_developer-small.png" alt="Zenphoto team member" />';
 							} else if ($obj->hasTag('zp_team-member-former')) {
-								$icon = '<img class="authoricon_credits" src="'.$_zp_themeroot.'/images/authoricon_former-small.png" alt="Zenphoto former team member" />'; 
-							} 
+								$icon = '<img class="authoricon_credits" src="' . $_zp_themeroot . '/images/authoricon_former-small.png" alt="Zenphoto former team member" />';
+							}
 							$explode = explode(' ', $obj->getTitle());
 							if ($explode) {
 								// if we have normal names with probably only a 2nd surname (e.g. Nils K. Windisch) use the name
@@ -523,9 +523,9 @@ function zp_printItemAuthorCredits() {
 						<li>
 							<?php
 							if (!empty($p['titlelink']) && strtolower($p['titlelink']) != strtolower($p['title'])) {
-								$link = $p['title'] . ' <em>(' . $p['titlelink'] . ')</em>'.$p['status_icon'];
+								$link = $p['title'] . ' <em>(' . $p['titlelink'] . ')</em>' . $p['status_icon'];
 							} else {
-								$link = $p['title'].$p['status_icon'];
+								$link = $p['title'] . $p['status_icon'];
 							}
 							if (empty($p['titlelink'])) {
 								echo $link;
@@ -835,10 +835,10 @@ function zp_printNewsCategoryFoldout() {
 		 */
 		function zp_printLatestNews($number = 2, $option = 'none', $category = '') {
 			if (empty($category)) {
-				$latest = $_zp_zenpage->getArticles($number, NULL, true, NULL);
+				$latest = $_zp_zenpage->getArticles($number, NULL, true);
 			} else {
 				$catobj = new ZenpageCategory($category);
-				$latest = $catobj->getArticles($number, NULL, true, NULL);
+				$latest = $catobj->getArticles($number, NULL, true);
 			}
 
 			if (is_array($latest)) {
@@ -1416,17 +1416,17 @@ function zp_printNewsCategoryFoldout() {
 				</div>
 				<div id="ads">
 					<script type="text/javascript">
-					google_ad_client = "pub-7903690389990760";
-					google_ad_width = 250;
-					google_ad_height = 250;
-					google_ad_format = "250x250_as";
-					google_ad_type = "text";
-					google_ad_channel = "";
-					google_color_border = "CCCCCC";
-					google_color_bg = "FFFFFF";
-					google_color_link = "000000";
-					google_color_url = "666666";
-					google_color_text = "333333";
+				google_ad_client = "pub-7903690389990760";
+				google_ad_width = 250;
+				google_ad_height = 250;
+				google_ad_format = "250x250_as";
+				google_ad_type = "text";
+				google_ad_channel = "";
+				google_color_border = "CCCCCC";
+				google_color_bg = "FFFFFF";
+				google_color_link = "000000";
+				google_color_url = "666666";
+				google_color_text = "333333";
 					</script>
 					<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</script>
@@ -1441,7 +1441,7 @@ function zp_printNewsCategoryFoldout() {
 		function zp_printThemeDownloadButton() {
 			global $_zp_themeroot, $_zp_gallery, $_zp_current_album;
 			if (!$_zp_current_album->hasTag('theme-officially-supported') && zp_getParentAlbumName() == "theme") {
-				
+
 				if (zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('hosted_theme')) {
 					$linktext = 'Download from the "unsupported" GitHub repository';
 					$theme = explode('/', $_zp_current_album->name);
@@ -1453,7 +1453,7 @@ function zp_printNewsCategoryFoldout() {
 				}
 				if ($_zp_current_album->hasTag('hosted_theme')) {
 					echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
-				} else if($_zp_current_album->hasTag('theme-abandoned')) {
+				} else if ($_zp_current_album->hasTag('theme-abandoned')) {
 					echo '<p class="articlebox-left warningnote"><strong>Sorry, this theme is no longer provided by its developer.</strong></p>';
 				} else {
 					echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
@@ -1480,7 +1480,7 @@ function zp_printNewsCategoryFoldout() {
 					$linkicon_url = $_zp_themeroot . '/images/info_green.png';
 					$exturl = 'http://www.zenphoto.org/documentation/li_plugins.html';
 				} else {
-						$githubtext = '<div class="articlebox-left warningnote"><p><strong>Please note:</strong> This extension or tool has been abandoned either by the Zenphoto team or its original 3rd party developer but we provide it for archival purposes on our "unsuppported" GitHub repository "as is". We generally do not update these extensions (See the circle icon about the status).</p><p>It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on "Download ZIP") and sort out what you need yourself.</p></div>';
+					$githubtext = '<div class="articlebox-left warningnote"><p><strong>Please note:</strong> This extension or tool has been abandoned either by the Zenphoto team or its original 3rd party developer but we provide it for archival purposes on our "unsuppported" GitHub repository "as is". We generally do not update these extensions (See the circle icon about the status).</p><p>It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on "Download ZIP") and sort out what you need yourself.</p></div>';
 					if (zp_inNewsCategory("unsupported-plugin-github")) {
 						//if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
 						$linktext = 'Download from the "unsupported" GitHub repository';
@@ -1936,7 +1936,7 @@ function zp_printNewsCategoryFoldout() {
 			}
 			$_zp_current_category = $cat;
 		}
-		
+
 		/**
 		 * Prints the last change date for user guide and extension articles if there is one and if it is not the same as the date
 		 *
@@ -1946,9 +1946,9 @@ function zp_printNewsCategoryFoldout() {
 			if ((zp_inNewsCategory('user-guide') || zp_inNewsCategory('extensions')) && $_zp_current_zenpage_news->getLastchange()) {
 				$lastchange = $_zp_current_zenpage_news->getLastchange();
 				$date = $_zp_current_zenpage_news->getDateTime();
-				if(substr($lastchange, 0,9) != substr($date , 0,9)) {
+				if (substr($lastchange, 0, 9) != substr($date, 0, 9)) {
 					echo ' / Updated: ' . zpFormattedDate(DATE_FORMAT, strtotime($lastchange));
 				}
 			}
 		}
-?>
+		?>

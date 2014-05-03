@@ -6,7 +6,7 @@
 
 	<div>
 
-	
+
 		<div id="introwrapper">
 			<h2>Media website management the easy way!</h2>
 			<ul id="featureicons">
@@ -20,9 +20,9 @@
 				<li><span class="icon-earth"></span><h3>Multilingual</h3></li>
 			</ul>
 			<div id="introtext">
-			<p>Zenphoto is a standalone CMS for multimedia focused websites. Easy to use but having all the features there when you need them (but out of the way if you do not.)</p>
-			<p>Zenphoto features support for various media formats and integrated <a href="/news/zenpage-a-cms-plugin-for-zenphoto">blog and custom pages</a>. Zenphoto is the ideal CMS for personal websites of illustrators, artists, designers, photographers, film makers and musicians.</p>
-			<p class="buttons"><a href="/news/features">Read about all features</a></p>
+				<p>Zenphoto is a standalone CMS for multimedia focused websites. Easy to use but having all the features there when you need them (but out of the way if you do not.)</p>
+				<p>Zenphoto features support for various media formats and integrated <a href="/news/zenpage-a-cms-plugin-for-zenphoto">blog and custom pages</a>. Zenphoto is the ideal CMS for personal websites of illustrators, artists, designers, photographers, film makers and musicians.</p>
+				<p class="buttons"><a href="/news/features">Read about all features</a></p>
 			</div>
 		</div>
 
@@ -37,7 +37,7 @@
 	$zp_dev_version = '';
 
 	$cat = new ZenpageCategory('release');
-	$latestnews = $cat->getArticles(1, 'published', true, 'date', 'desc', false);
+	$latestnews = $cat->getArticles(1, 'published', true, 'date');
 	$newsobj = new ZenpageNews($latestnews[0]['titlelink']);
 	$zp_dl_version = $newsobj->getTitlelink();
 	$zp_version = $newsobj->getTitle();
@@ -83,7 +83,7 @@
 		<?php printSearchForm(); ?>
 		<ul class="downloadlinks">
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
-			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto 1.4.6 Beta build on GitHub">1.4.6 RC 1 (GitHub)</a></li>
+			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto 1.4.6 RC1 build on GitHub">1.4.6 RC 1 (GitHub)</a></li>
 			<!--
 			<li><a href="https://github.com/zenphoto/zenphoto<?php echo $zp_dev_archive; ?>" title="Zenphoto development on Github"><?php echo $zp_dev_version; ?> Development builds (GitHub)</a></li> -->
 		</ul>
@@ -127,7 +127,7 @@
 			<ul class="downloadlinks">
 				<?php
 				$latestnews = $_zp_zenpage->getArticles(5, NULL, true, NULL, 'DESC', true, NULL);
-		
+
 				if (empty($latestnews)) {
 					echo 'No latest news';
 				} else {
@@ -160,7 +160,7 @@
 
 		<div class="infobox">
 			<h3>Like using Zenphoto? Donate!</h3>
-			<p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
+			<p>Your support helps pay for this server, and helps development of Zenphoto. Thank you!</p>
 			<p>Visit the <a href="http://www.zenphoto.org/pages/donations">donations page</a></p>
 		</div>
 
@@ -229,7 +229,7 @@
 		<div class="infobox">
 			<h3>Need help? Visit the forum!</h3>
 			<p><img src="<?php echo $_zp_themeroot; ?>/images/icon-forum.png"	class="imgfloat-left" alt="" /> You can post help requests and discuss everything Zenphoto related in the
-				<a href="http://www.zenphoto.org/support" title="Zenphoto forums">zenphoto support forums</a> (Registration required for posting). Please do not e-mail us asking for help. Thanks!
+				<a href="http://www.zenphoto.org/support" title="Zenphoto forums">Zenphoto support forums</a> (Registration required for posting). Please do not e-mail us asking for help. Thanks!
 			</p>
 			<br />
 			<h3>Need project help?</h3>
