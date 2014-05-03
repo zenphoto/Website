@@ -1,4 +1,6 @@
-<?php include('header.php'); ?>
+<?php
+include('header.php');
+?>
 
 
 <div id="frontcontent">
@@ -37,26 +39,35 @@
 	$zp_dev_version = '';
 
 	$cat = new ZenpageCategory('release');
-	$latestnews = $cat->getArticles(1, 'published', true, 'date');
-	$newsobj = new ZenpageNews($latestnews[0]['titlelink']);
-	$zp_dl_version = $newsobj->getTitlelink();
-	$zp_version = $newsobj->getTitle();
-	$zp_dl_pubdate = zpFormattedDate(DATE_FORMAT, strtotime($newsobj->getDatetime()));
-	$zp_dev = array_slice(explode('.', ($current_version = substr($zp_version, strpos($zp_dl_version, '-') + 1)) . '.0.0.0'), 0, 3);
+	$latestnews = $cat->getArticles(10, 'published', true, 'date');
 
-	//WARNING: the following code presumes that we march consistently through release numbers without any breaks!!!!
-	$carry = 1;
-	while (!empty($zp_dev)) {
-		$v = array_pop($zp_dev) + $carry;
-		if ($v % 10) {
-			$carry = 0;
-		} else {
-			$v = 0;
+	do {
+		$article = array_shift($latestnews);
+		$newsobj = new ZenpageNews($article['titlelink']);
+		$zp_dl_version = $newsobj->getTitlelink();
+		$zp_version = $newsobj->getTitle();
+		$zp_dl_pubdate = zpFormattedDate(DATE_FORMAT, strtotime($newsobj->getDatetime()));
+		preg_match('~(\d[\.\d]*)\s*(.*)~', $zp_version, $matches);
+		if (!defined('MASTER_BUILD')) {
+			if ($matches[2]) {
+				$v = ' ' . $matches[2];
+			} else {
+				$v = ' Support build';
+			}
+			define('MASTER_BUILD', $matches[1] . $v);
+			$current = $matches[1];
 		}
-		$zp_dev_version = $v . '.' . $zp_dev_version;
+	} while (!empty($latestnews) && $matches[2]);
+
+	$latestnews = $cat->getArticles(1, 'unpublished', true, 'date');
+	if (count($latestnews) > 0) {
+		$newsobj = new ZenpageNews($latestnews[0]['titlelink']);
+		$dev_version = $newsobj->getTitle();
+		preg_match('~((\d[\.\d]*)\s*(.*))~', $dev_version, $matches);
+		if ($matches[0] != $current) {
+			define('DEV_BUILD', $matches[0]);
+		}
 	}
-	$zp_dev_version = substr($zp_dev_version, 0, -1);
-	$zp_dev_archive = '/archive/' . $zp_dev_version . '.zip';
 	?>
 	<div class="downloadwrapper">
 
@@ -83,9 +94,16 @@
 		<?php printSearchForm(); ?>
 		<ul class="downloadlinks">
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
-			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto 1.4.6 RC1 build on GitHub">1.4.6 RC 1 (GitHub)</a></li>
-			<!--
-			<li><a href="https://github.com/zenphoto/zenphoto<?php echo $zp_dev_archive; ?>" title="Zenphoto development on Github"><?php echo $zp_dev_version; ?> Development builds (GitHub)</a></li> -->
+			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto <?php echo MASTER_BUILD; ?> build on GitHub"><?php echo MASTER_BUILD; ?> (GitHub)</a></li>
+
+			<?php
+			if (defined('DEV_BUILD')) {
+				?>
+				<li><a href="https://github.com/zenphoto/zenphoto/archive/<?php echo DEV_BUILD; ?>.zip" title="Zenphoto development on Github"><?php echo DEV_BUILD; ?> Development build (GitHub)</a></li>
+				<?php
+			}
+			?>
+
 		</ul>
 	</div>
 
