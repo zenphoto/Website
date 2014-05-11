@@ -39,8 +39,7 @@ include('header.php');
 	$zp_dev_version = '';
 
 	$cat = new ZenpageCategory('release');
-	$latestnews = $cat->getArticles(10, 'published', true, 'date');
-
+	$latestnews = $cat->getArticles(10, 'published', true, 'date',true);
 	do {
 		$article = array_shift($latestnews);
 		$newsobj = new ZenpageNews($article['titlelink']);
@@ -59,7 +58,7 @@ include('header.php');
 		}
 	} while (!empty($latestnews) && $matches[2]);
 
-	$latestnews = $cat->getArticles(1, 'unpublished', true, 'date');
+	$latestnews = $cat->getArticles(1, 'unpublished', true, 'date',true);
 	if (count($latestnews) > 0) {
 		$newsobj = new ZenpageNews($latestnews[0]['titlelink']);
 		$dev_version = $newsobj->getTitle();
