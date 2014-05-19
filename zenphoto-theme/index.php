@@ -12,14 +12,14 @@ include('header.php');
 		<div id="introwrapper">
 			<h2>Media website management the easy way!</h2>
 			<ul id="featureicons">
-				<li><span class="icon-image"></span><h3>Images</h3></li>
-				<li><span class="icon-music"></span><h3>Audio</h3></li>
-				<li><span class="icon-film"></span><h3>Video</h3></li>
-				<li><span class="icon-file"></span><h3>Blog</h3></li>
-				<li><span class="icon-file2"></span><h3>Pages</h3></li>
-				<li><span class="icon-lock"></span><h3>User rights</h3></li>
-				<li><span class="icon-users"></span><h3>Multi user</h3></li>
-				<li><span class="icon-earth"></span><h3>Multilingual</h3></li>
+				<li><a href="http://www.zenphoto.org/news/features#manage-image-video-and-audio-files"><span class="icon-image"></span><h3>Images</h3></a></li>
+				<li><a href="http://www.zenphoto.org/news/features#manage-image-video-and-audio-files"><span class="icon-music"></span><h3>Audio</h3></a></li>
+				<li><a href="http://www.zenphoto.org/news/features#manage-image-video-and-audio-files"><span class="icon-film"></span><h3>Video</h3></a></li>
+				<li><a href="http://www.zenphoto.org/news/features#manage-blog-and-pages"><span class="icon-file"></span><h3>Blog</h3></a></li>
+				<li><a href="http://www.zenphoto.org/news/features#manage-blog-and-pages"><span class="icon-file2"></span><h3>Pages</h3></a></li>
+				<li><a href="http://www.zenphoto.org/news/features#multi-user-management"><span class="icon-lock"></span><h3>User rights</h3></a></li>
+				<li><a href="http://www.zenphoto.org/news/features#multi-user-management"><span class="icon-users"></span><h3>Multi user</h3></a></li>
+				<li><a href="news/features#international-sites-with-multiple-languages"><span class="icon-earth"></span><h3>Multilingual</h3></a></li>
 			</ul>
 			<div id="introtext">
 				<p>Zenphoto is a standalone CMS for multimedia focused websites. Easy to use but having all the features there when you need them (but out of the way if you do not.)</p>
