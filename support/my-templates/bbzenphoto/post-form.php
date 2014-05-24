@@ -37,6 +37,6 @@
 <p class="submit">
   <input type="submit" id="postformsub" name="Submit" value="<?php echo attribute_escape( __('Send Post &raquo;') ); ?>" tabindex="4" />
 </p>
-
-<p><strong>3rd party solutions:</strong> <em>We strongly recommend to put the name of the 3rd party solution you have a question about in the thread title so its author has a chance to notice it and give support. Many of them visit the forum quite regulary.The Zenphoto team can't support 3rd party solutions explicity.</em></p>
+<p><strong>Reporting possible bugs</strong><em>:<br>Please follow our <a href="http://www.zenphoto.org/news/general-contributor-guidelines#reporting-bugs">general bug report guidelines</a>. This helps us to help you.</em></p> 
+<p><strong>3rd party solutions:</strong><em><br>We strongly recommend to put the name of the 3rd party solution you have a question about in the thread title so its author has a chance to notice it and give support. Many of them visit the forum quite regulary.The Zenphoto team can't support 3rd party solutions explicity.</em></p>
 <p><?php _e('Allowed markup:'); ?> <code><?php allowed_markup(); ?></code>. <br /><?php _e('You can also put code in between backtick ( <code>`</code> ) characters.'); ?></p>
