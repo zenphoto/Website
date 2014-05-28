@@ -79,18 +79,8 @@
 		<?php
 // NEWS LOOP
 	} else {
+		
 		printNewsPageListWithNav(gettext('next »'), gettext('« prev'), true, 'pagelist', true);
-
-		/* if(is_null($_zp_current_category)) {
-		  $sortorder = 'date';
-		  $sortdirection = 'desc';
-		  } else if (!zp_inNewsCategory("news")) {
-		  $sortorder = 'title';
-		  $sortdirection = 'asc';
-		  } else {
-		  $sortorder ='';
-		  $sortdirection ='';
-		  } */
 
 		while (next_news()):
 			if (stickyNews()) {
