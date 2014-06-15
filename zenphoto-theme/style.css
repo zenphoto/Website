@@ -325,7 +325,6 @@ margin: 0;
 
 
 #content code {
-	display: block;
   color: #00008B;
   	font-size: 13px;
   	font-family: Arial, Helvetica, sans-serif;
@@ -340,6 +339,10 @@ margin: 0;
 	font-size: 12px;
 	font-family: Courier, Geneva, monospace;
 	overflow: auto;
+}
+
+#content pre code {
+background-color: none;
 }
 
 #content tt,
