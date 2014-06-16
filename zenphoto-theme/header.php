@@ -43,16 +43,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 
 		<script type="text/javascript">
 			$(document).ready(function() {
-<?php if ($_zp_gallery_page == 'news.php' || $_zp_gallery_page == 'pages.php') { ?>
-					$("pre").addClass("syntax php");
-					$("code").addClass("syntax php");
-					// This function highlights (by default) pre and code tags which are annotated correctly.
-					$.syntax({
-						brush: 'php',
-						tabWidth: 2,
-						layout: 'fixed'
-					});
-<?php } ?>
+
 
 <?php if ($_zp_gallery_page != 'index.php') { ?>
 					$("a.colorbox,a.zenpage_fullimagelink").colorbox({
@@ -79,9 +70,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 				var s = document.getElementsByTagName('script')[0];
 				s.parentNode.insertBefore(ga, s);
 			})();
-
-
-
+			
 		</script>
 	</head>
 	<body id="top">
