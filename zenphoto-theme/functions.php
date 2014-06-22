@@ -806,7 +806,7 @@ function zp_printNewsCategoryFoldout() {
 		global $_zp_current_category;
 		$cattitlelink = sanitize($cattitlelink);
 		$currentcat = new ZenpageCategory($cattitlelink);
-		$subcats = $currentcat->getSubCategories();
+		$subcats = $currentcat->getSubCategories(true,'title',false);
 		if ($subcats) {
 			?>
 			<hr />
@@ -1476,9 +1476,16 @@ function zp_printNewsCategoryFoldout() {
 				$exturl = $customdata;
 				$linkicon_url = '';
 				if (zp_inNewsCategory("officially-supported")) {
-					$linktext = 'Usage information';
-					$linkicon_url = $_zp_themeroot . '/images/info_green.png';
-					$exturl = 'http://www.zenphoto.org/documentation/li_plugins.html';
+					if ($_zp_current_zenpage_news->inNewsCategory("translations")) {
+						$linktext = '';
+						$linkicon_url = '';
+						$exturl = '';
+						$translationtext = '<p>You will find most available translations included in the <a href="https://github.com/zenphoto/zenphoto/tree/master/zp-core/locale">Zenphoto release package</a>. Regular translators have GitHub access to update their translation themselves. But note that not all included translations are complete or actively maintained. Their status is noted on the translation selector on the Zenphoto backend.</p><p>If you would like to contribute a new translation or to an existing one that is welcome. Please read our <a href="http://www.zenphoto.org/news/translating-tutorial/">translation tutorial</a> before starting anything.</p>';
+					} else {
+						$linktext = 'Usage information';
+						$linkicon_url = $_zp_themeroot . '/images/info_green.png';
+						$exturl = 'http://www.zenphoto.org/documentation/li_plugins.html';
+					}
 				} else {
 					$githubtext = '<div class="articlebox-left warningnote"><p><strong>Please note:</strong> This extension or tool has been abandoned either by the Zenphoto team or its original 3rd party developer but we provide it for archival purposes on our "unsuppported" GitHub repository "as is". We generally do not update these extensions (See the circle icon about the status).</p><p>It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on "Download ZIP") and sort out what you need yourself.</p></div>';
 					if (zp_inNewsCategory("unsupported-plugin-github")) {
@@ -1502,9 +1509,14 @@ function zp_printNewsCategoryFoldout() {
 				if ($_zp_current_zenpage_news->hasTag('extension-abandoned')) {
 					echo '<p><strong>Sorry, this extension is no longer provided by its developer.</strong></p>';
 				} else if (!zp_inNewsCategory("extension-in-development")) {
-					echo '<p class="buttons"><a href="' . html_encode($exturl) . '"><img src="' . $linkicon_url . '" alt="" /> ' . $linktext . '</a></p>';
+					if(!empty($exturl)) {
+						echo '<p class="buttons"><a href="' . html_encode($exturl) . '"><img src="' . $linkicon_url . '" alt="" /> ' . $linktext . '</a></p>';
+					}
 				}
 				if ($_zp_current_zenpage_news->inNewsCategory("officially-supported")) {
+					if ($_zp_current_zenpage_news->inNewsCategory("translations")) {
+						echo $translationtext;
+					}
 					?>
 					<p class="articlebox">Included in the Zenphoto release.</p>
 					<?php
