@@ -7,7 +7,7 @@
 	<div class="infobox">
 		<h3>RSS feeds!</h3>
 		<ul class="rsslinks">
-			<li><a href="<?php echo WEBPATH; ?>/index.php?index.php?mergedrss">All news</a> (incl. all	below except forum)</li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?mergedrss">All news</a> (incl. all	below except forum)</li>
 			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news">All general news</a> (except themes, showcase, screenshots)</li>
 			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=news">New releases and announcements</a></li>
 			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=user-guide">User guide</a></li>
