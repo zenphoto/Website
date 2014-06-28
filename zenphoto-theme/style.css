@@ -40,7 +40,7 @@ color: #006400; /* #bcc797 */
 
 img { border: 0}
 
-p {
+p, blockquote {
 	margin-bottom: 14px !important;
 }
 
@@ -1289,7 +1289,6 @@ blockquote {
 	margin-left: 20px;
 	padding-left: 20px;
 	color: gray;
-	font-style: italic;
 }
 
 #imagemetadata {
