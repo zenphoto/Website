@@ -11,6 +11,19 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 		<title><?php echo zp_printPageHeaderTitle(); ?></title>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+		<?php 
+			if(is_Pages()) { 
+				$parents = $_zp_current_zenpage_page->getParents();
+				if(in_array('all-contributors',$parents)) {
+					$googleprofile = getCodeblock(1);
+					if($googleprofile) {
+						?>
+						<link rel="me" href="<?php echo html_encode($googleauthorprofile); ?>?rel=author">
+						<?php
+					}
+				}	
+			}
+		?>
 		<!-- touch icons for tablet and smartphone bookmarks -->
 		<link rel="apple-touch-icon" href="<?php echo $_zp_themeroot; ?>/images/apple-touch-icon.png" />
 		<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $_zp_themeroot; ?>/images/apple-touch-icon-72x72.png" />

@@ -155,7 +155,6 @@ function zp_getAuthorContributions($tag, $mode, $mode2 = 'extensions') {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 	$result = zp_getMoreByThisAuthor($tag, $mode);
 	//echo "<pre>"; print_r($result); echo "</pre>";
-	$result = sortMultiArray($result, 'name', false, true, false, false); // sort by name abc
 	if ($mode == 'news') {
 		if ($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
 			$resultnew = array();
@@ -168,8 +167,14 @@ function zp_getAuthorContributions($tag, $mode, $mode2 = 'extensions') {
 				}
 			}
 		}
+		$descending = false;
+		if($mode2 == 'release') {
+			$descending = true;
+		} 
+		$resultnew = sortMultiArray($resultnew, 'name', $descending, true, false, false); // sort by name abc
 		return $resultnew;
 	}
+	$result = sortMultiArray($result, 'name', false, true, false, false); // sort by name abc
 	return $result;
 }
 
@@ -396,7 +401,7 @@ function zp_printAuthorList($mode = 'all', $content = false) {
 					  }
 					  } */
 					?>
-					<h4 class="entrytitle"><a href="<?php echo $obj->getLink(); ?>">
+					<h4 class="entrytitle"><a href="<?php echo $obj->getLink(); ?>" rel="author">
 							<?php
 							echo $obj->getTitle();
 							if (strtolower($obj->getTitle()) != strtolower($obj->getTitlelink())) {
@@ -530,7 +535,7 @@ function zp_printItemAuthorCredits() {
 							if (empty($p['titlelink'])) {
 								echo $link;
 							} else {
-								echo $link = '<a href="' . getPageURL($p['titlelink']) . '">' . $link . '</a>';
+								echo $link = '<a href="' . getPageURL($p['titlelink']) . '" rel="author">' . $link . '</a>';
 							}
 							?>
 						</li>
