@@ -11,6 +11,8 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 		<title><?php echo zp_printPageHeaderTitle(); ?></title>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+		<meta name="author" content="The Zenphoto team and contributors">
+		<meta name="copyright" content="(c) http://www.zenphoto.org – The Zenphoto team">
 		<?php 
 			if(is_Pages()) { 
 				$parents = $_zp_current_zenpage_page->getParents();
