@@ -20,7 +20,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					$googleprofile = getCodeblock(1);
 					if($googleprofile) {
 						?>
-						<link rel="me" href="<?php echo html_encode($googleauthorprofile); ?>?rel=author">
+						<link rel="me" href="<?php echo html_encode($googleprofile); ?>?rel=author">
 						<?php
 					}
 				}	
