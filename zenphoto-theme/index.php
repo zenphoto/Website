@@ -22,8 +22,7 @@ include('header.php');
 				<li><a href="news/features#international-sites-with-multiple-languages"><span class="icon-earth"></span><h3>Multilingual</h3></a></li>
 			</ul>
 			<div id="introtext">
-				<p>Zenphoto is a standalone CMS for multimedia focused websites. Easy to use but having all the features there when you need them (but out of the way if you do not.)</p>
-				<p>Zenphoto features support for various media formats and integrated <a href="/news/zenpage-a-cms-plugin-for-zenphoto">blog and custom pages</a>. Zenphoto is the ideal CMS for personal websites of illustrators, artists, designers, photographers, film makers and musicians.</p>
+				<?php printGalleryDesc(); ?>
 				<p class="buttons"><a href="/news/features">Read about all features</a></p>
 			</div>
 		</div>
