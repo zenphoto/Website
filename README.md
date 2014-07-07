@@ -1,6 +1,16 @@
 Website
 =======
 
-Zenphoto website themes
+##doc
 
-These are the custom themes we use for the Zenphoto.org Website, Forum and online documentation. It may be educational for you, but really is not a general theme as it is structured specifically to the needs of the Zenphoto site. You may re-use code parts but not the design.
+The usage guide of all the specialities on the zenphoto.org site. License: CC-BY-SA
+
+##Plugins
+
+Some special plugins we use on zenphoto.org. License: GPL v2 or later
+
+##Zenphoto website themes
+
+These are the custom themes we use for the Zenphoto.org website, Forum and online documentation. It may be educational for you, but really is not a general theme as it is structured specifically to the needs of the Zenphoto site. 
+
+You may re-use code parts which is GPL v2 or later licensed but not the design.
