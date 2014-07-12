@@ -4,7 +4,7 @@ if (!defined('WEBPATH'))
 	die();
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 ?>
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
