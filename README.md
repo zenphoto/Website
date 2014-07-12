@@ -3,7 +3,7 @@ Website
 
 ##doc
 
-The usage guide of all the specialities on the zenphoto.org site. License: **[CC-BY-SA](http://creativecommons.org/licenses/by-sa/4.0)**
+Our internal usage guide of all the specialities on the zenphoto.org site. License: **[CC-BY-SA](http://creativecommons.org/licenses/by-sa/4.0)**
 
 ##Plugins
 
