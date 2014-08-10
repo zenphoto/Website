@@ -83,7 +83,7 @@ include('header.php');
 		</div>
 
 		<p class="version_info">
-			<strong><?php echo $zp_version; ?></strong> (<?php echo $zp_dl_pubdate; ?>) | License: <a	href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v.2 or later</a> | <a
+			<strong><?php echo $zp_version; ?></strong> (<?php echo $zp_dl_pubdate; ?>) | License: <a	href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v2 or later</a> | <a
 				href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installation, upgrading and requirements">Installation,	upgrading and requirements</a>
 		</p>
 	</div> <!--download box div wrapper end -->
@@ -101,7 +101,7 @@ include('header.php');
 				<?php
 			}
 			?>
-
+			<li><a href="http://www.zenphoto.org/news/older-versions-archive">Older versions archive</a></li>
 		</ul>
 	</div>
 
