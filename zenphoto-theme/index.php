@@ -94,8 +94,9 @@ include('header.php');
 			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
 			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto <?php echo MASTER_BUILD; ?> build on GitHub"><?php echo MASTER_BUILD; ?> (GitHub)</a></li>
 
-			<?php
-			if (defined('DEV_BUILD')) {
+			<?php $devbuild = false; 
+		/*	if (defined('DEV_BUILD')) { */
+			if($devbuild) {
 				?>
 				<li><a href="https://github.com/zenphoto/zenphoto/archive/<?php echo DEV_BUILD; ?>.zip" title="Zenphoto development on Github"><?php echo DEV_BUILD; ?> Development build (GitHub)</a></li>
 				<?php
