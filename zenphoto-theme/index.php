@@ -116,8 +116,7 @@ include('header.php');
 			$imagelink = '';
 			$latestalbum = getAlbumStatistic(1, 'latest', 'theme');
 			if (!empty($latestalbum)) {
-				$album = $latestalbum[0];
-				$tempalbum = newAlbum($album['folder']);
+				$tempalbum = $latestalbum[0];
 				if ($tempalbum->getNumImages() != 0) {
 					$firstimage = $tempalbum->getImages(1); // need only the first so don't get all
 					$firstimage = $firstimage[0];
@@ -127,7 +126,7 @@ include('header.php');
 				}
 				$albtitle = $tempalbum->getTitle();
 				$themes = newAlbum('theme');
-				$number = $themes->getNumAlbums();
+				$number = $themes->getNumAlbums(); 
 			}
 			?>
 			<h3>View available themes <small>(<?php echo $number; ?>)</small></h3>
@@ -193,12 +192,12 @@ include('header.php');
 			$thumb = '';
 			$imgtitle = '';
 			$thumb = '';
-			$latestimage = getImageStatistic(1, 'latest', 'screenshots', true);
+			$latestimage = getImageStatistic(1, 'latest', 'screenshots/zenphoto-admin', false);
 			if (!empty($latestimage)) {
 				$image = $latestimage[0];
 				$imgtitle = $image->getTitle();
 				$thumb = $image->getCustomImage(NULL, 238, 128, 238, 128, NULL, NULL, TRUE);
-			}
+			} 
 			?>
 			<a href="<?php echo WEBPATH; ?>/screenshots/"	title="<?php echo html_encode($imgtitle); ?>">
 				<img src="<?php echo html_encode($thumb); ?>" alt="<?php echo html_encode($imgtitle); ?>" /> </a>
