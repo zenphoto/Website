@@ -870,7 +870,6 @@ function zp_printNewsCategoryFoldout() {
 			echo '<ul>';
 			foreach ($array as $top) {
 				if ($album) {
-					$top = newAlbum($top['folder']);
 					$image = $top->getImage(0);
 					if (is_object($image)) {
 						$link = $image->getLink();

@@ -192,7 +192,7 @@ include('header.php');
 			$thumb = '';
 			$imgtitle = '';
 			$thumb = '';
-			$latestimage = getImageStatistic(1, 'latest', 'screenshots/zenphoto-admin', false);
+			$latestimage = getImageStatistic(1, 'latest', 'screenshots/zenphoto-admin', true);
 			if (!empty($latestimage)) {
 				$image = $latestimage[0];
 				$imgtitle = $image->getTitle();
