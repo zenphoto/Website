@@ -601,6 +601,7 @@ margin-bottom: 10px;
 #content .entrybody img {
 	padding: 4px;
 	border: 1px solid #DFDFDF;
+	max-width: 100%;
 }
 
 #content hr {
