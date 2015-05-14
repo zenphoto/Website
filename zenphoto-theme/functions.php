@@ -1039,19 +1039,19 @@ function zp_printNewsCategoryFoldout() {
 		function zp_getThemeStatusIconClass() {
 			global $_zp_current_album, $_zp_themeroot, $_zp_gallery_page;
 			if (is_object($_zp_current_album)) {
-				if ($_zp_current_album->hasTag('theme-officially-supported')) {
+				if ($_zp_current_album->hasTag('theme_officially-supported')) {
 					return ' themeicon1';
 				}
-				if ($_zp_current_album->hasTag('theme-compatible')) {
+				if ($_zp_current_album->hasTag('theme_unsupported-hosted')) {
 					return ' themeicon2';
 				}
-				if ($_zp_current_album->hasTag('theme-partly-compatible')) {
+				if ($_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted')) {
+					return ' themeicon2';
+				}
+				if ($_zp_current_album->hasTag('theme_unsupported-3rd-party-external')) {
 					return ' themeicon3';
 				}
-				if ($_zp_current_album->hasTag('theme-not-compatible')) {
-					return ' themeicon4';
-				}
-				if ($_zp_current_album->hasTag('theme-abandoned')) {
+				if ($_zp_current_album->hasTag('theme_unsupported-unavailable')) {
 					return ' themeicon5';
 				}
 			}
@@ -1081,20 +1081,20 @@ function zp_printNewsCategoryFoldout() {
 				$iconclass = 'themeicon';
 			}
 			if (is_object($albumobj)) {
-				if ($albumobj->hasTag('theme-officially-supported')) {
+				if ($albumobj->hasTag('theme_officially-supported')) {
 					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/accept_green.png" alt="Officially supported – Included in the Zenphoto release package" title="Officially supported – Included in the Zenphoto release package" />';
 				}
-				if ($albumobj->hasTag('theme-compatible')) {
-					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/accept_blue.png" alt="Generally compatible – Unsupported and 3rd party" title="Generally compatible – Unsupported and 3rd party" />';
+				if ($albumobj->hasTag('theme_unsupported-hosted')) {
+					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/accept_blue.png" alt="Unsupported – hosted" title="Unsupported – hosted" />';
 				}
-				if ($albumobj->hasTag('theme-partly-compatible')) {
-					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/question_orange.png" alt="Partly compatible – Unsupported and 3rd party" title="Partly compatible – Unsupported and 3rd party" />';
+				if ($albumobj->hasTag('theme_unsupported-3rd-party-hosted')) {
+					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/accept_blue.png" alt="Unsupported – 3rd party hosted" title="Unsupported – 3rd party hosted" />';
 				}
-				if ($albumobj->hasTag('theme-not-compatible')) {
-					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/stop_round.png" alt="Currently not compatible – Unsupported and 3rd party" title="Currently not compatible – Unsupported and 3rd party" />';
+				if ($albumobj->hasTag('theme_unsupported-3rd-party-external')) {
+					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/question_orange.png" alt="Unsupported – 3rd party external" title="Unsupported – 3rd party external" />';
 				}
-				if ($albumobj->hasTag('theme-abandoned')) {
-					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/cancel_round.png" alt="No longer provided – Unsupported and 3rd party" title="No longer provided – Unsupported and 3rd party" />';
+				if ($albumobj->hasTag('theme_unsupported-unavailable')) {
+					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/cancel_round.png" alt="No longer provided" title="No longer provided" />';
 				}
 			}
 		}
@@ -1109,12 +1109,12 @@ function zp_printNewsCategoryFoldout() {
 			<hr />
 			<h2>Theme icon legend</h2>
 			<ul class="statuslist">
-				<li class="themestatus1"><a href="<?php echo getSearchURL('theme-officially-supported', '', '', '', NULL); ?>">Officially supported</a> <br />Included in the Zenphoto release package.</li>
-				<li class="themestatus2"><a href="<?php echo getSearchURL('theme-compatible', '', '', '', NULL); ?>">Generally compatible</a>
-					<br />Unsupported and 3rd party</li>
-				<li class="themestatus3"><a href="<?php echo getSearchURL('theme-partly-compatible', '', '', '', NULL); ?>">Partly compatible</a> <br />Unsupported and 3rd party</li>
-				<li class="themestatus4"><a href="<?php echo getSearchURL('theme-not-compatible', '', '', '', NULL); ?>">Currently not compatible</a> <br />Unsupported and 3rd party</li>
-				<li class="themestatus5"><a href="<?php echo getSearchURL('theme-abandoned', '', '', '', NULL); ?>">No longer provided</a> <br />Unsupported and 3rd party</li>
+				<li class="themestatus1"><a href="<?php echo getSearchURL('theme_officially-supported', '', '', '', NULL); ?>">Officially supported</a> <br />Included in the Zenphoto release package.</li>
+				<li class="themestatus2"><a href="<?php echo getSearchURL('theme_unsupported-hosted', '', '', '', NULL); ?>">Unsupported – hosted</a>
+					<br />Formerly supported, now unsupported themes we host for archival purposes.</li>
+				<li class="themestatus2"><a href="<?php echo getSearchURL('theme_unsupported-3rd-party-hosted', '', '', '', NULL); ?>">Unsupported – 3rd party hosted</a> <br />Unsupported 3rd party themes we host for archival purposes</li>
+				<li class="themestatus3"><a href="<?php echo getSearchURL('theme_unsupported-3rd-party-external', '', '', '', NULL); ?>">Unsupported – 3rd party external</a> <br />Themes hosted by their developers</li>
+				<li class="themestatus5"><a href="<?php echo getSearchURL('theme_unsupported-unavailable', '', '', '', NULL); ?>">No longer provided</a> <br />Unsupported and 3rd party</li>
 			</ul>
 			<?php
 		}
@@ -1182,11 +1182,11 @@ function zp_printNewsCategoryFoldout() {
 			if ($obj->inNewsCategory("officially-supported")) {
 				?>
 				<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" />
-			<?php } else if ($obj->inNewsCategory('unsupported-plugin-github') || $obj->inNewsCategory('unsupported-misc-github')) {
+			<?php } else if ($obj->inNewsCategory('unsupported-hosted') || $obj->inNewsCategory('unsupported-3rd-party-hosted') || $obj->inNewsCategory('unsupported-misc-github')) {
 				?>
 				<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_blue.png" title="Third party hosted on GitHub- not officially supported" />
 				<?php
-			} else if ($obj->inNewsCategory('unsupported-plugin-selfhosted')) {
+			} else if ($obj->inNewsCategory('unsupported-3rd-party-external')) {
 				if ($obj->hasTag('extension-abandoned')) {
 					?>
 					<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/cancel_round.png" title="Third party - abandoned by developer" />
@@ -1208,13 +1208,13 @@ function zp_printNewsCategoryFoldout() {
 					Officially supported and included in the release package.
 				</li>
 				<li class="extension-unsupported-hosted" id="third-party-hosted-unsupported">
-					Unsupported and/or older third party extensions we host on GitHub as an archive.
+					Either our own now unsupported and third party extensions we host on GitHub as an archive.
 				</li>
 				<li class="extension-unsupported" id="third-party-unsupported">
-					Unsupported third party extensions hosted by the developers themselves.
+					Third party extensions hosted by the developers themselves.
 				</li>
 				<li class="extension-abandoned" id="third-party-abandoned">
-					Unsupported third party extensions abandoned by its developer.
+					Unsupported third party extensions currently not available.
 				</li>
 			</ul>
 			<?php
@@ -1444,9 +1444,9 @@ function zp_printNewsCategoryFoldout() {
 		 */
 		function zp_printThemeDownloadButton() {
 			global $_zp_themeroot, $_zp_gallery, $_zp_current_album;
-			if (!$_zp_current_album->hasTag('theme-officially-supported') && zp_getParentAlbumName() == "theme") {
+			if (!$_zp_current_album->hasTag('theme_officially-supported') && zp_getParentAlbumName() == "theme") {
 
-				if (zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('hosted_theme')) {
+				if (zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('theme_unsupported-hosted')) {
 					$linktext = 'Download from the "unsupported" GitHub repository';
 					$theme = explode('/', $_zp_current_album->name);
 					$themeurl = 'https://github.com/zenphoto/Unsupported/';
@@ -1455,15 +1455,15 @@ function zp_printNewsCategoryFoldout() {
 					$linktext = 'Info/download (external)';
 					$themeurl = $_zp_current_album->getLocation();
 				}
-				if ($_zp_current_album->hasTag('hosted_theme')) {
+				if ($_zp_current_album->hasTag('theme_unsupported-hosted')) {
 					echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
-				} else if ($_zp_current_album->hasTag('theme-abandoned')) {
+				} else if ($_zp_current_album->hasTag('theme_unsupported-unavailable')) {
 					echo '<p class="articlebox-left warningnote"><strong>Sorry, this theme is no longer provided by its developer.</strong></p>';
 				} else {
 					echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
 				}
 			}
-			if ($_zp_current_album->hasTag('theme-officially-supported')) {
+			if ($_zp_current_album->hasTag('theme_officially-supported')) {
 				?>
 				<p class="articlebox">Included in the Zenphoto release.</p>
 				<?php
@@ -1492,18 +1492,12 @@ function zp_printNewsCategoryFoldout() {
 					}
 				} else {
 					$githubtext = '<div class="articlebox-left warningnote"><p><strong>Please note:</strong> This extension or tool has been abandoned either by the Zenphoto team or its original 3rd party developer but we provide it for archival purposes on our "unsuppported" GitHub repository "as is". We generally do not update these extensions (See the circle icon about the status).</p><p>It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on "Download ZIP") and sort out what you need yourself.</p></div>';
-					if (zp_inNewsCategory("unsupported-plugin-github")) {
+					if (zp_inNewsCategory("unsupported-hosted") || zp_inNewsCategory("unsupported-3rd-party-hosted")) {
 						//if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
 						$linktext = 'Download from the "unsupported" GitHub repository';
 						$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
 						//$exturl = getDownloadURL('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
 						$exturl = 'https://github.com/zenphoto/Unsupported/';
-						echo $githubtext;
-					} else if (zp_inNewsCategory("unsupported-misc-github")) {
-						$linktext = 'Download from the "unsupported" GitHub repository';
-						$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
-						//$exturl = getDownloadURL('uploaded/extensions/'.$_zp_current_zenpage_news->getTitlelink().'.zip');
-						$exturl = 'https://github.com/zenphoto/Unsupported/tree/master/misc/';
 						echo $githubtext;
 					} else {
 						$linktext = 'Info/download (external)';
