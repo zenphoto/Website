@@ -93,12 +93,12 @@
 					<?php
 					if ($_zp_current_album->name == "theme") {
 						echo "<h2>Latest themes</h2>";
-						$latest = getAlbumStatistic(4, 'latest', 'theme', true);
+						$latest = getAlbumStatistic(4, 'latest-date', 'theme', true);
 						zp_printGalleryStatistics($latest, 'date', true);
-						echo "<hr />";
+						echo "<hr />"; 
 						echo "<h2>Top rated themes</h2>";
 						$toprated = getAlbumStatistic(4, 'toprated', 'theme', true);
-						zp_printGalleryStatistics($toprated, 'rating', true);
+						zp_printGalleryStatistics($toprated, 'rating', true); 
 					}
 					if ($_zp_current_album->name === "showcase") {
 						echo "<h2>Top rated sites</h2>";

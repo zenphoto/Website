@@ -114,7 +114,7 @@ include('header.php');
 			$albtitle = '';
 			$thumb = '';
 			$imagelink = '';
-			$latestalbum = getAlbumStatistic(1, 'latest', 'theme');
+			$latestalbum = getAlbumStatistic(1, 'latest-date', 'theme');
 			if (!empty($latestalbum)) {
 				$tempalbum = $latestalbum[0];
 				if ($tempalbum->getNumImages() != 0) {

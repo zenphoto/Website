@@ -1446,7 +1446,7 @@ function zp_printNewsCategoryFoldout() {
 			global $_zp_themeroot, $_zp_gallery, $_zp_current_album;
 			if (!$_zp_current_album->hasTag('theme_officially-supported') && zp_getParentAlbumName() == "theme") {
 
-				if (zp_getParentAlbumName() == "theme" && $_zp_current_album->hasTag('theme_unsupported-hosted')) {
+				if (zp_getParentAlbumName() == "theme" && ($_zp_current_album->hasTag('theme_unsupported-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted'))) {
 					$linktext = 'Download from the "unsupported" GitHub repository';
 					$theme = explode('/', $_zp_current_album->name);
 					$themeurl = 'https://github.com/zenphoto/Unsupported/';
@@ -1455,7 +1455,7 @@ function zp_printNewsCategoryFoldout() {
 					$linktext = 'Info/download (external)';
 					$themeurl = $_zp_current_album->getLocation();
 				}
-				if ($_zp_current_album->hasTag('theme_unsupported-hosted')) {
+				if ($_zp_current_album->hasTag('theme_unsupported-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted')) {
 					echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
 				} else if ($_zp_current_album->hasTag('theme_unsupported-unavailable')) {
 					echo '<p class="articlebox-left warningnote"><strong>Sorry, this theme is no longer provided by its developer.</strong></p>';
