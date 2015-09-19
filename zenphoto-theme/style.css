@@ -855,10 +855,10 @@ ul.morebyauthorlist li,
 	background: url(images/accept_blue.png) no-repeat top left;
 }
 #sidebar ul.statuslist li.themestatus3 {
-	background: url(images/question_orange.png) no-repeat top left;
+	background: url(images/question_blue.png) no-repeat top left;
 }
 #sidebar ul.statuslist li.themestatus4 {
-	background: url(images/stop_round.png) no-repeat top left;
+	background: url(images/question_orange.png) no-repeat top left;
 }
 #sidebar ul.statuslist li.themestatus5 {
 	background: url(images/cancel_round.png) no-repeat top left;
@@ -1970,10 +1970,10 @@ ul.archive #month {
 	background: url(images/accept_blue.png) no-repeat 0px 21px;
 }
 .themeicon3 {
-	background: url(images/question_orange.png) no-repeat 0px 21px;
+	background: url(images/question_blue.png) no-repeat 0px 21px;
 }
 .themeicon4 {
-	background: url(images/stop_round.png) no-repeat 0px 21px;
+	background: url(images/question_orange.png) no-repeat 0px 21px;
 }
 .themeicon5 {
 	background: url(images/cancel_round.png) no-repeat 0px 21px;

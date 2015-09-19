@@ -1046,10 +1046,10 @@ function zp_printNewsCategoryFoldout() {
 					return ' themeicon2';
 				}
 				if ($_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted')) {
-					return ' themeicon2';
+					return ' themeicon3';
 				}
 				if ($_zp_current_album->hasTag('theme_unsupported-3rd-party-external')) {
-					return ' themeicon3';
+					return ' themeicon4';
 				}
 				if ($_zp_current_album->hasTag('theme_unsupported-unavailable')) {
 					return ' themeicon5';
@@ -1085,10 +1085,10 @@ function zp_printNewsCategoryFoldout() {
 					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/accept_green.png" alt="Officially supported – Included in the Zenphoto release package" title="Officially supported – Included in the Zenphoto release package" />';
 				}
 				if ($albumobj->hasTag('theme_unsupported-hosted')) {
-					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/accept_blue.png" alt="Unsupported – hosted" title="Unsupported – hosted" />';
+					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/question_blue.png" alt="Unsupported – hosted" title="Unsupported – hosted" />';
 				}
 				if ($albumobj->hasTag('theme_unsupported-3rd-party-hosted')) {
-					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/accept_blue.png" alt="Unsupported – 3rd party hosted" title="Unsupported – 3rd party hosted" />';
+					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/question_blue.png" alt="Unsupported – 3rd party hosted" title="Unsupported – 3rd party hosted" />';
 				}
 				if ($albumobj->hasTag('theme_unsupported-3rd-party-external')) {
 					echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/question_orange.png" alt="Unsupported – 3rd party external" title="Unsupported – 3rd party external" />';
@@ -1112,8 +1112,8 @@ function zp_printNewsCategoryFoldout() {
 				<li class="themestatus1"><a href="<?php echo getSearchURL('theme_officially-supported', '', '', '', NULL); ?>">Officially supported</a> <br />Included in the Zenphoto release package.</li>
 				<li class="themestatus2"><a href="<?php echo getSearchURL('theme_unsupported-hosted', '', '', '', NULL); ?>">Unsupported – hosted</a>
 					<br />Formerly supported, now unsupported themes we host for archival purposes.</li>
-				<li class="themestatus2"><a href="<?php echo getSearchURL('theme_unsupported-3rd-party-hosted', '', '', '', NULL); ?>">Unsupported – 3rd party hosted</a> <br />Unsupported 3rd party themes we host for archival purposes</li>
-				<li class="themestatus3"><a href="<?php echo getSearchURL('theme_unsupported-3rd-party-external', '', '', '', NULL); ?>">Unsupported – 3rd party external</a> <br />Themes hosted by their developers</li>
+				<li class="themestatus3"><a href="<?php echo getSearchURL('theme_unsupported-3rd-party-hosted', '', '', '', NULL); ?>">Unsupported – 3rd party hosted</a> <br />Unsupported 3rd party themes we host for archival purposes</li>
+				<li class="themestatus4"><a href="<?php echo getSearchURL('theme_unsupported-3rd-party-external', '', '', '', NULL); ?>">Unsupported – 3rd party external</a> <br />Themes hosted by their developers</li>
 				<li class="themestatus5"><a href="<?php echo getSearchURL('theme_unsupported-unavailable', '', '', '', NULL); ?>">No longer provided</a> <br />Unsupported and 3rd party</li>
 			</ul>
 			<?php
