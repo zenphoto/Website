@@ -12,9 +12,9 @@
 			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=news">New releases and announcements</a></li>
 			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=user-guide">User guide</a></li>
 			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=extensions">Extensions</a></li>
-			<li><a href="<?php echo WEBPATH; ?>/index.php?rss&amp;folder=screenshots">Screenshots	and screencasts</a></li>
-			<li><a href="<?php echo WEBPATH; ?>/index.php?rss&folder=theme&amp;albumsmode&amp;sortorder=latest">Themes</a></li>
-			<li><a href="<?php echo WEBPATH; ?>/index.php?rss&amp;albumname=showcase">Showcase</a></li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;folder=screenshots">Screenshots	and screencasts</a></li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;folder=theme&amp;albumsmode&amp;sortorder=latest">Themes</a></li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;albumname=showcase">Showcase</a></li>
 			<li><a href="<?php echo WEBPATH; ?>/support/rss.php">Forum</a></li>
 		</ul>
 		<br />
