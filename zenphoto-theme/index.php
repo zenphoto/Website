@@ -210,9 +210,6 @@ include('header.php');
 		<?php zp_printSponsorAds(true); ?>
 
 
-
-
-
 	</div><!-- infobox-m end -->
 
 	<div class="column-r">
@@ -267,26 +264,5 @@ include('header.php');
 	<br style="clear: both" />
 
 </div> <!-- frontcontent end -->
-
-
-
-<div id="ads" style="margin-left: 40px">
-	<script type="text/javascript">
-		<!--
-		google_ad_client = "pub-7903690389990760";
-		google_ad_width = 728;
-		google_ad_height = 90;
-		google_ad_format = "728x90_as";
-		google_ad_type = "text";
-		google_ad_channel = "";
-		google_color_border = "CCCCCC";
-		google_color_bg = "FFFFFF";
-		google_color_link = "000000";
-		google_color_url = "666666";
-		google_color_text = "333333";//-->
-	</script>
-
-	<script type="text/javascript"
-	src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
 
 	<!-- The main column ends  --> <?php include('footer.php'); ?>

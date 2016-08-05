@@ -1541,7 +1541,7 @@ margin: 0;
 	display: none;
 } */
 
-*/
+
 /* Album Thumbnails
 ------------------------------ */
 #albums,
@@ -2445,7 +2445,7 @@ outline: none;
 #slidepause:focus,
 #slideplay:focus,
 #frontcontent #slidenav a:focus {
-background-color: #eff3d5
+background-color: #eff3d5;
 outline: none;
 }
 
