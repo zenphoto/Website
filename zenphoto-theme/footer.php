@@ -1,5 +1,6 @@
 <!-- Close Page -->
 <!-- begin footer -->
+</div>
 
 <div id="footer"><a name="stay-tuned"></a>
 <div class="column-l">

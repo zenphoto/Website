@@ -263,6 +263,6 @@ include('header.php');
 
 	<br style="clear: both" />
 
-</div> <!-- frontcontent end -->
+
 
 	<!-- The main column ends  --> <?php include('footer.php'); ?>
