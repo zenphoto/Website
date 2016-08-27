@@ -239,7 +239,11 @@
 
 		<div class="infobox">
 			<h3>Share!</h3>
-			<?php zp_printAddthis(); ?>
+			<?php 
+			if (function_exists('printScriptlessSocialSharingButtons')) {
+				printScriptlessSocialSharingButtons();
+			}
+			?>
 		</div>
 
 		<div class="infobox">

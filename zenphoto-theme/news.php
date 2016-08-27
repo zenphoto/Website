@@ -66,9 +66,10 @@
 				}
 				?>
 			</div>
-			<?php zp_printAddthis(); ?>
-
-			<?php
+			<?php 
+			if(function_exists('printScriptlessSocialSharingButtons')) {
+				printScriptlessSocialSharingButtons();
+			} 
 			if (zp_inNewsCategory('extensions')) {
 				zp_printMoreByAuthorsLinks();
 			}

@@ -1221,27 +1221,6 @@ function zp_printNewsCategoryFoldout() {
 		}
 
 		/**
-		 * Prints the code for the AddThis.com social network bookmark button
-		 * @param bool $narrow true (default) for a slim variante for sidebar, false for the wide one for single articles etc.
-		 */
-		function zp_printAddthis($narrow = true) {
-			?>
-			<!-- AddThis Button BEGIN -->
-			<div class="addthis_toolbox addthis_default_style ">
-				<a class="addthis_button_preferred_1"></a>
-				<a class="addthis_button_preferred_2"></a>
-				<a class="addthis_button_preferred_3"></a>
-				<a class="addthis_button_preferred_4"></a>
-				<a class="addthis_button_google_plusone" g:plusone:annotation="none"></a>
-				<a class="addthis_button_compact"></a>
-				<a class="addthis_counter addthis_bubble_style"></a>
-			</div>
-			<script type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-50334a5249e551d6"></script>
-			<!-- AddThis Button END -->
-			<?php
-		}
-
-		/**
 		 * Prints the html header title for each page context sensitive
 		 */
 		function zp_printPageHeaderTitle() {
@@ -1416,7 +1395,11 @@ function zp_printNewsCategoryFoldout() {
 			<?php if (!is_NewsArticle() && $_zp_gallery_page != 'image.php') { ?>
 				<div class="infobox">
 					<h3>Share!</h3>
-					<?php zp_printAddthis(); ?>
+					<?php 
+					if(function_exists('printScriptlessSocialSharingButtons')) {
+						printScriptlessSocialSharingButtons();
+					} 
+					?>
 				</div>
 				<?php
 			}

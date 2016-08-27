@@ -110,8 +110,10 @@ setOption('thumb_crop_height', 40, false);
   }
   ?></div>
   <hr style="clear:left" />
-<?php zp_printAddthis(); ?>
-<?php
+<?php 
+if(function_exists('printScriptlessSocialSharingButtons')) {
+	printScriptlessSocialSharingButtons();
+}  
 if ($_zp_current_album->name != "showcase") {
 	zp_printMoreByAuthorsLinks();
 }

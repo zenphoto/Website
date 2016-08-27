@@ -807,6 +807,8 @@ ul.morebyauthorlist li,
   background: url(images/newnavbullet2.png) no-repeat top left;
 }
 
+
+
 #sidebar ul.statuslist {
 	margin: 10px 0 5px 0;
 	
@@ -2182,10 +2184,12 @@ width: 245px !important;
 position: relative;
 top: 4px;
 }
+
 .clear {
   clear:both;
   height:10px;
 }
+
 
 h3.searchresulttitle {
 	font-size: 18px;
@@ -2624,9 +2628,34 @@ form#payment input[name="os1"] {
 }
 
 form#payment select option {
-   	padding-right: 10px;
+	padding-right: 10px;
 }
 
 form#payment input[name="os1"] {
 	padding: 3px 5px 3px 5px;
+}
+
+/* 
+Socialsharing updates
+*/
+#sidebar .infobox ul.scriptless_socialsharing,
+.infobox ul.scriptless_socialsharing {
+	display: block !important;
+	width: 100%;
+	min-height: 100px;
+}
+
+#sidebar .infobox ul.scriptless_socialsharing:before,
+#sidebar .infobox ul.scriptless_socialsharing:after,
+.infobox ul.scriptless_socialsharing:before,
+.infobox ul.scriptless_socialsharing:after {
+  content: " " !important;
+  display: table !important; 
+}
+
+#sidebar ul.scriptless_socialsharing li {
+	list-style-type:none;
+	padding-left: 0px;
+	margin: 0px;
+  background: none;
 }
