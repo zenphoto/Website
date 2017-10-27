@@ -15,7 +15,7 @@
 			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;folder=screenshots">Screenshots	and screencasts</a></li>
 			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;folder=theme&amp;albumsmode&amp;sortorder=latest">Themes</a></li>
 			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;albumname=showcase">Showcase</a></li>
-			<li><a href="<?php echo WEBPATH; ?>/support/rss.php">Forum</a></li>
+			<li><a href="http://forum.zenphoto.org/discussions/feed.rss">Forum</a></li>
 		</ul>
 		<br />
 		<h3>Social networks</h3>
@@ -47,7 +47,7 @@
 			</ul>
 				<p>
 		Website powered by Zenphoto<br />
-		Forum powered by <a href="http://bbpress.org">bbpress</a>
+		Forum powered by <a href="https://open.vanillaforums.com">Vanilla</a>
 		</p>
 		</div>
 
@@ -67,10 +67,9 @@
 	 	<br />
 	 	<h3>Legal stuff</h3>
 		<ul class="downloadlinks">
-			<li><?php printPageURL('Licenses', 'licenses','','',NULL); ?></li>
-			<li><a href="<?php echo WEBPATH; ?>/support/?terms-of-service=display">Forum rules & Terms of service</a></li>
-			<li><?php printPageURL('Privacy', 'privacy','','',NULL); ?></li>
-			<li><?php printPageURL('Contributor profile pages info', 'contributor-profile-page-information','','',NULL); ?></li>
+			<li><?php printPageURL('Legal', 'legal','','',NULL); ?></li>
+			<li><?php printPageURL('Forum Terms Of Service ', 'forum-terms-of-service','','',NULL); ?></li>
+			<li><?php printPageURL('Data Privacy Policy', 'data-privacy-policy','','',NULL); ?></li>
 		</ul>
 	 </div>
 </div>
@@ -79,5 +78,21 @@
 <?php
 zp_apply_filter('theme_body_close');
 ?>
+<!-- Piwik -->
+		<script type="text/javascript">
+  		var _paq = _paq || [];
+ 			/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  		_paq.push(['trackPageView']);
+  		_paq.push(['enableLinkTracking']);
+  		(function() {
+    		var u="//stats.zenphoto.org/";
+    		_paq.push(['setTrackerUrl', u+'piwik.php']);
+    		_paq.push(['setSiteId', '1']);
+    		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    		g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  		})();
+	</script>
+	<noscript><p><img src="http://stats.zenphoto.org/piwik.php?idsite=1&rec=1" style="border:0" alt="" /></p></noscript>
+	<!-- End Piwik Code -->
 </body>
 </html>

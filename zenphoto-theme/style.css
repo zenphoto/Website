@@ -2202,6 +2202,9 @@ list-style: none;
 margin-bottom: 15px;
 }
 
+/* Mail form
+--------------------*/
+
 #mailform {
 width: 100%;
 }
@@ -2217,14 +2220,13 @@ padding-bottom: 60px !important;
 }
 
 #mailform label {
-width: 30%;
-float: left;
+display: block;
 }
 
 #mailform input[type=text],
 #mailform textarea#message {
-width: 70%;
-float: left;
+width: 100%;
+
 }
 
 /* Pretty Buttons
@@ -2565,6 +2567,46 @@ padding: 0;
 }
 
 
+.sponsorcategories {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin: 20px 0 10px 0;
+	text-align: left;
+	
+}
+
+.sponsorcategories_entry {
+	border: 1px solid lightgray;
+	padding: 0;
+	margin: 5% 5% 0% 0%;
+	display: inline-block;
+	width: 42%;
+	vertical-align: top;
+}
+
+.sponsorcategories_entry h5 {
+	margin-top: 0 !important;
+	font-size: 16px !important;
+	padding: 10px 15px 10px 15px;
+	border-bottom: 1px solid lightgray;
+}
+
+.sponsorcategories_entry-body > * { 
+	padding: 0px 15px 0px 15px;
+}
+
+.sponsorcategories_entry-body p {
+margin-top: 15px;
+}
+
+
+.sponsorcategories_entry-avail {
+	border-top: 1px solid lightgray;
+	padding: 10px 15px 0px 15px;
+}
+
+
 /* tinyZenpage embedded images */
 .zenpage_customimage_right {
 margin-left: 10px;
@@ -2607,6 +2649,7 @@ font-weight: bold;
 font-size: 10px;
 }
 
+/*
 form#payment {
 	margin-top: 20px;
 }
@@ -2634,6 +2677,7 @@ form#payment select option {
 form#payment input[name="os1"] {
 	padding: 3px 5px 3px 5px;
 }
+*/
 
 /* 
 Socialsharing updates

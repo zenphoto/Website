@@ -12,18 +12,18 @@ include('header.php');
 		<div id="introwrapper">
 			<h2>Media website management the easy way!</h2>
 			<ul id="featureicons">
-				<li><a href="http://www.zenphoto.org/news/features#manage-image-video-and-audio-files"><span class="icon-image"></span><h3>Images</h3></a></li>
-				<li><a href="http://www.zenphoto.org/news/features#manage-image-video-and-audio-files"><span class="icon-music"></span><h3>Audio</h3></a></li>
-				<li><a href="http://www.zenphoto.org/news/features#manage-image-video-and-audio-files"><span class="icon-film"></span><h3>Video</h3></a></li>
-				<li><a href="http://www.zenphoto.org/news/features#manage-blog-and-pages"><span class="icon-file"></span><h3>Blog</h3></a></li>
-				<li><a href="http://www.zenphoto.org/news/features#manage-blog-and-pages"><span class="icon-file2"></span><h3>Pages</h3></a></li>
-				<li><a href="http://www.zenphoto.org/news/features#multi-user-management"><span class="icon-lock"></span><h3>User rights</h3></a></li>
-				<li><a href="http://www.zenphoto.org/news/features#multi-user-management"><span class="icon-users"></span><h3>Multi user</h3></a></li>
-				<li><a href="news/features#international-sites-with-multiple-languages"><span class="icon-earth"></span><h3>Multilingual</h3></a></li>
+				<li><a href="<?php echo html_encode(getNewsURL('features')); ?>#manage-image-video-and-audio-files"><span class="icon-image"></span><h3>Images</h3></a></li>
+				<li><a href="<?php echo html_encode(getNewsURL('features')); ?>#manage-image-video-and-audio-files"><span class="icon-music"></span><h3>Audio</h3></a></li>
+				<li><a href="<?php echo html_encode(getNewsURL('features')); ?>#manage-image-video-and-audio-files"><span class="icon-film"></span><h3>Video</h3></a></li>
+				<li><a href="<?php echo html_encode(getNewsURL('features')); ?>#manage-blog-and-pages"><span class="icon-file"></span><h3>Blog</h3></a></li>
+				<li><a href="<?php echo html_encode(getNewsURL('features')); ?>#manage-blog-and-pages"><span class="icon-file2"></span><h3>Pages</h3></a></li>
+				<li><a href="<?php echo html_encode(getNewsURL('features')); ?>#multi-user-management"><span class="icon-lock"></span><h3>User rights</h3></a></li>
+				<li><a href="<?php echo html_encode(getNewsURL('features')); ?>#multi-user-management"><span class="icon-users"></span><h3>Multi user</h3></a></li>
+				<li><a href="<?php echo html_encode(getNewsURL('features')); ?>#international-sites-with-multiple-languages"><span class="icon-earth"></span><h3>Multilingual</h3></a></li>
 			</ul>
 			<div id="introtext">
 				<?php printGalleryDesc(); ?>
-				<p class="buttons"><a href="/news/features">Read about all features</a></p>
+				<p class="buttons"><a href="<?php echo html_encode(getNewsURL('features')); ?>">Read about all features</a></p>
 			</div>
 		</div>
 
@@ -84,14 +84,14 @@ include('header.php');
 
 		<p class="version_info">
 			<strong><?php echo $zp_version; ?></strong> (<?php echo $zp_dl_pubdate; ?>) | License: <a	href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v2 or later</a> | <a
-				href="http://www.zenphoto.org/news/installation-and-upgrading" title="Installation, upgrading and requirements">Installation,	upgrading and requirements</a>
+				href="<?php echo html_encode(getNewsURL('installation-and-upgrading')); ?>" title="Installation, upgrading and requirements">Installation,	upgrading and requirements</a>
 		</p>
 	</div> <!--download box div wrapper end -->
 
 	<div class="infobox-links-r">
 		<?php printSearchForm(); ?>
 		<ul class="downloadlinks">
-			<li><a href="/news/category/changelog" title="Zenphoto changelog">Changelog</a></li>
+			<li><a href="<?php echo html_encode(getNewsCategoryURL('changelog')); ?>" title="Zenphoto changelog">Changelog</a></li>
 			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto <?php echo MASTER_BUILD; ?> build on GitHub"><?php echo MASTER_BUILD; ?> (GitHub)</a></li>
 
 			<?php $devbuild = false; 
@@ -102,7 +102,7 @@ include('header.php');
 				<?php
 			}
 			?>
-			<li><a href="http://www.zenphoto.org/news/older-versions-archive">Older versions archive</a></li>
+			<li><a href="<?php echo html_encode(getNewsURL('older-versions-archive')); ?>">Older versions archive</a></li>
 		</ul>
 	</div>
 
@@ -181,7 +181,7 @@ include('header.php');
 		<div class="infobox">
 			<h3>Like using Zenphoto? Donate!</h3>
 			<p>Your support helps pay for this server, and helps development of Zenphoto. Thank you!</p>
-			<p>Visit the <a href="http://www.zenphoto.org/pages/donations">donations page</a></p>
+			<p>Visit the <a href="<?php echo html_encode(getPageURL('donations')); ?>">donations page</a></p>
 		</div>
 
 
@@ -246,17 +246,17 @@ include('header.php');
 		<div class="infobox">
 			<h3>Need help? Visit the forum!</h3>
 			<p><img src="<?php echo $_zp_themeroot; ?>/images/icon-forum.png"	class="imgfloat-left" alt="" /> You can post help requests and discuss everything Zenphoto related in the
-				<a href="http://www.zenphoto.org/support" title="Zenphoto forums">Zenphoto support forums</a> (Registration required for posting). Please do not e-mail us asking for help. Thanks!
+				<a href="<?php echo html_encode(getOption('zporg_forumurl')); ?>" title="Zenphoto forums">Zenphoto support forums</a> (Registration required for posting). Please do not e-mail us asking for help. Thanks!
 			</p>
 			<br />
 			<h3>Need project help?</h3>
-			<p>Visit the <a href="http://www.zenphoto.org/pages/paid-support">paid support page</a>.
+			<p>Visit the <a href="<?php echo html_encode(getPageURL('paid-support')); ?>">paid support page</a>.
 			</p>
 		</div>
 
 		<div class="infobox">
 			<h3>Get involved!</h3>
-			<p>You would like to contribute? You don't need to be a programmer! <a href="http://www.zenphoto.org/pages/get-involved" title="Get involved!">Read here what you can do for Zenphoto!</a>
+			<p>You would like to contribute? You don't need to be a programmer! <a href="<?php echo html_encode(getPageURL('get-involved')); ?>" title="Get involved!">Read here what you can do for Zenphoto!</a>
 			</p>
 		</div>
 

@@ -1390,7 +1390,7 @@ function zp_printNewsCategoryFoldout() {
 			<div class="infobox">
 				<h3>Like using Zenphoto? Donate!</h3>
 				<p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
-				<p>Visit the <a href="http://www.zenphoto.org/pages/donations">donations page</a></p>
+				<p>Visit the <?php printPageURL('donations page', 'donation', '', '', NULL); ?></p>
 			</div>
 			<?php if (!is_NewsArticle() && $_zp_gallery_page != 'image.php') { ?>
 				<div class="infobox">
@@ -1528,50 +1528,46 @@ function zp_printNewsCategoryFoldout() {
 			if ($sponsorplatinum) {
 				switch ($_zp_gallery_page) {
 					case 'index.php':
-						$albums = array('hosting/platinum');
+						$albums = array('sponsors/platinum');
 						break;
 					default:
-						$albums = array('hosting/palladium');
+						$albums = array('sponsors/palladium');
 						break;
 				}
 			} else {
-				$albums = array('hosting/gold', 'hosting/silver', 'hosting/bronze');
+				$albums = array('sponsors/gold', 'sponsors/silver', 'sponsors/bronze');
 			}
+				?>
+					<p class="ad-headline">Advertisements</p>
+				<?php
 			foreach ($albums as $album) {
 				$albobj = newAlbum($album);
 				$imagescount = $albobj->getNumImages();
-				if ($sponsorplatinum) {
-					?>
-					<p class="ad-headline">Advertisements</p>
-				<?php } else { ?>
-					<!-- <h4 class="ad-headline"><?php echo html_encode($albobj->getTitle()); ?></h4> -->
-					<?php
-				}
 				$adheight = 130;
 				switch ($album) {
-					case 'hosting/platinum':
-					case 'hosting/palladium':
+					case 'sponsors/platinum':
+					case 'sponsors/palladium':
 						$adwidth = 275;
 						$maxnum = 2;
 						switch ($album) {
-							case 'hosting/platinum':
+							case 'sponsors/platinum':
 								$imgclass = 'sponsor-platinum';
 								break;
-							case 'hosting/palladium':
+							case 'sponsors/palladium':
 								$imgclass = 'sponsor-palladium';
 								break;
 						}
 						break;
-					case 'hosting/gold':
+					case 'sponsors/gold':
 						$adwidth = 560;
 						$maxnum = 99;
 						$imgclass = 'sponsor-gold';
 						break;
-					case 'hosting/silver':
+					case 'sponsors/silver':
 						$adwidth = 270;
 						$maxnum = 2;
 						break;
-					case 'hosting/bronze':
+					case 'sponsors/bronze':
 						$adwidth = 125;
 						$maxnum = 4;
 						break;
@@ -1583,31 +1579,31 @@ function zp_printNewsCategoryFoldout() {
 						$count++;
 						$imgobj = newImage($albobj, $image);
 						switch ($album) {
-							case 'hosting/platinum':
+							case 'sponsors/platinum':
 								$imgclass = 'sponsor-platinum';
 								$linkclass = 'platinum-ad';
 								if ($count == 1) {
 									$imgclass .= ' sponsor-platinum-first';
 								}
 								break;
-							case 'hosting/palladium':
+							case 'sponsors/palladium':
 								$imgclass = 'sponsor-palladium';
 								$linkclass = 'palladium-ad';
 								if ($count == 1) {
 									$imgclass .= ' sponsor-palladium-first';
 								}
 								break;
-							case 'hosting/gold':
+							case 'sponsors/gold':
 								$linkclass = 'gold-ad';
 								break;
-							case 'hosting/silver':
+							case 'sponsors/silver':
 								$imgclass = 'sponsor-silver';
 								$linkclass = 'silver-ad';
 								if ($count < 2) {
 									$imgclass .= ' sponsor-right';
 								}
 								break;
-							case 'hosting/bronze':
+							case 'sponsors/bronze':
 								$imgclass = 'sponsor-bronze';
 								$linkclass = 'bronze-ad';
 								if ($count != 4) {
@@ -1630,11 +1626,11 @@ function zp_printNewsCategoryFoldout() {
 						}
 					} // image loop
 				} // if images != 0
-				if ($imagescount != $maxnum && ($album == 'hosting/platinum' || $album == 'hosting/palladium')) {
+				if ($imagescount != $maxnum && ($album == 'sponsors/platinum' || $album == 'sponsors/palladium')) {
 					//if($imagescount != $maxnum) {
 					?>
 					<?php
-					$link = 'http://www.zenphoto.org/pages/advertise';
+					$link = getPageURL('advertise');
 					if ($imagescount == 0) {
 						$max = $maxnum;
 					} else {
@@ -1643,14 +1639,14 @@ function zp_printNewsCategoryFoldout() {
 					$placeholderalb = newAlbum('storage/sponsor-placeholders');
 					for ($i = 1; $i <= $max; $i++) {
 						switch ($album) {
-							case 'hosting/platinum':
+							case 'sponsors/platinum':
 								$imgclass = 'sponsor-platinum';
 								if ($i == 1) {
 									$imgclass .= ' sponsor-platinum-first';
 								}
 								$placeholderimg = newImage($placeholderalb, 'sponsorplatinum-placeholder-ad.gif');
 								break;
-							case 'hosting/palladium':
+							case 'sponsors/palladium':
 								$imgclass = 'sponsor-platinum';
 								if ($i == 1) {
 									$imgclass .= ' sponsor-platinum-first';
@@ -1658,17 +1654,17 @@ function zp_printNewsCategoryFoldout() {
 								$placeholderimg = newImage($placeholderalb, 'sponsorpalladium-placeholder-ad.gif');
 								break;
 							/* s
-							  case 'hosting/gold':
+							  case 'sponsors/gold':
 							  $placeholderimg = newImage($placeholderalb,'sponsorgold-placeholder.gif');
 							  break;
-							  case 'hosting/silver':
+							  case 'sponsors/silver':
 							  $imgclass = 'sponsor-silver';
 							  if($i < $max) {
 							  $imgclass .= ' sponsor-right';
 							  }
 							  $placeholderimg = newImage($placeholderalb,'sponsorsilver-placeholder.gif');
 							  break;
-							  case 'hosting/bronze':
+							  case 'sponsors/bronze':
 							  $imgclass = 'sponsor-bronze';
 							  if($i < $max) {
 							  $imgclass .= ' sponsor-right';
@@ -1683,56 +1679,90 @@ function zp_printNewsCategoryFoldout() {
 						<?php
 					} // for
 				} // if
-				if ($album == 'hosting/silver') {
+				if ($album == 'sponsors/silver') {
 					?>
 					<br style="clear:left" />
 					<?php
-				} else if ($album == 'hosting/platinum' || $album == 'hosting/palladium') {
+				} else if ($album == 'sponsors/platinum' || $album == 'sponsors/palladium') {
 					echo '<hr />';
 				}
 			} // album loop
 		}
-
-		function zp_printSponsorAvailability() {
-			$obj = newAlbum('hosting');
-			$albums = $obj->getAlbums(0);
-			?>
-			<hr />
-			<h3>Ad space availability</h3>
-			<ul>
-				<?php
+		
+		/**
+		 * Prints the ad space availability for use in the sponsor categories
+		 * 
+		 * @param $which 'platinum', 'palladium', 'gold', 'silver', 'bronze' (ad cat box usage)
+		 */
+		function zp_printSponsorAvailability($which = 'platinum') {
+			global $_zporg_sponsor_categories;
+			if(!isset($_zporg_sponsor_categories)) {
+				$obj = newAlbum('sponsors');
+				$albums = $obj->getAlbums(0);
+				$maxavail = array(
+						'platinum' => 2,
+						'palladium' => 2,
+						'silver' => 2,
+						'gold' => 'unlimited',
+						'bronze' => 4
+				);
 				foreach ($albums as $album) {
 					$albobj = newAlbum($album);
 					$imagescount = $albobj->getNumImages();
-					switch ($album) {
-						case 'hosting/platinum':
-						case 'hosting/palladium':
-						case 'hosting/silver':
-							$maxnum = 2;
-							break;
-						case 'hosting/gold':
-							$maxnum = 'Unlimited';
-							break;
-						case 'hosting/bronze':
-							$maxnum = 4;
-							break;
-					}
-					if ($album == 'hosting/gold') {
+					$maxnum = $maxavail[strtolower($albobj->getTitle())];
+					if ($album == 'sponsors/gold') {
 						$max = $maxnum;
 					} else {
 						if ($imagescount != $maxnum) {
 							$max = $maxnum - $imagescount;
 						} else {
-							$max = 'not available currently';
+							$max = 0;
 						}
 					}
+					$_zporg_sponsor_categories[strtolower($albobj->getTitle())] = $max;
+				}
+			}
+			?>
+			<p class="sponsorcategories_entry-avail">Availability: <strong><?php echo $_zporg_sponsor_categories[$which]; ?></strong></p>
+			<?php
+		}
+		
+		/**
+		 * Prints the sponsor categories, e.g. the subpages of the "Advertisement categories" page
+		 */
+		function zp_printSponsorCategories() {
+			$obj = new ZenpagePage('advertisement-categories');
+			if($obj->loaded) {
+				$adcats = $obj->getPages();
+				if($adcats) {
 					?>
-					<li><?php echo $albobj->getTitle(); ?>: <?php echo $max; ?></li>
+					<div class="sponsorcategories">
+					<h4>Advertisement categories</h4>
+					<?php
+					foreach($adcats as $adcat) {
+						$adcatobj = new ZenpagePage($adcat['titlelink']);
+						?>
+						<div class="sponsorcategories_entry">
+							<h5><?php echo $adcatobj->getTitle(); ?></h5>
+							<div class="sponsorcategories_entry-body">
+							<?php 
+							echo $adcatobj->getContent();
+							?>
+							</div>
+							<?php
+							if($adcat['titlelink'] != 'bundles') {							
+								zp_printSponsorAvailability($adcatobj->getTitlelink()); 
+							}
+							?>
+						</div>
+						<?php
+					}
+					?>
+					</div>
+					<p><em>*subscription rate payable in advance</em></p>
 					<?php
 				}
-				?>
-			</ul>
-			<?php
+			}
 		}
 
 		/**
@@ -1926,5 +1956,14 @@ function zp_printNewsCategoryFoldout() {
 					echo ' / Updated: ' . zpFormattedDate(DATE_FORMAT, strtotime($lastchange));
 				}
 			}
+		}
+		
+		function zp_printLicenseNote() {
+			?>
+		  <div class="articlebox license">
+		  <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>This text by <a xmlns:cc="http://creativecommons.org/ns#" href="www.zenphoto.org" property="cc:attributionName" rel="cc:attributionURL">www.zenphoto.org</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+			<p>Code examples are released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v2 or later license</a></p>
+			</div>
+			<?php
 		}
 		?>

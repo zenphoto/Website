@@ -2,6 +2,12 @@
 <?php include('sidebar.php'); ?>
 <div id="content">
 
+	<?php if($_zp_current_album->name == 'hosting') { ?>
+		<h2><?php printAlbumTitle(); ?></h2>
+		<?php zp_printSponsorAds(); ?>
+		<br clear="all" />
+	<?php } ?>
+
 	<h2>
 		<?php
 		printParentBreadcrumb('', '', '');

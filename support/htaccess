@@ -1,5 +1,0 @@
-Options +FollowSymlinks
-RewriteEngine on
-RewriteCond %{REQUEST_URI} !/support/index2.html$ 
-
-RewriteRule $ /support/index2.html [R=302,L]

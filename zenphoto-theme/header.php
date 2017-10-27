@@ -72,20 +72,6 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					$(this).val('');
 				});
 			});
-
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-191896-2']);
-			_gaq.push(['_trackPageview']);
-
-			(function() {
-				var ga = document.createElement('script');
-				ga.type = 'text/javascript';
-				ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(ga, s);
-			})();
-			
 		</script>
 	</head>
 	<body id="top">
@@ -97,7 +83,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					<li><?php printPageURL('Get involved', 'get-involved', '', '', NULL); ?></li>
 					<li><a href="#stay-tuned" title="Get involved!">Stay tuned!</a></li>
 					<li><?php printPageURL('Paid support', 'paid-support', '', '', NULL); ?></li>
-					<li><a class="sponsors" href="<?php echo WEBPATH; ?>/hosting" title="Hosting">Hosting</a></li>
+					<li><a class="sponsors" href="<?php echo WEBPATH; ?>/sponsors/" title="Sponsors">Sponsors</a></li>
 				</ul>
 				<div id="header_logo">
 					<h1 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/logo-new.png" alt="Zenphoto" /><span>Zenphoto</span></a></h1>
@@ -116,10 +102,10 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					<li<?php if ($_zp_gallery_page == 'index.php') echo ' id="activelink"'; ?>><a href="<?php echo getGalleryIndexURL(); ?>">Download</a></li>
 					<li<?php if ((is_null($_zp_current_category) && $_zp_gallery_page == 'news.php' && !is_NewsArticle()) || zp_inNewsCategory('news')) echo ' id="activelink"'; ?>>
 						<a href="<?php echo WEBPATH; ?>/news">News</a></li>
-					<li><a href="<?php echo WEBPATH; ?>/demo">Demo</a></li>
+					<li><a href="http://demo.zenphoto.org" target="_blank">Demo</a></li>
 					<li<?php if ($uralbumname == 'screenshots') echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/screenshots/">Screenshots</a></li>
 					<li<?php if (zp_inNewsCategory('user-guide')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/user-guide">User Guide</a></li>
-					<li><a href="/support" title="Zenphoto forum">Forum</a></li>
+					<li><a href="http://forum.zenphoto.org" title="Zenphoto forum">Forum</a></li>
 					<li<?php if ($uralbumname == 'theme') echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/theme/">Themes</a></li>
 					<li<?php if (zp_inNewsCategory('extensions')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/extensions">Extensions</a></li>
 					<li<?php if ($uralbumname == 'showcase') echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/showcase/">Showcase</a></li>

@@ -57,9 +57,6 @@
 				<?php //printPageMenu('omit-top','','','','active','',1); ?>
 				<?php
 			}
-			if ($_zp_current_zenpage_page->getTitlelink() == 'advertise') {
-				zp_printSponsorAvailability();
-			}
 			if (in_array('all-contributors', $parents) || $_zp_current_zenpage_page->getTitlelink() == 'all-contributors') {
 				zp_printThemeStatusIconList();
 				zp_printExtensionStatusIconList();
@@ -73,7 +70,7 @@
 			switch ($_zp_gallery_page) {
 
 				case 'album.php':
-					if ($_zp_current_album->name == 'hosting') {
+					if ($_zp_current_album->name == 'sponsors') {
 						echo '<hr />';
 						printAlbumDesc();
 					}
