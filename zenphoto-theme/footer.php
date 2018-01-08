@@ -31,7 +31,7 @@
 
 <div class="column-m">
 	<div class="infobox">
-		<h3>Join the Google Groups!</h3>
+		<h3>Join the Google Group!</h3>
 			<ul class="downloadlinks">
 				<li><a href="https://groups.google.com/group/zenphoto-announce">zenphoto-announce</a><br />Release announcements and security alerts only (no support)
 				<br /><strong>Subscribe right here:</strong><br />
@@ -42,8 +42,6 @@
 				<input type="submit" name="sub" value="Subscribe">
 				</form><br />
 				</li>
-				<li><a href="https://groups.google.com/group/zenphoto-translate">Zenphoto
-				Translate</a><br />Support and discussion for translators only</li>
 			</ul>
 				<p>
 		Website powered by Zenphoto<br />
