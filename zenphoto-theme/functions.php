@@ -1759,7 +1759,6 @@ function zp_printNewsCategoryFoldout() {
 					}
 					?>
 					</div>
-					<p><em>*subscription rate payable in advance</em></p>
 					<?php
 				}
 			}
