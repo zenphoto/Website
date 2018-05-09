@@ -4,7 +4,7 @@
 
 	<?php if($_zp_current_album->name == 'hosting') { ?>
 		<h2><?php printAlbumTitle(); ?></h2>
-		<?php zp_printSponsorAds(); ?>
+		<?php zporg::printSponsorAds(); ?>
 		<br clear="all" />
 	<?php } ?>
 
@@ -40,10 +40,10 @@
 	if ($zp_getParentAlbumName == 'theme' || $zp_getParentAlbumName == "screenshots") {
 		$iconclass = '';
 		if ($_zp_current_album->name == 'showcase') {
-			$iconclass = zp_getShowcaseTypeIconClass();
+			$iconclass = zporg::getShowcaseTypeIconClass();
 		}
 		if ($zp_getParentAlbumName == "theme") {
-			$iconclass = zp_getThemeStatusIconClass();
+			$iconclass = zporg::getThemeStatusIconClass();
 		}
 		?>
 		<h3 class="entrytitle imagetitle<?php echo $iconclass; ?>">
@@ -51,7 +51,7 @@
 		</h3>
 		<?php
 		if ($zp_getParentAlbumName == "theme") {
-			zp_printItemAuthorCredits();
+			zporg::printItemAuthorCredits();
 			echo '<div class="entrybody">';
 			echo getAlbumDesc();
 			echo '</div>';
@@ -102,7 +102,7 @@
 							echo "<small>(" . getNumImages() . ")</small>";
 						}
 						?>
-					</h3><?php zp_printThemeStatusIcon(); ?>
+					</h3><?php zporg::printThemeStatusIcon(); ?>
 
 					<?php
 					if ($zp_getParentAlbumName === "theme") {
@@ -135,7 +135,7 @@
 					<h3 class="entrytitle">
 						<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php echo shortenContent(getImageTitle(), 20, '(...)'); ?>
 						</a>
-						<?php zp_printShowcaseTypeIcon(); ?></h3>
+						<?php zporg::printShowcaseTypeIcon(); ?></h3>
 					<br />
 					<?php
 					if ($_zp_current_album->name === "showcase") {
@@ -171,10 +171,10 @@
 		echo '</div>';
 	}
 	echo '<br clear="left" />';
-	zp_printThemeDownloadButton();
+	zporg::printThemeDownloadButton();
 
 	if ($_zp_current_album->name != "showcase") {
-		zp_printMoreByAuthorsLinks();
+		zporg::printMoreByAuthorsLinks();
 	}
 	?>
 

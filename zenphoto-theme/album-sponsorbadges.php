@@ -4,7 +4,7 @@
 
 <h2><?php printAlbumTitle(); ?></h2>
 <?php 
-	zp_specialdownloads('sponsorbadges')
+	zporg::specialdownloads('sponsorbadges')
 ?>
 		<br clear="all" />
 

@@ -31,7 +31,7 @@
 					<em>(<?php echo $_zp_current_zenpage_page->getTitlelink(); ?>)</em>
 					<?php
 				}
-				zp_printAuthorStatusIcon();
+				zporg::printAuthorStatusIcon();
 				?>
 			</h3>
 			<?php
@@ -47,7 +47,7 @@
 	if ($parent) {
 		?>
 		<div class="entrymeta">
-		<?php zp_printAuthorStatusRanks(); ?>
+		<?php zporg::printAuthorStatusRanks(); ?>
 		</div>
 <?php } ?>
 	<!-- <ol id="toc" class="table_of_content_list"></ol> -->
@@ -58,22 +58,22 @@
 		if (count($explode) != 0) {
 			switch ($explode[0]) {
 				case 'gravatar':
-					echo zp_getAuthorSocialImage(trim($explode[1]), 'gravatar', trim($explode[2]));
+					echo zporg::getAuthorSocialImage(trim($explode[1]), 'gravatar', trim($explode[2]));
 					break;
 				case 'google':
 				case 'facebook':
-					echo zp_getAuthorSocialImage(trim($explode[1]), trim($explode[0]));
+					echo zporg::getAuthorSocialImage(trim($explode[1]), trim($explode[0]));
 					break;
 			}
 		}
 		printPageContent();
 		if ($_zp_current_zenpage_page->getTitlelink() != 'all-contributors') {
-			zp_printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'news', 'release');
-			zp_printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'albums');
-			zp_printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'news', 'extensions');
-			zp_printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'news', 'user-guide');
+			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'news', 'release');
+			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'albums');
+			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'news', 'extensions');
+			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'news', 'user-guide');
 		} else {
-			zp_printAuthorList('all', false, $subpages);
+			zporg::printAuthorList('all', false, $subpages);
 		}
 		?>
 	</div>

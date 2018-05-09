@@ -4,19 +4,19 @@
 	switch ($_zp_gallery_page) {
 
 		case 'news.php':
-			if (zp_inNewsCategory('extensions')) {
-				zp_printExtensionStatusIconList();
-				zp_printSubCategories('extensions');
-			} else if (zp_inNewsCategory('user-guide')) {
-				zp_printSubCategories('user-guide');
+			if (zporg::inNewsCategory('extensions')) {
+				zporg::printExtensionStatusIconList();
+				zporg::printSubCategories('extensions');
+			} else if (zporg::inNewsCategory('user-guide')) {
+				zporg::printSubCategories('user-guide');
 			} else {
 				$catoption = 'list';
 				$newsindex = gettext("All news");
-				zp_printNewsCategoryFoldout();
+				zporg::printNewsCategoryFoldout();
 				//printAllNewsCategories($newsindex,TRUE,"newscategories","menu-active",true,"submenu","menu-active",$catoption);
 			}
-			zp_printSidebarBoxes();
-			if (zp_inNewsCategory('extensions')) {
+			zporg::printSidebarBoxes();
+			if (zporg::inNewsCategory('extensions')) {
 				if (function_exists('printAllTagsFromZenpage')) {
 					?>
 					<hr />
@@ -30,18 +30,18 @@
 				<br />
 				<?php
 			}
-			if (zp_inNewsCategory("user-guide")) {
+			if (zporg::inNewsCategory("user-guide")) {
 				?>
 				<hr />
 				<h2 class="latestadditions">Latest additions and updates</h2>
 				<?php
-				zp_printLatestNews(3, 'none', 'user-guide');
-			} else if (zp_inNewsCategory("extensions")) {
+				zporg::printLatestNews(3, 'none', 'user-guide');
+			} else if (zporg::inNewsCategory("extensions")) {
 				?>
 				<hr />
 				<h2 class="latestadditions">Latest additions</h2>
 				<?php
-				zp_printLatestNews(3, 'none', 'extensions');
+				zporg::printLatestNews(3, 'none', 'extensions');
 			}
 			break;
 
@@ -58,15 +58,15 @@
 				<?php
 			}
 			if (in_array('all-contributors', $parents) || $_zp_current_zenpage_page->getTitlelink() == 'all-contributors') {
-				zp_printThemeStatusIconList();
-				zp_printExtensionStatusIconList();
+				zporg::printThemeStatusIconList();
+				zporg::printExtensionStatusIconList();
 			}
-			zp_printSidebarBoxes();
+			zporg::printSidebarBoxes();
 			break;
 
 		case 'album.php':
 		case 'image.php':
-			$zp_getParentAlbumName = zp_getParentAlbumName();
+			$zp_getParentAlbumName = zporg::getParentAlbumName();
 			switch ($_zp_gallery_page) {
 
 				case 'album.php':
@@ -75,32 +75,32 @@
 						printAlbumDesc();
 					}
 					if ($zp_getParentAlbumName == 'theme' || $_zp_current_album->name == 'theme') {
-						zp_printThemeStatusIconList();
+						zporg::printThemeStatusIconList();
 					}
 					if ($_zp_current_album->name == 'showcase') {
-						zp_printShowcaseTypeIconList();
+						zporg::printShowcaseTypeIconList();
 					}
 					if ($_zp_current_album->getNumImages() > 0) {
 						echo '<hr />';
 						printSlideShowLink(gettext('View Slideshow'));
 					}
-					zp_printSidebarBoxes();
+					zporg::printSidebarBoxes();
 					?>
 					<hr />
 					<?php
 					if ($_zp_current_album->name == "theme") {
 						echo "<h2>Latest themes</h2>";
 						$latest = getAlbumStatistic(4, 'latest-date', 'theme', true);
-						zp_printGalleryStatistics($latest, 'date', true);
+						zporg::printGalleryStatistics($latest, 'date', true);
 						echo "<hr />"; 
 						echo "<h2>Top rated themes</h2>";
 						$toprated = getAlbumStatistic(4, 'toprated', 'theme', true);
-						zp_printGalleryStatistics($toprated, 'rating', true); 
+						zporg::printGalleryStatistics($toprated, 'rating', true); 
 					}
 					if ($_zp_current_album->name === "showcase") {
 						echo "<h2>Top rated sites</h2>";
 						$toprated = getImageStatistic(4, 'toprated', 'showcase', false);
-						zp_printGalleryStatistics($toprated, 'rating');
+						zporg::printGalleryStatistics($toprated, 'rating');
 					}
 					if ($_zp_current_album->name === "screenshots") {
 
@@ -109,12 +109,12 @@
 
 				case 'image.php':
 					if ($zp_getParentAlbumName == "theme") {
-						zp_printThemeStatusIconList();
+						zporg::printThemeStatusIconList();
 					}
 					if ($_zp_current_album->name == 'showcase') {
-						zp_printShowcaseTypeIconList();
+						zporg::printShowcaseTypeIconList();
 					}
-					zp_printSidebarBoxes();
+					zporg::printSidebarBoxes();
 					break;
 			}
 			break;
@@ -135,14 +135,14 @@
 			?>
 			<hr />
 			<?php
-			zp_printSidebarBoxes();
+			zporg::printSidebarBoxes();
 			break;
 
 		default:
 			?>
 			<hr />
 		<?php
-		zp_printSidebarBoxes();
+		zporg::printSidebarBoxes();
 		break;
 }
 ?>

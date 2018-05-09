@@ -10,10 +10,10 @@
 
 	<ol>
 		<?php
-		$authors = zp_getSpecificTags('all', $tagmode = 'author');
+		$authors = zporg::getSpecificTags('all', $tagmode = 'author');
 		/* 	foreach($authors as $author) {
 		  echo '<li>'.$author;
-		  $more = zp_getMoreByThisAuthor($author);
+		  $more = zporg::getMoreByThisAuthor($author);
 		  $count = count($more);
 		  echo ' ('.$count.')</li>';
 		  } */

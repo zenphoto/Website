@@ -1,5 +1,5 @@
 <?php include('header.php'); ?>
-<?php printZDSearchToggleJS(); ?>
+<?php zporg::printZDSearchToggleJS(); ?>
 <?php include('sidebar.php'); ?>
 <div id="content">
 
@@ -43,13 +43,13 @@
 			$number_to_show = 5;
 			$c = 0;
 			?>
-			<h3 class="searchresulttitle"><?php printf(gettext('Pages (%s)'), $numpages); ?> <small><?php printZDSearchShowMoreLink("pages", $number_to_show); ?></small></h3>
+			<h3 class="searchresulttitle"><?php printf(gettext('Pages (%s)'), $numpages); ?> <small><?php zporg::printZDSearchShowMoreLink("pages", $number_to_show); ?></small></h3>
 			<ul class="searchresults">
 				<?php
 				while (next_page()) {
 					$c++;
 					?>
-					<li<?php printZDToggleClass('pages', $c, $number_to_show); ?>>
+					<li<?php zporg::printZDToggleClass('pages', $c, $number_to_show); ?>>
 						<h4 class="entrytitle"><?php printPageURL(); ?></h4>
 					</li>
 					<?php
@@ -62,17 +62,17 @@
 			$number_to_show = 5;
 			$c = 0;
 			?>
-			<h3 class="searchresulttitle"><?php printf(gettext('Articles (%s)'), $numnews); ?> <small><?php printZDSearchShowMoreLink("news", $number_to_show); ?></small></h3>
+			<h3 class="searchresulttitle"><?php printf(gettext('Articles (%s)'), $numnews); ?> <small><?php zporg::printZDSearchShowMoreLink("news", $number_to_show); ?></small></h3>
 			<ul class="searchresults">
 				<?php
 				while (next_news()) {
 					$c++;
 					?>
-					<li<?php printZDToggleClass('news', $c, $number_to_show); ?>>
+					<li<?php zporg::printZDToggleClass('news', $c, $number_to_show); ?>>
 						<h4 class="entrytitle"><?php printNewsURL(); ?> <small class="articledate"><?php printNewsDate(); ?></small>
 							<?php
 							if ($_zp_current_zenpage_news->inNewsCategory("extensions")) {
-								zp_printExtensionStatusIcon();
+								zporg::printExtensionStatusIcon();
 							}
 							?>
 						</h4>
@@ -135,12 +135,12 @@
 					<div class="albumdesc">
 						<h4 class="entrytitle"><a href="<?php echo html_encode($albumlinkurl); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php echo shortenContent(getAlbumTitle(), 20, '(...)'); ?></a>
 							<?php
-							if (zp_getParentAlbumName() === 'theme') {
+							if (zporg::getParentAlbumName() === 'theme') {
 								echo '<small>(Theme)</small>';
 							}
 							?>
 						</h4>
-		<?php zp_printThemeStatusIcon(); ?>
+		<?php zporg::printThemeStatusIcon(); ?>
 					</div>
 				</div>
 		<?php endwhile; ?>
@@ -175,7 +175,7 @@
 									echo '<small>(Showcase)</small>';
 								}
 								?>
-						</h4><?php zp_printShowcaseTypeIcon(); ?></a>
+						</h4><?php zporg::printShowcaseTypeIcon(); ?></a>
 					</div>
 				</div>
 	<?php endwhile; ?>

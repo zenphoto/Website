@@ -15,7 +15,7 @@ setOption('thumb_crop_height', 40, false);
 		 
 	   <?php
     if($_zp_current_album->name != "showcase") {
-    	zp_printNextPrevAlbumLinkFirstImage();
+    	zporg::printNextPrevAlbumLinkFirstImage();
     }
     ?>	
 	<div class="imgnav theme">
@@ -33,10 +33,10 @@ setOption('thumb_crop_height', 40, false);
 	<?php 
 	$iconclass = '';
 	if($_zp_current_album->name == 'showcase') {
-		$iconclass = zp_getShowcaseTypeIconClass();
+		$iconclass = zporg::getShowcaseTypeIconClass();
 	}
 	if($zp_getParentAlbumName == "theme") {
-		 $iconclass = zp_getThemeStatusIconClass();
+		 $iconclass = zporg::getThemeStatusIconClass();
 	}
 	?>
 	<h3 class="entrytitle imagetitle<?php echo $iconclass; ?>">
@@ -62,7 +62,7 @@ setOption('thumb_crop_height', 40, false);
 			//printThumbNav(6,50,50,50,50,FALSE);
  		}
 	?>
-	<?php zp_printItemAuthorCredits(); ?>	
+	<?php zporg::printItemAuthorCredits(); ?>	
 	<div class="entrybody">
 <?php
 	$customdata = '';
@@ -82,14 +82,14 @@ setOption('thumb_crop_height', 40, false);
    		echo '<p><strong>Date added: </strong>'.getImageDate().'</p>';
  	 	} else if($zp_getParentAlbumName == "theme"){
  	 		printImageDesc(); 
- 	 		zp_printPluginsupportTags();
+ 	 		zporg::printPluginsupportTags();
  	 		if(!$_zp_current_album->hasTag('theme-officially-supported')) {
  	 			echo '<p><strong>Date added: </strong>'.getAlbumDate().'</p>';
  	 		}
  	 	}
  	 	?>
  	 	<?php
-  	zp_printThemeDownloadButton();
+  	zporg::printThemeDownloadButton();
   	echo '<br clear="left" />';
  	 	if (function_exists('printRating') && ($zp_getParentAlbumName == "theme" || $_zp_current_album->name == "showcase")) {
  	 		echo "<hr v/>";
@@ -115,7 +115,7 @@ if(function_exists('printScriptlessSocialSharingButtons')) {
 	printScriptlessSocialSharingButtons();
 }  
 if ($_zp_current_album->name != "showcase") {
-	zp_printMoreByAuthorsLinks();
+	zporg::printMoreByAuthorsLinks();
 }
 ?>
 <br />

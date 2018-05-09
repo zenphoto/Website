@@ -8,7 +8,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 <html>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<title><?php echo zp_printPageHeaderTitle(); ?></title>
+		<title><?php echo zporg::printPageHeaderTitle(); ?></title>
 		<meta charset="<?php echo LOCAL_CHARSET; ?>">
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
 		<meta name="author" content="The Zenphoto team and contributors">
@@ -100,14 +100,14 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			<div id="mainnav">
 				<ul>
 					<li<?php if ($_zp_gallery_page == 'index.php') echo ' id="activelink"'; ?>><a href="<?php echo getGalleryIndexURL(); ?>">Download</a></li>
-					<li<?php if ((is_null($_zp_current_category) && $_zp_gallery_page == 'news.php' && !is_NewsArticle()) || zp_inNewsCategory('news')) echo ' id="activelink"'; ?>>
+					<li<?php if ((is_null($_zp_current_category) && $_zp_gallery_page == 'news.php' && !is_NewsArticle()) || zporg::inNewsCategory('news')) echo ' id="activelink"'; ?>>
 						<a href="<?php echo WEBPATH; ?>/news">News</a></li>
 					<li><a href="http://demo.zenphoto.org" target="_blank">Demo</a></li>
 					<li<?php if ($uralbumname == 'screenshots') echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/screenshots/">Screenshots</a></li>
-					<li<?php if (zp_inNewsCategory('user-guide')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/user-guide">User Guide</a></li>
+					<li<?php if (zporg::inNewsCategory('user-guide')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/user-guide">User Guide</a></li>
 					<li><a href="http://forum.zenphoto.org" title="Zenphoto forum">Forum</a></li>
 					<li<?php if ($uralbumname == 'theme') echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/theme/">Themes</a></li>
-					<li<?php if (zp_inNewsCategory('extensions')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/extensions">Extensions</a></li>
+					<li<?php if (zporg::inNewsCategory('extensions')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/extensions">Extensions</a></li>
 					<li<?php if ($uralbumname == 'showcase') echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/showcase/">Showcase</a></li>
 				</ul>
 			</div>

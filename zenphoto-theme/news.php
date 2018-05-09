@@ -2,14 +2,14 @@
 <?php include('sidebar.php'); ?>
 <div id="content">
 	<h2>
-		<?php zp_printMainSectionCategoryTitle(); ?>
+		<?php zporg::printMainSectionCategoryTitle(); ?>
 	</h2>
 	<?php
 	if (!is_NewsArticle() && $_zp_page == 1) {
-		if (zp_inNewsCategory('extensions')) {
+		if (zporg::inNewsCategory('extensions')) {
 			$newcat = new ZenpageCategory('extensions');
 			echo $newcat->getDesc();
-		} else if (zp_inNewsCategory('user-guide')) {
+		} else if (zporg::inNewsCategory('user-guide')) {
 			$newcat = new ZenpageCategory('user-guide');
 			echo $newcat->getDesc();
 		}
@@ -23,11 +23,11 @@
 			<h3 class="entrytitle">
 				<?php printNewsTitle(); ?> <small class="articledate"><?php
 				printNewsDate(); 
-				zp_printNewsLastChange();
+				zporg::printNewsLastChange();
 				?> </small>
 				<?php
-				if (zp_inNewsCategory('extensions')) {
-					zp_printExtensionStatusIcon();
+				if (zporg::inNewsCategory('extensions')) {
+					zporg::printExtensionStatusIcon();
 				}
 				?>
 			</h3>
@@ -37,7 +37,7 @@
 			</div>
 
 			<ol id="toc" class="table_of_content_list"></ol>
-			<?php zp_printItemAuthorCredits(); ?>
+			<?php zporg::printItemAuthorCredits(); ?>
 			<div class="entrybody">
 				<?php
 				printCodeblock(1);
@@ -50,10 +50,10 @@
 					?>
 				</span>
 
-				<?php zp_printExtensionDownloadButton(); ?>
+				<?php zporg::printExtensionDownloadButton(); ?>
 
-				<?php if (zp_inNewsCategory("user-guide")) { 
-					zp_printLicenseNote();
+				<?php if (zporg::inNewsCategory("user-guide")) { 
+					zporg::printLicenseNote();
 				} ?>
 				<p class="articlebox"><em>For questions and comments please use the <a href="http://www.zenphoto.org/support" title="Zenphoto forums" >forum</a> or discuss on the <a href="#stay-tuned">social networks</a>.</em></p>
 
@@ -70,10 +70,10 @@
 			if(function_exists('printScriptlessSocialSharingButtons')) {
 				printScriptlessSocialSharingButtons();
 			} 
-			if (zp_inNewsCategory('extensions')) {
-				zp_printMoreByAuthorsLinks();
+			if (zporg::inNewsCategory('extensions')) {
+				zporg::printMoreByAuthorsLinks();
 			}
-			zp_printRelatedItems(5, 'news');
+			zporg::printRelatedItems(5, 'news');
 			?>
 		</div>
 
@@ -106,7 +106,7 @@
 						// adding support status icon to extensions entries
 
 						if ($_zp_current_zenpage_news->inNewsCategory('extensions')) {
-							zp_printExtensionStatusIcon();
+							zporg::printExtensionStatusIcon();
 						}
 						?>
 					</h3>
@@ -118,7 +118,7 @@
 					</div>
 					<?php
 					if (!$_zp_current_zenpage_news->inNewsCategory('extensions') && !$_zp_current_zenpage_news->inNewsCategory('release') && !$_zp_current_zenpage_news->inNewsCategory('user-guide')) {
-						zp_printItemAuthorCredits();
+						zporg::printItemAuthorCredits();
 					}
 					?>
 					<div class="entrybody">

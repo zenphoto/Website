@@ -1,4 +1,6 @@
 <?php
+
+class zporg {
 /* gets the tags prefixed with "author_", "pluginsupport_" and "zp_" (author/contributor status tags)
  *
  * @param string $mode 'item' (single album or article only) or 'all'
@@ -6,7 +8,7 @@
  * @return array
  */
 
-function zp_getSpecificTags($mode = 'item', $tagmode = 'author', $obj = null) {
+static function getSpecificTags($mode = 'item', $tagmode = 'author', $obj = null) {
 	global $_zp_gallery_page, $_zp_current_album, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
 	switch ($mode) {
 		case 'item':
@@ -56,15 +58,15 @@ function zp_getSpecificTags($mode = 'item', $tagmode = 'author', $obj = null) {
  * @return array
  */
 
-function zp_getAuthorTags($mode = 'item') {
-	return zp_getSpecificTags($mode, 'author');
+static function getAuthorTags($mode = 'item') {
+	return self::getSpecificTags($mode, 'author');
 }
 
 /* Prints the tag search link for this author $tag
  *
  */
 
-function zp_printReadmoreOfAuthorLink($tag = '', $count = '') {
+static function printReadmoreOfAuthorLink($tag = '', $count = '') {
 	echo '<a href="' . html_encode(getSearchURL($tag, '', 'tags', '')) . '" title="' . html_encode($tag) . '">' . ucwords(substr($tag, 7)) . '</a>';
 }
 
@@ -72,8 +74,8 @@ function zp_printReadmoreOfAuthorLink($tag = '', $count = '') {
  *
  */
 
-function zp_printMoreByAuthorsLinks() {
-	$tags = zp_getAuthorTags('item');
+static function printMoreByAuthorsLinks() {
+	$tags = self::getAuthorTags('item');
 	if (!empty($tags)) {
 		$tagcount = getAllTagsCount();
 		?>
@@ -85,7 +87,7 @@ function zp_printMoreByAuthorsLinks() {
 				$count = $tagcount[$tag];
 				if ($count > 1) {
 					?>
-					<li><?php zp_printReadmoreOfAuthorLink($tag); ?> (<?php echo $count; ?>)</li>
+					<li><?php self::printReadmoreOfAuthorLink($tag); ?> (<?php echo $count; ?>)</li>
 					<?php
 				} else {
 					?>
@@ -105,7 +107,7 @@ function zp_printMoreByAuthorsLinks() {
  * @return array
  */
 
-function zp_getMoreByThisAuthor($tag = '', $mode = 'all') {
+static function getMoreByThisAuthor($tag = '', $mode = 'all') {
 	global $_zp_gallery_page;
 	$result = array();
 	$search = new SearchEngine();
@@ -151,9 +153,9 @@ function zp_getMoreByThisAuthor($tag = '', $mode = 'all') {
  * @return array
  */
 
-function zp_getAuthorContributions($tag, $mode, $mode2 = 'extensions') {
+static function getAuthorContributions($tag, $mode, $mode2 = 'extensions') {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
-	$result = zp_getMoreByThisAuthor($tag, $mode);
+	$result = self::getMoreByThisAuthor($tag, $mode);
 	//echo "<pre>"; print_r($result); echo "</pre>";
 	if ($mode == 'news') {
 		if ($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
@@ -185,10 +187,10 @@ function zp_getAuthorContributions($tag, $mode, $mode2 = 'extensions') {
  * @return array
  */
 
-function zp_printAuthorContributions($tag, $mode, $mode2 = 'extensions') {
+static function printAuthorContributions($tag, $mode, $mode2 = 'extensions') {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 	$thumb = false;
-	$result = zp_getAuthorContributions($tag, $mode, $mode2);
+	$result = self::getAuthorContributions($tag, $mode, $mode2);
 	$resultcount = count($result);
 	if ($resultcount != 0) {
 		switch ($mode) {
@@ -272,10 +274,10 @@ function zp_printAuthorContributions($tag, $mode, $mode2 = 'extensions') {
 						<?php
 						switch ($item['type']) {
 							case 'albums':
-								zp_printThemeStatusIcon($obj);
+								self::printThemeStatusIcon($obj);
 								break;
 							case 'news':
-								zp_printExtensionStatusIcon($obj);
+								self::printExtensionStatusIcon($obj);
 								break;
 						}
 						?>
@@ -293,7 +295,7 @@ function zp_printAuthorContributions($tag, $mode, $mode2 = 'extensions') {
  * Gets the theme status icon class for the single album and image page (not for the overview!)
  *
  */
-function zp_printAuthorStatusIcon($obj = NULL) {
+static function printAuthorStatusIcon($obj = NULL) {
 	global $_zp_current_zenpage_page, $_zp_gallery_page, $_zp_themeroot;
 	if (is_null($obj)) {
 		$obj = $_zp_current_zenpage_page;
@@ -314,9 +316,9 @@ function zp_printAuthorStatusIcon($obj = NULL) {
  * Prints the subline for an author entry with team rank and roles
  *
  */
-function zp_printAuthorStatusRanks($obj = NULL) {
+static function printAuthorStatusRanks($obj = NULL) {
 	if (is_null($obj)) {
-		$statustags = zp_getSpecificTags('item', 'status');
+		$statustags = self::getSpecificTags('item', 'status');
 	} else {
 		$statustags = $obj->getTags();
 	}
@@ -351,7 +353,7 @@ function zp_printAuthorStatusRanks($obj = NULL) {
  * @param string $mode 'all', 'teammembers', "formermembers', 'contributors'
  */
 
-function zp_printAuthorList($mode = 'all', $content = false) {
+static function printAuthorList($mode = 'all', $content = false) {
 	global $_zp_current_zenpage_page;
 	if (!is_null($_zp_current_zenpage_page) && $_zp_current_zenpage_page->getTitlelink() == 'all-contributors') {
 		$subpages = $_zp_current_zenpage_page->getPages();
@@ -395,7 +397,7 @@ function zp_printAuthorList($mode = 'all', $content = false) {
 					<?php
 					/* $mail = $obj->getCustomData();
 					  if(!empty($mail)) {
-					  $imgurl = zp_getAuthorGravatarImage($mail,40);
+					  $imgurl = self::getAuthorGravatarImage($mail,40);
 					  if(!empty($imgurl)) {
 					  echo $imgurl;
 					  }
@@ -410,10 +412,10 @@ function zp_printAuthorList($mode = 'all', $content = false) {
 								<?php
 							}
 							?>
-						</a><?php zp_printAuthorStatusIcon($obj); ?>
+						</a><?php self::printAuthorStatusIcon($obj); ?>
 					</h4>
 					<div class="entrymeta">
-						<?php zp_printAuthorStatusRanks($obj); ?>
+						<?php self::printAuthorStatusRanks($obj); ?>
 					</div>
 					<?php if ($content) { ?>
 						<div class="entrybody">
@@ -439,7 +441,7 @@ function zp_printAuthorList($mode = 'all', $content = false) {
  * @param string $mode 'all', 'teammembers', "formermembers'
  */
 
-function zp_printItemAuthorCredits() {
+static function printItemAuthorCredits() {
 	global $_zp_current_zenpage_news, $_zp_current_album, $_zp_gallery_page, $_zp_themeroot;
 	$parent = '';
 	$parentname = '';
@@ -459,7 +461,7 @@ function zp_printItemAuthorCredits() {
 			break;
 	}
 	if ($rightcat || $parentname == 'theme') {
-		$authors = zp_getSpecificTags('item', 'author');
+		$authors = self::getSpecificTags('item', 'author');
 		$numauthors = count($authors);
 		$creditplural = 'Developers:';
 		$creditsingular = 'Developer:';
@@ -556,7 +558,7 @@ function zp_printItemAuthorCredits() {
    * @return array containing the profile data
    * @source http://en.gravatar.com/site/implement/profiles/php/
     */
-function zp_getAuthorGravatarProfileData($email) {
+static function getAuthorGravatarProfileData($email) {
 	if (!empty($email)) {
 		$hash = md5(strtolower(trim($email)));
 		$str = file_get_contents('http://www.gravatar.com/' . $hash . '.php');
@@ -574,7 +576,7 @@ function zp_getAuthorGravatarProfileData($email) {
    * @return gets the profile data as html elements
    * @source http://en.gravatar.com/site/implement/profiles/php/
     */
-function zp_getAuthorGravatarProfile($userid, $field) {
+static function getAuthorGravatarProfile($userid, $field) {
 	$profile = false;
 	if (filter_var($userid, FILTER_VALIDATE_EMAIL)) {
 		$hash = md5(strtolower(trim($userid)));
@@ -618,11 +620,11 @@ function zp_getAuthorGravatarProfile($userid, $field) {
  * @param string $field What to print 'thumb', 'aboutme', 'urls', 'all' ("all" in this order) $type="gravatar" ONLY!
  * @return html img
     */
-function zp_getAuthorSocialImage($userid = '', $type = 'google', $field = 'thumbnail') {
+static function getAuthorSocialImage($userid = '', $type = 'google', $field = 'thumbnail') {
 	if (!empty($userid)) {
 		switch ($type) {
 			case 'gravatar':
-				return zp_getAuthorGravatarProfile($userid, $field);
+				return self::getAuthorGravatarProfile($userid, $field);
 				break;
 			case 'google':
 				$url = 'https://www.google.com/s2/photos/profile/' . $userid;
@@ -641,7 +643,7 @@ function zp_getAuthorSocialImage($userid = '', $type = 'google', $field = 'thumb
  * @param bool $testmode true or false if really pages should be created
  */
 
-function zp_importAuthorsFromCSV($csv, $testmode = true) {
+static function importAuthorsFromCSV($csv, $testmode = true) {
 	$cons = file($csv);
 	if ($cons) {
 		//echo "<pre>";print_r($cons); echo "</pre>";
@@ -715,9 +717,9 @@ function zp_importAuthorsFromCSV($csv, $testmode = true) {
  * @return array
  */
 
-function zp_printPluginsupportTags() {
-	if (zp_getParentAlbumName() == "theme") {
-		$tags = zp_getSpecificTags('item', 'pluginsupport');
+static function printPluginsupportTags() {
+	if (self::getParentAlbumName() == "theme") {
+		$tags = self::getSpecificTags('item', 'pluginsupport');
 		?>
 		<h4>Layout specific plugins supported:</h4>
 		<?php
@@ -753,7 +755,7 @@ function zp_printPluginsupportTags() {
  * Prints only the "news" subcategories as a sublist folded out for the main news section
  *
  */
-function zp_printNewsCategoryFoldout() {
+static function printNewsCategoryFoldout() {
 	global $_zp_current_category;
 	if (zp_inNewsCategory('news') || is_null($_zp_current_category)) {
 		$cat_news = new ZenpageCategory('news');
@@ -807,7 +809,7 @@ function zp_printNewsCategoryFoldout() {
 	 * Means an article should only be in one main category at the time ("news", "user-guide" or "extensions" - Do not mix!)
 	 *
 	 */
-	function zp_printSubCategories($cattitlelink) {
+	static function printSubCategories($cattitlelink) {
 		global $_zp_current_category;
 		$cattitlelink = sanitize($cattitlelink);
 		$currentcat = new ZenpageCategory($cattitlelink);
@@ -838,7 +840,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Custom print latest news
 		 *
 		 */
-		function zp_printLatestNews($number = 2, $option = 'none', $category = '') {
+		static function printLatestNews($number = 2, $option = 'none', $category = '') {
 			if (empty($category)) {
 				$latest = $_zp_zenpage->getArticles($number, NULL, true);
 			} else {
@@ -866,7 +868,7 @@ function zp_printNewsCategoryFoldout() {
 		/**
 		 * Prints a html list from an array of image/album items
 		 */
-		function zp_printGalleryStatistics($array, $option = 'date', $album = false) {
+		static function printGalleryStatistics($array, $option = 'date', $album = false) {
 			echo '<ul>';
 			foreach ($array as $top) {
 				if ($album) {
@@ -903,7 +905,7 @@ function zp_printNewsCategoryFoldout() {
 		 * checks if the article is in a category on single article pages or if we are on a category page in general
 		 *
 		 */
-		function zp_inNewsCategory($titlelink) {
+		static function inNewsCategory($titlelink) {
 			global $_zp_current_zenpage_news, $_zp_current_category;
 			$currentcat = '';
 			if (is_NewsCategory() && !is_null($_zp_current_category)) {
@@ -990,7 +992,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Prints prev/next album links for the theme section linking to the first image of an album
 		 *
 		 */
-		function zp_printNextPrevAlbumLinkFirstImage() {
+		static function printNextPrevAlbumLinkFirstImage() {
 			if (getPrevAlbum() || getNextAlbum()) {
 				echo '<div id="albumnav">';
 				if (getPrevAlbum()) {
@@ -1021,7 +1023,7 @@ function zp_printNewsCategoryFoldout() {
 		 * gets the parent album name
 		 *
 		 */
-		function zp_getParentAlbumName() {
+		static function getParentAlbumName() {
 			global $_zp_current_album, $_zp;
 			if ($_zp_current_album->getParent()) {
 				$parentalbumobj = $_zp_current_album->getParent();
@@ -1036,7 +1038,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Gets the theme status icon class for the single album and image page (not for the overview!)
 		 *
 		 */
-		function zp_getThemeStatusIconClass() {
+		static function getThemeStatusIconClass() {
 			global $_zp_current_album, $_zp_themeroot, $_zp_gallery_page;
 			if (is_object($_zp_current_album)) {
 				if ($_zp_current_album->hasTag('theme_officially-supported')) {
@@ -1061,7 +1063,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Prints the theme status icon for the theme overview section (album.php)
 		 * @param obj $obj Object of an album optionally
 		 */
-		function zp_printThemeStatusIcon($obj = NULL) {
+		static function printThemeStatusIcon($obj = NULL) {
 			global $_zp_current_album, $_zp_current_zenpage_news, $_zp_themeroot, $_zp_gallery_page;
 			if (is_null($obj)) {
 				$albumobj = '';
@@ -1103,7 +1105,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Prints the theme status icon legend list for the sidebar
 		 *
 		 */
-		function zp_printThemeStatusIconList() {
+		static function printThemeStatusIconList() {
 			global $_zp_themeroot;
 			?>
 			<hr />
@@ -1119,7 +1121,7 @@ function zp_printNewsCategoryFoldout() {
 			<?php
 		}
 
-		function zp_getShowcaseTypeIconClass() {
+		static function getShowcaseTypeIconClass() {
 			global $_zp_current_image;
 			if (is_object($_zp_current_image)) {
 				if ($_zp_current_image->hasTag('showcase_zenphoto-with-zenpage-cms-plugin')) {
@@ -1138,7 +1140,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Prints the showcase type icon for the showcase overview section
 		 *
 		 */
-		function zp_printShowcaseTypeIcon() {
+		static function printShowcaseTypeIcon() {
 			global $_zp_current_image, $_zp_themeroot, $_zp_gallery_page;
 			if (is_object($_zp_current_image)) {
 				if ($_zp_current_image->hasTag('showcase_zenphoto-with-zenpage-cms-plugin')) {
@@ -1157,7 +1159,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Prints the showcase type icon legend list for the sidebar
 		 *
 		 */
-		function zp_printShowcaseTypeIconList() {
+		static function printShowcaseTypeIconList() {
 			?>
 			<hr />
 			<h2>Showcase icon legend</h2>
@@ -1174,7 +1176,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Prints the extension status icon legend list for the news loop
 		 * @param obj $obj Object of the extension article to check optionally
 		 */
-		function zp_printExtensionStatusIcon($obj = NULL) {
+		static function printExtensionStatusIcon($obj = NULL) {
 			global $_zp_current_zenpage_news, $_zp_themeroot;
 			if (is_null($obj)) {
 				$obj = $_zp_current_zenpage_news;
@@ -1199,7 +1201,7 @@ function zp_printNewsCategoryFoldout() {
 			}
 		}
 
-		function zp_printExtensionStatusIconList() {
+		static function printExtensionStatusIconList() {
 			?>
 			<hr />
 			<h2>Extension icon legend</h2>
@@ -1223,7 +1225,7 @@ function zp_printNewsCategoryFoldout() {
 		/**
 		 * Prints the html header title for each page context sensitive
 		 */
-		function zp_printPageHeaderTitle() {
+		static function printPageHeaderTitle() {
 			global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category;
 			$gallerytitle = getBareGalleryTitle();
 			$parent = '';
@@ -1244,9 +1246,9 @@ function zp_printNewsCategoryFoldout() {
 					$gallerytitle = $_zp_current_image->getTitle() . ' | ' . $_zp_current_album->getTitle() . $parent . ' | ' . $gallerytitle;
 					break;
 				case 'news.php':
-					if (zp_inNewsCategory('user-guide')) {
+					if (self::inNewsCategory('user-guide')) {
 						$parent = ' | User guide';
-					} else if (zp_inNewsCategory('extensions')) {
+					} else if (self::inNewsCategory('extensions')) {
 						$parent = ' | Extensions';
 					}
 					if (!is_null($_zp_current_zenpage_news)) {
@@ -1279,8 +1281,8 @@ function zp_printNewsCategoryFoldout() {
 		/**
 		 * Prints downloadlinks for the logos incl. a albumzip download. Uses and requires the downloadlist plugin
 		 */
-		function zp_Logodownloads() {
-			zp_specialdownloads('storage/logos');
+		static function Logodownloads() {
+			self::specialdownloads('storage/logos');
 		}
 
 		/**
@@ -1288,7 +1290,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Used for the logo (via Zenpage page codeblock) and sponsor badges (multiple layout album page) download pages.
 		 * Uses and requires the downloadlist plugin
 		 */
-		function zp_specialdownloads($albumfolder = NULL) {
+		static function specialdownloads($albumfolder = NULL) {
 			global $_zp_gallery;
 			if (function_exists('printDownloadlist') && !is_null($albumfolder)) {
 				$albobj = newAlbum($albumfolder);
@@ -1313,7 +1315,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Prints "Originally introduced with Zenphoto version x.x.x" based on the extension article date which is compared with the dates of
 		 * of the changelog entries (for some older stuff from before being added to the old WP site wayback it might not be accurat!).
 		 */
-		function zp_printZenphotoVersionOfExtensionOrTheme($before = '') {
+		static function printZenphotoVersionOfExtensionOrTheme($before = '') {
 			global $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_album;
 			$changelogtitle = '';
 			if (!is_null($_zp_current_zenpage_news) || !is_null($_zp_current_album)) {
@@ -1373,12 +1375,12 @@ function zp_printNewsCategoryFoldout() {
 		/**
 		 * Prints the sidebar boxes for sponsores, paid support, donations and sharing
 		 */
-		function zp_printSidebarBoxes() {
+		static function printSidebarBoxes() {
 			global $_zp_themeroot, $_zp_gallery_page, $_zp_current_album;
 			?>
 			<hr />
 			<?php
-			zp_printSponsorAds(true); //platinum (index) or palladium (sidebar) sponsors
+			self::printSponsorAds(true); //platinum (index) or palladium (sidebar) sponsors
 			?>
 			<div class="infobox paidsupport">
 				<img src="<?php echo $_zp_themeroot; ?>/images/icon-forum.png" alt="" />
@@ -1408,11 +1410,11 @@ function zp_printNewsCategoryFoldout() {
 		/**
 		 * Prints the theme download button depending of external (3rd party), hosted or abandoned
 		 */
-		function zp_printThemeDownloadButton() {
+		static function printThemeDownloadButton() {
 			global $_zp_themeroot, $_zp_gallery, $_zp_current_album;
-			if (!$_zp_current_album->hasTag('theme_officially-supported') && zp_getParentAlbumName() == "theme") {
+			if (!$_zp_current_album->hasTag('theme_officially-supported') && self::getParentAlbumName() == "theme") {
 
-				if (zp_getParentAlbumName() == "theme" && ($_zp_current_album->hasTag('theme_unsupported-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted'))) {
+				if (self::getParentAlbumName() == "theme" && ($_zp_current_album->hasTag('theme_unsupported-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted'))) {
 					$linktext = 'Download from the "unsupported" GitHub repository';
 					$theme = explode('/', $_zp_current_album->name);
 					$themeurl = 'https://github.com/zenphoto/Unsupported/';
@@ -1439,13 +1441,13 @@ function zp_printNewsCategoryFoldout() {
 		/**
 		 * Prints the extension download button depending of external (3rd party), hosted or abandoned
 		 */
-		function zp_printExtensionDownloadButton() {
+		static function printExtensionDownloadButton() {
 			global $_zp_current_zenpage_news, $_zp_themeroot;
-			if (zp_inNewsCategory("extensions")) {
+			if (self::inNewsCategory("extensions")) {
 				$customdata = $_zp_current_zenpage_news->getCustomData();
 				$exturl = $customdata;
 				$linkicon_url = '';
-				if (zp_inNewsCategory("officially-supported")) {
+				if (self::inNewsCategory("officially-supported")) {
 					if ($_zp_current_zenpage_news->inNewsCategory("translations")) {
 						$linktext = '';
 						$linkicon_url = '';
@@ -1458,7 +1460,7 @@ function zp_printNewsCategoryFoldout() {
 					}
 				} else {
 					$githubtext = '<div class="articlebox-left warningnote"><p><strong>Please note:</strong> This extension or tool has been abandoned either by the Zenphoto team or its original 3rd party developer but we provide it for archival purposes on our "unsuppported" GitHub repository "as is". We generally do not update these extensions (See the circle icon about the status).</p><p>It is not possible to download individual extensions from the GitHub repository. You have to download the full repository (click on "Download ZIP") and sort out what you need yourself.</p></div>';
-					if (zp_inNewsCategory("unsupported-hosted") || zp_inNewsCategory("unsupported-3rd-party-hosted")) {
+					if (self::inNewsCategory("unsupported-hosted") || self::inNewsCategory("unsupported-3rd-party-hosted")) {
 						//if($_zp_current_zenpage_news->hasTag('hosted_extension')) {
 						$linktext = 'Download from the "unsupported" GitHub repository';
 						$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
@@ -1472,7 +1474,7 @@ function zp_printNewsCategoryFoldout() {
 				}
 				if ($_zp_current_zenpage_news->hasTag('extension-abandoned')) {
 					echo '<p><strong>Sorry, this extension is no longer provided by its developer.</strong></p>';
-				} else if (!zp_inNewsCategory("extension-in-development")) {
+				} else if (!self::inNewsCategory("extension-in-development")) {
 					if(!empty($exturl)) {
 						echo '<p class="buttons"><a href="' . html_encode($exturl) . '"><img src="' . $linkicon_url . '" alt="" /> ' . $linktext . '</a></p>';
 					}
@@ -1488,12 +1490,12 @@ function zp_printNewsCategoryFoldout() {
 			}
 		}
 
-		function zp_printMainSectionCategoryTitle() {
+		static function printMainSectionCategoryTitle() {
 			global $_zp_current_category;
 			if (!is_null($_zp_current_category)) {
 				$articlecount = ' <small>(' . count($_zp_current_category->getArticles(0)) . ')</small>';
 			}
-			if (zp_inNewsCategory('extensions')) {
+			if (self::inNewsCategory('extensions')) {
 				echo "Extensions";
 				if (!is_NewsArticle() && $_zp_current_category->getTitlelink() == 'extensions') {
 					echo $articlecount;
@@ -1501,7 +1503,7 @@ function zp_printNewsCategoryFoldout() {
 				if (!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() != 'extensions') {
 					echo '» ' . $_zp_current_category->getTitle() . $articlecount;
 				}
-			} else if (zp_inNewsCategory('user-guide')) {
+			} else if (self::inNewsCategory('user-guide')) {
 				echo "User guide ";
 				if (!is_NewsArticle() && $_zp_current_category->getTitlelink() == 'user-guide') {
 					echo $articlecount;
@@ -1509,7 +1511,7 @@ function zp_printNewsCategoryFoldout() {
 				if (!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() != 'user-guide') {
 					echo '» ' . $_zp_current_category->getTitle() . $articlecount;
 				}
-			} else if (!zp_inNewsCategory('extensions') || zp_inNewsCategory('user-guide')) {
+			} else if (!self::inNewsCategory('extensions') || self::inNewsCategory('user-guide')) {
 				echo "News";
 				if (!is_NewsArticle() && !is_null($_zp_current_category) && !is_NewsArticle() && $_zp_current_category->getTitlelink() != 'news') {
 					echo '» ' . $_zp_current_category->getTitle();
@@ -1523,7 +1525,7 @@ function zp_printNewsCategoryFoldout() {
 		/**
 		 * Prints the ads on the sponsors album page and the platinum sidebar ones. If no sponsor is set default placeholders from the album "storage/sponsor-placeholders" are used.
 		 */
-		function zp_printSponsorAds($sponsorplatinum = false) {
+		static function printSponsorAds($sponsorplatinum = false) {
 			global $_zp_themeroot, $_zp_gallery, $_zp_current_album, $_zp_gallery_page;
 			if ($sponsorplatinum) {
 				switch ($_zp_gallery_page) {
@@ -1694,7 +1696,7 @@ function zp_printNewsCategoryFoldout() {
 		 * 
 		 * @param $which 'platinum', 'palladium', 'gold', 'silver', 'bronze' (ad cat box usage)
 		 */
-		function zp_printSponsorAvailability($which = 'platinum') {
+		static function printSponsorAvailability($which = 'platinum') {
 			global $_zporg_sponsor_categories;
 			if(!isset($_zporg_sponsor_categories)) {
 				$obj = newAlbum('sponsors');
@@ -1730,7 +1732,7 @@ function zp_printNewsCategoryFoldout() {
 		/**
 		 * Prints the sponsor categories, e.g. the subpages of the "Advertisement categories" page
 		 */
-		function zp_printSponsorCategories() {
+		static function printSponsorCategories() {
 			$obj = new ZenpagePage('advertisement-categories');
 			if($obj->loaded) {
 				$adcats = $obj->getPages();
@@ -1751,7 +1753,7 @@ function zp_printNewsCategoryFoldout() {
 							</div>
 							<?php
 							if($adcat['titlelink'] != 'bundles') {							
-								zp_printSponsorAvailability($adcatobj->getTitlelink()); 
+								self::printSponsorAvailability($adcatobj->getTitlelink()); 
 							}
 							?>
 						</div>
@@ -1773,7 +1775,7 @@ function zp_printNewsCategoryFoldout() {
 		 * @param string $type 'albums', 'images','news','pages'
 		 * @param string $specific If $type = 'albums' or 'images' name of album, if $type = 'news' name of category
 		 */
-		function zp_printRelatedItems($number = 5, $type = 'news', $specific = NULL) {
+		static function printRelatedItems($number = 5, $type = 'news', $specific = NULL) {
 			global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 			$result = array();
 			if (function_exists('getRelatedItems')) {
@@ -1851,7 +1853,7 @@ function zp_printNewsCategoryFoldout() {
 		 * Prints the troubleshooting guide collector content. This function is used in codeblock2 of the troubleshooting guide
 		 *
 		 */
-		function zp_printTroubleshootingGuide() {
+		static function printTroubleshootingGuide() {
 			global $_zp_current_category;
 			?>
 			<script type="text/javascript">
@@ -1902,7 +1904,7 @@ function zp_printNewsCategoryFoldout() {
 				?>
 				<h4><a name="<?php echo $catobj->getTitlelink(); ?>"></a><?php echo $h4; ?></h4>
 				<?php
-				zp_listTroubleshootingArticles($catobj);
+				self::listTroubleshootingArticles($catobj);
 			}
 		}
 
@@ -1911,7 +1913,7 @@ function zp_printNewsCategoryFoldout() {
 		 *
 		 * @param obj $cat category object
 		 */
-		function zp_listTroubleshootingArticles($cat) {
+		static function listTroubleshootingArticles($cat) {
 			global $counter, $_zp_current_category;
 			$_zp_current_category = $cat;
 			$articles = $cat->getArticles();
@@ -1946,9 +1948,9 @@ function zp_printNewsCategoryFoldout() {
 		 * Prints the last change date for user guide and extension articles if there is one and if it is not the same as the date
 		 *
 		 */
-		function zp_printNewsLastChange() {
+		static function printNewsLastChange() {
 			global $_zp_current_zenpage_news;
-			if ((zp_inNewsCategory('user-guide') || zp_inNewsCategory('extensions')) && $_zp_current_zenpage_news->getLastchange()) {
+			if ((self::inNewsCategory('user-guide') || self::inNewsCategory('extensions')) && $_zp_current_zenpage_news->getLastchange()) {
 				$lastchange = $_zp_current_zenpage_news->getLastchange();
 				$date = $_zp_current_zenpage_news->getDateTime();
 				if (substr($lastchange, 0, 9) != substr($date, 0, 9)) {
@@ -1957,7 +1959,7 @@ function zp_printNewsCategoryFoldout() {
 			}
 		}
 		
-		function zp_printLicenseNote() {
+		static function printLicenseNote() {
 			?>
 		  <div class="articlebox license">
 		  <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>This text by <a xmlns:cc="http://creativecommons.org/ns#" href="www.zenphoto.org" property="cc:attributionName" rel="cc:attributionURL">www.zenphoto.org</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
@@ -1965,4 +1967,5 @@ function zp_printNewsCategoryFoldout() {
 			</div>
 			<?php
 		}
-		?>
+		
+}
