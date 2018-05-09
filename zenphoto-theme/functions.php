@@ -757,7 +757,7 @@ static function printPluginsupportTags() {
  */
 static function printNewsCategoryFoldout() {
 	global $_zp_current_category;
-	if (zp_inNewsCategory('news') || is_null($_zp_current_category)) {
+	if (zporg::inNewsCategory('news') || is_null($_zp_current_category)) {
 		$cat_news = new ZenpageCategory('news');
 		?>
 		<hr />

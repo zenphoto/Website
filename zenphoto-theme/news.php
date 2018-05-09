@@ -100,7 +100,7 @@
 					?>
 					<h3 class="entrytitle"><a href="<?php echo html_encode($newslink); ?>" title="<?php echo html_encode(getBareNewsTitle()); ?>"><?php echo $title; ?></a> <small class="articledate"><?php
 							printNewsDate();
-							zp_printNewsLastChange();
+							zporg::printNewsLastChange();
 							?></small>
 						<?php
 						// adding support status icon to extensions entries

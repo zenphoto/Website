@@ -33,7 +33,7 @@
 	?>
 	<?php
 	if ($_zp_current_album->name != "showcase" && $_zp_current_album->name != "screenshots" && $_zp_current_album->name != "theme" && $zp_getParentAlbumName != "screenshots") {
-		zp_printNextPrevAlbumLinkFirstImage();
+		zporg::printNextPrevAlbumLinkFirstImage();
 	}
 	?>
 	<?php
