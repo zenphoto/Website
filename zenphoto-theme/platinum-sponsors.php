@@ -11,6 +11,6 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 </head>
 <body style="background-color:white">
-<?php zporg::printSponsorAds(true);?>
+<?php zporgSponsors::printAds(true);?>
 </body>
 </html>

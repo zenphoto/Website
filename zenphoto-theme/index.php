@@ -211,7 +211,7 @@ include('header.php');
 			</p>
 		</div>
 
-		<?php zporg::printSponsorAds(true); ?>
+		<?php zporgSponsors::printAds(true); ?>
 
 
 	</div><!-- infobox-m end -->

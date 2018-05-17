@@ -4,7 +4,7 @@
 
 	<?php if($_zp_current_album->name == 'hosting') { ?>
 		<h2><?php printAlbumTitle(); ?></h2>
-		<?php zporg::printSponsorAds(); ?>
+		<?php zporgSponsors::printAds(); ?>
 		<br clear="all" />
 	<?php } ?>
 

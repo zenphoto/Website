@@ -3,7 +3,7 @@
 <div id="content">
 
 <h2><?php printAlbumTitle(); ?></h2>
-<?php zporg::printSponsorAds(); ?>
+<?php zporgSponsors::printAds(); ?>
 		<br clear="all" />
 		
 <?php include('footer.php'); ?>

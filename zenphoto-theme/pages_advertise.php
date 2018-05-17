@@ -12,7 +12,7 @@
   			<span id="entrybody">
   		 	<?php 
 				printPageContent(); 
-				zporg::printSponsorCategories();
+				zporgSponsors::printCategories();
 				$adtos_page = new ZenpagePage('advertising-terms-of-service');
 				if($adtos_page->loaded) {
 					?>
