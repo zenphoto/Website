@@ -8,7 +8,8 @@
 	if (!is_NewsArticle() && $_zp_page == 1) {
 		if (zporg::inNewsCategory('extensions')) {
 			$newcat = new ZenpageCategory('extensions');
-			echo $newcat->getDesc();
+			echo $_zp_current_category->getDesc();
+			echo '<p class="buttons"><a href="/news/general-contributor-guidelines#themes-and-plugins"><strong>How to submit your extensions</strong></a></p>';
 		} else if (zporg::inNewsCategory('user-guide')) {
 			$newcat = new ZenpageCategory('user-guide');
 			echo $newcat->getDesc();
