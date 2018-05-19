@@ -1412,12 +1412,17 @@ class zporg {
 			 */
 			static function printThemeDownloadButton() {
 				global $_zp_themeroot, $_zp_gallery, $_zp_current_album;
-				$themeurl = $linktext = '';
+				$linktext = '';
+				$note = '';
+				$themeurl = trim($_zp_current_album->getLocation());
 				if (self::getParentAlbumName() == "theme") {
 					if ($_zp_current_album->hasTag('theme_officially-supported')) {
-						?>
-						<p class="articlebox">The theme is included in the ZenphotoCMS release.</p>
-						<?php
+						if(empty($themeurl)) {
+							$note = '<p class="articlebox">The theme is included in the ZenphotoCMS release.</p>';
+						} else {
+							$linktext = 'Info & download (GitHub)';
+							$note = '<p class="articlebox">This theme is officially supported but not included in the ZenphotoCMS release.</p>';
+						}
 					} else {
 						if ($_zp_current_album->hasTag('theme_unsupported-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted')) {
 							$linktext = 'Info & download (GitHub)';
@@ -1432,13 +1437,14 @@ class zporg {
 							}
 						} else if ($_zp_current_album->hasTag('theme_unsupported-3rd-party-external')) {
 							$linktext = 'Info & download (external)';
-							$themeurl = $_zp_current_album->getLocation();
 						} else if ($_zp_current_album->hasTag('theme_unsupported-unavailable')) {
 							echo '<p class="articlebox-left warningnote"><strong>Sorry, this theme is no longer provided by its developer and sadly we don not have any copy of it.</strong></p>';
 						}
-						if (!empty($themeurl) && !empty($linktext)) {
-							echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
-						}
+						
+					}
+					echo $note;
+					if (!empty($themeurl) && !empty($linktext)) {
+						echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
 					}
 				}
 			}
@@ -1450,7 +1456,7 @@ class zporg {
 				global $_zp_current_zenpage_news, $_zp_themeroot;
 				$note = $linktext = $exturl = '';
 				if (self::inNewsCategory("extensions")) {
-					$exturl = $_zp_current_zenpage_news->getCustomData();
+					$exturl = trim($_zp_current_zenpage_news->getCustomData());
 					$linkicon_url = '';
 					if (self::inNewsCategory("officially-supported")) {
 						if ($_zp_current_zenpage_news->inNewsCategory("translations")) {
@@ -1458,12 +1464,18 @@ class zporg {
 							$linkicon_url = '';
 							$exturl = '';
 							$note = '<p>You will find most available translations included in the <a href="https://github.com/zenphoto/zenphoto/tree/master/zp-core/locale">Zenphoto release package</a>. Regular translators have GitHub access to update their translation themselves. But note that not all included translations are complete or actively maintained. Their status is noted on the translation selector on the Zenphoto backend.</p><p>If you would like to contribute a new translation or to an existing one that is welcome. Please read our <a href="http://www.zenphoto.org/news/translating-tutorial/">translation tutorial</a> before starting anything.</p>';
-							$note .= '<p class="articlebox">This translation is included in the Zenphoto release.</p>';
+							$note .= '<p class="articlebox">This translation is included in the ZenphotoCMS release.</p>';
 						} else {
-							$linktext = 'Usage information';
-							$linkicon_url = $_zp_themeroot . '/images/info_green.png';
-							$note = '<p class="articlebox">This extension is included in the Zenphoto release.</p>';
-							//$exturl = 'http://docs.zenphoto.org/package-plugins.html'; // fix links later
+							if(empty($exturl)) {
+								$linktext = 'Usage information';
+								$linkicon_url = $_zp_themeroot . '/images/info_green.png';
+								$note = '<p class="articlebox">This extension is included in the ZenphotoCMS release.</p>';
+								//$exturl = 'http://docs.zenphoto.org/package-plugins.html'; // fix links later
+							} else {
+								$linktext = 'Info & Download (GitHub)';
+								$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
+								$note = '<p class="articlebox">This extension is officially supported but not included in the ZenphotoCMS release.</p>';
+							}
 						}
 					} if (self::inNewsCategory("unsupported-hosted") || self::inNewsCategory("unsupported-3rd-party-hosted") || self::inNewsCategory("unsupported-misc")) {
 						$linktext = 'Info & download (GitHub)';
