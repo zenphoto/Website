@@ -172,9 +172,9 @@ include('header.php');
 		<div class="infobox">
 			<h3>Share!</h3>
 			<?php 
-			if(function_exists('printScriptlessSocialSharingButtons')) {
-				printScriptlessSocialSharingButtons();
-			} 
+			if (class_exists('ScriptlessSocialSharing')) {
+				ScriptlessSocialSharing::printButtons();
+			}
 			?>
 		</div>
 
