@@ -1815,6 +1815,7 @@ label {
 label:hover {
 	color: #000;
 }
+
 #map {margin-left: -77px;}
 
 /* Admin Toolbox
@@ -2155,6 +2156,7 @@ margin-bottom: 8px;
 }
 
 
+
 #search input#search_submit {
 display: none;
 }
@@ -2163,6 +2165,17 @@ display: none;
 clear: both;
 margin-top: 5px;
 }
+
+#mailform input#dataconfirmation {
+width: auto;
+margin-right: 10px;
+}
+
+#mailform label[for=dataconfirmation] {
+
+	
+}
+
 
 #search ul,
 #search a {
