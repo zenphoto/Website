@@ -42,7 +42,7 @@ include('header.php');
 	do {
 		$article = array_shift($latestnews);
 		$newsobj = new ZenpageNews($article['titlelink']);
-		$zp_dl_version = $newsobj->getTitlelink();
+		$zp_dl_version = str_replace('zenphoto-', 'v', $newsobj->getTitlelink());
 		$zp_version = $newsobj->getTitle();
 		$zp_dl_pubdate = zpFormattedDate(DATE_FORMAT, strtotime($newsobj->getDatetime()));
 		preg_match('~(\d[\.\d]*)\s*(.*)~', $zp_version, $matches);
