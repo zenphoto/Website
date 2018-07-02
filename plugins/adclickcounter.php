@@ -15,7 +15,6 @@ $plugin_version = '1.5.1';
 zp_register_filter('admin_utilities_buttons', 'adclickCount::button');
 zp_register_filter('theme_head', 'adclickCount::getJS');
 
-
 if (isset($_GET['adlink']) && isset($_GET['adcategory'])) {
 	$adclick = new adclickCount();
 	// here check if this is a valid advertiser and no some spam request
@@ -47,7 +46,8 @@ class adclickCount {
 		unset($get['adcategory']);
 		
 		$sponsors = newAlbum('sponsors', true, true);
-		$this->sponsorcats = $sponsors->getAlbums(0);
+		$this->sponsorcats = $sponsors->getAlbums(0, null, null, true, true);
+		//debuglogVar($this->sponsorcats);
 		//check if this ad category exists actually
 		if($this->sponsorcats && in_array('sponsors/' . $adcategory, $this->sponsorcats)) {
 			//build the actual ad url from the GET data
