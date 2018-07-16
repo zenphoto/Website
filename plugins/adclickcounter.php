@@ -171,12 +171,13 @@ class adclickCount {
 	
 	static function printBarGraph() {
 		//$limit = $from_number.",".$to_number;
-		$bargraphmaxsize = 60;
+		$bargraphmaxsize = 90;
 		$maxvalue = 0;
 		$items = query_full_array("SELECT `aux`,`data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'adclickcount' AND `data` != 0 ORDER BY `data` DESC");
 		$items = sortMultiArray($items, 'data', true, true, false, true);
 		if ($items) {
-			$maxvalue = $items[0]['data'];
+			$first = reset($items);
+			$maxvalue = $first['data'];
 			$no_statistic_message = "";
 		} else {
 			$no_statistic_message = "<tr><td><em>" . gettext("No statistic available") . "</em></td><td></td><td></td><td></td></tr>";
@@ -188,6 +189,7 @@ class adclickCount {
 		echo "<tr><th colspan='3'><strong>" . gettext("Most clicked ad links - Ordered by month") . "</strong>";
 		echo "</th></tr>";
 		$count = '';
+		
 		echo $no_statistic_message;
 		foreach ($items as $item) {
 			if ($item['data'] != 0) {
