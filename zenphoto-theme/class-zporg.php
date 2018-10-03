@@ -1466,16 +1466,10 @@ class zporg {
 							$note = '<p>You will find most available translations included in the <a href="https://github.com/zenphoto/zenphoto/tree/master/zp-core/locale">Zenphoto release package</a>. Regular translators have GitHub access to update their translation themselves. But note that not all included translations are complete or actively maintained. Their status is noted on the translation selector on the Zenphoto backend.</p><p>If you would like to contribute a new translation or to an existing one that is welcome. Please read our <a href="http://www.zenphoto.org/news/translating-tutorial/">translation tutorial</a> before starting anything.</p>';
 							$note .= '<p class="articlebox">This translation is included in the ZenphotoCMS release.</p>';
 						} else {
-							if(empty($exturl)) {
-								$linktext = 'Usage information';
-								$linkicon_url = $_zp_themeroot . '/images/info_green.png';
-								$note = '<p class="articlebox">This extension is included in the ZenphotoCMS release.</p>';
-								//$exturl = 'http://docs.zenphoto.org/package-plugins.html'; // fix links later
-							} else {
-								$linktext = 'Info & Download (GitHub)';
-								$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
-								$note = '<p class="articlebox">This extension is officially supported but not included in the ZenphotoCMS release.</p>';
-							}
+							$linktext = 'Usage information';
+							$linkicon_url = $_zp_themeroot . '/images/info_green.png';
+							$note = '<p class="articlebox">This extension is included in the ZenphotoCMS release.</p>';
+							$exturl = 'https://docs.zenphoto.org/package-plugins.' . $_zp_current_zenpage_news->getTitlelink() . '.html'; 
 						}
 					} if (self::inNewsCategory("unsupported-hosted") || self::inNewsCategory("unsupported-3rd-party-hosted") || self::inNewsCategory("unsupported-misc")) {
 						$linktext = 'Info & download (GitHub)';
