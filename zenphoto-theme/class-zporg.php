@@ -1469,7 +1469,8 @@ class zporg {
 							$linktext = 'Usage information';
 							$linkicon_url = $_zp_themeroot . '/images/info_green.png';
 							$note = '<p class="articlebox">This extension is included in the ZenphotoCMS release.</p>';
-							$exturl = 'https://docs.zenphoto.org/package-plugins.' . $_zp_current_zenpage_news->getTitlelink() . '.html'; 
+							$extdocname = str_replace(array('_','-'), '.', $_zp_current_zenpage_news->getTitlelink());
+							$exturl = 'https://docs.zenphoto.org/package-plugins.' . $extdocname . '.html'; 
 						}
 					} if (self::inNewsCategory("unsupported-hosted") || self::inNewsCategory("unsupported-3rd-party-hosted") || self::inNewsCategory("unsupported-misc")) {
 						$linktext = 'Info & download (GitHub)';
