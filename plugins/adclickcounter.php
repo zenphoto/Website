@@ -10,7 +10,7 @@
 $plugin_is_filter = 20 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Ad counter for our site ads by month.');
 $plugin_author = "Malte Müller (acrylian)";
-$plugin_version = '1.5.1';
+$plugin_version = '1.5.2';
 
 zp_register_filter('admin_utilities_buttons', 'adclickCount::button');
 zp_register_filter('theme_head', 'adclickCount::getJS');
@@ -138,8 +138,8 @@ class adclickCount {
 				'enable' => true,
 				'button_text' => gettext('Adcount statistics'),
 				'formname' => 'adcount_button',
-				'action' => WEBPATH . '/' . USER_PLUGIN_FOLDER . '/adclickcounter/adclickcounter_statistics.php',
-				'icon' => WEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
+				'action' => FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/adclickcounter/adclickcounter_statistics.php',
+				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
 				'title' => gettext('Counts of ad clicks'),
 				'alt' => '',
 				'hidden' => '',
