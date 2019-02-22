@@ -71,13 +71,13 @@ include('header.php');
 
 
 		<div class="buttonzip">
-			<a	href="<?php echo $downloadroot; ?><?php echo $zp_dl_version; ?>.zip" title="Download ZenPhoto in zip format">
+			<a	href="<?php echo $downloadroot; ?><?php echo $zp_dl_version; ?>.zip" title="Download Zenphoto in zip format">
 				<img src="<?php echo $_zp_themeroot; ?>/images/downloadbutton.png" alt="" /><span>Download (.zip)</span>
 			</a>
 		</div>
 
 		<div class="buttontar">
-			<a	href="<?php echo $downloadroot; ?><?php echo $zp_dl_version; ?>.tar.gz"	title="Download ZenPhoto in tar format">
+			<a	href="<?php echo $downloadroot; ?><?php echo $zp_dl_version; ?>.tar.gz"	title="Download Zenphoto in tar format">
 				<img src="<?php echo $_zp_themeroot; ?>/images/downloadbutton.png" alt="" /><span>Download (.tar.gz)</span>
 			</a>
 		</div>
@@ -92,7 +92,7 @@ include('header.php');
 		<?php printSearchForm(); ?>
 		<ul class="downloadlinks">
 			<li><a href="<?php echo html_encode(getNewsCategoryURL('changelog')); ?>" title="Zenphoto changelog">Changelog</a></li>
-			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto <?php echo MASTER_BUILD; ?> build on GitHub"><?php echo MASTER_BUILD; ?> (GitHub)</a></li>
+			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto support build on GitHub">Support build (GitHub master)</a></li>
 
 			<?php $devbuild = false; 
 		/*	if (defined('DEV_BUILD')) { */
