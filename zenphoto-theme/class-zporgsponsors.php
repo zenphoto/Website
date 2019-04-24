@@ -31,17 +31,14 @@ class zporgSponsors {
 				$adheight = 130;
 				switch ($album) {
 					case 'sponsors/platinum':
+						$adwidth = 275;
+						$maxnum = 4;
+						$imgclass = 'sponsor-platinum';
+						break;
 					case 'sponsors/palladium':
 						$adwidth = 275;
-						$maxnum = 2;
-						switch ($album) {
-							case 'sponsors/platinum':
-								$imgclass = 'sponsor-platinum';
-								break;
-							case 'sponsors/palladium':
-								$imgclass = 'sponsor-palladium';
-								break;
-						}
+						$maxnum = 4;
+						$imgclass = 'sponsor-palladium';
 						break;
 					case 'sponsors/gold':
 						$adwidth = 560;
@@ -50,11 +47,11 @@ class zporgSponsors {
 						break;
 					case 'sponsors/silver':
 						$adwidth = 270;
-						$maxnum = 2;
+						$maxnum = 99;
 						break;
 					case 'sponsors/bronze':
 						$adwidth = 125;
-						$maxnum = 4;
+						$maxnum = 99;
 						break;
 				}
 				if ($imagescount != 0) {
@@ -185,17 +182,17 @@ class zporgSponsors {
 				$obj = newAlbum('sponsors');
 				$albums = $obj->getAlbums(0);
 				$maxavail = array(
-						'platinum' => 2,
-						'palladium' => 2,
-						'silver' => 2,
+						'platinum' => 4,
+						'palladium' => 4,
+						'silver' => 'unlimited',
 						'gold' => 'unlimited',
-						'bronze' => 4
+						'bronze' => 'unlimited'
 				);
 				foreach ($albums as $album) {
 					$albobj = newAlbum($album);
 					$imagescount = $albobj->getNumImages();
 					$maxnum = $maxavail[strtolower($albobj->getTitle())];
-					if ($album == 'sponsors/gold') {
+					if ($album == 'sponsors/gold' || $album == 'sponsors/silver' || $album == 'sponsors/bronze') {
 						$max = $maxnum;
 					} else {
 						if ($imagescount != $maxnum) {
