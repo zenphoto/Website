@@ -2533,6 +2533,7 @@ h3.relateditems {
 	height: 130px; 
 	background-color: transparent; /* lightgray; */
 	width: 275px;
+	margin-bottom: 30px !important;
 }
 .sponsor-palladium-first,
 .sponsor-platinum-first {
@@ -2550,9 +2551,9 @@ padding: 0;
 .sponsor-gold,
 .sponsor-silver,
 .sponsor-bronce,
-.sponsor-gold img ,
-.sponsor-silver img,
-.sponsor-bronce img {
+.sponsor-gold,
+.sponsor-silver,
+.sponsor-bronce {
 	height: 130px; 
 	background-color: transparent; /* lightgray; */
 	margin-bottom: 20px;
