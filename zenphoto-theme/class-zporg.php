@@ -1298,7 +1298,7 @@ class zporg {
 					if ($subalbs) {
 						foreach ($subalbs as $subalb) {
 							$subobj = newAlbum($subalb);
-							echo '<div class="logodownloadwrapper">';
+							echo '<div class="logodownloadwrapper" data-track-content data-content-name="Logo Downloads">';
 							$albumthumb = $subobj->getAlbumThumbImage();
 							echo '<span><img src="' . $albumthumb->getCustomImage(200, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL) . '" alt="" /></span><h4>' . $subobj->getTitle() . '</h4>';
 							printDownloadlist('albums/' . $subalb, 'ol', array(), 'jpg');
@@ -1444,7 +1444,7 @@ class zporg {
 					}
 					echo $note;
 					if (!empty($themeurl) && !empty($linktext)) {
-						echo '<div class="buttons"><a href="' . $themeurl . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt="" /> ' . $linktext . '</a></div>';
+						echo '<div class="buttons"><a href="' . $themeurl . '" data-track-content data-content-name="Themes" data-content-piece="' . html_encode($_zp_current_album->geTitle()) . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt=""/> ' . $linktext . '</a></div>';
 					}
 				}
 			}
@@ -1496,7 +1496,7 @@ class zporg {
 					}
 					echo $note;
 					if (!empty($exturl) && !empty($linktext)) {
-						echo '<p class="buttons"><a href="' . html_encode($exturl) . '"><img src="' . $linkicon_url . '" alt="" /> ' . $linktext . '</a></p>';
+						echo '<p class="buttons"><a href="' . html_encode($exturl) . '" data-track-content data-content-name="Extensions" data-content-piece="' . html_encode($_zp_current_zenpage_news->geTitle()) . '"><img src="' . $linkicon_url . '" alt="" /> ' . $linktext . '</a></p>';
 					}
 				}
 			}

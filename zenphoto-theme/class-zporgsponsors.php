@@ -31,14 +31,17 @@ class zporgSponsors {
 				$adheight = 130;
 				switch ($album) {
 					case 'sponsors/platinum':
-						$adwidth = 275;
-						$maxnum = 4;
-						$imgclass = 'sponsor-platinum';
-						break;
 					case 'sponsors/palladium':
 						$adwidth = 275;
-						$maxnum = 4;
-						$imgclass = 'sponsor-palladium';
+						$maxnum = 2;
+						switch ($album) {
+							case 'sponsors/platinum':
+								$imgclass = 'sponsor-platinum';
+								break;
+							case 'sponsors/palladium':
+								$imgclass = 'sponsor-palladium';
+								break;
+						}
 						break;
 					case 'sponsors/gold':
 						$adwidth = 560;
@@ -47,11 +50,11 @@ class zporgSponsors {
 						break;
 					case 'sponsors/silver':
 						$adwidth = 270;
-						$maxnum = 99;
+						$maxnum = 2;
 						break;
 					case 'sponsors/bronze':
 						$adwidth = 125;
-						$maxnum = 99;
+						$maxnum = 4;
 						break;
 				}
 				if ($imagescount != 0) {
@@ -97,13 +100,13 @@ class zporgSponsors {
 						if (isImagePhoto($imgobj)) {
 							$link = $imgobj->getCustomData();
 							?>
-							<a href="<?php echo html_encode($link); ?>" title="<?php echo html_encode($imgobj->getTitle()); ?>" class="<?php echo $linkclass; ?>"><img class="<?php echo $imgclass; ?>" src="<?php echo html_encode($imgobj->getFullImage()); ?>" alt="<?php echo html_encode($imgobj->getState()); ?>" width="<?php echo $adwidth; ?>" height="<?php echo $adheight; ?>"></a>
+							<a href="<?php echo html_encode($link); ?>" data-track-content data-track-name="<?php echo html_encode($imgobj->getTitle(). ' - ' . $linkclass); ?>" title="<?php echo html_encode($imgobj->getTitle()); ?>" class="<?php echo $linkclass; ?>"><img class="<?php echo $imgclass; ?>" src="<?php echo html_encode($imgobj->getFullImage()); ?>" alt="<?php echo html_encode($imgobj->getState()); ?>" width="<?php echo $adwidth; ?>" height="<?php echo $adheight; ?>"></a>
 							<?php
 						} else { // textobject support
 							$ad = $imgobj->getSizedImage($adwidth);
 							//$ad = strip_tags($imgobj->getSizedImage($adwidth),'<a><img>');
 							?>
-							<div class="<?php echo $imgclass; ?>"><?php echo $ad; ?></div>
+							<div class="<?php echo $imgclass; ?>" data-track-content data-track-name="<?php echo html_encode($imgobj->getTitle(). ' - ' . $linkclass); ?>"><?php echo $ad; ?></div>
 							<?php
 						}
 					} // image loop
@@ -186,7 +189,7 @@ class zporgSponsors {
 						'palladium' => 4,
 						'silver' => 'unlimited',
 						'gold' => 'unlimited',
-						'bronze' => 'unlimited'
+						'bronze' => 'unlimited',
 				);
 				foreach ($albums as $album) {
 					$albobj = newAlbum($album);

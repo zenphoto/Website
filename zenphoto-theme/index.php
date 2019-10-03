@@ -66,18 +66,18 @@ include('header.php');
 			define('DEV_BUILD', $matches[0]);
 		}
 	}
+	$downloadbaseurl = $downloadroot . $zp_dl_version;
 	?>
 	<div class="downloadwrapper">
 
-
-		<div class="buttonzip">
-			<a	href="<?php echo $downloadroot; ?><?php echo $zp_dl_version; ?>.zip" title="Download Zenphoto in zip format">
+		<div class="buttonzip"t>
+			<a	href="<?php echo $downloadbaseurl; ?>.zip" title="Download Zenphoto in zip format" data-track-content data-content-piece="<?php echo $downloadbaseurl; ?>.zip">
 				<img src="<?php echo $_zp_themeroot; ?>/images/downloadbutton.png" alt="" /><span>Download (.zip)</span>
 			</a>
 		</div>
 
 		<div class="buttontar">
-			<a	href="<?php echo $downloadroot; ?><?php echo $zp_dl_version; ?>.tar.gz"	title="Download Zenphoto in tar format">
+			<a	href="<?php echo $downloadbaseurl; ?>.tar.gz"	title="Download Zenphoto in tar format" data-track-content data-content-piece="<?php echo $downloadbaseurl; ?>.tar.gz">
 				<img src="<?php echo $_zp_themeroot; ?>/images/downloadbutton.png" alt="" /><span>Download (.tar.gz)</span>
 			</a>
 		</div>
@@ -92,13 +92,13 @@ include('header.php');
 		<?php printSearchForm(); ?>
 		<ul class="downloadlinks">
 			<li><a href="<?php echo html_encode(getNewsCategoryURL('changelog')); ?>" title="Zenphoto changelog">Changelog</a></li>
-			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto support build on GitHub">Support build (GitHub master)</a></li>
+			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto support build on GitHub"  data-track-content data-content-piece="Support build (GitHub master)">Support build (GitHub master)</a></li>
 
 			<?php $devbuild = false; 
 		/*	if (defined('DEV_BUILD')) { */
 			if($devbuild) {
 				?>
-				<li><a href="https://github.com/zenphoto/zenphoto/archive/<?php echo DEV_BUILD; ?>.zip" title="Zenphoto development on Github"><?php echo DEV_BUILD; ?> Development build (GitHub)</a></li>
+				<li><a href="https://github.com/zenphoto/zenphoto/archive/<?php echo DEV_BUILD; ?>.zip" title="Zenphoto development on Github" data-track-content data-content-piece="Development build (GitHub)"><?php echo DEV_BUILD; ?> Development build (GitHub)</a></li>
 				<?php
 			}
 			?>

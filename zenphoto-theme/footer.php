@@ -6,15 +6,15 @@
 <div class="column-l">
 	<div class="infobox">
 		<h3>RSS feeds!</h3>
-		<ul class="rsslinks">
-			<li><a href="<?php echo WEBPATH; ?>/index.php?mergedrss">All news</a> (incl. all	below except forum)</li>
-			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news">All general news</a> (except themes, showcase, screenshots)</li>
-			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=news">New releases and announcements</a></li>
-			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=user-guide">User guide</a></li>
-			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=extensions">Extensions</a></li>
-			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;folder=screenshots">Screenshots	and screencasts</a></li>
-			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;folder=theme&amp;albumsmode&amp;sortorder=latest">Themes</a></li>
-			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;albumname=showcase">Showcase</a></li>
+		<ul class="rsslinks" data-track-content>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?mergedrss" title="RSS all news">All news</a> (incl. all	below except forum)</li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news" title="RSS all general news">All general news</a> (except themes, showcase, screenshots)</li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=news" title="RSS New releases and announcements">New releases and announcements</a></li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=user-guide" title="RSS User guide">User guide</a></li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=news&amp;category=extensions" title="RSS Extensions">Extensions</a></li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;folder=screenshots" title="RSS Screenshots	and screencasts">Screenshots	and screencasts</a></li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;folder=theme&amp;albumsmode&amp;sortorder=latest" title="RSS Themes">Themes</a></li>
+			<li><a href="<?php echo WEBPATH; ?>/index.php?rss=gallery&amp;albumname=showcase" title="RSS Showcase">Showcase</a></li>
 			<li><a href="http://forum.zenphoto.org/discussions/feed.rss">Forum</a></li>
 		</ul>
 		<br />
