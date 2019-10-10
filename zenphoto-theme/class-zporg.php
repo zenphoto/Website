@@ -1444,7 +1444,7 @@ class zporg {
 					}
 					echo $note;
 					if (!empty($themeurl) && !empty($linktext)) {
-						echo '<div class="buttons"><a href="' . $themeurl . '" data-track-content data-content-name="Themes" data-content-piece="' . html_encode($_zp_current_album->geTitle()) . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt=""/> ' . $linktext . '</a></div>';
+						echo '<div class="buttons"><a href="' . $themeurl . '" data-track-content data-content-name="Themes" data-content-piece="' . html_encode($_zp_current_album->getTitle()) . '"><img src="' . $_zp_themeroot . '/images/arrow_right_blue_round.png" alt=""/> ' . $linktext . '</a></div>';
 					}
 				}
 			}
@@ -1496,7 +1496,7 @@ class zporg {
 					}
 					echo $note;
 					if (!empty($exturl) && !empty($linktext)) {
-						echo '<p class="buttons"><a href="' . html_encode($exturl) . '" data-track-content data-content-name="Extensions" data-content-piece="' . html_encode($_zp_current_zenpage_news->geTitle()) . '"><img src="' . $linkicon_url . '" alt="" /> ' . $linktext . '</a></p>';
+						echo '<p class="buttons"><a href="' . html_encode($exturl) . '" data-track-content data-content-name="Extensions" data-content-piece="' . html_encode($_zp_current_zenpage_news->getTitle()) . '"><img src="' . $linkicon_url . '" alt="" /> ' . $linktext . '</a></p>';
 					}
 				}
 			}
