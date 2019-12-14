@@ -37,11 +37,11 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 		-->
 
 		<?php if ($_zp_gallery_page == 'news.php' || $_zp_gallery_page == 'pages.php') { ?>
-			<script src="<?php echo $_zp_themeroot; ?>/js/jquery-syntax/jquery.syntax.min.js" type="text/javascript"></script>
+			<script src="<?php echo $_zp_themeroot; ?>/js/jquery-syntax/jquery.syntax.min.js"></script>
 		<?php } ?>
 		<?php if ($_zp_gallery_page == 'news.php' || $_zp_gallery_page == 'pages.php') { ?>
-			<script src="<?php echo $_zp_themeroot; ?>/js/jquery.tableofcontents-mod.min.js" type="text/javascript" charset="utf-8"></script>
-			<script type="text/javascript" charset="utf-8">
+			<script src="<?php echo $_zp_themeroot; ?>/js/jquery.tableofcontents-mod.min.js"></script>
+			<script>
 				$(document).ready(function() {
 					if ($("#entrybody h4").length == 0) {
 						$("#toc").remove();
@@ -56,7 +56,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			</script>
 		<?php } ?>
 
-		<script type="text/javascript">
+		<script>
 			$(document).ready(function() {
 
 
@@ -77,11 +77,12 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 	<body id="top">
 		<?php zp_apply_filter('theme_body_open'); ?>
 		<div id="container">
-			<div id="header">
+			
+			<header id="header">
 				<ul>
 					<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></a></li>
 					<li><?php printPageURL('Get involved', 'get-involved', '', '', NULL); ?></li>
-					<li><a href="#stay-tuned" title="Get involved!">Stay tuned!</a></li>
+					<li><a href="#footer" title="Get involved!">Stay tuned!</a></li>
 					<li><?php printPageURL('Paid support', 'paid-support', '', '', NULL); ?></li>
 					<li><a class="sponsors" href="<?php echo WEBPATH; ?>/sponsors/" title="Sponsors">Sponsors</a></li>
 				</ul>
@@ -89,7 +90,8 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					<h1 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/logo-new.png" alt="Zenphoto" /><span>Zenphoto</span></a></h1>
 					<p>The <em>simpler</em> media website CMS</p>
 				</div>
-			</div>
+			</header>
+			
 			<?php
 			$uralbumname = null;
 			if (!is_null($_zp_current_album)) {
@@ -97,7 +99,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 				$uralbumname = $uralbum->name;
 			}
 			?>
-			<div id="mainnav">
+			<nav id="mainnav">
 				<ul>
 					<li<?php if ($_zp_gallery_page == 'index.php') echo ' id="activelink"'; ?>><a href="<?php echo getGalleryIndexURL(); ?>">Download</a></li>
 					<li<?php if ((is_null($_zp_current_category) && $_zp_gallery_page == 'news.php' && !is_NewsArticle()) || zporg::inNewsCategory('news')) echo ' id="activelink"'; ?>>
@@ -110,4 +112,4 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					<li<?php if (zporg::inNewsCategory('extensions')) echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/news/category/extensions">Extensions</a></li>
 					<li<?php if ($uralbumname == 'showcase') echo ' id="activelink"'; ?>><a href="<?php echo WEBPATH; ?>/showcase/">Showcase</a></li>
 				</ul>
-			</div>
+			</nav>

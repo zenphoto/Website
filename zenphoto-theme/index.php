@@ -70,7 +70,7 @@ include('header.php');
 	?>
 	<div class="downloadwrapper">
 
-		<div class="buttonzip"t>
+		<div class="buttonzip">
 			<a	href="<?php echo $downloadbaseurl; ?>.zip" title="Download Zenphoto in zip format" data-track-content data-content-piece="<?php echo $downloadbaseurl; ?>.zip">
 				<img src="<?php echo $_zp_themeroot; ?>/images/downloadbutton.png" alt="" /><span>Download (.zip)</span>
 			</a>
