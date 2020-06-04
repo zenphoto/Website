@@ -1470,7 +1470,8 @@ class zporg {
 							$linkicon_url = $_zp_themeroot . '/images/info_green.png';
 							$note = '<p class="articlebox">This extension is included in the ZenphotoCMS release.</p>';
 							$extdocname = str_replace(array('_','-'), '.', $_zp_current_zenpage_news->getTitlelink());
-							$exturl = 'https://docs.zenphoto.org/package-plugins.' . $extdocname . '.html'; 
+							//$exturl = 'https://docs.zenphoto.org/package-plugins.' . $extdocname . '.html'; 
+							$exturl = '';
 						}
 					} if (self::inNewsCategory("unsupported-hosted") || self::inNewsCategory("unsupported-3rd-party-hosted") || self::inNewsCategory("unsupported-misc")) {
 						$linktext = 'Info & download (GitHub)';
@@ -1496,7 +1497,7 @@ class zporg {
 					}
 					echo $note;
 					if (!empty($exturl) && !empty($linktext)) {
-						echo '<p class="buttons"><a href="' . html_encode($exturl) . '" data-track-content data-content-name="Extensions" data-content-piece="' . html_encode($_zp_current_zenpage_news->getTitle()) . '"><img src="' . $linkicon_url . '" alt="" /> ' . $linktext . '</a></p>';
+						echo '<p class="buttons"><a href="' . html_encode($exturl) . '" data-track-content data-content-name="Extensions" data-content-piece="' . html_encode($_zp_current_zenpage_news->getTitle()) . '" rel="nooopener" target="_blank"><img src="' . $linkicon_url . '" alt="" /> ' . $linktext . '</a></p>';
 					}
 				}
 			}
