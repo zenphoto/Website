@@ -1482,7 +1482,7 @@ class zporg {
 						} else if (self::inNewsCategory("unsupported-3rd-party-hosted")) {
 							$note = '<div class="articlebox-left warningnote"><p>This extension has been abandoned by its original developer and we provide it for archival purposes on our "unsuppported-plugins-thirdparty" GitHub repository "as is". .</p></div>';
 							$exturl = 'https://github.com/zenphoto/unsupported-plugins-thirdparty';
-						} else if (self::inNewsCategory("unsupported-misc")) {
+						} else if (self::inNewsCategory("unsupported-hosted-misc")) {
 							$note = '<div class="articlebox-left warningnote"><p>This tool has been abandoned by the ZenphotoCMS team or its original developer and we provide it for archival purposes on our "unsuppported-misc" GitHub repository "as is". .</p></div>';
 							$exturl = 'https://github.com/zenphoto/unsupported-misc';
 						}
