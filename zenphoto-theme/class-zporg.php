@@ -1392,7 +1392,7 @@ class zporg {
 				<div class="infobox">
 					<h3>Like using Zenphoto? Donate!</h3>
 					<p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
-					<p>Visit the <?php printPageURL('donations page', 'donation', '', '', NULL); ?></p>
+					<p>Visit the <?php printPageURL('donations page', 'donations', '', '', NULL); ?></p>
 				</div>
 				<?php if (!is_NewsArticle() && $_zp_gallery_page != 'image.php') { ?>
 					<div class="infobox">
