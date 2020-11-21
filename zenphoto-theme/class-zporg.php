@@ -1424,17 +1424,18 @@ class zporg {
 							$note = '<p class="articlebox">This theme is officially supported but not included in the ZenphotoCMS release.</p>';
 						}
 					} else {
-						if ($_zp_current_album->hasTag('theme_unsupported-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted')) {
+						if ($_zp_current_album->hasTag('theme_unsupported-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hostedrepo')) {
 							$linktext = 'Info & download (GitHub)';
 							if ($_zp_current_album->hasTag('theme_unsupported-hosted')) {
-								echo '<div class="articlebox-left warningnote"><p>This theme has been abandoned by the ZenphotoCMS team and we provide it for archival purposes on our "unsuppported-themes-official" GitHub repository "as is".'
+								echo '<div class="articlebox-left warningnote"><p>This theme has been abandoned by the ZenphotoCMS team and we provide it for archival purposes "as is".'
 								. ' We may sometimes roughly update it but cannot promise full compatibility with current ZenphotoCMS releases. Contributions are welcome.</p></div>';
 								$themeurl = 'https://github.com/zenphoto/unsupported-themes-official';
-							} else if ($_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted')) {
-								echo '<div class="articlebox-left warningnote"><p>This theme has been abandoned by its original developer and we provide it for archival purposes on our "unsuppported-themes-thirdpary" GitHub repository "as is".'
+							} else if ($_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hostedrepo')) {
+								echo '<div class="articlebox-left warningnote"><p>This theme has been abandoned by its original developer and we provide it for archival purposes y "as is".'
 								. ' We may sometimes roughly update it but cannot promise full compatibility with current ZenphotoCMS releases. Contributions are welcome.</p></div>';
-								if (empty($themeurl)) {
+								if (!$_zp_current_album->hasTag('theme_unsupported-3rd-party-hostedrepo')) {
 									$themeurl = 'https://github.com/zenphoto/unsupported-themes-thirdparty';
+									$note .= '<p class="articlebox-left warningnote"><strong>Please note:</strong> You cannot download this theme individually but only the package with all unsupported themes.</p>';
 								}
 							}
 						} else if ($_zp_current_album->hasTag('theme_unsupported-3rd-party-external')) {
@@ -1479,19 +1480,13 @@ class zporg {
 						$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
 						if (self::inNewsCategory("unsupported-hosted")) {
 							$note = '<div class="articlebox-left warningnote"><p>This extension has been abandoned by the ZenphotoCMS team and we provide it for archival purposes on our "unsuppported-plugins-offical" GitHub repository "as is". .</p></div>';
-							if (empty($exturl)) {
-								$exturl = 'https://github.com/zenphoto/unsupported-plugins-official';
-							}
+							$exturl = 'https://github.com/zenphoto/unsupported-plugins-official';
 						} else if (self::inNewsCategory("unsupported-3rd-party-hosted")) {
 							$note = '<div class="articlebox-left warningnote"><p>This extension has been abandoned by its original developer and we provide it for archival purposes on our "unsuppported-plugins-thirdparty" GitHub repository "as is". .</p></div>';
-							if (empty($exturl)) {
-								$exturl = 'https://github.com/zenphoto/unsupported-plugins-thirdparty';
-							}
+							$exturl = 'https://github.com/zenphoto/unsupported-plugins-thirdparty';
 						} else if (self::inNewsCategory("unsupported-hosted-misc")) {
 							$note = '<div class="articlebox-left warningnote"><p>This tool has been abandoned by the ZenphotoCMS team or its original developer and we provide it for archival purposes on our "unsuppported-misc" GitHub repository "as is". .</p></div>';
-							if (empty($exturl)) {
-								$exturl = 'https://github.com/zenphoto/unsupported-misc';
-							}
+							$exturl = 'https://github.com/zenphoto/unsupported-misc';
 						}
 					} else if (zporg::inNewsCategory("unsupported-3rd-party-external")) {
 						$linktext = 'Info & download (external)';
