@@ -50,7 +50,7 @@ setOption('thumb_crop_height', 40, false);
 	</h3>
  		<div id="image">
 		<?php if(isImagePhoto()) { ?>
-		<a href="<?php echo getUnprotectedImageURL(); ?>" class="colorbox"><?php printCustomSizedImageMaxSpace(getBareImageTitle(),560,1000,NULL,NULL,false); ?></a>
+			<a href="<?php echo getUnprotectedImageURL(); ?>" class="colorbox"><?php printCustomSizedImageMaxSpace(getBareImageTitle(),560,1000,NULL,NULL,false); ?></a>
 		<?php } else { ?>
 		<?php printCustomSizedImage(getBareImageTitle(),560,700); ?>
 		<?php } ?>
@@ -74,7 +74,7 @@ setOption('thumb_crop_height', 40, false);
  	 	if($zp_getParentAlbumName == "screenshots") {
  	 		printImageDesc();
  	 		echo "<hr style='clear: both' />";
-   			echo '<p><strong>Date added: </strong>'.getImageDate().'</p>';
+   		echo '<p><strong>Date added: </strong>'.getImageDate().'</p>';
  	 		echo '<hr />';
  	 	} else if ($_zp_current_album->name == "showcase") {
  	 		echo '<div class="buttons visitsite">'; printImageDesc(); echo "</div>";
