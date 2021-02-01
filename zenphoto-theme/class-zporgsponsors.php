@@ -66,14 +66,14 @@ class zporgSponsors {
 						switch ($album) {
 							case 'sponsors/platinum':
 								$imgclass = 'sponsor-platinum';
-								$linkclass = 'platinum-ad';
+								$linkclass = 'platinum-sponsor';
 								if ($count == 1) {
 									$imgclass .= ' sponsor-platinum-first';
 								}
 								break;
 							case 'sponsors/palladium':
 								$imgclass = 'sponsor-palladium';
-								$linkclass = 'palladium-ad';
+								$linkclass = 'palladium-sponsor';
 								if ($count == 1) {
 									$imgclass .= ' sponsor-palladium-first';
 								}
@@ -83,14 +83,14 @@ class zporgSponsors {
 								break;
 							case 'sponsors/silver':
 								$imgclass = 'sponsor-silver';
-								$linkclass = 'silver-ad';
+								$linkclass = 'silver-sponsor';
 								if ($count < 2) {
 									$imgclass .= ' sponsor-right';
 								}
 								break;
 							case 'sponsors/bronze':
 								$imgclass = 'sponsor-bronze';
-								$linkclass = 'bronze-ad';
+								$linkclass = 'bronze-sponsor';
 								if ($count != 4) {
 									$imgclass .= ' sponsor-right';
 								}
@@ -100,7 +100,9 @@ class zporgSponsors {
 						if (isImagePhoto($imgobj)) {
 							$link = $imgobj->getCustomData();
 							?>
-							<a href="<?php echo html_encode($link); ?>" data-track-content data-track-name="<?php echo html_encode($imgobj->getTitle(). ' - ' . $linkclass); ?>" title="<?php echo html_encode($imgobj->getTitle()); ?>" class="<?php echo $linkclass; ?>" target="_blank"><img class="<?php echo $imgclass; ?>" src="<?php echo html_encode($imgobj->getFullImage()); ?>" alt="<?php echo html_encode($imgobj->getState()); ?>" width="<?php echo $adwidth; ?>" height="<?php echo $adheight; ?>"></a>
+							<a href="<?php echo html_encode($link); ?>" data-track-content data-track-name="<?php echo html_encode($imgobj->getTitle(). ' - ' . $linkclass); ?>" title="<?php echo html_encode($imgobj->getTitle()); ?>" class="<?php echo $linkclass; ?>" target="_blank">
+								<img class="<?php echo $imgclass; ?>" src="<?php echo html_encode($imgobj->getFullImage()); ?>" alt="<?php echo html_encode($imgobj->getState()); ?>" width="<?php echo $adwidth; ?>" height="<?php echo $adheight; ?>">
+							</a>
 							<?php
 						} else { // textobject support
 							$ad = $imgobj->getSizedImage($adwidth);
