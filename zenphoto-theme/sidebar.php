@@ -49,7 +49,7 @@
 			$parent = $_zp_current_zenpage_page->getParentid();
 			$subpages = $_zp_current_zenpage_page->getPages();
 			$pageid = $_zp_current_zenpage_page->getID();
-			$parents = $_zp_current_zenpage_page->getParents($pageid);
+			$parents = $_zp_current_zenpage_page->getParents();
 			//echo '<pre>'; print_r($parents).'<br />'; print_r($subpages); echo '</pre>';
 			if (!is_null($parent) || $subpages) {
 				?>
