@@ -209,9 +209,11 @@ class zporgSponsors {
 					$_zporg_sponsor_categories[strtolower($albobj->getTitle())] = $max;
 				}
 			}
-			?>
-			<p class="sponsorcategories_entry-avail">Availability: <strong><?php echo $_zporg_sponsor_categories[$which]; ?></strong></p>
+			if(isset($_zporg_sponsor_categories[$which])) { 
+				?>
+				<p class="sponsorcategories_entry-avail">Availability: <strong><?php echo $_zporg_sponsor_categories[$which]; ?></strong></p>
 			<?php
+			}
 		}
 		
 		/**
