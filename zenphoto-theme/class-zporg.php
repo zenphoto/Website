@@ -1480,7 +1480,7 @@ class zporg {
 							//$exturl = 'https://docs.zenphoto.org/package-plugins.' . $extdocname . '.html'; 
 							//$exturl = '';
 						}
-					} if (self::inNewsCategory("unsupported-hosted") || self::inNewsCategory("unsupported-3rd-party-hosted") || self::inNewsCategory("unsupported-misc")) {
+					} if (self::inNewsCategory("unsupported") || self::inNewsCategory("unsupported-hosted") || self::inNewsCategory("unsupported-3rd-party-hosted") || self::inNewsCategory("unsupported-misc")) {
 						$linktext = 'Info & download (GitHub)';
 						$linkicon_url = $_zp_themeroot . '/images/arrow_right_blue_round.png';
 						if (self::inNewsCategory("unsupported-hosted")) {
