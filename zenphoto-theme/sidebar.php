@@ -70,10 +70,6 @@
 			switch ($_zp_gallery_page) {
 
 				case 'album.php':
-					if ($_zp_current_album->name == 'sponsors') {
-						echo '<hr />';
-						printAlbumDesc();
-					}
 					if ($zp_getParentAlbumName == 'theme' || $_zp_current_album->name == 'theme') {
 						zporg::printThemeStatusIconList();
 					}
