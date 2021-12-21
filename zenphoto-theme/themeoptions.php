@@ -9,6 +9,8 @@ class ThemeOptions {
 			/* cacheManager::deleteThemeCacheSizes($me);
 			  cacheManager::addThemeCacheSize($me, NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, false, NULL, true);
 			  cacheManager::addThemeCacheSize($me, 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, NULL, NULL, NULL); */
+			setThemeOptionDefault('zporg_devbuildlink_name', 'Support build (GitHub master)');
+			setThemeOptionDefault('zporg_devbuildlink_url', 'https://github.com/zenphoto/zenphoto/archive/master.zip');
 		}
 	}
 
@@ -24,6 +26,16 @@ class ThemeOptions {
 						'key' => 'zporg_demourl',
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Set the full url to the demo install')
+						),
+				gettext('Development build Link - Name') => array(
+						'key' => 'zporg_devbuildlink_name',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Define here what it should be named.')
+						),
+				gettext('Development build Link - URL') => array(
+						'key' => 'zporg_devbuildlink_url',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Define the URL here.')
 						)
 		);
 	}

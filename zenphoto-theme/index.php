@@ -92,7 +92,17 @@ include('header.php');
 		<?php printSearchForm(); ?>
 		<ul class="downloadlinks">
 			<li><a href="<?php echo html_encode(getNewsCategoryURL('changelog')); ?>" title="Zenphoto changelog">Changelog</a></li>
-			<li><a href="https://github.com/zenphoto/zenphoto/archive/master.zip" title="Zenphoto support build on GitHub"  data-track-content data-content-piece="Support build (GitHub master)">Support build (GitHub master)</a></li>
+			<?php
+				$supportbuild_name = getThemeOption('zporg_devbuildlink_name');
+				$supportbuild_url = getThemeOption('zporg_devbuildlink_url');
+				if(!$supportbuild_name) {
+					$supportbuild_name = 'Support build (GitHub master)';
+				}
+				if(!$supportbuild_url) {
+					$supportbuild_url = 'https://github.com/zenphoto/zenphoto/archive/master.zip';
+				}
+			?>
+			<li><a href="<?php echo html_encode($supportbuild_url); ?>" title="Download <?php echo html_encode($supportbuild_name); ?>" data-track-content data-content-piece="<?php echo html_encode($supportbuild_name); ?>"><?php echo html_encode($supportbuild_name); ?></a></li>
 
 			<?php $devbuild = false; 
 		/*	if (defined('DEV_BUILD')) { */
