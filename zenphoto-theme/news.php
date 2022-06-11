@@ -1,10 +1,15 @@
 <?php include('header.php'); ?>
 <?php include('sidebar.php'); ?>
 <div id="content">
-	<h2>
-		<?php zporg::printMainSectionCategoryTitle(); ?>
-	</h2>
-	<?php
+	<?php if (is_NewsArticle()) { ?>
+		<div class="breadcrumb">
+			<?php zporg::printMainSectionCategoryTitle(); ?>
+		</div>
+	<?php } else { ?>
+		<h1 class="breadcrumb">
+			<?php zporg::printMainSectionCategoryTitle(); ?>
+		</h1>
+	<?php } 
 	if (!is_NewsArticle() && $_zp_page == 1) {
 		if (zporg::inNewsCategory('extensions')) {
 			$newcat = new ZenpageCategory('extensions');
@@ -21,7 +26,7 @@
 	if (is_NewsArticle()) {
 		?>
 		<div class="entry">
-			<h3 class="entrytitle">
+			<h1 class="entrytitle">
 				<?php printNewsTitle(); ?> <small class="articledate"><?php
 				printNewsDate(); 
 				zporg::printNewsLastChange();
@@ -31,7 +36,7 @@
 					zporg::printExtensionStatusIcon();
 				}
 				?>
-			</h3>
+			</h1>
 			<div class="entrymeta">
 				<?php printNewsCategories(", ", gettext("Categories: "), "wp-category"); ?>
 
@@ -99,7 +104,7 @@
 					$title = getNewsTitle();
 					$newslink = $_zp_current_zenpage_news->getLink();
 					?>
-					<h3 class="entrytitle"><a href="<?php echo html_encode($newslink); ?>" title="<?php echo html_encode(getBareNewsTitle()); ?>"><?php echo $title; ?></a> <small class="articledate"><?php
+					<h2 class="entrytitle"><a href="<?php echo html_encode($newslink); ?>" title="<?php echo html_encode(getBareNewsTitle()); ?>"><?php echo $title; ?></a> <small class="articledate"><?php
 							printNewsDate();
 							zporg::printNewsLastChange();
 							?></small>
@@ -110,7 +115,7 @@
 							zporg::printExtensionStatusIcon();
 						}
 						?>
-					</h3>
+					</h2>
 
 					<div class="entrymeta">
 						<?php
@@ -127,12 +132,13 @@
 						<?php
 						// only print content on main news loop
 						if (is_null($_zp_current_category)) {
+							$content = strip_tags(getNewsContent(250, ' (…)', false));
 							// news section stuff is not shortened
 							if ($_zp_current_zenpage_news->inNewsCategory("news")) {
-								printNewsContent(); // disabling shortening is not possible so we set it high!
+								echo $content; 
 								printCodeblock(2);
 							} else {
-								printNewsContent();
+								echo $content; 
 							}
 						}
 						?>

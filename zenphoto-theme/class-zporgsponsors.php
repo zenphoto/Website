@@ -142,7 +142,7 @@ class zporgSponsors {
 								break;
 							/* s
 							  case 'sponsors/gold':
-							  $placeholderimg = newImage($placeholderalb,'sponsorgold-placeholder.gif');
+							  $placeholderimg = :newImage($placeholderalb,'sponsorgold-placeholder.gif');
 							  break;
 							  case 'sponsors/silver':
 							  $imgclass = 'sponsor-silver';

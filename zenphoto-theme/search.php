@@ -3,7 +3,7 @@
 <?php include('sidebar.php'); ?>
 <div id="content">
 
-	<h2>Search results</h2>
+	<h1 class="pagetitle">Search results</h1>
 	<?php
 	$numimages = getNumImages();
 	$numalbums = getNumAlbums();
@@ -43,7 +43,7 @@
 			$number_to_show = 5;
 			$c = 0;
 			?>
-			<h3 class="searchresulttitle"><?php printf(gettext('Pages (%s)'), $numpages); ?> <small><?php zporg::printZDSearchShowMoreLink("pages", $number_to_show); ?></small></h3>
+			<h2 class="searchresulttitle"><?php printf(gettext('Pages (%s)'), $numpages); ?> <small><?php zporg::printZDSearchShowMoreLink("pages", $number_to_show); ?></small></h2>
 			<ul class="searchresults">
 				<?php
 				while (next_page()) {
@@ -62,20 +62,20 @@
 			$number_to_show = 5;
 			$c = 0;
 			?>
-			<h3 class="searchresulttitle"><?php printf(gettext('Articles (%s)'), $numnews); ?> <small><?php zporg::printZDSearchShowMoreLink("news", $number_to_show); ?></small></h3>
+			<h2 class="searchresulttitle"><?php printf(gettext('Articles (%s)'), $numnews); ?> <small><?php zporg::printZDSearchShowMoreLink("news", $number_to_show); ?></small></h2>
 			<ul class="searchresults">
 				<?php
 				while (next_news()) {
 					$c++;
 					?>
 					<li<?php zporg::printZDToggleClass('news', $c, $number_to_show); ?>>
-						<h4 class="entrytitle"><?php printNewsURL(); ?> <small class="articledate"><?php printNewsDate(); ?></small>
+						<h3 class="entrytitle"><?php printNewsURL(); ?> <small class="articledate"><?php printNewsDate(); ?></small>
 							<?php
 							if ($_zp_current_zenpage_news->inNewsCategory("extensions")) {
 								zporg::printExtensionStatusIcon();
 							}
 							?>
-						</h4>
+						</h3>
 						<div class="entrymeta">
 			<?php printNewsCategories(", ", gettext("Categories: "), "wp-category"); ?>
 						</div>
@@ -133,13 +133,13 @@
 						<a href="<?php echo html_encode($albumlinkurl); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, TRUE, false); ?></a>
 					</div>
 					<div class="albumdesc">
-						<h4 class="entrytitle"><a href="<?php echo html_encode($albumlinkurl); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php echo shortenContent(getAlbumTitle(), 20, '(...)'); ?></a>
+						<h3 class="entrytitle"><a href="<?php echo html_encode($albumlinkurl); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php echo shortenContent(getAlbumTitle(), 20, '(...)'); ?></a>
 							<?php
 							if (zporg::getParentAlbumName() === 'theme') {
 								echo '<small>(Theme)</small>';
 							}
 							?>
-						</h4>
+						</h3>
 		<?php zporg::printThemeStatusIcon(); ?>
 					</div>
 				</div>
@@ -164,7 +164,7 @@
 						<a href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php printCustomSizedImage(getBareImageTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, true, false); ?></a>
 					</div>
 					<div class="albumdesc">
-						<h4 class="entrytitle"><a href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php echo shortenContent(getImageTitle(), 20, '(...)'); ?>
+						<h3 class="entrytitle"><a href="<?php echo htmlspecialchars(getImageURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php echo shortenContent(getImageTitle(), 20, '(...)'); ?>
 								<?php
 								$albumname = $_zp_current_image->album;
 								$parent = $albumname->getParent();
@@ -175,7 +175,7 @@
 									echo '<small>(Showcase)</small>';
 								}
 								?>
-						</h4><?php zporg::printShowcaseTypeIcon(); ?></a>
+						</h34><?php zporg::printShowcaseTypeIcon(); ?></a>
 					</div>
 				</div>
 	<?php endwhile; ?>

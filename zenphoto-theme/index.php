@@ -2,7 +2,6 @@
 include('header.php');
 ?>
 
-
 <div id="frontcontent">
 
 

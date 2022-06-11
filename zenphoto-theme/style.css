@@ -86,19 +86,19 @@ p, blockquote {
 	padding: 0;
 }
 
+#header #logo span {
+	display: block;
+	text-indent:-999em;
+}
 
-
-#header p{
+#header p {
 	font-weight: bold;
         margin-left: 2px;
         margin-top: 12px;
         letter-spacing: 1px;
 }
 
-#header h1 span {
-	display: block;
-	text-indent:-999em;
-}
+
 
 #header ul {
 	margin: 0;
@@ -243,16 +243,24 @@ background-color: #e7ecbc;
 	text-align: left;
 }
 
+.breadcrumb {
+	font-size: 22px;
+	font-weight: normal;
+	color: black;
+	margin-bottom: 20px;
+}
+
 #content .more-link {
   color: #396;
 }
 
-#content h2 {
+#content .entrytitle {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	font-size:20px;
 	font-weight: normal;
 	color: black;
+
 }
 
 .articledate {
@@ -261,7 +269,8 @@ background-color: #e7ecbc;
    font-style: italic;
 }
 
-#content h4 {
+#content .entrybody h2,
+#content .entrybody h4 {
    font-family: Arial, Helvetica, Sans-Serif;
    font-size: 16px;
    color: #396;
@@ -270,17 +279,17 @@ background-color: #e7ecbc;
    margin-bottom: 2px;
 }
 
-#content h5 {
+#content .entrybody h3,
+#content .entrybody h5 {
    font-family: Arial, Helvetica, Sans-Serif;
    font-size: 13px;
    font-weight: bold;
    color: black;
    margin-top: 20px;
    margin-bottom: 0;
-
 }
 
-#content h6 {
+#content .entrybody h6 {
    font-family: Arial, Helvetica, Sans-Serif;
    font-size: 13px;
    font-style: italic;
@@ -291,7 +300,8 @@ background-color: #e7ecbc;
    margin-left: 0px;
 }
 
-#content h6.filter {
+#content .entrybody h4.filter,
+#content .entrybody h6.filter {
 	margin-left: 16px;
 	letter-spacing: 1px;
 }
@@ -301,6 +311,10 @@ background-color: #e7ecbc;
 #content ul.filterdetail p {
 padding: 0;
 margin: 0;
+}
+
+#content .filterdetail {
+	margin-bottom: 20px;
 }
 
 #content ul.subclass p.calls,
@@ -503,13 +517,10 @@ text-align: left;
 .rss {padding-left: 18px; background: url(images/feed-icon.png) no-repeat left center; }
 
 
-/* BELOW THIS LINE IS CSS INHERETED FROM THE SAMPLE THEME*/
 h2 {
 	margin-bottom: 10px;
 	font-size: 1.2em;
-	/* color: #396; */
-	color: gray;
-}
+} 
 
 
 .entry{
@@ -523,8 +534,7 @@ h2 {
 }
 
 
- h3.entrytitle,
-#content h4.entrytitle {
+.entrytitle {
 	padding-top: 18px;
 	padding-right: 0px;
 	padding-bottom: 0px;
@@ -534,34 +544,29 @@ h2 {
 	font-weight: normal;
 	font-size: 18px;
 	line-height: 20px;
-	color: #396;
+	color: #396 !important;
 }
 
-h3.imagetitle {
+.imagetitle {
 width: 450px;
 }
 
 
-h3.entrytitle a,
-#content h4.entrytitle a {
+.entrytitle a {
 	text-decoration:none;
 	border-style: none;
 	color: #396;
 }
 
 
-h3.entrytitle a:hover,
-h3.entrytitle a:active,
-h3.entrytitle a:focus,
-#content h4.entrytitle a:hover,
-#content h4.entrytitle a:active,
-#content h4.entrytitle a:focus{
+.entrytitle a:hover,
+.entrytitle a:active,
+.entrytitle a:focus{
 	text-decoration:underline;
 	color: #006400;
 }
 
-h3.entrytitle small,
-h4.entrytitle small {
+.entrytitle small {
 	color: gray;
 }
 
@@ -793,6 +798,11 @@ margin: 0;
 	margin: 0;
 	padding: 0;
 	}
+	
+.relateditems {
+	margin-top: 20px;
+}	
+	
 ul#relateditems li,
 ul.morebyauthorlist li,
 #sidebar ul li,
@@ -2050,11 +2060,12 @@ padding: 0;
 
 }
 
-#authorcredits h4 {
-font-size: 13px;
-font-weight: bold;
-color: black;
-margin: 0 0 4px 0;
+#authorcredits .authorcredits_headline {
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: black;
+	margin: 0 0 4px 0;
 }
 
 #authorcredits ul {
@@ -2097,6 +2108,8 @@ float: left;
 margin: 2px 20px 10px 0px !important;
 border: 1px solid lightgray !important;
 }
+
+
 
 img.authorprofile-imagelist {
 float: left;

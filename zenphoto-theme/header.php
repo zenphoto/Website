@@ -87,8 +87,15 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					<li><a class="sponsors" href="<?php echo WEBPATH; ?>/sponsors/" title="Sponsors">Sponsors</a></li>
 				</ul>
 				<div id="header_logo">
-					<h1 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/logo-new.png" alt="Zenphoto" /><span>Zenphoto</span></a></h1>
+					<?php if ($_zp_gallery_page == 'index.php') { ?>
+							<h1 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/logo-new.png" alt="ZenphotoCMS" /><span>Zenphoto</span></a></h1>
 					<p>The <em>simpler</em> media website CMS</p>
+					<?php } else { ?>
+						<div id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/logo-new.png" alt="ZenphotoCMS" /><span>ZenphotoCMS</span></a></div>
+					<p>The <em>simpler</em> media website CMS</p>
+					
+					<?php } ?>
+				
 				</div>
 			</header>
 			

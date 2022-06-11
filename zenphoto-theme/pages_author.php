@@ -6,17 +6,17 @@
 	switch ($_zp_current_zenpage_page) {
 		case $_zp_current_zenpage_page->hasTag('zp_team-member'):
 			?>
-			<h2><a href="<?php echo html_encode(getPageURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageURL('zenphoto-team')); ?>">Zenphoto team</a></h2>
+	<div class="breadcrumb"><a href="<?php echo html_encode(getPageURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageURL('zenphoto-team')); ?>">Zenphoto team</a></div>
 			<?php
 			break;
 		case $_zp_current_zenpage_page->hasTag('zp_team-member-former'):
 			?>
-			<h2><a href="<?php echo html_encode(getPageURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageURL('former-team-members')); ?>">Former team members</a></h2>
+		<div class="breadcrumb"><a href="<?php echo html_encode(getPageURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageURL('former-team-members')); ?>">Former team members</a></div>
 			<?php
 			break;
 		case $_zp_current_zenpage_page->hasTag('zp_contributor'):
 			?>
-			<h2><a href="<?php echo html_encode(getPageURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageURL('contributors')); ?>">Contributors</a></h2>
+			<div class="breadcrumb"><a href="<?php echo html_encode(getPageURL('about-us')); ?>">About us</a> | <a href="<?php echo html_encode(getPageURL('contributors')); ?>">Contributors</a></div>
 			<?php
 			break;
 	}
@@ -25,7 +25,7 @@
 		case $_zp_current_zenpage_page->hasTag('zp_team-member-former'):
 		case $_zp_current_zenpage_page->hasTag('zp_contributor'):
 			?>
-			<h3 class="entrytitle"><?php printPageTitle(); ?>
+			<h1 class="entrytitle"><?php printPageTitle(); ?>
 				<?php if (strtolower($_zp_current_zenpage_page->getTitle()) != strtolower($_zp_current_zenpage_page->getTitlelink())) {
 					?>
 					<em>(<?php echo $_zp_current_zenpage_page->getTitlelink(); ?>)</em>
@@ -33,14 +33,14 @@
 				}
 				zporg::printAuthorStatusIcon();
 				?>
-			</h3>
+			</h1>
 			<?php
 			break;
 		default:
 			?>
-			<h2 class="entrytitle">
+			<h1 class="entrytitle">
 				<?php printPageTitle(); ?>
-			</h2>
+			</h1>
 			<?php
 			break;
 	}

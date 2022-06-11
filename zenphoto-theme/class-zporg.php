@@ -198,14 +198,14 @@ class zporg {
 					switch ($mode2) {
 						case 'extensions':
 							?>
-							<h4>Extensions contributions (<?php echo $resultcount; ?>)</h4>
+							<h2 class="contributions_headline">Extensions contributions (<?php echo $resultcount; ?>)</2>
 							<?php
 							break;
 						case 'user-guide':
-							?><h4>User guide contributions (<?php echo $resultcount; ?>)</h4><?php
+							?><h2 class="contributions_headline">User guide contributions (<?php echo $resultcount; ?>)</h2><?php
 							break;
 						case 'release':
-							?><h4>Release contributions (<?php echo $resultcount; ?>)</h4>
+							?><h2 class="contributions_headline">Release contributions (<?php echo $resultcount; ?>)</h2>
 							<p>Bugfix releases (1.x.x.x) are not listed.</p>
 							<?php
 							break;
@@ -213,7 +213,7 @@ class zporg {
 					break;
 				case 'albums':
 					?>
-					<h4>Theme contributions (<?php echo $resultcount; ?>)</h4>
+					<h2 class="contributions_headline">Theme contributions (<?php echo $resultcount; ?>)</h2>
 					<?php
 					break;
 			}
@@ -253,7 +253,7 @@ class zporg {
 							}
 						}
 						?>
-						<h4><a href="<?php echo html_encode($url) ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
+						<h3><a href="<?php echo html_encode($url) ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
 							<?php
 							switch ($item['type']) {
 								case 'albums':
@@ -281,7 +281,7 @@ class zporg {
 									break;
 							}
 							?>
-						</h4>
+						</h3>
 					</li>
 					<?php
 				} // foreach
@@ -403,7 +403,7 @@ class zporg {
 						  }
 						  } */
 						?>
-						<h4 class="entrytitle"><a href="<?php echo $obj->getLink(); ?>" rel="author">
+						<h2 class="entrytitle"><a href="<?php echo $obj->getLink(); ?>" rel="author">
 								<?php
 								echo $obj->getTitle();
 								if (strtolower($obj->getTitle()) != strtolower($obj->getTitlelink())) {
@@ -413,7 +413,7 @@ class zporg {
 								}
 								?>
 							</a><?php self::printAuthorStatusIcon($obj); ?>
-						</h4>
+						</h2>
 						<div class="entrymeta">
 							<?php self::printAuthorStatusRanks($obj); ?>
 						</div>
@@ -490,7 +490,7 @@ class zporg {
 				unset($subpages_news);
 				?>
 				<div id="authorcredits" class="table_of_content_list">
-					<h4><?php echo $credit; ?> </h4>
+					<h2 class="authorcredits_headline"><?php echo $credit; ?> </h2>
 					<ul>
 						<?php
 						// Workaround to get an alphabetically list by name
@@ -721,7 +721,7 @@ class zporg {
 		if (self::getParentAlbumName() == "theme") {
 			$tags = self::getSpecificTags('item', 'pluginsupport');
 			?>
-			<h4>Layout specific plugins supported:</h4>
+			<h2>Layout specific plugins supported:</h2>
 			<?php
 			if (!empty($tags)) {
 				?>
@@ -1558,7 +1558,7 @@ class zporg {
 				}
 				if (count($result) > 1) { // because one always gets found, the item itself!
 					?>
-					<h3 class="relateditems"><?php echo gettext('Related items'); ?></h3>
+					<h2 class="relateditems"><?php echo gettext('Related items'); ?></h2>
 					<ul id="relateditems">
 						<?php
 						$count = '';
@@ -1608,8 +1608,8 @@ class zporg {
 											break;
 									}
 									?>
-									<a href="<?php echo html_encode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a><?php echo $category; ?>
-									</h4></li>
+									<h3><a href="<?php echo html_encode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a><?php echo $category; ?>
+									</h3></li>
 								<?php
 							} // if object not current
 							if ($count == $number) {
@@ -1743,6 +1743,35 @@ class zporg {
 				</div>
 				<?php
 			}
-
+			
+		static function printSubPagesExcerpts($excerptlength = NULL, $readmore = NULL, $shortenindicator = NULL) {
+			global $_zp_current_zenpage_page;
+			if (is_null($readmore)) {
+				$readmore = get_language_string(ZP_READ_MORE);
+			}
+			$pages = $_zp_current_zenpage_page->getPages();
+			$subcount = 0;
+			if (is_null($excerptlength)) {
+				$excerptlength = ZP_SHORTEN_LENGTH;
+			}
+			foreach ($pages as $page) {
+				$pageobj = new ZenpagePage($page['titlelink']);
+				if ($pageobj->getParentID() == $_zp_current_zenpage_page->getID()) {
+					$subcount++;
+					$pagetitle = html_encode($pageobj->getTitle());
+					$pagecontent = $pageobj->getContent();
+					if ($pageobj->checkAccess()) {
+						$pagecontent = getContentShorten($pagecontent, $excerptlength, $shortenindicator, $readmore, $pageobj->getLink());
+					} else {
+						$pagecontent = '<p><em>' . gettext('This page is password protected') . '</em></p>';
+					}
+					echo '<div class="pageexcerpt">';
+					echo '<h2><a href="' . html_encode($pageobj->getLink()) . '" title="' . getBare($pagetitle) . '">' . $pagetitle . '</a></h2>';
+					echo $pagecontent;
+					echo '</div>';
+				}
+			}
 		}
+
+}
 		

@@ -2,7 +2,7 @@
 <?php include('sidebar.php'); ?>
 <div id="content">
 
-<h2><?php printAlbumTitle(); ?></h2>
+<h1 class="pagetitle"><?php printAlbumTitle(); ?></h1>
 <?php 
 	zporg::specialdownloads('sponsorbadges')
 ?>

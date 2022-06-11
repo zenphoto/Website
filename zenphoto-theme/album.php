@@ -3,12 +3,12 @@
 <div id="content">
 
 	<?php if($_zp_current_album->name == 'hosting') { ?>
-		<h2><?php printAlbumTitle(); ?></h2>
+		<h1 class="pagetitle"><?php printAlbumTitle(); ?></h1>
 		<?php zporgSponsors::printAds(); ?>
 		<br clear="all" />
 	<?php } ?>
 
-	<h2>
+	<h1 class="breadcrumb">
 		<?php
 		printParentBreadcrumb('', '', '');
 
@@ -25,7 +25,7 @@
 			echo " (" . getNumImages() . ")";
 		}
 		?>
-	</h2>
+	</h1>
 	<?php
 	if ($zp_getParentAlbumName != "theme" && $_zp_page == 1) {
 		echo getAlbumDesc();
@@ -46,9 +46,9 @@
 			$iconclass = zporg::getThemeStatusIconClass();
 		}
 		?>
-		<h3 class="entrytitle imagetitle<?php echo $iconclass; ?>">
+		<h2 class="entrytitle imagetitle<?php echo $iconclass; ?>">
 			<?php printAlbumTitle(); ?>
-		</h3>
+		</h2>
 		<?php
 		if ($zp_getParentAlbumName == "theme") {
 			zporg::printItemAuthorCredits();
@@ -99,14 +99,14 @@
 				</div>
 
 				<div class="albumdesc">
-					<h3 class="entrytitle">
+					<h2 class="entrytitle">
 						<a href="<?php echo $albumurl; ?>"	title="View album: <?php echo getAlbumTitle(); ?>"><?php echo shortenContent(getAlbumTitle(), 20, '(...)'); ?></a>
 						<?php
 						if (getNumImages() != 0) {
 							echo "<small>(" . getNumImages() . ")</small>";
 						}
 						?>
-					</h3><?php zporg::printThemeStatusIcon(); ?>
+					</h2><?php zporg::printThemeStatusIcon(); ?>
 
 					<?php
 					if ($zp_getParentAlbumName === "theme") {
@@ -136,10 +136,10 @@
 					<a	href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php printCustomSizedImage(getBareImageTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, true, false); ?></a>
 				</div>
 				<div class="albumdesc">
-					<h3 class="entrytitle">
+					<h2 class="entrytitle">
 						<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo getImageTitle(); ?>"><?php echo shortenContent(getImageTitle(), 20, '(...)'); ?>
 						</a>
-						<?php zporg::printShowcaseTypeIcon(); ?></h3>
+						<?php zporg::printShowcaseTypeIcon(); ?></h2>
 					<br />
 					<?php
 					if ($_zp_current_album->name === "showcase") {

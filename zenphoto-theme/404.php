@@ -4,7 +4,7 @@ include('sidebar.php');
 $obj = @$_zp_gallery_page;
 ?>
 <div id="content">
-	<h2>Oops, sorry!</h2>
+<h1 class="pagetitle">Oops, sorry!</h1>
 	<div id="content-error">
 
 		<div class="errorbox">

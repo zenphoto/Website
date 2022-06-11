@@ -5,13 +5,13 @@ setOption('thumb_crop_height', 40, false);
 <?php include('sidebar.php'); ?>
 <div id="content">
 
-		<h2>
+		<div class="breadcrumb">
 			<?php printParentBreadcrumb('',' | ','');
 			if($_zp_current_album->name === "showcase") {
 				printAlbumBreadcrumb('', '');
 			} 
 			?>
-		</h2>
+		</div>
 		 
 	   <?php
     if($_zp_current_album->name != "showcase") {
@@ -39,7 +39,7 @@ setOption('thumb_crop_height', 40, false);
 		 $iconclass = zporg::getThemeStatusIconClass();
 	}
 	?>
-	<h3 class="entrytitle imagetitle<?php echo $iconclass; ?>">
+	<h1 class="entrytitle imagetitle<?php echo $iconclass; ?>">
 	<?php 
 	if($zp_getParentAlbumName == 'theme' || $zp_getParentAlbumName == 'screenshots') {
 		 printAlbumTitle(); echo ': '; 
@@ -47,7 +47,7 @@ setOption('thumb_crop_height', 40, false);
 	printImageTitle(true); 
 	echo " (".imageNumber()."/".getNumImages().")"; 
 	?>
-	</h3>
+	</h1>
  		<div id="image">
 		<?php if(isImagePhoto()) { ?>
 			<a href="<?php echo getUnprotectedImageURL(); ?>" class="colorbox"><?php printCustomSizedImageMaxSpace(getBareImageTitle(),560,1000,NULL,NULL,false); ?></a>

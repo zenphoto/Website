@@ -2,10 +2,10 @@
 <?php include('sidebar.php'); ?>
 <div id="content">
 			<?php if($parent) { ?>
-    		<h2><?php printZenpageItemsBreadcrumb('',''); ?></h2> 
-    		<h3 class="entrytitle"><?php printPageTitle(); ?></h3>
+    		<div class="breadcrumb"><?php printZenpageItemsBreadcrumb('',''); ?></div> 
+    		<h1 class="entrytitle"><?php printPageTitle(); ?></h1>
     	<?php } else { ?>
-    		<h2 class="entrytitle"><?php printPageTitle(); ?></h2>
+    		<h1 class="entrytitle"><?php printPageTitle(); ?></h1>
     	<?php } ?>
     	<!-- <ol id="toc" class="table_of_content_list"></ol> -->
   		<div class="entrybody">

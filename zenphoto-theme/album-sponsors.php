@@ -1,7 +1,7 @@
 <?php include('header.php'); ?>
 <?php include('sidebar.php'); ?>
 <div id="content">
-<h2><?php printAlbumTitle(); ?></h2>
+<h1 class="breadcrumb"><?php printAlbumTitle(); ?></h1>
 <?php
 printAlbumDesc();
 zporgSponsors::printAds(); ?>
