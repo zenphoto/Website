@@ -175,7 +175,7 @@
 									echo '<small>(Showcase)</small>';
 								}
 								?>
-						</h34><?php zporg::printShowcaseTypeIcon(); ?></a>
+						</h3><?php zporg::printShowcaseTypeIcon(); ?></a>
 					</div>
 				</div>
 	<?php endwhile; ?>
