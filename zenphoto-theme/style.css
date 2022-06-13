@@ -801,6 +801,7 @@ margin: 0;
 	
 .relateditems {
 	margin-top: 20px;
+	font-weight: normal;
 }	
 	
 ul#relateditems li,
@@ -817,6 +818,10 @@ ul.morebyauthorlist li,
   background: url(images/newnavbullet2.png) no-repeat top left;
 }
 
+ul#relateditems h3 {
+	font-weight: normal;
+	font-size: 13px;
+}
 
 
 #sidebar ul.statuslist {
