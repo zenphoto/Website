@@ -43,12 +43,12 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			<script src="<?php echo $_zp_themeroot; ?>/js/jquery.tableofcontents-mod.min.js"></script>
 			<script>
 				$(document).ready(function() {
-					if ($("#entrybody h4").length == 0) {
+					if ($("#entrybody h2").length == 0) {
 						$("#toc").remove();
 					}
 					$("#toc").tableOfContents('#entrybody', {
-						startLevel: 3,
-						depth: 5,
+						startLevel: 2,
+						depth: 2,
 						topLinks: true,
 						topBodyId: top
 					});
