@@ -49,7 +49,7 @@ setOption('thumb_crop_height', 40, false);
 	?>
 	</h1>
  		<div id="image">
-		<?php if(isImagePhoto()) { ?>
+		<?php if($_zp_current_image->isPhoto()) { ?>
 			<a href="<?php echo getUnprotectedImageURL(); ?>" class="colorbox"><?php printCustomSizedImageMaxSpace(getBareImageTitle(),560,1000,NULL,NULL,false); ?></a>
 		<?php } else { ?>
 		<?php printCustomSizedImage(getBareImageTitle(),560,700); ?>

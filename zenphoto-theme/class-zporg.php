@@ -224,7 +224,7 @@ class zporg {
 					$category = '';
 					switch ($item['type']) {
 						case 'albums':
-							$obj = newAlbum($item['name']);
+							$obj = Albumbase::newAlbum($item['name']);
 							$url = $obj->getLink();
 							$text = $obj->getDesc();
 							break;
@@ -355,7 +355,7 @@ class zporg {
 
 	static function printAuthorList($mode = 'all', $content = false) {
 		global $_zp_current_zenpage_page;
-		if (!is_null($_zp_current_zenpage_page) && $_zp_current_zenpage_page->getTitlelink() == 'all-contributors') {
+		if (!is_null($_zp_current_zenpage_page) && $_zp_current_zenpage_page->getName() == 'all-contributors') {
 			$subpages = $_zp_current_zenpage_page->getPages();
 		} else {
 			$page = new ZenpagePage('all-contributors');
@@ -377,7 +377,7 @@ class zporg {
 					// otherwise we just use the alias no matter how it begins, e.g. "The Whole Life to Learn"
 					$name = $obj->getTitle();
 				}
-				$sorted[] = array('titlelink' => $obj->getTitlelink(), 'name' => $name);
+				$sorted[] = array('titlelink' => $obj->getName(), 'name' => $name);
 			}
 			$sorted = sortMultiArray($sorted, 'name', false, true, false, false); // sort by name abc
 			$subpages = $sorted;
@@ -406,9 +406,9 @@ class zporg {
 						<h2 class="entrytitle"><a href="<?php echo $obj->getLink(); ?>" rel="author">
 								<?php
 								echo $obj->getTitle();
-								if (strtolower($obj->getTitle()) != strtolower($obj->getTitlelink())) {
+								if (strtolower($obj->getTitle()) != strtolower($obj->getName())) {
 									?>
-									<small><em>(<?php echo $obj->getTitlelink(); ?>)</em></small>
+									<small><em>(<?php echo $obj->getName(); ?>)</em></small>
 									<?php
 								}
 								?>
@@ -519,7 +519,7 @@ class zporg {
 									// otherwise we just use the alias no matter how it begins, e.g. "The Whole Life to Learn"
 									$name = $obj->getTitle();
 								}
-								$sorted[] = array('title' => $obj->getTitle(), 'titlelink' => $obj->getTitlelink(), 'name' => $name, 'status_icon' => $icon);
+								$sorted[] = array('title' => $obj->getTitle(), 'titlelink' => $obj->getName(), 'name' => $name, 'status_icon' => $icon);
 							} else {
 								$sorted[] = array('title' => $author, 'titlelink' => '', 'name' => $author, 'status_icon' => $icon);
 							}
@@ -770,7 +770,7 @@ class zporg {
 				}
 				echo '<li' . $allnews . '><a href="' . html_encode(getNewsIndexURL()) . '" title="All news">All news</a></li>';
 				$active = '';
-				if (!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() == 'news') {
+				if (!is_null($_zp_current_category) && $_zp_current_category->getName() == 'news') {
 					$active = ' class="active"';
 				}
 				$count = ' <small>(' . count($cat_news->getArticles(0)) . ')</small>';
@@ -783,7 +783,7 @@ class zporg {
 						$active2 = '';
 						$articleCount = count($subobj->getArticles(0));
 						if ($articleCount != 0) {
-							if (!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() == $subobj->getTitlelink()) {
+							if (!is_null($_zp_current_category) && $_zp_current_category->getName() == $subobj->getName()) {
 								$active2 = ' class="active"';
 							}
 							$count = ' <small>(' . $articleCount . ')</small>';
@@ -825,7 +825,7 @@ class zporg {
 						$active = '';
 						$articleCount = count($subcatobj->getArticles(0));
 						if ($articleCount != 0) {
-							if (!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() == $subcatobj->getTitlelink()) {
+							if (!is_null($_zp_current_category) && $_zp_current_category->getName() == $subcatobj->getName()) {
 								$active = ' class="active"';
 							}
 							$count = ' <small>(' . $articleCount . ')</small>';
@@ -909,7 +909,7 @@ class zporg {
 				global $_zp_current_zenpage_news, $_zp_current_category;
 				$currentcat = '';
 				if (is_NewsCategory() && !is_null($_zp_current_category)) {
-					$currentcat = $_zp_current_category->getTitlelink();
+					$currentcat = $_zp_current_category->getName();
 					if ($currentcat == $titlelink || $_zp_current_category->isSubNewsCategoryOf($titlelink)) {
 						return TRUE;
 					}
@@ -1293,11 +1293,11 @@ class zporg {
 			static function specialdownloads($albumfolder = NULL) {
 				global $_zp_gallery;
 				if (function_exists('printDownloadlist') && !is_null($albumfolder)) {
-					$albobj = newAlbum($albumfolder);
+					$albobj = Albumbase::newAlbum($albumfolder);
 					$subalbs = $albobj->getAlbums(0, null, null, true, true);
 					if ($subalbs) {
 						foreach ($subalbs as $subalb) {
-							$subobj = newAlbum($subalb);
+							$subobj = Albumbase::newAlbum($subalb);
 							echo '<div class="logodownloadwrapper" data-track-content data-content-name="Logo Downloads">';
 							$albumthumb = $subobj->getAlbumThumbImage();
 							echo '<span><img src="' . $albumthumb->getCustomImage(200, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL) . '" alt="" /></span><h4>' . $subobj->getTitle() . '</h4>';
@@ -1476,7 +1476,7 @@ class zporg {
 								$linktext = 'Info & download (GitHub)';
 								$note = '<p class="articlebox">This extension is officially supported but not included in the ZenphotoCMS release.</p>';
 							}
-							//$extdocname = str_replace(array('_','-'), '.', $_zp_current_zenpage_news->getTitlelink());
+							//$extdocname = str_replace(array('_','-'), '.', $_zp_current_zenpage_news->getName());
 							//$exturl = 'https://docs.zenphoto.org/package-plugins.' . $extdocname . '.html'; 
 							//$exturl = '';
 						}
@@ -1516,23 +1516,23 @@ class zporg {
 				}
 				if (self::inNewsCategory('extensions')) {
 					echo "Extensions";
-					if (!is_NewsArticle() && $_zp_current_category->getTitlelink() == 'extensions') {
+					if (!is_NewsArticle() && $_zp_current_category->getName() == 'extensions') {
 						echo $articlecount;
 					}
-					if (!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() != 'extensions') {
+					if (!is_null($_zp_current_category) && $_zp_current_category->getName() != 'extensions') {
 						echo '» ' . $_zp_current_category->getTitle() . $articlecount;
 					}
 				} else if (self::inNewsCategory('user-guide')) {
 					echo "User guide ";
-					if (!is_NewsArticle() && $_zp_current_category->getTitlelink() == 'user-guide') {
+					if (!is_NewsArticle() && $_zp_current_category->getName() == 'user-guide') {
 						echo $articlecount;
 					}
-					if (!is_null($_zp_current_category) && $_zp_current_category->getTitlelink() != 'user-guide') {
+					if (!is_null($_zp_current_category) && $_zp_current_category->getName() != 'user-guide') {
 						echo '» ' . $_zp_current_category->getTitle() . $articlecount;
 					}
 				} else if (!self::inNewsCategory('extensions') || self::inNewsCategory('user-guide')) {
 					echo "News";
-					if (!is_NewsArticle() && !is_null($_zp_current_category) && !is_NewsArticle() && $_zp_current_category->getTitlelink() != 'news') {
+					if (!is_NewsArticle() && !is_null($_zp_current_category) && !is_NewsArticle() && $_zp_current_category->getName() != 'news') {
 						echo '» ' . $_zp_current_category->getTitle();
 					}
 				}
@@ -1565,24 +1565,24 @@ class zporg {
 						foreach ($result as $item) {
 							switch ($type) {
 								case 'albums':
-									$obj = newAlbum($item);
+									$obj = Albumbase::newAlbum($item);
 									$objname = $item;
 									$currentname = $_zp_current_album->name;
 									break;
 								case 'images':
-									$obj = newImage($_zp_current_album, $item);
+									$obj = Image::newImage($_zp_current_album, $item);
 									$objname = $item;
 									$currentname = $_zp_current_image->filename;
 									break;
 								case 'news':
 									$obj = new ZenpageNews($item['name']);
-									$objname = $obj->getTitlelink();
-									$currentname = $_zp_current_zenpage_news->getTitlelink();
+									$objname = $obj->getName();
+									$currentname = $_zp_current_zenpage_news->getName();
 									break;
 								case 'pages':
 									$obj = new ZenpagePage($item['name']);
-									$objname = $obj->getTitlelink();
-									$currentname = $_zp_current_zenpage_page->getTitlelink();
+									$objname = $obj->getName();
+									$currentname = $_zp_current_zenpage_page->getName();
 									break;
 							}
 							if ($objname != $currentname) { // avoid listing the item itself
@@ -1664,7 +1664,7 @@ class zporg {
 						if (!empty($articles)) {
 							$h4 = $catobj->getTitle();
 							?>
-							<li><a href="#<?php echo $catobj->getTitlelink(); ?>"><?php echo $h4; ?></a></li>
+							<li><a href="#<?php echo $catobj->getName(); ?>"><?php echo $h4; ?></a></li>
 							<?php
 						} else {
 							unset($cats[$key]);
@@ -1677,7 +1677,7 @@ class zporg {
 					$catobj = new ZenpageCategory($cat);
 					$h4 = $catobj->getTitle();
 					?>
-					<h4><a name="<?php echo $catobj->getTitlelink(); ?>"></a><?php echo $h4; ?></h4>
+					<h4><a name="<?php echo $catobj->getName(); ?>"></a><?php echo $h4; ?></h4>
 					<?php
 					self::listTroubleshootingArticles($catobj);
 				}

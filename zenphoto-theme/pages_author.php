@@ -26,9 +26,9 @@
 		case $_zp_current_zenpage_page->hasTag('zp_contributor'):
 			?>
 			<h1 class="entrytitle"><?php printPageTitle(); ?>
-				<?php if (strtolower($_zp_current_zenpage_page->getTitle()) != strtolower($_zp_current_zenpage_page->getTitlelink())) {
+				<?php if (strtolower($_zp_current_zenpage_page->getTitle()) != strtolower($_zp_current_zenpage_page->getName())) {
 					?>
-					<em>(<?php echo $_zp_current_zenpage_page->getTitlelink(); ?>)</em>
+					<em>(<?php echo $_zp_current_zenpage_page->getName(); ?>)</em>
 					<?php
 				}
 				zporg::printAuthorStatusIcon();
@@ -67,11 +67,11 @@
 			}
 		}
 		printPageContent();
-		if ($_zp_current_zenpage_page->getTitlelink() != 'all-contributors') {
-			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'news', 'release');
-			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'albums');
-			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'news', 'extensions');
-			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getTitlelink(), 'news', 'user-guide');
+		if ($_zp_current_zenpage_page->getName() != 'all-contributors') {
+			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getName(), 'news', 'release');
+			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getName(), 'albums');
+			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getName(), 'news', 'extensions');
+			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getName(), 'news', 'user-guide');
 		} else {
 			zporg::printAuthorList('all', false, $subpages);
 		}

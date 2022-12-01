@@ -57,7 +57,7 @@
 				<?php //printPageMenu('omit-top','','','','active','',1); ?>
 				<?php
 			}
-			if (in_array('all-contributors', $parents) || $_zp_current_zenpage_page->getTitlelink() == 'all-contributors') {
+			if (in_array('all-contributors', $parents) || $_zp_current_zenpage_page->getName() == 'all-contributors') {
 				zporg::printThemeStatusIconList();
 				zporg::printExtensionStatusIconList();
 			}

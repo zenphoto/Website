@@ -10,7 +10,7 @@
 $plugin_is_filter = 20 | ADMIN_PLUGIN | THEME_PLUGIN;
 $plugin_description = gettext('Ad counter for our site ads by month.');
 $plugin_author = "Malte Müller (acrylian)";
-$plugin_version = '1.5.2';
+$plugin_version = '1.5.1';
 
 zp_register_filter('admin_utilities_buttons', 'adclickCount::button');
 zp_register_filter('theme_head', 'adclickCount::getJS');
@@ -45,7 +45,7 @@ class adclickCount {
 		$adcategory = trim($get['adcategory']);
 		unset($get['adcategory']);
 		
-		$sponsors = newAlbum('sponsors', true, true);
+		$sponsors = Albumbase::newAlbum('sponsors', true, true);
 		$this->sponsorcats = $sponsors->getAlbums(0, null, null, true, true);
 		//debuglogVar($this->sponsorcats);
 		//check if this ad category exists actually
@@ -72,11 +72,11 @@ class adclickCount {
 		if(!is_null($this->link_unvalidated) && $this->sponsorcats) { // to be sure we got one…
 			$adlinks = array();
 			foreach($this->sponsorcats as $sponsorcat) {
-				$adcategory = newAlbum($sponsorcat, true, true);
+				$adcategory = Albumbase::newAlbum($sponsorcat, true, true);
 				if($adcategory->getNumImages() != 0) {
 					$ads = $adcategory->getImages(0);
 					foreach($ads as $ad) {
-						$adobj = newImage($adcategory, $ad, true);
+						$adobj = Image::newImage($adcategory, $ad, true);
 						$adlink = trim($adobj->getLocation());
 						if(!empty($adlink)) {
 							$adlinks[] = $adlink;
@@ -138,8 +138,8 @@ class adclickCount {
 				'enable' => true,
 				'button_text' => gettext('Adcount statistics'),
 				'formname' => 'adcount_button',
-				'action' => FULLWEBPATH . '/' . USER_PLUGIN_FOLDER . '/adclickcounter/adclickcounter_statistics.php',
-				'icon' => FULLWEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
+				'action' => WEBPATH . '/' . USER_PLUGIN_FOLDER . '/adclickcounter/adclickcounter_statistics.php',
+				'icon' => WEBPATH . '/' . ZENFOLDER . '/images/bar_graph.png',
 				'title' => gettext('Counts of ad clicks'),
 				'alt' => '',
 				'hidden' => '',
@@ -171,13 +171,12 @@ class adclickCount {
 	
 	static function printBarGraph() {
 		//$limit = $from_number.",".$to_number;
-		$bargraphmaxsize = 90;
+		$bargraphmaxsize = 60;
 		$maxvalue = 0;
 		$items = query_full_array("SELECT `aux`,`data` FROM " . prefix('plugin_storage') . " WHERE `type` = 'adclickcount' AND `data` != 0 ORDER BY `data` DESC");
 		$items = sortMultiArray($items, 'data', true, true, false, true);
 		if ($items) {
-			$first = reset($items);
-			$maxvalue = $first['data'];
+			$maxvalue = $items[0]['data'];
 			$no_statistic_message = "";
 		} else {
 			$no_statistic_message = "<tr><td><em>" . gettext("No statistic available") . "</em></td><td></td><td></td><td></td></tr>";
@@ -189,7 +188,6 @@ class adclickCount {
 		echo "<tr><th colspan='3'><strong>" . gettext("Most clicked ad links - Ordered by month") . "</strong>";
 		echo "</th></tr>";
 		$count = '';
-		
 		echo $no_statistic_message;
 		foreach ($items as $item) {
 			if ($item['data'] != 0) {

@@ -41,7 +41,7 @@ include('header.php');
 	do {
 		$article = array_shift($latestnews);
 		$newsobj = new ZenpageNews($article['titlelink']);
-		$zp_dl_version = str_replace('zenphoto-', 'v', $newsobj->getTitlelink());
+		$zp_dl_version = str_replace('zenphoto-', 'v', $newsobj->getName());
 		$zp_version = $newsobj->getTitle();
 		$zp_dl_pubdate = zpFormattedDate(DATE_FORMAT, strtotime($newsobj->getDatetime()));
 		preg_match('~(\d[\.\d]*)\s*(.*)~', $zp_version, $matches);
@@ -129,12 +129,12 @@ include('header.php');
 				if ($tempalbum->getNumImages() != 0) {
 					$firstimage = $tempalbum->getImages(1); // need only the first so don't get all
 					$firstimage = $firstimage[0];
-					$image = newImage($tempalbum, $firstimage);
+					$image = Image::newImage($tempalbum, $firstimage);
 					$thumb = $image->getCustomImage(NULL, 238, 128, 238, 128, NULL, NULL, TRUE);
 					$imagelink = $image->getLink();
 				}
 				$albtitle = $tempalbum->getTitle();
-				$themes = newAlbum('theme');
+				$themes = Albumbase::newAlbum('theme');
 				$number = $themes->getNumAlbums(); 
 			}
 			?>
@@ -236,7 +236,7 @@ include('header.php');
 			$latestimage = getImageStatistic(1, 'latest', 'showcase', false);
 			if (!empty($latestimage)) {
 				$image = $latestimage[0];
-				$showcase = newAlbum('showcase');
+				$showcase = Albumbase::ewAlbum('showcase');
 				$number = $showcase->getNumImages();
 				$imgtitle = $image->getTitle();
 				$imglink = $image->getLink();

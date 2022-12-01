@@ -26,7 +26,7 @@ class zporgSponsors {
 					<p class="ad-headline">Advertisements</p>
 				<?php
 			foreach ($albums as $album) {
-				$albobj = newAlbum($album);
+				$albobj = Albumbase::newAlbum($album);
 				$imagescount = $albobj->getNumImages();
 				$adheight = 130;
 				switch ($album) {
@@ -62,7 +62,7 @@ class zporgSponsors {
 					$count = '';
 					foreach ($images as $image) {
 						$count++;
-						$imgobj = newImage($albobj, $image);
+						$imgobj = Image::newImage($albobj, $image);
 						switch ($album) {
 							case 'sponsors/platinum':
 								$imgclass = 'sponsor-platinum';
@@ -97,7 +97,7 @@ class zporgSponsors {
 								//echo $count."/".$imgclass;
 								break;
 						}
-						if (isImagePhoto($imgobj)) {
+						if ($imgobj->isPhoto()) {
 							$link = $imgobj->getCustomData();
 							?>
 							<a href="<?php echo html_encode($link); ?>" data-track-content data-track-name="<?php echo html_encode($imgobj->getTitle(). ' - ' . $linkclass); ?>" title="<?php echo html_encode($imgobj->getTitle()); ?>" class="<?php echo $linkclass; ?>" target="_blank">
@@ -123,7 +123,7 @@ class zporgSponsors {
 					} else {
 						$max = $maxnum - $imagescount;
 					}
-					$placeholderalb = newAlbum('storage/sponsor-placeholders');
+					$placeholderalb = Albumbase::newAlbum('storage/sponsor-placeholders');
 					for ($i = 1; $i <= $max; $i++) {
 						switch ($album) {
 							case 'sponsors/platinum':
@@ -131,14 +131,14 @@ class zporgSponsors {
 								if ($i == 1) {
 									$imgclass .= ' sponsor-platinum-first';
 								}
-								$placeholderimg = newImage($placeholderalb, 'sponsorplatinum-placeholder-ad.gif');
+								$placeholderimg = Image::newImage($placeholderalb, 'sponsorplatinum-placeholder-ad.gif');
 								break;
 							case 'sponsors/palladium':
 								$imgclass = 'sponsor-platinum';
 								if ($i == 1) {
 									$imgclass .= ' sponsor-platinum-first';
 								}
-								$placeholderimg = newImage($placeholderalb, 'sponsorpalladium-placeholder-ad.gif');
+								$placeholderimg = Image::newImage($placeholderalb, 'sponsorpalladium-placeholder-ad.gif');
 								break;
 							/* s
 							  case 'sponsors/gold':
@@ -149,14 +149,14 @@ class zporgSponsors {
 							  if($i < $max) {
 							  $imgclass .= ' sponsor-right';
 							  }
-							  $placeholderimg = newImage($placeholderalb,'sponsorsilver-placeholder.gif');
+							  $placeholderimg = Image::newImage($placeholderalb,'sponsorsilver-placeholder.gif');
 							  break;
 							  case 'sponsors/bronze':
 							  $imgclass = 'sponsor-bronze';
 							  if($i < $max) {
 							  $imgclass .= ' sponsor-right';
 							  }
-							  $placeholderimg = newImage($placeholderalb,'sponsorbronze-placeholder.gif');
+							  $placeholderimg = Image::newImage($placeholderalb,'sponsorbronze-placeholder.gif');
 							  //echo $count."/".$imgclass;
 							  break; */
 						}
@@ -184,7 +184,7 @@ class zporgSponsors {
 		static function printAvailability($which = 'platinum') {
 			global $_zporg_sponsor_categories;
 			if(!isset($_zporg_sponsor_categories)) {
-				$obj = newAlbum('sponsors');
+				$obj = Albumbase::newAlbum('sponsors');
 				$albums = $obj->getAlbums(0);
 				$maxavail = array(
 						'platinum' => 4,
@@ -194,7 +194,7 @@ class zporgSponsors {
 						'bronze' => 'unlimited',
 				);
 				foreach ($albums as $album) {
-					$albobj = newAlbum($album);
+					$albobj = Albumbase::newAlbum($album);
 					$imagescount = $albobj->getNumImages();
 					$maxnum = $maxavail[strtolower($albobj->getTitle())];
 					if ($album == 'sponsors/gold' || $album == 'sponsors/silver' || $album == 'sponsors/bronze') {
@@ -240,7 +240,7 @@ class zporgSponsors {
 							</div>
 							<?php
 							if($adcat['titlelink'] != 'bundles') {							
-								self::printAvailability($adcatobj->getTitlelink()); 
+								self::printAvailability($adcatobj->getName()); 
 							}
 							?>
 						</div>
