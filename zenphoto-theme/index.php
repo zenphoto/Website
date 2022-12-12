@@ -94,16 +94,15 @@ include('header.php');
 			<?php
 				$supportbuild_name = getThemeOption('zporg_devbuildlink_name');
 				$supportbuild_url = getThemeOption('zporg_devbuildlink_url');
-				if(!$supportbuild_name) {
-					$supportbuild_name = 'Support build (GitHub master)';
-				}
-				if(!$supportbuild_url) {
-					$supportbuild_url = 'https://github.com/zenphoto/zenphoto/archive/master.zip';
-				}
+				if($supportbuild_name || $supportbuild_url) {
+	
 			?>
 			<li><a href="<?php echo html_encode($supportbuild_url); ?>" title="Download <?php echo html_encode($supportbuild_name); ?>" data-track-content data-content-piece="<?php echo html_encode($supportbuild_name); ?>"><?php echo html_encode($supportbuild_name); ?></a></li>
 
-			<?php $devbuild = false; 
+			<?php 
+			}
+			
+			$devbuild = false; 
 		/*	if (defined('DEV_BUILD')) { */
 			if($devbuild) {
 				?>
@@ -236,7 +235,7 @@ include('header.php');
 			$latestimage = getImageStatistic(1, 'latest', 'showcase', false);
 			if (!empty($latestimage)) {
 				$image = $latestimage[0];
-				$showcase = Albumbase::ewAlbum('showcase');
+				$showcase = Albumbase::newAlbum('showcase');
 				$number = $showcase->getNumImages();
 				$imgtitle = $image->getTitle();
 				$imglink = $image->getLink();

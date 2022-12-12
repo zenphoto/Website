@@ -3,7 +3,7 @@
 <?php include('sidebar.php'); ?>
 <div id="content">
 
-	<h1 class="pagetitle">Search results</h1>
+	<h1 class="entrytitle">Search results</h1>
 	<?php
 	$numimages = getNumImages();
 	$numalbums = getNumAlbums();
@@ -175,7 +175,7 @@
 									echo '<small>(Showcase)</small>';
 								}
 								?>
-						</h3><?php zporg::printShowcaseTypeIcon(); ?></a>
+						</h4><?php zporg::printShowcaseTypeIcon(); ?></a>
 					</div>
 				</div>
 	<?php endwhile; ?>
