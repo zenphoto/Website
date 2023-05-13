@@ -2025,7 +2025,7 @@ border-top: 1px solid #E6E6DF;
 padding: 6px 0 0px 0;
 list-style: none;
 }
-ol.contributionslist li h4 a img {
+ol.contributionslist li h3 a img {
 border: 0 !important;
 }
 
@@ -2038,7 +2038,7 @@ right: 0;
 top: -14px !important;
 }
 
-ol.contributionslist li h4 {
+ol.contributionslist li h3 {
 font-size: 13px !important;
 padding: 0 !important;
 margin: 0 !important;
