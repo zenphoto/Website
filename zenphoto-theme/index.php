@@ -106,7 +106,7 @@ include('header.php');
 		/*	if (defined('DEV_BUILD')) { */
 			if($devbuild) {
 				?>
-				<li><a href="https://github.com/zenphoto/zenphoto/archive/<?php echo DEV_BUILD; ?>.zip" title="Zenphoto development on Github" data-track-content data-content-piece="Development build (GitHub)"><?php echo DEV_BUILD; ?> Development build (GitHub)</a></li>
+				<li><a href="https://github.com/zenphoto/zenphoto/archive/<?php echo DEV_BUILD; ?>.zip" title="Zenphoto development on Github" data-track-content data-content-piece="Development (GitHub)"><?php echo DEV_BUILD; ?> Development (GitHub)</a></li>
 				<?php
 			}
 			?>

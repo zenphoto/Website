@@ -67,7 +67,7 @@ class zporg {
 	 */
 
 	static function printReadmoreOfAuthorLink($tag = '', $count = '') {
-		echo '<a href="' . html_encode(getSearchURL($tag, '', 'tags', '')) . '" title="' . html_encode($tag) . '">' . ucwords(substr($tag, 7)) . '</a>';
+		echo '<a href="' . html_encode(Searchengine::getSearchURL($tag, '', 'tags', '')) . '" title="' . html_encode($tag) . '">' . ucwords(substr($tag, 7)) . '</a>';
 	}
 
 	/* Prints a list of "More by author:xxx" tag search links for all authors assigned to this item (album or article)
@@ -112,8 +112,8 @@ class zporg {
 		$result = array();
 		$search = new SearchEngine();
 		$searchstring = $tag;
-		$paramstr = urlencode('words') . '=' . $searchstring . '&searchfields=tags';
-		$searchparams = $search->setSearchParams($paramstr);
+		$paramstr = 'search' . '=' . $searchstring . '&searchfields=tags';
+		$search->setSearchParams($paramstr);
 		switch ($mode) {
 			case 'albums':
 				$result = $search->getAlbums(0, "date", "desc");
@@ -155,8 +155,7 @@ class zporg {
 
 	static function getAuthorContributions($tag, $mode, $mode2 = 'extensions') {
 		global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
-		$result = self::getMoreByThisAuthor($tag, $mode);
-		//echo "<pre>"; print_r($result); echo "</pre>";
+		$result = zporg::getMoreByThisAuthor($tag, $mode);
 		if ($mode == 'news') {
 			if ($mode2 == 'extensions' || $mode2 == 'user-guide' || $mode2 == 'release') {
 				$resultnew = array();
@@ -1111,12 +1110,12 @@ class zporg {
 				<hr />
 				<h2>Theme icon legend</h2>
 				<ul class="statuslist">
-					<li class="themestatus1"><a href="<?php echo getSearchURL('theme_officially-supported', '', '', '', NULL); ?>">Officially supported</a> <br />Included in the Zenphoto release package.</li>
-					<li class="themestatus2"><a href="<?php echo getSearchURL('theme_unsupported-hosted', '', '', '', NULL); ?>">Unsupported – hosted</a>
+					<li class="themestatus1"><a href="<?php echo Searchengine::getSearchURL('theme_officially-supported', '', '', '', NULL); ?>">Officially supported</a> <br />Included in the Zenphoto release package.</li>
+					<li class="themestatus2"><a href="<?php echo Searchengine::getSearchURL('theme_unsupported-hosted', '', '', '', NULL); ?>">Unsupported – hosted</a>
 						<br />Formerly supported, now unsupported themes we host for archival purposes.</li>
-					<li class="themestatus3"><a href="<?php echo getSearchURL('theme_unsupported-3rd-party-hosted', '', '', '', NULL); ?>">Unsupported – 3rd party hosted</a> <br />Unsupported 3rd party themes we host for archival purposes</li>
-					<li class="themestatus4"><a href="<?php echo getSearchURL('theme_unsupported-3rd-party-external', '', '', '', NULL); ?>">Unsupported – 3rd party external</a> <br />Themes hosted by their developers</li>
-					<li class="themestatus5"><a href="<?php echo getSearchURL('theme_unsupported-unavailable', '', '', '', NULL); ?>">No longer provided</a> <br />Unsupported and 3rd party</li>
+					<li class="themestatus3"><a href="<?php echo Searchengine::getSearchURL('theme_unsupported-3rd-party-hosted', '', '', '', NULL); ?>">Unsupported – 3rd party hosted</a> <br />Unsupported 3rd party themes we host for archival purposes</li>
+					<li class="themestatus4"><a href="<?php echo Searchengine::getSearchURL('theme_unsupported-3rd-party-external', '', '', '', NULL); ?>">Unsupported – 3rd party external</a> <br />Themes hosted by their developers</li>
+					<li class="themestatus5"><a href="<?php echo Searchengine::getSearchURL('theme_unsupported-unavailable', '', '', '', NULL); ?>">No longer provided</a> <br />Unsupported and 3rd party</li>
 				</ul>
 				<?php
 			}
@@ -1164,9 +1163,9 @@ class zporg {
 				<hr />
 				<h2>Showcase icon legend</h2>
 				<ul class="statuslist">
-					<li class="showcasetype1"><a href="<?php echo getSearchURL('showcase_zenphoto-with-zenpage-cms-plugin', '', '', '', NULL); ?>">Full site done completly with Zenphoto and the Zenpage CMS plugin</a>*</li>
-					<li class="showcasetype2"><a href="<?php echo getSearchURL('showcase_zenphoto-only', '', '', '', NULL); ?>">Site that uses Zenphoto only (e.g. pure gallery site)</a>*</li>
-					<li class="showcasetype3"><a href="<?php echo getSearchURL('showcase_partly-zenphoto', '', '', '', NULL); ?>">Site partly using Zenphoto (e.g. for the gallery part)</a>*</li>
+					<li class="showcasetype1"><a href="<?php echo Searchengine::getSearchURL('showcase_zenphoto-with-zenpage-cms-plugin', '', '', '', NULL); ?>">Full site done completly with Zenphoto and the Zenpage CMS plugin</a>*</li>
+					<li class="showcasetype2"><a href="<?php echo Searchengine::getSearchURL('showcase_zenphoto-only', '', '', '', NULL); ?>">Site that uses Zenphoto only (e.g. pure gallery site)</a>*</li>
+					<li class="showcasetype3"><a href="<?php echo Searchengine::getSearchURL('showcase_partly-zenphoto', '', '', '', NULL); ?>">Site partly using Zenphoto (e.g. for the gallery part)</a>*</li>
 				</ul>
 				<strong>*</strong><em>as on date added.</em></p>
 				<?php
