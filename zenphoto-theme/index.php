@@ -83,7 +83,10 @@ include('header.php');
 
 		<p class="version_info">
 			<strong><?php echo $zp_version; ?></strong> (<?php echo $zp_dl_pubdate; ?>) | License: <a	href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v2 or later</a> | <a
-				href="<?php echo html_encode(getNewsURL('installation-and-upgrading')); ?>" title="Installation, upgrading and requirements">Installation,	upgrading and requirements</a>
+				href="<?php echo html_encode(getNewsURL('installation-and-upgrading')); ?>" title="Installation & upgrade">Installation & upgrade</a>
+				 |  
+				<a href="<?php echo html_encode(getNewsURL('requirements')); ?>" title="Requirements">Requirements</a>
+				
 		</p>
 	</div> <!--download box div wrapper end -->
 
