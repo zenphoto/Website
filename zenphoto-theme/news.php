@@ -24,10 +24,14 @@
 	<?php
 // single news article
 	if (is_NewsArticle()) {
+		$unpublished_note = '';
+		if (!$_zp_current_zenpage_news->isPublic()) {
+			$unpublished_note = ' <strong>[unpublished]</strong>';
+		}
 		?>
 		<div class="entry">
 			<h1 class="entrytitle">
-				<?php printNewsTitle(); ?> <small class="articledate"><?php
+				<?php printNewsTitle(); echo $unpublished_note; ?> <small class="articledate"><?php
 				printNewsDate(); 
 				zporg::printNewsLastChange();
 				?> </small>
@@ -102,6 +106,9 @@
 					}
 					// if a theme/screenshots news entry link to first image of album
 					$title = getNewsTitle();
+					if (!$_zp_current_zenpage_news->isPublic()) {
+						$title .= ' <strong>[unpublished]</strong>';
+					}
 					$newslink = $_zp_current_zenpage_news->getLink();
 					?>
 					<h2 class="entrytitle"><a href="<?php echo html_encode($newslink); ?>" title="<?php echo html_encode(getBareNewsTitle()); ?>"><?php echo $title; ?></a> <small class="articledate"><?php

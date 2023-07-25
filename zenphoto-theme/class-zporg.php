@@ -163,19 +163,21 @@ class zporg {
 					foreach ($result as $item) {
 						$i = new ZenpageNews($item['name']);
 						if ($i->inNewsCategory($mode2)) {
+							$item['date'] = $i->getDatetime();
 							$resultnew[] = $item;
 						}
 					}
 				}
 			}
-			$descending = false;
+			$descending = true;
 			if ($mode2 == 'release') {
 				$descending = true;
 			}
-			$resultnew = sortMultiArray($resultnew, 'name', $descending, true, false, false); // sort by name abc
+			//echo "<pre>"; print_r($resultnew); echo "</pre>";
+			$resultnew = sortMultiArray($resultnew, 'date', $descending, true, false, false); // sort by name abc
 			return $resultnew;
 		}
-		$result = sortMultiArray($result, 'name', false, true, false, false); // sort by name abc
+		$result = sortMultiArray($result, 'name', true, true, false, false); // sort by name abc
 		return $result;
 	}
 
@@ -266,7 +268,7 @@ class zporg {
 							}
 							?>
 							<span class="contributons_date">
-								<small> – <?php echo zpFormattedDate(DATE_FORMAT, strtotime($d)); ?>
+								<small> – <?php echo zpFormattedDate(DATE_FORMAT, $item['date']); ?>
 							</span>
 							<?php
 							?></small>
