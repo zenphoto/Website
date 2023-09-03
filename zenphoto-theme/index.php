@@ -22,100 +22,13 @@ include('header.php');
 			</ul>
 			<div id="introtext">
 				<?php printGalleryDesc(); ?>
-				<p class="buttons"><a href="<?php echo html_encode(getNewsURL('features')); ?>">Read about all features</a></p>
+				<?php echo zporg::getZenphotoButtonHTML(); ?>
 			</div>
 		</div>
 
 
 	</div> <!-- slideshow end -->
 
-	<?php
-	$downloadroot = 'https://github.com/zenphoto/zenphoto/archive/';
-	$zp_dl_version = '';
-	$zp_version = '';
-	$zp_dl_pubdate = '';
-	$zp_dev_version = '';
-
-	$cat = new ZenpageCategory('release');
-	$latestnews = $cat->getArticles(10, 'published', true, 'date',true);
-	do {
-		$article = array_shift($latestnews);
-		$newsobj = new ZenpageNews($article['titlelink']);
-		$zp_dl_version = str_replace('zenphoto-', 'v', $newsobj->getName());
-		$zp_version = $newsobj->getTitle();
-		$zp_dl_pubdate = zpFormattedDate(DATE_FORMAT, strtotime($newsobj->getDatetime()));
-		preg_match('~(\d[\.\d]*)\s*(.*)~', $zp_version, $matches);
-		if (!defined('MASTER_BUILD')) {
-			if ($matches[2]) {
-				$v = ' ' . $matches[2];
-			} else {
-				$v = ' Support build';
-			}
-			define('MASTER_BUILD', $matches[1] . $v);
-			$current = $matches[1];
-		}
-	} while (!empty($latestnews) && $matches[2]);
-
-	$latestnews = $cat->getArticles(1, 'unpublished', true, 'date',true);
-	if (count($latestnews) > 0) {
-		$newsobj = new ZenpageNews($latestnews[0]['titlelink']);
-		$dev_version = $newsobj->getTitle();
-		preg_match('~((\d[\.\d]*)\s*(.*))~', $dev_version, $matches);
-		if ($matches[0] != $current) {
-			define('DEV_BUILD', $matches[0]);
-		}
-	}
-	$downloadbaseurl = $downloadroot . $zp_dl_version;
-	?>
-	<div class="downloadwrapper">
-
-		<div class="buttonzip">
-			<a	href="<?php echo $downloadbaseurl; ?>.zip" title="Download Zenphoto in zip format" data-track-content data-content-piece="<?php echo $downloadbaseurl; ?>.zip">
-				<img src="<?php echo $_zp_themeroot; ?>/images/downloadbutton.png" alt="" /><span>Download (.zip)</span>
-			</a>
-		</div>
-
-		<div class="buttontar">
-			<a	href="<?php echo $downloadbaseurl; ?>.tar.gz"	title="Download Zenphoto in tar format" data-track-content data-content-piece="<?php echo $downloadbaseurl; ?>.tar.gz">
-				<img src="<?php echo $_zp_themeroot; ?>/images/downloadbutton.png" alt="" /><span>Download (.tar.gz)</span>
-			</a>
-		</div>
-
-		<p class="version_info">
-			<strong><?php echo $zp_version; ?></strong> (<?php echo $zp_dl_pubdate; ?>) | License: <a	href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v2 or later</a> | <a
-				href="<?php echo html_encode(getNewsURL('installation-and-upgrading')); ?>" title="Installation & upgrade">Installation & upgrade</a>
-				 |  
-				<a href="<?php echo html_encode(getNewsURL('requirements')); ?>" title="Requirements">Requirements</a>
-				
-		</p>
-	</div> <!--download box div wrapper end -->
-
-	<div class="infobox-links-r">
-		<?php printSearchForm(); ?>
-		<ul class="downloadlinks">
-			<li><a href="<?php echo html_encode(getNewsCategoryURL('changelog')); ?>" title="Zenphoto changelog">Changelog</a></li>
-			<?php
-				$supportbuild_name = getThemeOption('zporg_devbuildlink_name');
-				$supportbuild_url = getThemeOption('zporg_devbuildlink_url');
-				if($supportbuild_name || $supportbuild_url) {
-	
-			?>
-			<li><a href="<?php echo html_encode($supportbuild_url); ?>" title="Download <?php echo html_encode($supportbuild_name); ?>" data-track-content data-content-piece="<?php echo html_encode($supportbuild_name); ?>"><?php echo html_encode($supportbuild_name); ?></a></li>
-
-			<?php 
-			}
-			
-			$devbuild = false; 
-		/*	if (defined('DEV_BUILD')) { */
-			if($devbuild) {
-				?>
-				<li><a href="https://github.com/zenphoto/zenphoto/archive/<?php echo DEV_BUILD; ?>.zip" title="Zenphoto development on Github" data-track-content data-content-piece="Development (GitHub)"><?php echo DEV_BUILD; ?> Development (GitHub)</a></li>
-				<?php
-			}
-			?>
-			<li><a href="<?php echo html_encode(getNewsURL('older-versions-archive')); ?>">Older versions archive</a></li>
-		</ul>
-	</div>
 
 	<br style="clear: both" />
 	<div class="column-l">

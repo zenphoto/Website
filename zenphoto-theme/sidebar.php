@@ -1,8 +1,6 @@
 <div id="sidebar">
 	<?php
-	printSearchForm();
 	switch ($_zp_gallery_page) {
-
 		case 'news.php':
 			if (zporg::inNewsCategory('extensions')) {
 				zporg::printExtensionStatusIconList();

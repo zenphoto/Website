@@ -79,13 +79,18 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 		<div id="container">
 			
 			<header id="header">
-				<ul>
-					<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></a></li>
-					<li><?php printPageURL('Get involved', 'get-involved', '', '', NULL); ?></li>
-					<li><a href="#footer" title="Get involved!">Stay tuned!</a></li>
-					<li><?php printPageURL('Paid support', 'paid-support', '', '', NULL); ?></li>
-					<li><a class="sponsors" href="<?php echo WEBPATH; ?>/sponsors/" title="Sponsors">Sponsors</a></li>
-				</ul>
+				<div class="header_top">
+					<nav class="secondarynav">
+						<ul>
+							<li><a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Bugtracker <small>(GitHub)</small></a></li>
+							<li><?php printPageURL('Get involved', 'get-involved', '', '', NULL); ?></li>
+							<li><a href="#footer" title="Get involved!">Stay tuned!</a></li>
+							<li><?php printPageURL('Paid support', 'paid-support', '', '', NULL); ?></li>
+							<li><a class="sponsors" href="<?php echo WEBPATH; ?>/sponsors/" title="Sponsors">Sponsors</a></li>
+						</ul>
+					</nav>
+					<?php printSearchForm(); ?>
+				</div>
 				<div id="header_logo">
 					<?php if ($_zp_gallery_page == 'index.php') { ?>
 							<h1 id="logo"><a href="<?php echo getGalleryIndexURL(); ?>"><img src="<?php echo $_zp_themeroot; ?>/images/logo-new.png" alt="ZenphotoCMS" /><span>Zenphoto</span></a></h1>
@@ -108,7 +113,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			?>
 			<nav id="mainnav">
 				<ul>
-					<li<?php if ($_zp_gallery_page == 'index.php') echo ' id="activelink"'; ?>><a href="<?php echo getGalleryIndexURL(); ?>">Download</a></li>
+					<li<?php if ($_zp_gallery_page == 'index.php') echo ' id="activelink"'; ?>><a href="<?php echo getGalleryIndexURL(); ?>">Start</a></li>
 					<li<?php if ((is_null($_zp_current_category) && $_zp_gallery_page == 'news.php' && !is_NewsArticle()) || zporg::inNewsCategory('news')) echo ' id="activelink"'; ?>>
 						<a href="<?php echo WEBPATH; ?>/news">News</a></li>
 					<li><a href="http://demo.zenphoto.org" target="_blank">Demo</a></li>

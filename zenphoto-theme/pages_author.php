@@ -55,7 +55,7 @@
 		<?php
 		$data = $_zp_current_zenpage_page->getCustomData();
 		$explode = explode('|', $data);
-		if (count($explode) != 0) {
+		/*if (count($explode) != 0) {
 			switch ($explode[0]) {
 				case 'gravatar':
 					echo zporg::getAuthorSocialImage(trim($explode[1]), 'gravatar', trim($explode[2]));
@@ -65,7 +65,7 @@
 					echo zporg::getAuthorSocialImage(trim($explode[1]), trim($explode[0]));
 					break;
 			}
-		}
+		} */
 		printPageContent();
 		if ($_zp_current_zenpage_page->getName() != 'all-contributors') {
 			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getName(), 'news', 'release');

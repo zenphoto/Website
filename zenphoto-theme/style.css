@@ -66,13 +66,16 @@ p, blockquote {
 	border-bottom: 0px solid #333;
 	background-image: url(images/header-background.jpg);
 	background-repeat: repeat-x;
-	height: 186px;
+	background-position: center bottom;
+	width: auto;
+	height: 200px;
 }
 
 /*Anniversary logo change  */
 #header #header_logo {
         margin-left: 40px;
-        margin-top: -10px;
+        margin-top: 20px;
+				margin-bottom: 20px;
         text-align: left;
 }
 
@@ -98,32 +101,38 @@ p, blockquote {
         letter-spacing: 1px;
 }
 
+#header .header_top {
+	position: relative;
+	margin-bottom: 0px;
+}
 
-
-#header ul {
+#header .header_top ul {
 	margin: 0;
 	padding-right: 35px;
 	padding-top: 10px;
-	text-align: right;
+	text-align: left;
 	font-weight: bold;
+	position: relative;
+	left: 0;
+	top: 0;
 }
 
-#header ul li {
+#header .header_top ul li {
 	display: inline;
 	padding-left: 15px;
 }
 
-#header a:link, #header a:active, #header a:visited {
+#header .header_top a:link, #header a:active, #header a:visited {
 	text-decoration: none;
 	color: #808080;
 }
 
-#header a:hover, #header a:focus {
+#header .header_top a:hover, #header a:focus {
 	text-decoration: none;
 	color: #bcc797;
 }
 
-#header a.sponsors {
+#header .header_top a.sponsors {
 padding: 5px;
 background-color: #e7ecbc;
 -moz-border-radius: 5px 5px 5px 5px;
@@ -131,6 +140,14 @@ background-color: #e7ecbc;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
 	border: 1px solid lightgray;
+}
+
+#header .header_top #search_form {
+	width: 270px;
+	position: absolute;
+	top: 5px;
+	right: 15px;
+
 }
 
 #mainnav {
@@ -513,6 +530,21 @@ text-align: left;
 	border: 1px dotted #cccccc;
 	background-color: #f9fbf1;
 }
+
+
+.donate_calltoaction {
+	border: 1px dotted #cccccc;
+	padding: 0 20px 5px 20px;
+	background-color: #f9fbf1;
+}
+
+.donate_calltoaction .button {
+	display: inline-block;
+	background:green;
+	padding: 3px 10px 3px 10px;
+	color: white;
+}
+
 
 .rss {padding-left: 18px; background: url(images/feed-icon.png) no-repeat left center; }
 
@@ -1359,12 +1391,13 @@ margin-bottom: 10px;
 }
 .buttontar a {
 		margin-left:30px;
+		
 }
 
 .buttonzip a span,
 .buttontar a span {
 	position: absolute;
-	top: 40%;
+	top:  25px;
 	left: 100px;
 }
 
@@ -1373,6 +1406,12 @@ margin-bottom: 10px;
 	position: absolute;
 	top: 6px;
 	left: 16px;
+	border: 0 !important;
+}
+
+.entrybody .buttonzip a img,
+.entrybody .buttontar a img {
+	top: -10px;
 }
 
 .buttonzip a:hover,
@@ -1380,6 +1419,11 @@ margin-bottom: 10px;
 	display: block;
 	width: 273px;
 	height: 62px;
+}
+
+.buttonzip a:hover img,
+.buttontar a:hover img {
+	background: none !Important;
 }
 
 .version_info {
@@ -2263,8 +2307,8 @@ width: 100%;
 /* Pretty Buttons
 ------------------------------------- */
 .buttons a,.buttons button {
-	display: block;
-	float: left;
+	display: inline-block;
+	/* float: left; */
 	margin: 0 7px 20px 0px;
 	background-color: #f5f5f5;
 	background-repeat: repeat-x;
@@ -2283,6 +2327,17 @@ width: 100%;
 	-khtml-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
+}
+
+.buttons.buttons_featured a,.buttons.button_featured button {
+	font-size: 110%;
+	padding: 10px 20px 10px 19px; 
+	margin: 10px 7px 10px 0px;
+}
+
+.buttons::after {
+	float: none;
+	clear: both;
 }
 
 .buttons button {
@@ -2404,7 +2459,7 @@ margin-bottom: 10px !important;
 
 #introwrapper {
 width: 842px;
-height: 230px;
+height: auto;
 border: 1px solid #dddddd;
 -moz-border-radius: 5px 5px 5px 5px;
 	-khtml-border-radius: 5px 5px 5px 5px;
@@ -2735,3 +2790,16 @@ Socialsharing updates
 	margin: 0px;
   background: none;
 }
+
+.zp-clearfix:before,
+.zp-clearfix:after {
+  content: " " !important;
+  display: table !important; }
+
+.zp-floatclear,
+.zp-clearfix:after {
+  clear: both !important; }
+
+.zp-clearfix {
+  /* IE6/7 only */
+  *zoom: 1; }

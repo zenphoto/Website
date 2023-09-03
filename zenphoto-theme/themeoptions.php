@@ -1,7 +1,6 @@
 <?php
 
 // force UTF-8 Ø
-
 class ThemeOptions {
 
 	function __construct() {
