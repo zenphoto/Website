@@ -1815,7 +1815,7 @@ class zporg {
 				static function getZenphotoButtonHTML() {
 					global $_zp_themeroot;
 					$latest = zporg::getLatestRelease();
-					$html = '<p class="buttons buttons_featured"><a href="'. getPageURL('download').'"><img src="'.$_zp_themeroot.'/images/visit-sponsors.png"><strong>Get '. html_encode($latest['version']).'</strong> <small>('. $latest['date'].')</small></a></p>';
+					$html = '<p class="buttons buttons_featured"><a href="'. getPageURL('download').'"><strong>Get '. html_encode($latest['version']).'</strong> <small>('. $latest['date'].')</small></a></p>';
 					return $html;
 				}
 				
@@ -1875,7 +1875,14 @@ class zporg {
 					if($info) {
 						$html = '<p class="buttons buttons_featured"><a href="'. html_encode($info['link']).'"><strong>'. html_encode($info['name']).'</strong></a></p>';
 					} else {
-						$html = '<p>There is currently no support build</p>';
+						switch($which) {
+							case 'supportbuild':
+								$html = '<p>There is currently no support build</p>';
+								break;
+							case 'devbuild':
+								$html = '<p>There is currently no development build</p>';
+								break;
+						}
 					}
 					return $html;
 				}

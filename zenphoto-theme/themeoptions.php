@@ -26,6 +26,16 @@ class ThemeOptions {
 						'type' => OPTION_TYPE_TEXTBOX,
 						'desc' => gettext('Set the full url to the demo install')
 						),
+				gettext('Support build Link - Name') => array(
+						'key' => 'zporg_supportbuildlink_name',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Define here what it should be named.')
+						),
+				gettext('Support build Link - URL') => array(
+						'key' => 'zporg_supportbuildlink_url',
+						'type' => OPTION_TYPE_TEXTBOX,
+						'desc' => gettext('Define the URL here.')
+						),
 				gettext('Development build Link - Name') => array(
 						'key' => 'zporg_devbuildlink_name',
 						'type' => OPTION_TYPE_TEXTBOX,

@@ -113,7 +113,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			?>
 			<nav id="mainnav">
 				<ul>
-					<li<?php if ($_zp_gallery_page == 'index.php') echo ' id="activelink"'; ?>><a href="<?php echo getGalleryIndexURL(); ?>">Start</a></li>
+					<li<?php if ($_zp_gallery_page == 'index.php') echo ' id="activelink"'; ?>><a href="<?php echo getGalleryIndexURL(); ?>">Home</a></li>
 					<li<?php if ((is_null($_zp_current_category) && $_zp_gallery_page == 'news.php' && !is_NewsArticle()) || zporg::inNewsCategory('news')) echo ' id="activelink"'; ?>>
 						<a href="<?php echo WEBPATH; ?>/news">News</a></li>
 					<li><a href="http://demo.zenphoto.org" target="_blank">Demo</a></li>
