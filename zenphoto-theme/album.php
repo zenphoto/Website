@@ -58,6 +58,8 @@
 			if(!$_zp_current_album->hasTag('theme-officially-supported')) {
 				echo '<p><strong>Date added: </strong>'.getAlbumDate().'</p>';
 			}
+			zporg::printThemeDownloadButton();
+			echo '<br clear="left" />';
 			echo '</div>';
 		}
 	}
