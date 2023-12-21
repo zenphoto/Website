@@ -67,10 +67,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 					});
 <?php } ?>
 
-				$('#search #search_input').attr('value', 'Search site (except forum)');
-				$('#search #search_input').click(function() {
-					$(this).val('');
-				});
+				$('#search #search_input').attr('placeholder', 'Search site (except forum)');
 			});
 		</script>
 	</head>
@@ -107,7 +104,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			<?php
 			$uralbumname = null;
 			if (!is_null($_zp_current_album)) {
-				$uralbum = getUrAlbum($_zp_current_album);
+				$uralbum = $_zp_current_album->getUrAlbum();
 				$uralbumname = $uralbum->name;
 			}
 			?>
