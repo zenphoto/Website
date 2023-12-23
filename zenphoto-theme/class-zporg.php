@@ -1791,32 +1791,31 @@ class zporg {
 					$version = '';
 					$date = '';
 					$cat = new ZenpageCategory('release');
-					$latestnews = $cat->getArticles(10, 'published', true, 'date', true);
-					do {
-						$article = array_shift($latestnews);
-						$newsobj = new ZenpageNews($article['titlelink']);
-						
+					$latestnews = $cat->getArticles(1, 'published', true, 'date', true); // latest always is (must be) the latest release anyway!
+					if ($latestnews) {
+						$newsobj = new ZenpageNews($latestnews[0]['titlelink']);
 						$zp_dl_version = str_replace('zenphoto-', 'v', $newsobj->getName());
-						$version = $newsobj->getTitle();
+						$version = get_language_string($newsobj->getTitle());
 						$date = zpFormattedDate(DATE_FORMAT, strtotime($newsobj->getDatetime()));
-						preg_match('~(\d[\.\d]*)\s*(.*)~', $version, $matches);
-		
-					} while (!empty($latestnews) && $matches[2]);
-					$releaseurls = array(
-							'version' => $version,
-							'articlelink' => $newsobj->getLink(),
-							'date' => $date,
-							'url-zip' => $downloadroot . $zp_dl_version . '.zip',
-							'url-tar' => $downloadroot . $zp_dl_version . '.tar.gz'
-					);
-					return $releaseurls;
-				}
+						//preg_match('~(\d[\.\d]*)\s*(.*)~', $version, $matches);
+						$releaseurls = array(
+									'version' => $version,
+									'articlelink' => $newsobj->getLink(),
+									'date' => $date,
+									'url-zip' => $downloadroot . $zp_dl_version . '.zip',
+									'url-tar' => $downloadroot . $zp_dl_version . '.tar.gz'
+							);
+						return $releaseurls;
+					} 
+				} 
 				
 				static function getZenphotoButtonHTML() {
 					global $_zp_themeroot;
 					$latest = zporg::getLatestRelease();
-					$html = '<p class="buttons buttons_featured"><a href="'. getPageURL('download').'"><strong>Get '. html_encode($latest['version']).'</strong> <small>('. $latest['date'].')</small></a></p>';
-					return $html;
+					if ($latest) {
+						$html = '<p class="buttons buttons_featured"><a href="'. getPageURL('download').'"><strong>Get '. html_encode($latest['version']).'</strong> <small>('. $latest['date'].')</small></a></p>';
+						return $html;
+					}
 				}
 				
 				
@@ -1829,19 +1828,20 @@ class zporg {
 				 */
 				static function getReleaseDownloadButtonsHTML() {
 					$latest = zporg::getLatestRelease();
-					$html = '<p class="buttons buttons_featured">';
-					$html .= '		<a	href="' . $latest['url-zip'] . '" title="Download Zenphoto in zip format" data-track-content data-content-piece="' . $latest['url-zip'] . '">';
-					$html .= '			Download (.zip)';
-					$html .= '		</a>';
-					$html .= '		<a	href="' . $latest['url-tar'] . '"	title="Download Zenphoto in tar format" data-track-content data-content-piece="' . $latest['url-tar'] . '">';
-					$html .= '			Download (.tar.gz)';
-					$html .= '		</a>';
-					$html .= ' </p>';
-					$html .= '<p>';
-					$html .= '<strong><a href="' . html_encode($latest['version']) . '">' . $latest['version'] . '</strong> (' . $latest['date'] . ')</a> | License: <a	href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v2 or later</a>';
-					$html .= ' </p>';
-
+					if($latest) {
+						$html = '<p class="buttons buttons_featured">';
+						$html .= '		<a	href="' . $latest['url-zip'] . '" title="Download Zenphoto in zip format" data-track-content data-content-piece="' . $latest['url-zip'] . '">';
+						$html .= '			Download (.zip)';
+						$html .= '		</a>';
+						$html .= '		<a	href="' . $latest['url-tar'] . '"	title="Download Zenphoto in tar format" data-track-content data-content-piece="' . $latest['url-tar'] . '">';
+						$html .= '			Download (.tar.gz)';
+						$html .= '		</a>';
+						$html .= ' </p>';
+						$html .= '<p>';
+						$html .= '<strong><a href="' . html_encode($latest['articlelink']) . '">' . $latest['version'] . '</strong> (' . $latest['date'] . ')</a> | License: <a	href="http://www.gnu.org/licenses/gpl-2.0.html">GPL v2 or later</a>';
+						$html .= ' </p>';
 					return $html;
+					}
 				}
 				
 				static function printReleaseDownloadButtons() {
