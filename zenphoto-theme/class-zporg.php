@@ -1795,7 +1795,7 @@ class zporg {
 					if ($latestnews) {
 						$newsobj = new ZenpageNews($latestnews[0]['titlelink']);
 						$zp_dl_version = str_replace('zenphoto-', 'v', $newsobj->getName());
-						$version = get_language_string($newsobj->getTitle());
+						$version = $newsobj->getTitle();
 						$date = zpFormattedDate(DATE_FORMAT, strtotime($newsobj->getDatetime()));
 						//preg_match('~(\d[\.\d]*)\s*(.*)~', $version, $matches);
 						$releaseurls = array(
