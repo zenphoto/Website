@@ -112,7 +112,7 @@ class zporg {
 		$result = array();
 		$search = new SearchEngine();
 		$searchstring = $tag;
-		$paramstr = 'search' . '=' . $searchstring . '&searchfields=tags';
+		$paramstr = 's' . '=' . $searchstring . '&searchfields=tags';
 		$search->setSearchParams($paramstr);
 		switch ($mode) {
 			case 'albums':
@@ -173,7 +173,6 @@ class zporg {
 			if ($mode2 == 'release') {
 				$descending = true;
 			}
-			//echo "<pre>"; print_r($resultnew); echo "</pre>";
 			$resultnew = sortMultiArray($resultnew, 'date', $descending, true, false, false); // sort by name abc
 			return $resultnew;
 		}
@@ -268,7 +267,7 @@ class zporg {
 								}
 								?>
 								<span class="contributons_date">
-									<small> – <?php echo zpFormattedDate(DATE_FORMAT, $item['date']); ?>
+									<small> – <?php echo zpFormattedDate(DATE_FORMAT, $d); ?>
 								</span>
 								<?php
 								?></small>
