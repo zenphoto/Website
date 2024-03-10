@@ -104,7 +104,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			<?php
 			$uralbumname = null;
 			if (!is_null($_zp_current_album)) {
-				$uralbum = $_zp_current_album->getUrAlbum();
+				$uralbum = $_zp_current_album->getUrParent();
 				$uralbumname = $uralbum->name;
 			}
 			?>

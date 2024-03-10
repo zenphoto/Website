@@ -1004,23 +1004,11 @@ class zporg {
 						echo '<div id="albumnav">';
 						if (getPrevAlbum()) {
 							$prevalbum = getPrevAlbum();
-							if ($prevalbum->getNumImages() != 0) {
-								$firstimg = $prevalbum->getImage(0);
-								$firstimage = urlencode($firstimg->filename);
-							} else {
-								$firstimage = '';
-							}
-							echo "<a id='prevalbum' href='" . WEBPATH . "/" . pathurlencode($prevalbum->name) . "/" . $firstimage . getOption("mod_rewrite_image_suffix") . "' title='" . $prevalbum->getTitle() . "'>« <strong>" . $prevalbum->getTitle() . "</strong> (previous)</a>";
+							echo "<a id='prevalbum' href='" . getPrevAlbumURL() . "' title='" . $prevalbum->getTitle() . "'>« <strong>" . $prevalbum->getTitle() . "</strong> (previous)</a>";
 						}
 						if (getNextAlbum()) {
 							$nextalbum = getNextAlbum();
-							if ($nextalbum->getNumImages() != 0) {
-								$firstimg = $nextalbum->getImage(0);
-								$firstimage = urlencode($firstimg->filename);
-							} else {
-								$firstimage = '';
-							}
-							echo " <a id='nextalbum' href='" . WEBPATH . "/" . pathurlencode($nextalbum->name) . "/" . $firstimage . getOption('mod_rewrite_image_suffix') . "' title='" . $nextalbum->getTitle() . "'><strong>" . $nextalbum->getTitle() . "</strong> (next)»</a>";
+							echo " <a id='nextalbum' href='" . getNextAlbumURL() . "' title='" . $nextalbum->getTitle() . "'><strong>" . $nextalbum->getTitle() . "</strong> (next)»</a>";
 						}
 						echo '</div>';
 					}
@@ -1422,7 +1410,7 @@ class zporg {
 					$linktext = '';
 					$note = '';
 					if (self::getParentAlbumName() == "theme") {
-						$themeurl = trim($_zp_current_album->getLocation());
+						$themeurl = trim(strval($_zp_current_album->getLocation()));
 						if ($_zp_current_album->hasTag('theme_officially-supported')) {
 							if (empty($themeurl)) {
 								$note = '<p class="articlebox">The theme is included in the ZenphotoCMS release.</p>';

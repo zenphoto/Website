@@ -86,14 +86,7 @@
 			}
 			?>
 			<div class="album<?php echo $class; ?>">
-				<?php
-				if ($_zp_current_album->getNumImages() != 0) {
-					$first = $_zp_current_album->getImage(0);
-					$albumurl = $first->getLink();
-				} else {
-					$albumurl = getAlbumURL();
-				}
-				?>
+				<?php $albumurl = getAlbumURL(); ?>
 				<div class="thumb">
 					<a href="<?php echo $albumurl; ?>" title="View album: <?php echo getAlbumTitle(); ?>">
 						<?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, TRUE, false); ?>
