@@ -122,14 +122,7 @@
 				?>
 				<div class="album<?php echo $class; ?>">
 					<div class="thumb">
-						<?php
-						$firstimage = $_zp_current_album->getImages(); // get the first image of the current album in the loop
-						if (getNumImages() === 0) { // to prevent tying to jump to the first image of an album with only subalbums
-							$albumlinkurl = getAlbumURL();
-						} else {
-							$albumlinkurl = getAlbumURL() . $firstimage[0] . IM_SUFFIX;
-						}
-						?>
+						<?php $albumlinkurl = getAlbumURL(); ?>
 						<a href="<?php echo html_encode($albumlinkurl); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle(); ?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, TRUE, false); ?></a>
 					</div>
 					<div class="albumdesc">
@@ -140,7 +133,7 @@
 							}
 							?>
 						</h3>
-		<?php zporg::printThemeStatusIcon(); ?>
+					<?php zporg::printThemeStatusIcon(); ?>
 					</div>
 				</div>
 		<?php endwhile; ?>
