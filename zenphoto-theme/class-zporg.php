@@ -206,7 +206,6 @@ class zporg {
 								break;
 							case 'release':
 								?><h2 class="contributions_headline">Release contributions (<?php echo $resultcount; ?>)</h2>
-								<p>Bugfix releases (1.x.x.x) are not listed.</p>
 								<?php
 								break;
 						}
