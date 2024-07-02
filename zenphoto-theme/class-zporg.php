@@ -1178,7 +1178,7 @@ class zporg {
 					if ($obj->inNewsCategory("officially-supported")) {
 						?>
 						<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/accept_green.png" title="Officially supported" />
-					<?php } else if ($obj->inNewsCategory('unsupported-hosted') || $obj->inNewsCategory('unsupported-3rd-party-hosted') || $obj->inNewsCategory('unsupported-misc-github')) {
+					<?php } else if ($obj->inNewsCategory('unsupported-hosted') || $obj->inNewsCategory('unsupported-3rd-party-hosted') || $obj->inNewsCategory('unsupported-hosted-misc')) {
 						?>
 						<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_blue.png" title="Third party hosted on GitHub- not officially supported" />
 						<?php
