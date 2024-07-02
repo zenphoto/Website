@@ -1182,8 +1182,8 @@ class zporg {
 						?>
 						<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/question_blue.png" title="Third party hosted on GitHub- not officially supported" />
 						<?php
-					} else if ($obj->inNewsCategory('unsupported-3rd-party-external')) {
-						if ($obj->inNewsCategory('unsupported-unavailable')) {
+					} else if ($obj->inNewsCategory('unsupported')) {
+						if ($obj->inNewsCategory('unsupported-3rd-party-external') && $obj->inNewsCategory('unsupported-unavailable')) {
 							?>
 							<img class="pluginstatusicon" src="<?php echo $_zp_themeroot; ?>/images/cancel_round.png" title="Third party - abandoned by developer" />
 							<?php
