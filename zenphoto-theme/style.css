@@ -900,6 +900,11 @@ ul#relateditems h3 {
 #sidebar ul.statuslist li.themestatus1 {
 	background: url(images/accept_green.png) no-repeat top left;
 }
+
+#sidebar ul.statuslist li.themestatus1b {
+	background: url(images/accept_greenlight.png) no-repeat top left;
+}
+
 #sidebar ul.statuslist li.themestatus2 {
 	background: url(images/accept_blue.png) no-repeat top left;
 }
@@ -2010,6 +2015,7 @@ ul.archive #month {
 .showcaseicon2,
 .showcaseicon3,
 .themeicon1,
+.themeicon1b,
 .themeicon2,
 .themeicon3,
 .themeicon4,
@@ -2027,6 +2033,9 @@ ul.archive #month {
 }
 .themeicon1 {
 	background: url(images/accept_green.png) no-repeat 0px 21px;
+}
+.themeicon1b {
+	background: url(images/accept_greenlight.png) no-repeat 0px 21px;
 }
 .themeicon2 {
 	background: url(images/accept_blue.png) no-repeat 0px 21px;

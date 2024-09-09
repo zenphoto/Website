@@ -6,10 +6,10 @@ setOption('thumb_crop_height', 40, false);
 <div id="content">
 
 		<div class="breadcrumb">
-			<?php printParentBreadcrumb('',' | ','');
-			if($_zp_current_album->name === "showcase") {
+			<?php printParentBreadcrumb('',' | ',' | ');
+			//if($_zp_current_album->name === "showcase") {
 				printAlbumBreadcrumb('', '');
-			} 
+			//} 
 			?>
 		</div>
 		 

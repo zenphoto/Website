@@ -170,7 +170,6 @@
 		echo '</div>';
 	}
 	echo '<br clear="left" />';
-	zporg::printThemeDownloadButton();
 
 	if ($_zp_current_album->name != "showcase") {
 		zporg::printMoreByAuthorsLinks();

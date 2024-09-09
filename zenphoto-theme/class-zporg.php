@@ -726,11 +726,9 @@ class zporg {
 		static function printPluginsupportTags() {
 			if (self::getParentAlbumName() == "theme") {
 				$tags = self::getSpecificTags('item', 'pluginsupport');
-				?>
-				<h2>Layout specific plugins supported:</h2>
-				<?php
 				if (!empty($tags)) {
 					?>
+					<h2>Layout specific plugins supported:</h2>
 					<ul class="morebyauthorlist">
 						<?php
 						foreach ($tags as $tag) {
@@ -751,9 +749,7 @@ class zporg {
 						?>
 					</ul><br />
 					<?php
-				} else {
-					echo "<p>Currently no information available.</p>";
-				}
+				} 
 			}
 		}
 
@@ -1038,6 +1034,9 @@ class zporg {
 						if ($_zp_current_album->hasTag('theme_officially-supported')) {
 							return ' themeicon1';
 						}
+						if ($_zp_current_album->hasTag('theme_limited-supported')) {
+							return ' themeicon1b';
+						}
 						if ($_zp_current_album->hasTag('theme_unsupported-hosted')) {
 							return ' themeicon2';
 						}
@@ -1080,6 +1079,9 @@ class zporg {
 						if ($albumobj->hasTag('theme_officially-supported')) {
 							echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/accept_green.png" alt="Officially supported – Included in the Zenphoto release package" title="Officially supported – Included in the Zenphoto release package" />';
 						}
+						if ($albumobj->hasTag('theme_limited-supported')) {
+							echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/accept_greenlight.png" alt="Limited supported – primarily updated when issues are reported" title="Limited supported – primarily updated when issues are reported" />';
+						}
 						if ($albumobj->hasTag('theme_unsupported-hosted')) {
 							echo '<img class="' . $iconclass . '" src="' . $_zp_themeroot . '/images/question_blue.png" alt="Unsupported – hosted" title="Unsupported – hosted" />';
 						}
@@ -1106,11 +1108,14 @@ class zporg {
 					<h2>Theme icon legend</h2>
 					<ul class="statuslist">
 						<li class="themestatus1"><a href="<?php echo Searchengine::getSearchURL('theme_officially-supported', '', '', '', NULL); ?>">Officially supported</a> <br />Included in the Zenphoto release package.</li>
+							<li class="themestatus1b"><a href="<?php echo Searchengine::getSearchURL('theme_limited-supported', '', '', '', NULL); ?>">Limited supported</a> <br />Primarily updated when issues are reported</li>
+						
 						<li class="themestatus2"><a href="<?php echo Searchengine::getSearchURL('theme_unsupported-hosted', '', '', '', NULL); ?>">Unsupported – hosted</a>
 							<br />Formerly supported, now unsupported themes we host for archival purposes.</li>
+					
 						<li class="themestatus3"><a href="<?php echo Searchengine::getSearchURL('theme_unsupported-3rd-party-hosted', '', '', '', NULL); ?>">Unsupported – 3rd party hosted</a> <br />Unsupported 3rd party themes we host for archival purposes</li>
 						<li class="themestatus4"><a href="<?php echo Searchengine::getSearchURL('theme_unsupported-3rd-party-external', '', '', '', NULL); ?>">Unsupported – 3rd party external</a> <br />Themes hosted by their developers</li>
-						<li class="themestatus5"><a href="<?php echo Searchengine::getSearchURL('theme_unsupported-unavailable', '', '', '', NULL); ?>">No longer provided</a> <br />Unsupported and 3rd party</li>
+					<!--	<li class="themestatus5"><a href="<?php echo Searchengine::getSearchURL('theme_unsupported-unavailable', '', '', '', NULL); ?>">No longer provided</a> <br />Unsupported and 3rd party</li> -->
 					</ul>
 					<?php
 				}
@@ -1417,6 +1422,9 @@ class zporg {
 								$linktext = 'Info & download (GitHub)';
 								$note = '<p class="articlebox">This theme is officially supported but not included in the ZenphotoCMS release.</p>';
 							}
+						} else if ($_zp_current_album->hasTag('theme_limited-supported')) {
+							$linktext = 'Info & download';
+							$note = '<p class="articlebox note-supported">This limited supported theme will primarily be updated when issues are reported.</p>';		
 						} else {
 							if ($_zp_current_album->hasTag('theme_unsupported-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hosted') || $_zp_current_album->hasTag('theme_unsupported-3rd-party-hostedrepo')) {
 								$linktext = 'Info & download (GitHub)';
