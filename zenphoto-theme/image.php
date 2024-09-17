@@ -15,7 +15,7 @@ setOption('thumb_crop_height', 40, false);
 		 
 	   <?php
     if($_zp_current_album->name != "showcase") {
-    	zporg::printNextPrevAlbumLinkFirstImage();
+    	// zporg::printNextPrevAlbumLinkFirstImage();
     }
     ?>	
 	<div class="imgnav theme">

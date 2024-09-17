@@ -1105,7 +1105,7 @@ class zporg {
 					global $_zp_themeroot;
 					?>
 					<hr />
-					<h2>Theme icon legend</h2>
+					<h2>Theme categories</h2>
 					<ul class="statuslist">
 						<li class="themestatus1"><a href="<?php echo Searchengine::getSearchURL('theme_officially-supported', '', '', '', NULL); ?>">Officially supported</a> <br />Included in the Zenphoto release package.</li>
 							<li class="themestatus1b"><a href="<?php echo Searchengine::getSearchURL('theme_limited-supported', '', '', '', NULL); ?>">Limited supported</a> <br />Primarily updated when issues are reported</li>

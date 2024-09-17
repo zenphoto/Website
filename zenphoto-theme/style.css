@@ -1667,6 +1667,7 @@ margin: 0;
 	height: 135px;
 }
 
+
 .leftthumb {
 margin: 6px 17px 6px 0px;
 }
@@ -1675,6 +1676,17 @@ margin: 6px 17px 6px 0px;
 margin: 6px 0px 6px 17px;
 
 
+}
+
+.albumfullwidth {
+	width: 560px;
+	height: 235px;
+}
+
+.albumfullwidth .thumb {
+	clear: left;
+	float: none;
+	height: 120px;
 }
 
 /* .album .thumb img, .album-screenshots .thumb img {

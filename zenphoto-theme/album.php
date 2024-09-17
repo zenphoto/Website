@@ -10,16 +10,15 @@
 
 	<h1 class="breadcrumb">
 		<?php
-		printParentBreadcrumb('', '', '');
-
-		if ($zp_getParentAlbumName != 'theme' && $zp_getParentAlbumName != 'screenshots') {
-			printAlbumTitle();
-		}
+		printParentBreadcrumb('', '', ' | ');
+		printAlbumBreadcrumb('', '');
+		//if ($zp_getParentAlbumName != 'theme' && $zp_getParentAlbumName != 'screenshots') {
+		//}
 		?>
 		<?php
 		if ($_zp_current_album->name === "theme") {
 			echo " (" . getNumAlbums() . ")";
-			$_zp_current_album->setSortType('title', 'album');
+			//$_zp_current_album->setSortType('title', 'album');
 		}
 		if ($_zp_current_album->name === "showcase") {
 			echo " (" . getNumImages() . ")";
@@ -33,7 +32,7 @@
 	?>
 	<?php
 	if ($_zp_current_album->name != "showcase" && $_zp_current_album->name != "screenshots" && $_zp_current_album->name != "theme" && $zp_getParentAlbumName != "screenshots") {
-		zporg::printNextPrevAlbumLinkFirstImage();
+		//zporg::printNextPrevAlbumLinkFirstImage();
 	}
 	?>
 	<?php
@@ -78,24 +77,35 @@
 		$count = '';
 		while (next_album(false)):
 			$count++;
-			if ($count == 2) {
-				$class = ' rightthumb';
+			if ($_zp_current_album->isDynamic()) {
+				$class = ' albumfullwidth';
+				$thumbwidth = 550;
+				$thumbheight = 128;
 				$count = '';
+				$title_shorten = 100;
 			} else {
-				$class = ' leftthumb';
+				$title_shorten = 20;
+				$thumbwidth = 255;
+				$thumbheight = 128;
+				if ($count == 2) {
+					$class = ' rightthumb';
+					$count = '';
+				} else {
+					$class = ' leftthumb';
+				}
 			}
 			?>
 			<div class="album<?php echo $class; ?>">
 				<?php $albumurl = getAlbumURL(); ?>
 				<div class="thumb">
 					<a href="<?php echo $albumurl; ?>" title="View album: <?php echo getAlbumTitle(); ?>">
-						<?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 255, 128, 255, 128, NULL, NULL, "thumbnail", NULL, TRUE, false); ?>
+						<?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, $thumbwidth, $thumbheight, $thumbwidth, $thumbheight, NULL, NULL, "thumbnail", NULL, TRUE, false); ?>
 					</a>
 				</div>
 
 				<div class="albumdesc">
 					<h2 class="entrytitle">
-						<a href="<?php echo $albumurl; ?>"	title="View album: <?php echo getAlbumTitle(); ?>"><?php echo shortenContent(getAlbumTitle(), 20, '(...)'); ?></a>
+						<a href="<?php echo $albumurl; ?>"	title="View album: <?php echo getAlbumTitle(); ?>"><?php echo shortenContent(getAlbumTitle(), $title_shorten, '(...)'); ?></a>
 						<?php
 						if (getNumImages() != 0) {
 							echo "<small>(" . getNumImages() . ")</small>";
