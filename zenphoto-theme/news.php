@@ -43,28 +43,22 @@
 			</h1>
 			<div class="entrymeta">
 				<?php printNewsCategories(", ", gettext("Categories: "), "wp-category"); ?>
-
 			</div>
-
-			<ol id="toc" class="table_of_content_list"></ol>
-			<?php zporg::printItemAuthorCredits(); ?>
+			
 			<div class="entrybody">
 				<?php
 				printCodeblock(1);
-				// we need this for the automatic jquery table of contents
-				?>
-				<span id="entrybody">
-					<?php
-					printNewsContent();
-					printCodeblock(2);
-					?>
-				</span>
-
-				<?php zporg::printExtensionDownloadButton(); ?>
-
-				<?php if (zporg::inNewsCategory("user-guide")) { 
+				$content =  zporg::generateTableOfContent(getNewsContent(), false, 'Content');
+				echo $content['toc'];
+				zporg::printItemAuthorCredits(); 
+				echo $content['content'];
+				//printNewsContent();
+				printCodeblock(2);
+				zporg::printExtensionDownloadButton();
+				if (zporg::inNewsCategory("user-guide")) { 
 					zporg::printLicenseNote();
-				} ?>
+				} 
+				?>
 				<p class="articlebox"><em>For questions and comments please use the <a href="http://www.zenphoto.org/support" title="Zenphoto forums" >forum</a> or discuss on the <a href="#stay-tuned">social networks</a>.</em></p>
 
 

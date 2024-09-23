@@ -1929,6 +1929,79 @@ class zporg {
 					);
 					return $macros;
 				}
-
+				
+				
+				/**
+				 * Returns an array with the indexes "toc" with the table of content list and "content" with the text containing headlines with ids for jump links
+				 * and optionally already the index included
+				 * 
+				 * You can define the $insert_mode of the table of content:
+				 * 
+				 * - 'standard': The toc list is is prepended to the text
+				 * - 'firstparagraph': The toc list is is inserted after the first paragraph found
+				 * - 'none': The toc is not inserted automatically and has to be inserted via the them code using the atray index returned
+				 * 
+				 * @author Sjaak Wish https://stackoverflow.com/a/73627183, adapted by Malte Müller (acrylian)
+				 * @param string $html HTML content
+				 * @param string $class Class name of the TOC list
+				 * @param string $insert_mode How the index should be added. See above
+				 * @param string $title Text to prepend the TOC list. Will be printed as a paragraph.
+				 * @return array
+				 */
+				static function generateTableOfContent($html, $insert_mode = 'standard', $title = '') {
+					preg_match_all('/<h([1-6])*[^>]*>(.*?)<\/h[1-6]>/', $html, $matches);
+					$content = array();
+					$toc = '';
+					//gpsp::print_r($matches);
+					if (count($matches) > 1) {
+						$toc = '<div class="table_of_content_list">';
+						if ($title) {
+							$toc .= '<h2 class="table_of_content-title">' . $title . '</h2>';
+						}
+						$toc .= '<ol class="">';
+						
+						$prev = 2;
+						$count = 0;
+						foreach ($matches[0] as $i => $match) {
+							$count++;
+							$level = $matches[1][$i];
+							$text = strip_tags($matches[2][$i]);
+							
+							// create slug, leading '--' to ensure basic compatibilty with old jQuery toc plugin
+							if (method_exists('zenphoto_seo', 'filter')) {
+								setOption('zenphoto_seo_lowercase', true, false);
+								$slug = '--' . zenphoto_seo::filter($text);
+							} else {
+								$slug = '--' .  strtolower(str_replace("--", "-", preg_replace('/[^\da-z]/i', '-', $text)));
+							}
+							$headline_old = '<h' . $level . '>' . $matches[2][$i] . '</h' . $level . '>';
+							$headline_new = '<h' . $level . ' id="' . $slug . '">' . $matches[2][$i] . '</h' . $level . '>';
+							//add id to headline for anchor link
+							$html = str_replace($headline_old, $headline_new, $html);
+							$prev <= $level ?: $toc .= str_repeat('</ol>', ($prev - $level));
+							$prev >= $level ?: $toc .= '<ol>';
+							$toc .= '<li><a href="#' . $slug . '">' . $text . '</a></li>';
+							$prev = $level;
+						}
+						$toc .= '</ol>';
+						$toc .= '</div>';
+						$content['toc'] = $toc;
+										
+						//find end of first paragraph to unsert after
+						switch($insert_mode) {
+							default:
+								$content['content'] = $html;
+								break;
+							case 'standard':
+								$content['content'] = $toc . $html;
+								break;
+							case 'firstparagraph':
+								$pos = strpos($html, '</p>');
+								$content['content'] = substr_replace($html, $toc, $pos, 0);
+								break;
+						}
+					}
+					return $content;
+				}
 			}
 			

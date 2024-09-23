@@ -1161,37 +1161,30 @@ background-color: #f8f8f8;
 width: 240px;
 margin: 15px 0px 18px 16px !important;
 float: right;
-line-height: 15px;
+line-height: 13px;
 max-height: 350px;
 overflow: auto;
 border: 1px dashed lightgray;
 }
 
-.table_of_content_list li {
-	margin: 8px 0 0px 15px;
+.table_of_content_list h2 {
+	margin-top: 0;
+	margin-bottom: 15px;
+	color: black !important;
+	font-size: 16px !important;
+}
+
+.table_of_content_list ol,
+.table_of_content_list ul {
 
 }
 
-.table_of_content_list ol {
-margin-bottom: 12px;
+.table_of_content_list ul li,
+.table_of_content_list ol li {
+	margin-bottom: 8px;
+	padding-left: 0;
+	margin-left: 0;
 }
-.table_of_content_list ol li ol {
-font-size: 11px;
-}
-
-.table_of_content_list ol li ol li {
-margin: 7px 0px 7px 16px !important;
-line-height: 12px;
-}
-
-a.toc-top-link {
-margin-left: 5px;
-font-size: 13px;
-font-weight: normal;
-padding: 2px;
-background-color: #f8f8f8;
-}
-
 
 .infobox h3.entrytitle {
 	margin: 0;
@@ -2124,18 +2117,19 @@ margin: 0;
 padding: 0;
 }
 
+/*
 #authorcredits {
-margin: 15px 0 0 10px !important;
+
 padding: 0;
 
 }
 
+
 #authorcredits .authorcredits_headline {
 	font-family: Arial, Helvetica, Sans-Serif;
-	font-size: 13px;
 	font-weight: bold;
 	color: black;
-	margin: 0 0 4px 0;
+	margin: 15px 0 8px 0 !important;
 }
 
 #authorcredits ul {
@@ -2149,7 +2143,7 @@ position:relative;
 #authorcredits ul li {
 margin: 0 0px 4px 0;
 }
-
+*/
 .entrymeta ul.authorstatusrank {
 display: inline;
 margin-left: 0px;

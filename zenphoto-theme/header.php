@@ -39,22 +39,6 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 		<?php if ($_zp_gallery_page == 'news.php' || $_zp_gallery_page == 'pages.php') { ?>
 			<script src="<?php echo $_zp_themeroot; ?>/js/jquery-syntax/jquery.syntax.min.js"></script>
 		<?php } ?>
-		<?php if ($_zp_gallery_page == 'news.php' || $_zp_gallery_page == 'pages.php') { ?>
-			<script src="<?php echo $_zp_themeroot; ?>/js/jquery.tableofcontents-mod.min.js"></script>
-			<script>
-				$(document).ready(function() {
-					if ($("#entrybody h2").length == 0) {
-						$("#toc").remove();
-					}
-					$("#toc").tableOfContents('#entrybody', {
-						startLevel: 2,
-						depth: 2,
-						topLinks: true,
-						topBodyId: top
-					});
-				});
-			</script>
-		<?php } ?>
 
 		<script>
 			$(document).ready(function() {
