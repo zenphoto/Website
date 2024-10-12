@@ -1949,11 +1949,14 @@ class zporg {
 				 * @return array
 				 */
 				static function generateTableOfContent($html, $insert_mode = 'standard', $title = '') {
-					preg_match_all('/<h([1-6])*[^>]*>(.*?)<\/h[1-6]>/', $html, $matches);
-					$content = array();
+					preg_match_all('/<h([2-6])*[^>]*>(.*?)<\/h[2-6]>/', $html, $matches);
+					$content = array(
+							'toc' => '', 
+							'content' => $html
+					);
 					$toc = '';
-					//gpsp::print_r($matches);
-					if (count($matches) > 1) {
+					//print_r($matches[0]);
+					if (count($matches[0]) > 1) {
 						$toc = '<div class="table_of_content_list">';
 						if ($title) {
 							$toc .= '<h2 class="table_of_content-title">' . $title . '</h2>';
