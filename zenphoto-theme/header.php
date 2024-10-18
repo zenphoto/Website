@@ -5,7 +5,7 @@ if (!defined('WEBPATH'))
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 ?>
 <!DOCTYPE html>
-<html>
+<html<?php printLangAttribute(); ?>>
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<title><?php echo zporg::printPageHeaderTitle(); ?></title>
