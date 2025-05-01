@@ -1381,6 +1381,11 @@ class zporg {
 					<?php
 					zporgSponsors::printAds(true); //platinum (index) or palladium (sidebar) sponsors
 					?>
+					<?php 
+					if (!is_Newsarticle() && !is_Pages()) {
+						echo zporg::getDonateCallToActionHTML('infobox', 'h3');
+					}
+					?>
 					<div class="infobox paidsupport">
 						<img src="<?php echo $_zp_themeroot; ?>/images/icon-forum.png" alt="" />
 						<h3>Need project help?</h3>
@@ -1388,11 +1393,7 @@ class zporg {
 						</p>
 						<br clear="left" />
 					</div>
-					<div class="infobox">
-						<h3>Like using Zenphoto? Donate!</h3>
-						<p>Your support helps pay for this server, and helps development of zenphoto. Thank you!</p>
-						<p>Visit the <?php printPageURL('donations page', 'donations', '', '', NULL); ?></p>
-					</div>
+					
 					<?php if (!is_NewsArticle() && $_zp_gallery_page != 'image.php') { ?>
 						<div class="infobox">
 							<h3>Share!</h3>
@@ -1882,19 +1883,38 @@ class zporg {
 				}
 				
 				static function getSupportbuildButtonHTML() {
-					return zporg:: getBuildButtonHTML('supportbuild');
+					return zporg::getBuildButtonHTML('supportbuild');
 				}
 				
 				static function getDevbuildButtonHTML() {
-					return zporg:: getBuildButtonHTML('devbuild');
+					return zporg::getBuildButtonHTML('devbuild');
 				}
 				
-				static function getDonateCallToActionHTML() {
-					$html = '<aside class="donate_calltoaction">';
-					$html .= '<h2>Support Zenphoto</h2>';
+				static function getDonateCallToActionHTML($extraclass = '', $headline ='h2', $wrapper = 'aside') {
+					switch($wrapper) {
+						default:
+						case 'aside':
+							$wrapper_start = '<aside class="donate_calltoaction ' . $extraclass . '">';
+							$wrapper_end = '</aside>';
+							break;
+						case 'article':
+							$wrapper_start = '<article class="donate_calltoaction ' . $extraclass . '">';
+							$wrapper_end = '</article>';
+							break;
+					}
+					$html = $wrapper_start;
+					switch ($headline) {
+						case 'h2':
+						default;
+							$html .= '<h2>Support Zenphoto</h2>';
+							break;
+						case 'h3':
+							$html .= '<h3>Support Zenphoto</h3>';
+							break;
+					}
 					$html .= '<p>Your donation helps pay for this server and development of Zenphoto. Thank you!</p>';
 					$html .= '<p><a class="buttons button" href="'. getPageURL('donations').'">Donate now</a>';
-					$html .= '</aside>'; 
+					$html .= $wrapper_end; 
 					return $html;
 				}
 				
@@ -2005,6 +2025,23 @@ class zporg {
 						}
 					}
 					return $content;
+				}
+				
+				/**
+				 * Checks sif $text has the content macro with the name
+				 * 
+				 * You need to use $obj->get['content'] for Zenpage items and $obj->get['desc'] for images and albums descriptions as the getContet() respectivel getDesc() 
+				 * methods already return macros applied!
+				 * 
+				 * @param text $text Raw text to check. 
+				 * @param text $macroname The plain name of the macro without brackets or parameters
+				 */
+				static function hasContentMacro($text = '', $macroname = '') {
+					$found = stripos($text, '[' .$macroname);
+					if($found !== false) {
+						return true;
+					}
+					return false;
 				}
 			}
 			

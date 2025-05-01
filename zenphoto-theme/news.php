@@ -48,10 +48,14 @@
 			<div class="entrybody">
 				<?php
 				printCodeblock(1);
-				$content =  zporg::generateTableOfContent(getNewsContent(), false, 'Content');
-				echo $content['toc'];
+				$content = zporg::generateTableOfContent(getNewsContent(), false, 'Content');
+				echo $content['toc'];	
 				zporg::printItemAuthorCredits(); 
 				echo $content['content'];
+				if(!zporg::hasContentMacro($_zp_current_zenpage_news->get("content"), 'donate')) {
+					echo zporg::getDonateCallToActionHTML();
+				}
+				
 				//printNewsContent();
 				printCodeblock(2);
 				zporg::printExtensionDownloadButton();

@@ -86,7 +86,9 @@ include('header.php');
 				?>
 			</ul>
 		</div>
-
+		
+		<?php echo zporg::getDonateCallToActionHTML('infobox', 'h3'); ?>
+		
 		<div class="infobox">
 			<h3>Found a bug?!</h3>
 			<p><img src="<?php echo $_zp_themeroot; ?>/images/icon-bugtracker.png" class="imgfloat-left" alt="" /> Please report any bugs you find with a detailed description via tickets at the <a href="https://github.com/zenphoto/zenphoto/issues?state=open" title="Bugtracker (GitHub)">Zenphoto bugtracker on GitHub.com</a>.
@@ -101,13 +103,8 @@ include('header.php');
 			}
 			?>
 		</div>
-
-		<div class="infobox">
-			<h3>Like using Zenphoto? Donate!</h3>
-			<p>Your support helps pay for this server, and helps development of Zenphoto. Thank you!</p>
-			<p>Visit the <a href="<?php echo html_encode(getPageURL('donations')); ?>">donations page</a></p>
-		</div>
-
+		
+		
 
 	</div><!-- infobox-l end -->
 
