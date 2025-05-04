@@ -1139,6 +1139,24 @@ color: #303030;
 	margin-left: 38px;
 	margin-right: 30px;
 }
+
+.scriptless_socialsharing-profiles {
+	max-width: 100%;
+	float: none;
+	clear: both;
+}
+
+.scriptless_socialsharing-profiles a {
+	color: black;
+	text-decoration: none;
+}
+
+.scriptless_socialsharing-profiles a:hover,
+.scriptless_socialsharing-profiles a:active,
+.scriptless_socialsharing-profiles a:focus {
+	color: gray;
+}
+
 a.toc-top-link,
 .stickyarticle,
 .table_of_content_list,
@@ -1230,49 +1248,6 @@ border: 1px dashed lightgray;
 #footer h3 {
   font-weight: normal;
   margin: 5px 0px 10px 0px;
-}
-
-#footer ul.sociallinks {
- list-style-type: none;
-}
-
-#footer ul.sociallinks li {
- list-style-type: none;
- display: inline;
-
-}
-#footer ul.sociallinks li a {
- display: block;
- width: 24px;
- height: 24px;
- float: left;
- text-indent: -4000px;
- margin-right: 8px;
-}
-
-#footer ul.sociallinks li.link_facebook a {
-background: url(images/socialicons.png) no-repeat 0px 0;
-}
-#footer ul.sociallinks li.link_googleplus a {
-background: url(images/socialicons.png) no-repeat -24px 0;
-}
-#footer ul.sociallinks li.link_twitter a {
-background: url(images/socialicons.png) no-repeat -48px 0;
-}
-#footer ul.sociallinks li.link_youtube a {
-background: url(images/socialicons.png) no-repeat -72px 0;
-}
-#footer ul.sociallinks li.link_github a {
-background: url(images/socialicons.png) no-repeat -96px 0;
-}
-
-
-#footer ul.sociallinks li img {
- margin-right: 8px;
- margin-left: 10px;
- position: relative;
- top: 3px;
- border: 0px;
 }
 
 

@@ -2,7 +2,7 @@
 <!-- begin footer -->
 </div>
 
-<div id="footer"></a>
+<div id="footer">
 	<div class="column-l">
 		<div class="infobox">
 			<h3>RSS feeds!</h3>
@@ -18,13 +18,6 @@
 				<li><a href="http://forum.zenphoto.org/discussions/feed.rss">Forum</a></li>
 			</ul>
 			<br />
-			<h3>Social networks</h3>
-			<ul class="sociallinks">
-				<li class="link_twitter"><a href="http://twitter.com/zenphotocms" title="Zenphoto on Twitter">Twitter</a></li>
-				<li class="link_github"><a href="https://github.com/zenphoto/zenphoto" title="Zenphoto on GitHub">GitHub</a></li>
-				<li class="link_facebook"><a href="https://www.facebook.com/zenphotocms" title="Zenphoto on Facebook">Facebook</a></li>
-				<li class="link_youtube"><a href="http://www.youtube.com/zenphotocms" title="Zenphoto on Youtube">Youtube</a></li>
-			 </ul>
 		</div>
 	</div>
 
@@ -68,6 +61,11 @@
 			</ul>
 		 </div>
 	</div>
+	<?php 
+	if (class_exists('scriptlesssocialsharing')) {
+		scriptlessSocialsharing::printProfileButtons('<h3>Follow us</h3>');
+	}
+	?>
 <br style="clear:both" />
 </div>
 </div><!-- #container -->
