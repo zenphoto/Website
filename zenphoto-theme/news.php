@@ -52,16 +52,17 @@
 				echo $content['toc'];	
 				zporg::printItemAuthorCredits(); 
 				echo $content['content'];
-				if(!zporg::hasContentMacro($_zp_current_zenpage_news->get("content"), 'donate')) {
-					echo zporg::getDonateCallToActionHTML();
-				}
 				
 				//printNewsContent();
 				printCodeblock(2);
 				zporg::printExtensionDownloadButton();
+				
 				if (zporg::inNewsCategory("user-guide")) { 
 					zporg::printLicenseNote();
 				} 
+				if(!zporg::hasContentMacro($_zp_current_zenpage_news->get("content"), 'donate')) {
+					echo zporg::getDonateCallToActionHTML();
+				}
 				?>
 				<p class="articlebox"><em>For questions and comments please use the <a href="http://www.zenphoto.org/support" title="Zenphoto forums" >forum</a> or discuss on the <a href="#stay-tuned">social networks</a>.</em></p>
 

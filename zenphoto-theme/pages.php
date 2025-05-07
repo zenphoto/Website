@@ -10,8 +10,13 @@
     	<!-- <ol id="toc" class="table_of_content_list"></ol> -->
   		<div class="entrybody">
   			<span id="entrybody">
-  		 	<?php printPageContent(); ?>
-  		 	<?php printCodeblock(1); ?>
+  		 	<?php 
+				printPageContent(); 
+				printCodeblock(1); 
+				if(!zporg::hasContentMacro($_zp_current_zenpage_page->get("content"), 'donate')) {
+					echo zporg::getDonateCallToActionHTML();
+				}
+				?>
   		 	</span>
   		</div>
 

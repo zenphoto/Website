@@ -1144,11 +1144,13 @@ color: #303030;
 	max-width: 100%;
 	float: none;
 	clear: both;
+	
 }
 
 .scriptless_socialsharing-profiles a {
 	color: black;
 	text-decoration: none;
+	font-size: 1.7rem !important;
 }
 
 .scriptless_socialsharing-profiles a:hover,

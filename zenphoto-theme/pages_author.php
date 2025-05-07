@@ -72,6 +72,9 @@
 			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getName(), 'albums');
 			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getName(), 'news', 'extensions');
 			zporg::printAuthorContributions('author_' . $_zp_current_zenpage_page->getName(), 'news', 'user-guide');
+			if(!zporg::hasContentMacro($_zp_current_zenpage_page->get("content"), 'donate')) {
+				echo zporg::getDonateCallToActionHTML();
+			}
 		} else {
 			zporg::printAuthorList('all', false, $subpages);
 		}

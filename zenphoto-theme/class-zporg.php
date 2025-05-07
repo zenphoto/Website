@@ -1989,6 +1989,9 @@ class zporg {
 							$count++;
 							$level = $matches[1][$i];
 							$text = strip_tags($matches[2][$i]);
+							if ($text == 'Support Zenphoto') {
+								continue;
+							}
 							
 							// create slug, leading '--' to ensure basic compatibilty with old jQuery toc plugin
 							if (method_exists('zenphoto_seo', 'filter')) {
