@@ -13,7 +13,7 @@
   		 	<?php 
 				printPageContent(); 
 				printCodeblock(1); 
-				if(!zporg::hasContentMacro($_zp_current_zenpage_page->get("content"), 'donate')) {
+				if ($_zp_current_zenpage_page->getTitlelink() != 'donations' && !zporg::hasContentMacro($_zp_current_zenpage_page->get("content"), 'donate')) {
 					echo zporg::getDonateCallToActionHTML();
 				}
 				?>
