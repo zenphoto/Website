@@ -45,8 +45,9 @@
 				<?php printNewsCategories(", ", gettext("Categories: "), "wp-category"); ?>
 			</div>
 			
-			<div class="entrybody">
+			<div class="entrybody zp-clearfix">
 				<?php
+				zporg::printFeaturedImage($_zp_current_zenpage_news);
 				printCodeblock(1);
 				$content = zporg::generateTableOfContent(getNewsContent(), false, 'Content');
 				echo $content['toc'];	
@@ -136,6 +137,10 @@
 					<div class="entrybody">
 
 						<?php
+						//if (function_exists('printSizedFeaturedImage')) {
+						//	printSizedFeaturedImage($_zp_current_zenpage_news, '', null, 150, 150,  150, 150, NULL, NULL, 'entrybody_featuredimage-thumb', NULL, true, NULL, false);
+						//}
+						
 						// only print content on main news loop
 						if (is_null($_zp_current_category)) {
 							$content = strip_tags(getNewsContent(250, ' (…)', false));

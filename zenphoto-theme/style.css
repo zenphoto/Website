@@ -627,6 +627,7 @@ width: 450px;
 	margin-top: 10px;
 	border: 0;
 	margin-bottom: 15px;
+
 }
 .entrybody p {
 margin-bottom: 14px;
@@ -639,6 +640,26 @@ margin-bottom: 10px;
 	padding: 4px;
 	border: 1px solid #DFDFDF;
 	max-width: 100%;
+}
+
+
+
+#content  .featuredimage figcaption * {
+	font-size: 10px;
+	font-weight: bold;
+	margin-top: -15px;
+	text-align: right;
+}
+
+#content .entrybody img.entrybody_featuredimage {
+
+}
+
+#content .entrybody img.entrybody_featuredimage-thumb {
+	display: block;
+	float: left;
+	margin-top: 0;
+	margin-right: 10px;
 }
 
 #content hr {

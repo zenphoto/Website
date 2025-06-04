@@ -11,6 +11,7 @@
   		<div class="entrybody">
   			<span id="entrybody">
   		 	<?php 
+				zporg::printFeaturedImage($_zp_current_zenpage_page);
 				printPageContent(); 
 				printCodeblock(1); 
 				if ($_zp_current_zenpage_page->getTitlelink() != 'donations' && !zporg::hasContentMacro($_zp_current_zenpage_page->get("content"), 'donate')) {

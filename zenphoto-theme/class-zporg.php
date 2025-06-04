@@ -2046,5 +2046,23 @@ class zporg {
 					}
 					return false;
 				}
+				
+				static function printFeaturedImage($obj = null) {
+					if (function_exists('printSizedFeaturedImage')) {
+						$featuredimage = getFeaturedImage($_zp_current_zenpage_news);
+						if ($featuredimage) {
+							echo '<figure class="featuredimage">';
+							printSizedFeaturedImage($_zp_current_zenpage_news, '', 560, NULL, NULL,  NULL, NULL, NULL, NULL, 'entrybody_featuredimage', NULL, false, NULL, false);
+							$desc = $featuredimage->getDesc();
+							if ($desc) {
+								echo '<figcaption>'; echo $desc; echo '</figcaption>';
+							}
+							echo '</figure>';
+						}
+					}
+				}
+				
+				
+				
 			}
 			
