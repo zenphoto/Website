@@ -1912,7 +1912,7 @@ class zporg {
 							$html .= '<h3>Support Zenphoto</h3>';
 							break;
 					}
-					$html .= '<p>Your donation helps pay for this server and development of Zenphoto. Thank you!</p>';
+					$html .= '<p>Your donation helps further development of Zenphoto. Thank you!</p>';
 					$html .= '<p><a class="buttons button" href="'. getPageURL('donations').'">Donate now</a>';
 					$html .= $wrapper_end; 
 					return $html;
